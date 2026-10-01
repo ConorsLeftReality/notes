@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lecture 1 - Intro to Databases</title>
+  <link rel="stylesheet" href="../../win95.css">
+  <link rel="stylesheet" href="../../notes.css">
+</head>
+
+<!--
+  HOW TO USE THIS FILE
+  1. Copy it for each lecture (lecture-02.html, ...).
+  2. Change the <title>, the title-bar text, the <h1> and the meta line.
+  3. Each <section class="note-section"> below is a self-contained module.
+     Copy a whole section (from <section> to </section>) to reuse it, or copy
+     just one block from inside it.
+  4. In code blocks, write  <  as  &lt;   and  &  as  &amp;
+  5. Update the taskbar at the bottom: mark this page's link class="active".
+-->
+
+<body class="win95-desktop">
+
+  <!-- Add class="mono" to the next line for a Notepad.exe-style monospace font:
+       <div class="window notepad mono"> -->
+  <div class="window notepad">
+
+    <div class="title-bar">
+      <div class="title-bar-text">Lecture 1 - Intro to Databases - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+      <h1>Lecture 5 and 6: URLs, Filepaths and Web Server basics</h1>
+      <p class="note-meta">Tuesday 29th September and Thursday 1st October 2026 &middot; CS1115 &middot; Dr. Example &middot; Slides: <a href="https://www.cs.ucc.ie/~dgb/courses/wd1.html">5 and 6</a></p>
+
+      <!-- ================= CONTENTS (optional) ================= -->
+      <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+          <li><a href="#sec-intro">What is a URL?</a></li>
+          <li><a href="#sec-scheme">URL - Scheme</a></li>
+          <li><a href="#sec-host">URL - Host</a></li>
+          <li><a href="#sec-port">URL - Port</a></li>
+          <li><a href="#sec-pathnames">URL - Pathname</a></li>
+        </ul>
+      </fieldset>
+
+
+      <section class="note-section" id="sec-intro">
+        <h2>What is a URL?</h2>
+
+        <p>
+          A URL, or <mark>Uniform Resourse Locator</mark>, is used as the address/location of a resource. A URL is often used by a web browser and in websites. 
+        </p>
+        <p>
+          A URL can be a web link or a local file path/address.
+        </p>
+
+        <h3>Layout of a URL</h3>
+        <p><i>scheme://host:port/pathname?query#fragment</i></p>
+        <p>Most of these parts are optional, and many have defaults (see other sections)</p>
+
+        <!--
+        <h4>Smallest heading (h4)</h4>
+        <p>Plain paragraph text goes in <code>&lt;p&gt;</code>.</p>
+        -->
+
+        <aside class="callout definition">
+          <span class="callout-title">Summary</span>
+          <ul>
+            <li>A URL is a Uniform Resourse Locator</li>
+            <li>A URL is the address/location of a resourse</li>
+            <li>A URL can either be a web link or a local filepath</li>
+          </ul>
+        </aside>
+      </section>
+
+
+      <section class="note-section" id="sec-scheme">
+        <h2>URL - Scheme</h2>
+
+        <p>A URL Scheme tells the browser what action to take when a user clicks on a hyperlink.</p>
+
+        <h3>Examples of Schemes</h3>
+        <ul class="list-dash">
+          <li>HTTP - Hypertext Transfer Protocol (what web servers and clients use)</li>
+          <li>HTTPS - HyperText Transfer Protocol Secure (same as HTTP, but encrypted end-to-end)</li>
+          <li>file - tells page to load file directly from local disk, but bad to use as files have possibility to be missing</li>
+          <li>mailto - used to tell a website that a hyperlink is an email address, but will be harvested by email harvesters (not good)</li>
+        </ul>
+
+        <p><b>Schemes such as chrome also exist, but not much use to us (different browsers for users, and not of much use in general)</b></p>
+
+      <!--
+        <h3>Checklist (add class="done" to tick an item)</h3>
+        <ul class="list-check">
+          <li class="done">Read chapter 1</li>
+          <li class="done">Attend lab</li>
+          <li>Finish exercise sheet</li>
+        </ul>
+
+        <h3>Numbered lists</h3>
+        <ol>
+          <li>Decimal (default)</li>
+          <li>Second item</li>
+        </ol>
+        <ol class="list-alpha">
+          <li>Lower-alpha</li>
+          <li>Second item</li>
+        </ol>
+        <ol class="list-roman">
+          <li>Lower-roman</li>
+          <li>Second item</li>
+        </ol>
+      -->
+
+      </section>
+        
+
+      <section class="note-section" id="sec-host">
+        <h2>URL - Host</h2>
+          <p>The Host section of a URL tells us which computer data is stored on. The Host can be in the form of either an IP Address or a hostname (below).</p>
+        
+        <h3>Hostnames</h3>
+          <p>A Hostname comprises of the name of a computer and the domain name</p>
+          <p>E.G. <code>www.cs.ucc.ie</code> (www is the name of the server, cs.ucc.ie is the domain name)</p>
+
+        <h3>DNS (Domain Name System)</h3>
+          <p>IP Addresses are in the form of numbers (255.255.255.255 is the form for IPv4, and 0000:0000:0000:0000:0000:0000:0000:0000 for IPv6)</p>
+          <p>In order to simplify this for users, we use DNS servers that relate an IP address of a server to a domain name (E.G. google.com is linked to an IP like 102.123.132.231)</p>
+          <p><i><b>DNS is covered in future years in networking, dont worry about it past this information</b></i></p>
+
+<!--
+        <p>Inline code looks like <code>SELECT *</code>, and keys look like <kbd>Ctrl</kbd> + <kbd>S</kbd>.</p>
+
+        <h3>Dark block with a title bar</h3>
+        <div class="code-block">
+          <div class="code-title">query.sql</div>
+          <pre><code>SELECT name, grade
+FROM students
+WHERE grade &gt;= 70
+ORDER BY grade DESC;</code></pre>
+        </div>
+
+        <h3>Light block, no title</h3>
+        <div class="code-block light">
+          <pre><code>def average(values):
+    return sum(values) / len(values)
+
+print(average([60, 70, 80]))   # 70.0</code></pre>
+        </div>
+-->
+      </section>
+
+
+      <section class="note-section" id="sec-port">
+        <h2>URL - Port</h2>
+          <p>
+            Servers can run many servers, but for these server to be running simultaneously, they need individual addressses with a common IP address
+          </p>
+          <p><mark>SOLUTION: Network Ports</mark></p>
+          <p>
+            It would be very inefficcient if we could only have one piece of software running on a computer, 
+            so each piece of software on a computer (that needs network access outside of its own computer) can get a port to access a network from.
+          </p>
+
+          <h3>Imaginary Computer 01</h3>
+          <p>These are the network-interacting programs running on out imaginary computer</p>
+          <ul>
+            <li>Web Server - 80/443</li>
+            <li>Email Server (imap) - 143</li>
+            <li>Email Server (pop3) - 110</li>
+            <li>smtp - 25 (legacy)</li>
+            <li>Proxmox - 8006</li>
+            <li>Grafana - 3000</li>
+            <li>ssh - 22</li>
+          </ul>
+          <p>See how our imaginary computer is running 7 different programs? This is possible due to each program having its own port!</p>
+
+          <p><b>BUT this defaults to 80 if left empty because most web pages use 80 (or respond on 443 for HTTPS)</b></p>
+        <!-- Example Images -->
+
+        <!--
+
+        <figure class="note-image">
+          <img alt="Placeholder diagram" width="320"
+               src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='160'%3E%3Crect width='320' height='160' fill='%23c0c0c0'/%3E%3Ctext x='160' y='86' font-family='Arial' font-size='16' text-anchor='middle'%3Eimages/your-image.png%3C/text%3E%3C/svg%3E">
+          <figcaption>Figure 1: Caption for the image.</figcaption>
+        </figure>
+        
+        Floated image: text wraps around it. Use class="note-image right" or "left".
+        <figure class="note-image right">
+          <img alt="Placeholder" width="200"
+               src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='120'%3E%3Crect width='200' height='120' fill='%23c0c0c0'/%3E%3Ctext x='100' y='66' font-family='Arial' font-size='14' text-anchor='middle'%3Eright-floated%3C/text%3E%3C/svg%3E">
+          <figcaption>Figure 2: Floated right.</figcaption>
+        </figure>
+        <p>
+          This paragraph sits beside the floated image. Longer text wraps around it, which is handy for
+          small diagrams that don't need their own row. Keep writing and the text will flow neatly past
+          the figure and then continue underneath it once it is taller than the image.
+        </p>
+
+        -->
+        
+      </section>
+
+
+      <section class="note-section" id="sec-pathnames">
+        <h2>URL - Pathname</h2>
+        
+        <p>The pathname is used to say which file we want, and which folder it is in. </p>
+        
+        <h3>Unix File Systems - A foundation we need to continue</h3>
+          <p>For Web Development 1, we use Unix Based Operating Systems (Ubuntu Linux), so we must know how files are laid out</p>
+          <h4>Basic terms for Unix Filesystems</h4>
+            <ul>
+              <li>Folders == Directories</li>
+              <li>Root Directory == /</li>
+            </ul>
+            <p>Unix uses forward slashes (/), not back slashes like Windows file systems(\)</p>
+          <h4>Basic Advice for using Unix Filesystems</h4>
+            <ul>
+              <li>Avoid spaces and unnessecary punctuation in filenames (Use underscores instead of spaces, NEVER USE SPACES IN FILENAMES ITS A PAIN TO WORK WITH)</li>
+              <li>Unix is case sensitive too, so keep everything lowercase (unless told not to, some stuff will want specific casing)</li>
+            </ul>
+          <h4>File Permissions</h4>
+            <p>Files have permissions too, and definitions for who can do what with files</p>
+            <ul>
+              <li>Owner - Who owned/made the file/directory</li>
+              <li>Group - Users who belong to a group associated with the file/directory</li>
+              <li>Other - Anyone viewing the file/directory</li>
+            </ul>
+            <p>These are some permissions that are used in Unix systems</p>
+            <ul>
+              <li>Read - View contents and list names of files in a directory</li>
+              <li>Write - Write / modify files possible</li>
+              <li>Execute - Can run a file (if program/executable) and can traverse directory, and, if also have read perm, list the files, view contents and view permissions</li>
+            </ul>
+          <h4>Relative and Absolute filenames</h4>
+            <p>Filenames can be in 2 forms</p>
+            <ul class="list-dash">
+              <li>Relative - example_directory/file_in_directory.txt</li>
+              <li>Absolute - /var/www/html/example_directory/file_in_directory.txt</li>
+            </ul>
+            <p>
+              A Relative filename assumes we are looking for a file from a specific starting point 
+              (the folder we are in currently), but an absolute filename assumes we start at the very start of the directories, 
+              in the <mark>Root Directory (/)</mark>
+            </p>
+
+            <aside class="callout">
+              <span class="callout-title">Tip</span>
+              <p>In relative pathnames, you can also use ../ to go up a directory.</p>
+              <pre>
+
+                       / (Root Dir.)
+                  __________|______________
+                  |                 |                       |
+                dogs           cats                     birds
+                  |                 |                       |
+            pug.html       siamese.html          budgie.html
+              </pre>
+              <p>
+                For example, imagine we are in pug.html (so our directory is dogs), to go from where we are to siamese.html, 
+                we do <code>../cats/siamese.html</code>. So we ../ to go up a layer (to the root directory co-incidentally), 
+                then from there we go to the cats directory, and then open the siamese.html webpage
+              </p>
+            </aside>
+        
+        <h3>Web Servers</h3>
+        <p>Web servers are the software that server computers use to serve webpages to people (clients)</p>
+        <ul>
+          <li>Apache Web Server</li>
+          <li>Microsoft IIS (Internet Information Server)</li>
+          <li>nginx</li>
+        </ul>
+        <p><b>In CS1115, we only care about Apache</b></p>
+        <h4>Apache Web Server</h4>
+          <p>
+            Apache is a free and open-source web server software that was the most popular web server for decades. 
+            Apache is MODULAR, so you can choose which modules you want for your webserver, depending on what you want it to do. 
+            These are enabled/disabled and configured through directives in the configuration file (E.G. <code>httpd.conf</code>)
+          </p>
+
+          <h4>Here is the simplest httpd.conf file possible</h4>
+          <div class="code-block">
+            <div class="code-title">httpd.conf</div>
+            <pre><code>
+ServerName www.example.com # Server's Name
+
+Listen 80 # Port to listen to
+
+DocumentRoot "/var/www/html" # Document Root being defined, web server's working directory
+            </code></pre>
+          </div>
+          
+          <aside class="callout">
+            <span class="callout-title">Note</span>
+            <p>There are 2 things to note</p>
+            <ul>
+              <li>The document root is the directory the web server uses that hosts all the web resources, basically web server's working directory</li>
+              <li>The URL that someone enters to GET a webpage has a relative URL, <mark>but this is converted into an Absolute URL pathname by the web server</mark> by concatonating the DocumentRoot pathname and the GET requests URL's relative pathname</li>
+            </ul>
+          </aside>
+
+        <h4>Absolute and Relative URLs</h4>
+        <p><b>External Link (on a different server)</b></p>
+        <ul>
+          <li>Scheme + hostname/ip + absolute pathname</li>
+        </ul>
+        
+        <p><b>Internal Link (on same server/local server)</b></p>
+        <ul>
+          <li>Scheme + hostname/ip + absolute pathname</li>
+          <li>Absolute Pathname</li>
+          <li>Relative Pathname</li>
+        </ul>
+      <h3>Apache Web Server - Additional Directives</h3>
+        <h4>404 Errors</h4>
+          <p>You can define which page to call to when there is a 404 error with code like <code>ErrorDocument 404 404.html</code></p>
+        <h4>Index Files</h4>
+          <p>Suppose you search for a directory, how is it handled</p>
+          <p><mark>ANSWER: DirectoryIndex index.html</mark></p>
+          <p>EXPLANATION: Apache will serve the file of said name in whatever folder you search up, (if the file exists, else 404)</p>
+          <p><i><b>Apache can also serve index pages (that show the contents of a directory as a basic HTML file menu) with code like this</b></i></p>
+          <div class="code-block">
+            <div class="code-title">httpd.conf</div>
+            <pre><code>
+&lt;Directory /&gt;
+
+    Options +Indexes
+
+&lt;/Directory&gt;
+            </code></pre>
+          </div>
+          
+          <aside class="callout">
+            <span class="callout-title">Note</span>
+            <p>It is possible to have multiple directives, or some, or none. As long as the basics (stated above) are present in httpd.conf, all is OK</p>
+          </aside>
+
+
+
+        <!--
+        <p>
+          An inline link: read the <a href="https://en.wikipedia.org/wiki/Database" target="_blank" rel="noopener">Wikipedia article</a>.
+          Link to another lecture with <a href="index.html">a normal relative link</a>.
+        </p>
+
+        <p>
+          <a class="link-btn" href="https://example.com/slides.pdf" target="_blank" rel="noopener">Slides (PDF)</a>
+          <a class="link-btn" href="https://example.com/lab" target="_blank" rel="noopener">Lab sheet</a>
+        </p>
+
+        <h3>Resource list</h3>
+        <ul class="list-arrow">
+          <li><a href="https://example.com/textbook" target="_blank" rel="noopener">Textbook, chapter 1</a></li>
+          <li><a href="https://example.com/video" target="_blank" rel="noopener">Recorded lecture</a></li>
+        </ul>
+      -->
+      </section>
+
+    </div>
+
+    <div class="status-bar">
+      <p class="status-bar-field">Lecture 5 and 6</p>
+      <p class="status-bar-field">29 Sep & 1 Oct 2026</p>
+    </div>
+  </div>
+
+  <!-- Taskbar -->
+  <div class="taskbar">
+    <a class="start-button" href="index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+      <li><a class="taskbar-item" href="../cs1115_index.html">Back to CS1115 Home</a></li>
+    </ul>
+  </div>
+
+</body>
+</html>

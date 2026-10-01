@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lecture 1 - Intro to Databases</title>
+  <link rel="stylesheet" href="win95.css">
+  <link rel="stylesheet" href="notes.css">
+</head>
+
+<!--
+  HOW TO USE THIS FILE
+  1. Copy it for each lecture (lecture-02.html, ...).
+  2. Change the <title>, the title-bar text, the <h1> and the meta line.
+  3. Each <section class="note-section"> below is a self-contained module.
+     Copy a whole section (from <section> to </section>) to reuse it, or copy
+     just one block from inside it.
+  4. In code blocks, write  <  as  &lt;   and  &  as  &amp;
+  5. Update the taskbar at the bottom: mark this page's link class="active".
+-->
+
+<body class="win95-desktop">
+
+  <!-- Add class="mono" to the next line for a Notepad.exe-style monospace font:
+       <div class="window notepad mono"> -->
+  <div class="window notepad">
+
+    <div class="title-bar">
+      <div class="title-bar-text">Lecture 1 - Intro to Databases - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+      <h1>Lecture 1: Intro to Databases</h1>
+      <p class="note-meta">Mon 29 Sep 2026 &middot; CS2208 &middot; Dr. Example &middot; Slides: week 1</p>
+
+      <!-- ================= CONTENTS (optional) ================= -->
+      <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+          <li><a href="#sec-intro">What is a database?</a></li>
+          <li><a href="#sec-lists">Lists</a></li>
+          <li><a href="#sec-code">Code</a></li>
+          <li><a href="#sec-images">Images</a></li>
+          <li><a href="#sec-links">Links</a></li>
+          <li><a href="#sec-extras">Callouts, quotes and tables</a></li>
+        </ul>
+      </fieldset>
+
+
+      <!-- ================= SECTION: topic + paragraph + definition ================= -->
+      <section class="note-section" id="sec-intro">
+        <h2>What is a database?</h2>
+
+        <p>
+          A database is an organised collection of data that can be stored, queried and
+          updated efficiently. Most apps use a <strong>relational</strong> database such as
+          <code>PostgreSQL</code> or <code>MySQL</code>. Important words can be <mark>highlighted</mark>.
+        </p>
+
+        <h3>Sub-topic heading (h3)</h3>
+        <p>Use h3 for sub-topics and h4 for smaller points inside them.</p>
+
+        <h4>Smallest heading (h4)</h4>
+        <p>Plain paragraph text goes in <code>&lt;p&gt;</code>.</p>
+
+        <aside class="callout definition">
+          <span class="callout-title">Definition: DBMS</span>
+          <p>A Database Management System is the software that lets you create, read, update and delete data.</p>
+        </aside>
+      </section>
+
+
+      <!-- ================= SECTION: every list style ================= -->
+      <section class="note-section" id="sec-lists">
+        <h2>Lists</h2>
+
+        <h3>Default bullets (square)</h3>
+        <ul>
+          <li>First point</li>
+          <li>Second point
+            <ul>
+              <li>Nested point</li>
+              <li>Another nested point</li>
+            </ul>
+          </li>
+          <li>Third point</li>
+        </ul>
+
+        <h3>Dash list</h3>
+        <ul class="list-dash">
+          <li>Good for quick facts</li>
+          <li>Another fact</li>
+        </ul>
+
+        <h3>Arrow list</h3>
+        <ul class="list-arrow">
+          <li>Good for steps or takeaways</li>
+          <li>Another takeaway</li>
+        </ul>
+
+        <h3>Checklist (add class="done" to tick an item)</h3>
+        <ul class="list-check">
+          <li class="done">Read chapter 1</li>
+          <li class="done">Attend lab</li>
+          <li>Finish exercise sheet</li>
+        </ul>
+
+        <h3>Numbered lists</h3>
+        <ol>
+          <li>Decimal (default)</li>
+          <li>Second item</li>
+        </ol>
+        <ol class="list-alpha">
+          <li>Lower-alpha</li>
+          <li>Second item</li>
+        </ol>
+        <ol class="list-roman">
+          <li>Lower-roman</li>
+          <li>Second item</li>
+        </ol>
+      </section>
+
+
+      <!-- ================= SECTION: code blocks ================= -->
+      <section class="note-section" id="sec-code">
+        <h2>Code</h2>
+
+        <p>Inline code looks like <code>SELECT *</code>, and keys look like <kbd>Ctrl</kbd> + <kbd>S</kbd>.</p>
+
+        <h3>Dark block with a title bar</h3>
+        <div class="code-block">
+          <div class="code-title">query.sql</div>
+          <pre><code>SELECT name, grade
+FROM students
+WHERE grade &gt;= 70
+ORDER BY grade DESC;</code></pre>
+        </div>
+
+        <h3>Light block, no title</h3>
+        <div class="code-block light">
+          <pre><code>def average(values):
+    return sum(values) / len(values)
+
+print(average([60, 70, 80]))   # 70.0</code></pre>
+        </div>
+      </section>
+
+
+      <!-- ================= SECTION: images ================= -->
+      <section class="note-section" id="sec-images">
+        <h2>Images</h2>
+
+        <!-- Replace the src with your own file, e.g. src="images/er-diagram.png" -->
+        <figure class="note-image">
+          <img alt="Placeholder diagram" width="320"
+               src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='160'%3E%3Crect width='320' height='160' fill='%23c0c0c0'/%3E%3Ctext x='160' y='86' font-family='Arial' font-size='16' text-anchor='middle'%3Eimages/your-image.png%3C/text%3E%3C/svg%3E">
+          <figcaption>Figure 1: Caption for the image.</figcaption>
+        </figure>
+
+        <!-- Floated image: text wraps around it. Use class="note-image right" or "left". -->
+        <figure class="note-image right">
+          <img alt="Placeholder" width="200"
+               src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='120'%3E%3Crect width='200' height='120' fill='%23c0c0c0'/%3E%3Ctext x='100' y='66' font-family='Arial' font-size='14' text-anchor='middle'%3Eright-floated%3C/text%3E%3C/svg%3E">
+          <figcaption>Figure 2: Floated right.</figcaption>
+        </figure>
+        <p>
+          This paragraph sits beside the floated image. Longer text wraps around it, which is handy for
+          small diagrams that don't need their own row. Keep writing and the text will flow neatly past
+          the figure and then continue underneath it once it is taller than the image.
+        </p>
+      </section>
+
+
+      <!-- ================= SECTION: links ================= -->
+      <section class="note-section" id="sec-links">
+        <h2>Links</h2>
+
+        <p>
+          An inline link: read the <a href="https://en.wikipedia.org/wiki/Database" target="_blank" rel="noopener">Wikipedia article</a>.
+          Link to another lecture with <a href="index.html">a normal relative link</a>.
+        </p>
+
+        <p>
+          <a class="link-btn" href="https://example.com/slides.pdf" target="_blank" rel="noopener">Slides (PDF)</a>
+          <a class="link-btn" href="https://example.com/lab" target="_blank" rel="noopener">Lab sheet</a>
+        </p>
+
+        <h3>Resource list</h3>
+        <ul class="list-arrow">
+          <li><a href="https://example.com/textbook" target="_blank" rel="noopener">Textbook, chapter 1</a></li>
+          <li><a href="https://example.com/video" target="_blank" rel="noopener">Recorded lecture</a></li>
+        </ul>
+      </section>
+
+
+      <!-- ================= SECTION: callouts, quote, table, divider ================= -->
+      <section class="note-section" id="sec-extras">
+        <h2>Callouts, quotes and tables</h2>
+
+        <aside class="callout">
+          <span class="callout-title">Note</span>
+          <p>The default callout is for general notes and tips.</p>
+        </aside>
+
+        <aside class="callout warning">
+          <span class="callout-title">Exam alert</span>
+          <p>The warning callout is for things that will be on the exam.</p>
+        </aside>
+
+        <blockquote>
+          <p>"Quote from the lecturer or a textbook goes here."</p>
+        </blockquote>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Term</th><th>Meaning</th><th>Example</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Primary key</td><td>Uniquely identifies a row</td><td><code>student_id</code></td></tr>
+              <tr><td>Foreign key</td><td>Points to a row in another table</td><td><code>course_id</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <hr>
+        <p>A horizontal rule (<code>&lt;hr&gt;</code>) separates parts inside a section.</p>
+      </section>
+
+
+      <!-- ================= BLANK SECTION (copy this to start a new topic) =================
+      <section class="note-section" id="sec-your-id">
+        <h2>Topic title</h2>
+        <p>Text...</p>
+      </section>
+      ===================================================================================== -->
+
+    </div>
+
+    <div class="status-bar">
+      <p class="status-bar-field">Lecture 1</p>
+      <p class="status-bar-field">29 Sep 2026</p>
+    </div>
+  </div>
+
+
+  <!-- ======================================================================
+       TASKBAR MENU: same block on every page, with class="active" moved
+       to the link for the page you are on.
+       ====================================================================== -->
+  <div class="taskbar">
+    <a class="start-button" href="index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+      <li><a class="taskbar-item" href="index.html">Home</a></li>
+      <li><a class="taskbar-item active" href="lecture-template.html">Lecture Template</a></li>
+      <!-- <li><a class="taskbar-item" href="lecture-02.html">Lecture 2</a></li> -->
+    </ul>
+  </div>
+
+</body>
+</html>

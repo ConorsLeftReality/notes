@@ -1,0 +1,64 @@
+## Tablet pen brokey, typing time
+
+
+## SQL BASICS
+
+                            SQL Commands
+                                 |
+DDL             DML             TCL             DQL             DCL             
+================================================================================
+CREATE          INSERT          COMMIT          SELECT          GRANT
+DROP            UPDATE          SAVEPOINT                       REVOKE
+ALTER           DELETE          ROLLBACK
+TRUNCATE
+
+Only DQL, DML and DDL covered in module
+
+Data Definition Language
+Data Manipulation Language
+Data Query Language
+
+Others covered next year? maybe not my problem atm
+
+    # Data Query Language
+    Queries to interrogate the database
+
+    # Data Manipulation Language
+    Ways to update/manu=ipulate database
+
+    # Data Definition Language
+    Notation for expressing database structure
+
+## Relational Operations
+
+projections, selections and joins
+SQL uses the SELECT command to run these operations
+
+    Projection operations retrieve specific columns (attributes)
+    Selection operations retrieve specific rows (tuples)
+    Join operations bring together the data from two or more tables
+
+## SQL Queries (DQL)
+
+The query specifies what data is required (what data is required and where its from).
+The result of query is a table.
+
+# SQL DQL Template 
+
+    SELECT list-of-attributes
+    FROM table-name;
+
+    list-of-attributes is a comma seperated list of column names
+    table-name specifies table name (obviously, are you an idiot)
+
+    ##############################################################
+
+    SELECT *
+    FROM students
+
+    * selects all columns
+    students is the table name
+
+    ##############################################################
+
+    NOTE: SQL does NOT like trailing commas
