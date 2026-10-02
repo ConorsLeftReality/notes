@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sets And Collections</title>
+    </head>
+    <body>
+        <!-- Havent made a lectures note template yet, doing after kayaking -->
+        <h1>
+            Sets And Collections
+        </h1>
+        <p>
+            Professor Barry O'Sullivan
+        </p>
+
+        <hr>
+
+        <h2>
+            Sets
+        </h2>
+            <p>
+                &empty; = {}?
+            </p>
+            <h3>Aim of lecture</h3>
+            <ul>
+                <li>Know Basic Set Notation</li>
+                <li>Operations on sets</li>
+            </ul>
+            <p>CSS is essentially sets (set of paragraph, set in body etc)</p>
+            <p>Within a set, there are elements, and within elements, there are properties</p>
+
+            <h3>
+                Why talk about sets?
+            </h3>
+                <p>
+                    Successful software eng requires the ability to describe precisely and clearly the intended behavior of the software.
+                </p>
+                <p>
+                    See slides for more
+                </p>
+
+            <h3>What is a set?</h3>
+                <p>
+                    A set is a collection of things (the things can be anything)
+                </p>
+                <p>
+                    The things dont matter, what matters is that we state <mark>precisely</mark> and <mark>clearly</mark> what "things" are in the collection.
+                </p>
+                <p>
+                    <b>NOTE - A set must use curly brackets, MUST</b>
+                </p>
+                <p> - TO WRITE A SET, use curly brackets, and seperate items with commas</p>
+            <h3>Specifying a set</h3>
+                <ul>
+                    <li>For simple sets, we write down each thing in a list</li>
+                    <li>This style of writing sets is known as set enumeration, or set display, or extensional definiton</li>
+                    <li>Sometimes, when the pattern is clear, we will write the first few items, three dots, then pick up again from a point in a set further on</li>
+                    <li></li>
+                </ul>
+            <h3>Specifying more complex sets</h3>
+                <p>specifying more compelx sets, we specify a template, then a rule, such that everything that matches the template and obeys the rule is in the set</p>
+                <p><b>Examples</b></p>
+                <hr>
+                <p>{y | y is a library book with 'databases' in the title}</p>
+                <p>{x | x is a woman resident in Co. Cork, registered with the health service and over 55}</p>
+                <hr>
+            <h3>Set Membership</h3>
+                <p>
+                    In order to talk about sets, we need more formal notation. Let A be the name of a set, and let x be some thing.
+                </p>
+                <p>
+                    Element of symbol, not element of symbol (find for css, make basic example, thats all missing here)
+                </p>
+            <h3>Set notation and membership</h3>
+                <p>Set or complex sets, and the element of, or not element of symbol. some examples in a list #TODO</p>
+            <h3>Two most important properties of sets</h3>
+                <p>
+                    The order in which you weire down the elements in an enumeration doesnt matter
+                </p>
+                <p>
+                    There is only one copy of each element in a set, so repeated elements in an enumeration are ignored.
+                </p>
+            <h3>Equal sets</h3>
+                <p>
+                    Two sets are equal if both sets are identical
+                </p>
+                <p>
+                    Two sets are not equal if one or more elements are different
+                </p>
+            <h3>Some important sets</h3>
+                <p>Null set (contain nothing) - {}, &empty;</p>
+                <p>Set that contains something, that is nothing - {&empty;}</p>
+                <p><b> -- TWO DIFFERENT THINGS -- </b></p>
+                <p>Set Z - Set of integers (whole pos/neg numbers)</p>
+                <p>Set Q - Rational numbers (can be expressed as a fraction)</p>
+                <p>Set R - Set of real numbers (such as &pi; or &Sqrt;2)</p>
+            <h3>Subsets</h3>
+                <p>Sometimes we have sets that are contained within another set</p>
+                <p>E.G.</p>
+                <p>A = {1,2,3,4}</p>
+                <p>B = {-1,0,1,2,3,4,5,6,7}</p>
+                <p>A ⊆ B</p>
+                <p>Note: A and B are different sets, but B contains all the elements in A, therefore A is a subset of B</p>
+            <h3>Proper Subsets</h3>
+                <p>
+                    A is a proper subset of B if A ⊆ B and A ≠ B, written A ⊂ B
+                </p>
+            <h3>Set Union</h3>
+                <p>
+                    A set union of two sets is a new set consisting of every member of the two sets.
+                </p>
+                <p></p>
+            <h3>Set Intersection</h3>
+                <p>
+                    A set intersection of two sets is a new set consisting of members in both sets (common elements)
+                </p>
+            <h3>Set difference</h3>
+                <p>
+                    The set difference of two sets is a new set consisting of each element of the first that is NOT an element of the second.
+                </p>
+                <p>E.G.</p>
+                <p>A = {x,y,w} , B = {y,z}</p>
+                <p>A \ B = {x,w}</p>
+            
+            <hr>
+
+            <h2>Sets and Collections (Cont.)</h2>
+
+            <hr>
+
+            <h3>Set Complimentary</h3>
+                    <p>
+                        The set compliment of a set is a new set consistion of every element of the universal set that is NOT an element of the first set
+                    </p>
+                    <p>E.G.</p>
+                    <p>A = {x,y,w} , B = {y,z}, U = {p,x,y,w,z}</p>
+                    <p>A' = {p,z}</p>
+                    <p><b>NOTE: A' = U \ A</b></p>
+                    <p>For X in U, x elememt of A' if and only if x not element of A</p>
+            
+            <h3>Set Cardinality</h3>
+                    <p>The cardinality of a finite set is the number of elements in the set</p>
+                    <p>E.G.</p>
+                    <p>A = {a,b,c,d,}</p>
+                    <p>|A| = 4</p>
+            <h3>Set theory - cont.</h3>
+                    <p>We can mix and match the elements - they do not have to be of the same type</p>
+                    <p>E.G.</p>
+                    <p>S = { a , {b} , c , {} , {d,e} }</p>
+                    <p>SO: a element of S, c element of S, {b} element of S, {} element of S, {d,e} element of S</p>
+                    <p>BUT: b NOT element of S, &empty; NOT element of S, d NOT element of S, e NOT element of S</p>
+            <h3>Power Set</h3>
+                    <p>The Power Set is the set of all possible subsets of A (all possible combinations of elements in a set)</p>
+                    <p>Power set of A is written as P(A)</p>
+                    <p>For any A, |P(A)| = 2**|A|</p>
+            <h3></h3>
+        </body>
+</html>
