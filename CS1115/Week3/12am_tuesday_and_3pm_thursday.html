@@ -1,4 +1,37 @@
-v
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lecture 5 and 6 - URLs, Unix File Systems and Web Servers</title>
+  <link rel="stylesheet" href="../../win95.css">
+  <link rel="stylesheet" href="../../notes.css">
+</head>
+
+<body class="win95-desktop">
+
+  <div class="window notepad">
+
+    <div class="title-bar">
+      <div class="title-bar-text">Lecture 5 and 6 - URLs, Unix File Systems and Web Servers - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+      <h1>Lecture 5 and 6 - URLs, Unix File Systems and Web Servers</h1>
+      <p class="note-meta">DATE &middot; CS1115 &middot; Derek Bridge &middot; Slides: <a href="https://www.cs.ucc.ie/~dgb/courses/wd1.html">5 and 6</a></p>
+
+
+      <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+          <li><a href="#sec-intro">What is a URL?</a></li>
+          <li><a href="#sec-scheme">URL - Scheme</a></li>
+          <li><a href="#sec-host">URL - Host</a></li>
+          <li><a href="#sec-port">URL - Port</a></li>
+          <li><a href="#sec-pathnames">URL - Pathname</a></li>
+        </ul>
+      </fieldset>
 
 
       <section class="note-section" id="sec-intro">
@@ -14,11 +47,6 @@ v
         <h3>Layout of a URL</h3>
         <p><i>scheme://host:port/pathname?query#fragment</i></p>
         <p>Most of these parts are optional, and many have defaults (see other sections)</p>
-
-        <!--
-        <h4>Smallest heading (h4)</h4>
-        <p>Plain paragraph text goes in <code>&lt;p&gt;</code>.</p>
-        -->
 
         <aside class="callout definition">
           <span class="callout-title">Summary</span>
@@ -46,29 +74,6 @@ v
 
         <p><b>Schemes such as chrome also exist, but not much use to us (different browsers for users, and not of much use in general)</b></p>
 
-      <!--
-        <h3>Checklist (add class="done" to tick an item)</h3>
-        <ul class="list-check">
-          <li class="done">Read chapter 1</li>
-          <li class="done">Attend lab</li>
-          <li>Finish exercise sheet</li>
-        </ul>
-
-        <h3>Numbered lists</h3>
-        <ol>
-          <li>Decimal (default)</li>
-          <li>Second item</li>
-        </ol>
-        <ol class="list-alpha">
-          <li>Lower-alpha</li>
-          <li>Second item</li>
-        </ol>
-        <ol class="list-roman">
-          <li>Lower-roman</li>
-          <li>Second item</li>
-        </ol>
-      -->
-
       </section>
         
 
@@ -85,26 +90,6 @@ v
           <p>In order to simplify this for users, we use DNS servers that relate an IP address of a server to a domain name (E.G. google.com is linked to an IP like 102.123.132.231)</p>
           <p><i><b>DNS is covered in future years in networking, dont worry about it past this information</b></i></p>
 
-<!--
-        <p>Inline code looks like <code>SELECT *</code>, and keys look like <kbd>Ctrl</kbd> + <kbd>S</kbd>.</p>
-
-        <h3>Dark block with a title bar</h3>
-        <div class="code-block">
-          <div class="code-title">query.sql</div>
-          <pre><code>SELECT name, grade
-FROM students
-WHERE grade &gt;= 70
-ORDER BY grade DESC;</code></pre>
-        </div>
-
-        <h3>Light block, no title</h3>
-        <div class="code-block light">
-          <pre><code>def average(values):
-    return sum(values) / len(values)
-
-print(average([60, 70, 80]))   # 70.0</code></pre>
-        </div>
--->
       </section>
 
 
@@ -133,29 +118,6 @@ print(average([60, 70, 80]))   # 70.0</code></pre>
           <p>See how our imaginary computer is running 7 different programs? This is possible due to each program having its own port!</p>
 
           <p><b>BUT this defaults to 80 if left empty because most web pages use 80 (or respond on 443 for HTTPS)</b></p>
-        <!-- Example Images -->
-
-        <!--
-
-        <figure class="note-image">
-          <img alt="Placeholder diagram" width="320"
-               src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='160'%3E%3Crect width='320' height='160' fill='%23c0c0c0'/%3E%3Ctext x='160' y='86' font-family='Arial' font-size='16' text-anchor='middle'%3Eimages/your-image.png%3C/text%3E%3C/svg%3E">
-          <figcaption>Figure 1: Caption for the image.</figcaption>
-        </figure>
-        
-        Floated image: text wraps around it. Use class="note-image right" or "left".
-        <figure class="note-image right">
-          <img alt="Placeholder" width="200"
-               src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='120'%3E%3Crect width='200' height='120' fill='%23c0c0c0'/%3E%3Ctext x='100' y='66' font-family='Arial' font-size='14' text-anchor='middle'%3Eright-floated%3C/text%3E%3C/svg%3E">
-          <figcaption>Figure 2: Floated right.</figcaption>
-        </figure>
-        <p>
-          This paragraph sits beside the floated image. Longer text wraps around it, which is handy for
-          small diagrams that don't need their own row. Keep writing and the text will flow neatly past
-          the figure and then continue underneath it once it is taller than the image.
-        </p>
-
-        -->
         
       </section>
 
