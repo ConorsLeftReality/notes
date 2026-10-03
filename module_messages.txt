@@ -1,0 +1,7 @@
+CS1106, "rm -rf /var/opt/gitlab/postgresql/data/ - some GitLab database enginner in January 2017"
+CS1111, "System Heirarchy uses abstraction to ignore the small details. It couldnt be too hard me to do it too, right? right?"
+CS1112, "Some people think I'm bonkers, but I just think I'm free - Dizzee Rascal in Bonkers"
+CS1115, "HTML is for structure, CSS is for appearance - Derek Bridge"
+CS1117, "if python_easy(): pass_exams()"
+
+12am Tuesday & 3pm Thursday - URLs, Filepaths and Web Server basics

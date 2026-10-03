@@ -3,4 +3,4 @@
 SQL Composite Conditions
 
  - Logical Boolean Operators
- - 
+ - Already know, skip

@@ -125,7 +125,140 @@ def make_directory(directory_name):
     except Exception as e:
         print(f"An error occurred: {e}")
         return False # Fail
+    
+def write_module_index_page_html(module_code,acknowledged_known_module_directories):
+    try:
+        
+        ## (1) Create Module Lecture contents element ===================================================================
+        WEEKS_IN_MODULE_DIR = os.listdir(f"{module_code}/")
+        module_lecture_contents = ""
+        if WEEKS_IN_MODULE_DIR == []:
+            module_lecture_contents = """
+            <h3>No Lectures yet</h3>
+            """ 
+        else:
+            for week in WEEKS_IN_MODULE_DIR:
+                if "." in week:
+                    continue
+                else:
+                    week_corrected = (week.capitalize()).replace("_"," ")
+                    module_lecture_contents = module_lecture_contents + f"\n\t\t\t\t\t<h3>{week_corrected}</h3>\n" + "\t\t\t\t\t\t<ul class=\"list-arrow\">\n"
+                    
+                    FILES_IN_WEEK = os.listdir(f"{module_code}/{week}/")
+                    
+                    for file in FILES_IN_WEEK:
+                        #file_without_extension = file[0:file.index(".")]
+                        #print(file_without_extension)
+                        module_lecture_contents = module_lecture_contents + f"\t\t\t\t\t\t\t<li><a href=\"{week}/{file}\">{file}</a></li>\n"
+                        
+                    module_lecture_contents = module_lecture_contents + "\t\t\t\t\t\t</ul>\n"
+                    
+                
+        ## (2) Create Taskbar list element ==============================================================================
+        taskbar_of_modules = ""
+        acknowledged_known_module_directories.append(module_code)
+        acknowledged_known_module_directories.sort() # Sort it for the Taskbar to be in correct order
 
+        taskbar_of_modules = taskbar_of_modules + f"\t<li><a class=\"taskbar-item\" href=\"../index.html\">Home</a></li> \n"
+        for module_directory in acknowledged_known_module_directories:
+            if module_directory == module_code:
+                print("Made own module")
+                taskbar_of_modules = taskbar_of_modules + f"\t\t\t\t\t<li><a class=\"taskbar-item active\" href=\"../{module_directory}/{(module_directory.lower())}_index.html\">{module_directory}</a></li> \n"
+                acknowledged_known_module_directories.remove(module_directory)
+            elif module_directory != module_code:
+                print("Made other module")
+                taskbar_of_modules = taskbar_of_modules + f"\t\t\t\t\t<li><a class=\"taskbar-item\" href=\"../{module_directory}/{(module_directory.lower())}_index.html\">{module_directory}</a></li> \n"
+        
+        ## (4) Create message for specific module
+        
+        module_message = "NEW MODULE, ADD MESSAGE IN FILE - Conor"
+        
+        # Module Messages are stored in seperate file
+        # FORMAT: MODULECODE, "message here"
+        with open("module_messages.txt") as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue # Skip blank lines
+
+                # Split on first comma only
+                module, message = line.split(",", 1)
+                
+                if module == module_code:
+                    module_message = message
+                    
+    
+        ## (3) Create full HTML file ====================================================================================
+        
+        html_file = f"""
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{module_code} - Lecture Index</title>
+  
+  <link rel="stylesheet" href="../win95.css">
+  <link rel="stylesheet" href="../notes.css">
+</head>
+
+<body class="win95-desktop">
+
+  <div class="window notepad">
+    <div class="title-bar">
+      <div class="title-bar-text">{module_code} - Lecture Index</div>
+    </div>
+
+    <div class="notepad-body">
+      <h1>{module_code} - Lecture Index</h1>
+      <p class="note-meta">Semester 1 &middot; Lecture Index</p>
+
+      <section class="note-section">
+        <h2>Lectures</h2>
+        
+         {module_lecture_contents}
+      </section>
+    
+      <aside class="callout">
+        <span class="callout-title">Message of the day!</span>
+        <p>{module_message}</p>
+      </aside>
+
+    </div>
+
+    <div class="status-bar">
+      <p class="status-bar-field">Status: working</p>
+    </div>
+  </div>
+
+
+  <!-- ======================================================================
+       TASKBAR MENU
+       On each page, put class="active" on that page's own link 
+       and remove it from the others.
+       ====================================================================== 
+  -->
+  
+  <div class="taskbar">
+    <a class="start-button" href="../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+
+        {taskbar_of_modules}
+
+    </ul>
+  </div>
+
+</body>
+</html>
+"""
+        #print(html_file)
+        return True, html_file
+    
+    except Exception as e: # Fail in generation
+        return False, e
+    
 def pause():
     input("<<< Press ENTER to continue >>>")
     
@@ -149,9 +282,9 @@ slides_link =       str(input("Link to slides?                                  
 
 ## (1) Fix null spaces ===========================================================================================================
 
-# Fix slides NULL
-if slides_link == "":
-    slides_link = "UNSPECIFIED"
+# Fix title NULL
+if title_of_lecture == "":
+    title_of_lecture == "UNSPECIFIED_TITLE_AUTOGENERATE"
 
 # Fix date NULL
 if date == "":
@@ -163,7 +296,7 @@ if date == "":
         
         if date != "":
             date_null_resolved = True
-
+      
 # Fix Module NULL
 if lecture_module == "":
     module_null_resolved = False
@@ -174,6 +307,14 @@ if lecture_module == "":
         
         if lecture_module != "":
             module_null_resolved = True
+            
+# Fix Lecturer name NULL
+if name_of_lecturer == "":
+    name_of_lecturer = "UNDEFINED_LECTURER_NAME"
+            
+# Fix slides NULL
+if slides_link == "":
+    slides_link = "UNSPECIFIED"
 
 ## (2) Search for Module Directory ===========================================================================================================
 # Create a loop for this section until we get a result we can use
@@ -206,11 +347,11 @@ while module_selection_resolved == False:
     elif lecture_module not in current_module_folders and lecture_module in ENROLLED_MODULES: 
         print(f"<<< SYSTEM >>> MODULE FOLDER DOESNT EXIST FOR {lecture_module} YET, BUT YOU ARE ENROLLED IN THIS MODULE")
         print("<<< SYSTEM >>> CREATING MODULE FOLDER NOW...")
-        pause()
         
         # Try make directory, if success, continue
-        if make_directory(lecture_module):
+        if make_directory(lecture_module): # Error messages handled by function
             module_selection_resolved = True
+            
         
     elif lecture_module in files_in_working_dir:
         print(f"<<< SYSTEM >>> FOUND MODULE FOLDER FOR {lecture_module}, UNSURE IF ENROLLED (Please update!!)")
@@ -229,7 +370,7 @@ while module_selection_resolved == False:
         
         if user_choice == "Y":
             # Try make directory, if success, continue
-            if make_directory(lecture_module):
+            if make_directory(lecture_module): # Error messages handled by function
                 module_selection_resolved = True
         
         elif user_choice == "N":
@@ -269,7 +410,7 @@ while week_selection_resolved == False:
     
     print("")
     
-    week_selected = str(input("Which week would you like to write this file to? (E.G. week1, or type a new week if desired)\n >>> "))
+    week_selected = str(input("Which week would you like to write this file to? (E.G. week_#, or type a new week if desired)\n >>> "))
     
     # WEEK SECTION RESOLUTION
     if week_selected in weeks_in_directory:
@@ -286,6 +427,12 @@ while week_selection_resolved == False:
                 print("<<< SYSTEM >>> Error in Directory Creation")
                 week_selection_resolved = False
                 pause()
+    
+    elif "_" not in week_selected:
+        clear_screen()
+        print("<<< SYSTEM >>> You must have an underscore in the weeks name, between \"Week\" and the week number.")
+        week_selection_resolved = False
+        pause()
                 
     elif week_selected == "":
         clear_screen()
@@ -305,6 +452,48 @@ else:
     
 ## (5) Write the data to the location determined in Pt. 2 and Pt. 3
 
-filename_date = (date.replace(" ","_")).lower()
-print(filename_date)
-filepath = f"{lecture_module}/{week_selected}/{filename_date}"
+## (5a) Resolve filename
+
+filename = f"{(date.replace(" ","_")).lower()}.html" # Create Filename for lecture note
+i = 1 # Incase file already exists, create variable out of loop
+
+filename_resolved = False
+while filename_resolved == False:
+
+    if filename in os.listdir(f"{lecture_module}/{week_selected}/"):
+        filename = f"{(date.replace(" ","_")).lower()}_{i}.html"
+        i += 1
+        continue
+    else:
+        filename_resolved = True # Explicity means we exit loop
+
+filepath = f"{lecture_module}/{week_selected}/{filename}"
+
+## (5b) Write data to file under filename
+with open(filepath, "w") as f:
+    f.write(data)
+    f.close()
+
+
+## (6) Remake the Index page, whether new or existing folder
+
+success,data = write_module_index_page_html(lecture_module,current_module_folders)
+if success:
+    print("<<< SYSTEM >>> SUCCESS IN INDEX FILE GENERATION/UPDATING")
+    module_selection_resolved = True
+    
+    ## (6a) Write Index page to folder
+    filename = f"{(lecture_module).lower()}_index.html"
+    filepath = f"{lecture_module}/{filename}"
+    with open(filepath, "w") as f:
+        f.write(data)
+        f.close()
+    print("<<< SYSTEM >>> SUCCESS IN INDEX FILE OVERWRITE")
+    
+else:
+    print(f"ERROR IN INDEX FILE GENERATION/UPDATING: {data}")
+    module_selection_resolved = False
+
+print("<<< SCRIPT FINISHED >>>")
+
+## TODO: Make a modules file, and write modules to it when confirmed that we want to make it, because currently they dont show on taskbar
