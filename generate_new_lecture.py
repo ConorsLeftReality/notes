@@ -327,7 +327,7 @@ while module_selection_resolved == False:
     ENROLLED_MODULES = [] # Establish list to specify the modules that I actually study
     with open("enrolled_modules.txt","r") as f:
         for module in f:
-            if module.strip("\n") == "" or (line.strip(" "))[0] == "#":
+            if module.strip("\n") == "" or (module.strip(" "))[0] == "#":
                 continue
             else:
                 module = module.strip("\n")
