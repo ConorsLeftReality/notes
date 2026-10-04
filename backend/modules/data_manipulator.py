@@ -1,8 +1,32 @@
+## ====================================================================
+## ========================== IMPORT MODULES ==========================
+## ====================================================================
 
-from modules.utilities import pause, clear_screen
-from modules.generate import make_directory
 import time
 import os
+
+## UTILITIES MODULE     - pause, clear screen
+##                      - VARIOUS USES, READ module_documentation.txt in /backend
+from modules.utilities import pause,clear_screen
+
+## UTILITIES MODULE     - display menu,
+##                      - User Interface, usually graphical functions
+from modules.main_program_ui import display_menu, menu_choice
+
+## GENERATION MODULE    - Clear Screen, make directory (MKDIR), Generate Module Index Page (MODULE_INDEX_PAGE), 
+##                        Generate Lecture File (LECTURE_FILE), Generate Main Index Page (MAIN_INDEX_PAGE)
+##                      - USED TO GENERATE FILES OR DIRECTORIES
+from modules.generate import make_directory,create_module_index_page_html,create_lecture_html_file
+
+## ====================================================================
+## ========================== IMPORT SCRIPTS ==========================
+## ====================================================================
+
+## LECTURE NOTES GENERATION SCRIPT  - lecture notes generation script
+##                                  - Used to call the main script for lecture notes generation
+from modules.lecture_note_generate import lecture_notes_generation_script
+
+## -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 def lecture_information_collection():
     title_of_lecture =  str(input("Lecture Title                                        >>> "))
@@ -233,4 +257,15 @@ def write_index_file_to_module(lecture_module,data):
     
 ## -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+def menu_choice_resolver(number):
+    if number == 1:
+        lecture_notes_generation_script(
+        lecture_information_collection,
+        module_selection_resolver,
+        week_selection_resolver,
+        create_lecture_html_file,
+        write_lecture_notes_html,
+        create_module_index_page_html,
+        write_index_file_to_module
+        )
 ## END OF FILE
