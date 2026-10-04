@@ -72,31 +72,35 @@ pause()
 # User Welcome
 clear_screen() # Refresh Graphics
 print(program_banner)
-input("Welcome to Notes Console. Press Enter to continue...")
-
-# User Menu
-choice = False
-while choice == False:
-    
-    clear_screen() # Refresh Graphics
-    print(program_banner)
-    
-    number_of_menu_items = int(display_menu())
-    
-    choice = int(menu_choice())
-    if choice >= 1 and choice <= number_of_menu_items:
-        continue
-    else:
-        print(f"Option {choice} is not in range of menu")
-        choice = False
-        time.sleep(1)
-        
-# User Menu Result
-clear_screen() # Refresh Graphics
-print(program_banner)
-print(f"Loading Option {choice}")
+print("Welcome to Notes Console.")
 time.sleep(1)
 
-## Menu Choice Resolver -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# User Menu
+while True:
+    choice = False
+    while choice == False:
+        
+        clear_screen() # Refresh Graphics
+        print(program_banner)
+        
+        number_of_menu_items = int(display_menu())
+        
+        choice = int(menu_choice())
+        if choice >= 1 and choice <= number_of_menu_items:
+            continue
+        if choice == 0:
+            choice = False
+        else:
+            print(f"Option {choice} is not in range of menu")
+            choice = False
+            time.sleep(1)
+            
+    # User Menu Result
+    clear_screen() # Refresh Graphics
+    print(program_banner)
+    print(f"Loading Option {choice}")
+    time.sleep(1)
 
-menu_choice_resolver(choice)
+    ## Menu Choice Resolver -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    menu_choice_resolver(choice)

@@ -1,5 +1,7 @@
+import sys
+
 def display_menu():
-    print("\t"*10 + "MENU")
+    print(" " + "="*77 + " " + "MENU" + " " + "="*77 + " ")
 
     MENU = [] # Establish list to input menu items
             
@@ -18,7 +20,9 @@ def display_menu():
         else:
             print(f"({i}) {menu_option}")
             i += 1
+    print("(QUIT) Type 'quit' to exit this program")
     
+    print(" " + "=" * 160)
     return i
         
 ## -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -28,5 +32,8 @@ def menu_choice():
     user_choice = input("Select an option >>> ")
     if user_choice.isnumeric():
         return user_choice
+    elif user_choice.lower() == "quit":
+        print("Exiting program on request...")
+        sys.exit(0)
     else:
         return False

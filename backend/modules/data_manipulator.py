@@ -45,6 +45,7 @@ def lecture_information_collection():
     if date == "":
         date_null_resolved = False
         while date_null_resolved == False:
+            clear_screen()
             print("<<< SYSTEM >>> No value for date, enter a value to continue")
             date = str(input("Date of Lecture (E.G. \"12 October 2026\", no symbols) >>> "))
             
@@ -55,6 +56,7 @@ def lecture_information_collection():
     if lecture_module == "":
         module_null_resolved = False
         while module_null_resolved == False:
+            clear_screen()
             print("<<< SYSTEM >>> No value for Module, enter a value to continue")
             lecture_module = (str(input("Lecture's Module >>> "))).upper()
             
@@ -73,7 +75,7 @@ def lecture_information_collection():
 
 ## -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-def module_selection_resolver():
+def module_selection_resolver(lecture_module):
     
     module_selection_resolved = False
     while module_selection_resolved == False:
@@ -90,9 +92,6 @@ def module_selection_resolver():
                 else:
                     module = module.strip("\n")
                     ENROLLED_MODULES.append(str(module))
-        
-        #print(ENROLLED_MODULES)
-        pause()
         
         # Search through folders we can see from our working directory, if any match our enrolled modules, then add to a list so we know this
         current_module_folders = []
@@ -216,7 +215,9 @@ def week_selection_resolver(lecture_module):
             clear_screen()
             print("<<< SYSTEM >>> Please enter a week to continue!")
             week_selection_resolved = False
-            pause()       
+            pause()     
+        
+    return week_selected  
        
 ## -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
      

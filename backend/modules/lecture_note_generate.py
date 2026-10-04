@@ -1,3 +1,6 @@
+import time
+from modules.utilities import clear_screen
+
 ## -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 def lecture_notes_generation_script(
@@ -10,12 +13,32 @@ def lecture_notes_generation_script(
     write_index_file_to_module
     ):
     
+    script_banner = r"""
+ ___       _______   ________ _________  ___  ___  ________  _______           ________   ________  _________  _______   ________      
+|\  \     |\  ___ \ |\   ____\\___   ___\\  \|\  \|\   __  \|\  ___ \         |\   ___  \|\   __  \|\___   ___\\  ___ \ |\   ____\     
+\ \  \    \ \   __/|\ \  \___\|___ \  \_\ \  \\\  \ \  \|\  \ \   __/|        \ \  \\ \  \ \  \|\  \|___ \  \_\ \   __/|\ \  \___|_    
+ \ \  \    \ \  \_|/_\ \  \       \ \  \ \ \  \\\  \ \   _  _\ \  \_|/__       \ \  \\ \  \ \  \\\  \   \ \  \ \ \  \_|/_\ \_____  \   
+  \ \  \____\ \  \_|\ \ \  \____   \ \  \ \ \  \\\  \ \  \\  \\ \  \_|\ \       \ \  \\ \  \ \  \\\  \   \ \  \ \ \  \_|\ \|____|\  \  
+   \ \_______\ \_______\ \_______\  \ \__\ \ \_______\ \__\\ _\\ \_______\       \ \__\\ \__\ \_______\   \ \__\ \ \_______\____\_\  \ 
+    \|_______|\|_______|\|_______|   \|__|  \|_______|\|__|\|__|\|_______|        \|__| \|__|\|_______|    \|__|  \|_______|\_________\
+                                                                                                                           \|_________|
+                                                                                                                                       
+                                                                                                                                       
+    """
+    
+    # New commit update? whodis
+    clear_screen()
+    
+    # Oooooo fancy
+    print(script_banner)
+    input("Press Enter to continue...")
+    
     ## (1) Collect information on lecture
-    title_of_lecture,date,lecture_module,name_of_lecturer,slides_link = lecture_information_collection
+    title_of_lecture,date,lecture_module,name_of_lecturer,slides_link = lecture_information_collection()
 
 
     ## (2) Find Module Directory ===========================================================================================================
-    current_module_folders = module_selection_resolver()
+    current_module_folders = module_selection_resolver(lecture_module)
 
     ## (3) Find Week User wants to write to ================================================================================================
     week_selected = week_selection_resolver(lecture_module)
@@ -37,11 +60,15 @@ def lecture_notes_generation_script(
 
     if success:
         print("<<< SYSTEM >>> SUCCESS IN NEW INDEX FILE GENERATION")
-        write_index_file_to_module()
+        write_index_file_to_module(lecture_module,data)
     else:
         print(f"ERROR IN INDEX FILE GENERATION/UPDATING: {data}")
-
+    time.sleep(3)
+    
+    clear_screen()
+    
     print("<<< LECTURE NOTE WRITE SCRIPT FINISHED >>>")
+    time.sleep(2)
     
 ## -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
