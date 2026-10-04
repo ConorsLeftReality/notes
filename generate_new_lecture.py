@@ -162,11 +162,11 @@ def write_module_index_page_html(module_code,acknowledged_known_module_directori
         taskbar_of_modules = taskbar_of_modules + f"\t<li><a class=\"taskbar-item\" href=\"../index.html\">Home</a></li> \n"
         for module_directory in acknowledged_known_module_directories:
             if module_directory == module_code:
-                print("Made own module")
+                #print("Made own module")
                 taskbar_of_modules = taskbar_of_modules + f"\t\t\t\t\t<li><a class=\"taskbar-item active\" href=\"../{module_directory}/{(module_directory.lower())}_index.html\">{module_directory}</a></li> \n"
                 acknowledged_known_module_directories.remove(module_directory)
             elif module_directory != module_code:
-                print("Made other module")
+                #print("Made other module")
                 taskbar_of_modules = taskbar_of_modules + f"\t\t\t\t\t<li><a class=\"taskbar-item\" href=\"../{module_directory}/{(module_directory.lower())}_index.html\">{module_directory}</a></li> \n"
         
         ## (4) Create message for specific module
@@ -178,7 +178,7 @@ def write_module_index_page_html(module_code,acknowledged_known_module_directori
         with open("module_messages.txt") as f:
             for line in f:
                 line = line.strip()
-                if not line:
+                if not line or (line.strip(" "))[0] == "#":
                     continue # Skip blank lines
 
                 # Split on first comma only
@@ -324,7 +324,17 @@ while module_selection_resolved == False:
     clear_screen()
     
     files_in_working_dir = os.listdir() # Make list of files in working dir.
-    ENROLLED_MODULES = ["CS1106","CS1110","CS1111","CS1112","CS1113","CS1115","CS1116","CS1117","MA1001","MA1002"] # Specify the modules that I actually study
+    ENROLLED_MODULES = [] # Establish list to specify the modules that I actually study
+    with open("enrolled_modules.txt","r") as f:
+        for module in f:
+            if module.strip("\n") == "" or (line.strip(" "))[0] == "#":
+                continue
+            else:
+                module = module.strip("\n")
+                ENROLLED_MODULES.append(str(module))
+    
+    print(ENROLLED_MODULES)
+    pause()
     
     # Search through folders we can see from our working directory, if any match our enrolled modules, then add to a list so we know this
     current_module_folders = []
@@ -347,6 +357,7 @@ while module_selection_resolved == False:
     elif lecture_module not in current_module_folders and lecture_module in ENROLLED_MODULES: 
         print(f"<<< SYSTEM >>> MODULE FOLDER DOESNT EXIST FOR {lecture_module} YET, BUT YOU ARE ENROLLED IN THIS MODULE")
         print("<<< SYSTEM >>> CREATING MODULE FOLDER NOW...")
+        pause()
         
         # Try make directory, if success, continue
         if make_directory(lecture_module): # Error messages handled by function
@@ -354,7 +365,7 @@ while module_selection_resolved == False:
             
         
     elif lecture_module in files_in_working_dir:
-        print(f"<<< SYSTEM >>> FOUND MODULE FOLDER FOR {lecture_module}, UNSURE IF ENROLLED (Please update!!)")
+        print(f"<<< SYSTEM >>> FOUND MODULE FOLDER FOR {lecture_module}, UNSURE IF ENROLLED (Please update enrolled_modules.txt!!)")
         pause()
         module_selection_resolved = True
         
@@ -363,7 +374,7 @@ while module_selection_resolved == False:
         print(f"<<< SYSTEM >>> NO MODULE FOLDER FOUND FOR {lecture_module}")
         print("OPTIONS")
         print("================================================")
-        print("CONTINUE AND CREATE FOLDER?                  (Y)")
+        print("CONTINUE, ENROLL AND CREATE FOLDER?          (Y)")
         print("ENTER NEW MODULE CODE?                       (N)")
         print("VIEW FOLDERS ACCESSIBLE AND ENROLLED MODULES (F)")
         user_choice = (input(" >>> ")).upper()
@@ -371,6 +382,9 @@ while module_selection_resolved == False:
         if user_choice == "Y":
             # Try make directory, if success, continue
             if make_directory(lecture_module): # Error messages handled by function
+                with open("enrolled_modules.txt", "a") as f:
+                    f.write(f"\n{lecture_module}")
+                    f.close()
                 module_selection_resolved = True
         
         elif user_choice == "N":
@@ -418,7 +432,7 @@ while week_selection_resolved == False:
         
     elif week_selected not in weeks_in_directory and week_selected != "":
         clear_screen()
-        proceed_confirmation = (input(f"This week isnt in the folder, continue to make folder for week '{week_selected}'? (Y/N) >>>")).upper()
+        proceed_confirmation = (input(f"This week isnt in the folder, continue to make folder for week '{week_selected}'? (Y/N) >>> ")).upper()
         if proceed_confirmation == "Y":
             if make_directory(f"{lecture_module}/{week_selected}"):
                 week_selection_resolved = True
@@ -479,7 +493,7 @@ with open(filepath, "w") as f:
 
 success,data = write_module_index_page_html(lecture_module,current_module_folders)
 if success:
-    print("<<< SYSTEM >>> SUCCESS IN INDEX FILE GENERATION/UPDATING")
+    print("<<< SYSTEM >>> SUCCESS IN NEW INDEX FILE GENERATION")
     module_selection_resolved = True
     
     ## (6a) Write Index page to folder
@@ -496,4 +510,4 @@ else:
 
 print("<<< SCRIPT FINISHED >>>")
 
-## TODO: Make a modules file, and write modules to it when confirmed that we want to make it, because currently they dont show on taskbar
+## TODO: Make the program regenerate/update all index files if asked to, as new modules wont be indexed if generated
