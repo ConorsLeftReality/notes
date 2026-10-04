@@ -511,3 +511,4 @@ else:
 print("<<< SCRIPT FINISHED >>>")
 
 ## TODO: Make the program regenerate/update all index files if asked to, as new modules wont be indexed if generated
+## TODO: Make program update the main index page with new module folders, and have title for module too (in file)
