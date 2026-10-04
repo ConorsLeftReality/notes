@@ -1,0 +1,133 @@
+## MODULE DOCUMENTATION
+
+=======================================================================================
+============================      data_manipulator.py     =============================
+=======================================================================================
+
+N/A yet
+## TODO: Write here
+
+=======================================================================================
+============================          generate.py         =============================
+=======================================================================================
+
+create_lecture_html_file():
+
+    INPUTS:
+        lecture_title       - string
+        current_date        - want it to be in form of DD MONTH YYYY, spaces replaced with underscores and used as file name, could change this
+        module_code         - preferred to not have spaces, E.G. CS1234 or MA1234 or EC1234
+        lecturer_name       - string
+        slides_reference    - string in form of <a href="link">title</a>
+    
+    OUTPUTS:
+        status, data
+
+        status              - Boolean value, True if generation of the html raw file succeeded, False if error
+        data                - If program passes back True as status, data is raw html file in string format, ready to write to file. Else, error code in string format
+
+    DESCRIPTION:
+        This function takes in the data above, writes it to a string as html_file within the function, but data outside of the function.
+        If this f-string works, we will return status as True to indicate failure, and data will be the error string
+        If this f-string fails, for inputted variable reasons etc, we will return status as False to indicate failure, and data will be the error string
+
+    USAGE:
+        status,data = create_lecture_html_file(lecture_title,current_date,module_code,lecturer_name,slides_reference)
+
+        if status:
+            write to file
+        elif status == False:
+            tell user, and print error string
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+make_directory():
+
+    INPUTS:
+        directory_name      - string, same as module_code, usually uppercase in form of CS1234 or MA1234 or EC1234 or equivelant
+        
+    OUTPUTS:
+        status
+
+        status              - Boolean value, True if directory write succeeded, False if error (Will specify if explicitly a permission error)
+
+    DESCRIPTION:
+        This function takes in the directory_name, same as module_code, and trys to make a directory of name directory_name
+        If succeeds, returns True to status variable, if fail due to permissions, print permission denied error & return False to status, and if general fail, print error and return False
+
+    USAGE:
+        status = make_directory(lecture_module)
+
+        if status:
+            write of new module went OK, add this module to the enrolled_modules.txt file and set module_selection_resolved = True
+        
+        NOTE: no need for else: as the user has been alerted within the function, fail will trigger a loop automatically.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+create_module_index_page_html():
+
+    INPUTS:
+        module_code                                 - string, same as module_code, usually uppercase in form of CS1234 or MA1234 or EC1234 or equivelant
+        acknowledged_known_module_directories       - list, from current_module_folders, made with code below (so we dont add all files in this repository to the taskbar, control using an enrolled_modules.txt file)
+
+    -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+        files_in_working_dir = os.listdir("../../") # Make list of files in working dir.
+        ENROLLED_MODULES = [] # Establish list to specify the modules that I actually study
+        
+        with open("../data/enrolled_modules.txt","r") as f:
+            for module in f:
+                if module.strip("\n") == "" or (module.strip(" "))[0] == "#":
+                    continue
+                else:
+                    module = module.strip("\n")
+                    ENROLLED_MODULES.append(str(module))
+        
+        #print(ENROLLED_MODULES)
+        pause()
+        
+        # Search through folders we can see from our working directory, if any match our enrolled modules, then add to a list so we know this
+        current_module_folders = []
+        
+        for file in files_in_working_dir:
+            if file in ENROLLED_MODULES:
+                current_module_folders.append(file) # Add to list so we know this directory exists
+    
+    -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    OUTPUTS:
+        status, data
+
+        status              - Boolean value, True if directory write succeeded, False if error (Will specify if explicitly a permission error)
+        data                - HTML file, or error code depending on whether function fails or succeeds
+
+    DESCRIPTION:
+        This function first checks in the module folder (defined using module_code), finds all directories within this directory (weeks), and uses this to create the contents block on the index page.
+        Afterwards, it takes the acknowledged_known_module_directories list and composes the taskbar of modules on the bottom of the page (list items that link back to other modules, appear as taskbar apps)
+        Then, checks if specific module has a module_message, then saves this message to a variable if it exists
+        Finally, writes all these composed blocks into a html_file variable (f-string)
+
+        Returns True, html_file if success, return False, error code if fail
+
+    USAGE:
+        success,data = create_module_index_page_html(lecture_module,current_module_folders)
+            if success:
+                print success
+                
+                ## write to file
+                filename = f"{(lecture_module).lower()}_index.html"
+                filepath = f"../../{lecture_module}/{filename}"
+                with open(filepath, "w") as f:
+                    f.write(data)
+                    f.close()
+                print success in write
+                
+            else:
+                print fail and error message
+
+=======================================================================================
+============================          utilities.py        =============================
+=======================================================================================
+
+## TODO: Write here
