@@ -4,8 +4,120 @@
 ============================      data_manipulator.py     =============================
 =======================================================================================
 
-N/A yet
-## TODO: Write here
+## TODO: Write all in here
+
+lecture_information_collection():
+
+    INPUTS:
+        variable        - data type, format, what it is
+        
+    OUTPUTS:
+        variables in a list, comma seperated
+
+        variable                - Data type, format, what its used for
+
+    DESCRIPTION:
+        what it does
+        what it does if succeed/fail/something happens
+
+    USAGE:
+        code example
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+module_selection_resolver():
+
+    INPUTS:
+        variable        - data type, format, what it is
+        
+    OUTPUTS:
+        variables in a list, comma seperated
+
+        variable                - Data type, format, what its used for
+
+    DESCRIPTION:
+        what it does
+        what it does if succeed/fail/something happens
+
+    USAGE:
+        code example
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+week_selection_resolver():
+
+    INPUTS:
+        variable        - data type, format, what it is
+        
+    OUTPUTS:
+        variables in a list, comma seperated
+
+        variable                - Data type, format, what its used for
+
+    DESCRIPTION:
+        what it does
+        what it does if succeed/fail/something happens
+
+    USAGE:
+        code example
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+write_lecture_notes_html():
+
+    INPUTS:
+        variable        - data type, format, what it is
+        
+    OUTPUTS:
+        variables in a list, comma seperated
+
+        variable                - Data type, format, what its used for
+
+    DESCRIPTION:
+        what it does
+        what it does if succeed/fail/something happens
+
+    USAGE:
+        code example
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+write_index_file_to_module():
+
+    INPUTS:
+        variable        - data type, format, what it is
+        
+    OUTPUTS:
+        variables in a list, comma seperated
+
+        variable                - Data type, format, what its used for
+
+    DESCRIPTION:
+        what it does
+        what it does if succeed/fail/something happens
+
+    USAGE:
+        code example
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+menu_choice_resolver():
+
+    INPUTS:
+        variable        - data type, format, what it is
+        
+    OUTPUTS:
+        variables in a list, comma seperated
+
+        variable                - Data type, format, what its used for
+
+    DESCRIPTION:
+        what it does
+        what it does if succeed/fail/something happens
+
+    USAGE:
+        code example
+
 
 =======================================================================================
 ============================          generate.py         =============================
@@ -130,4 +242,130 @@ create_module_index_page_html():
 ============================          utilities.py        =============================
 =======================================================================================
 
-## TODO: Write here
+## TODO: Write all in here
+
+pause():
+
+    INPUTS:
+        variable        - data type, format, what it is
+        
+    OUTPUTS:
+        variables in a list, comma seperated
+
+        variable                - Data type, format, what its used for
+
+    DESCRIPTION:
+        what it does
+        what it does if succeed/fail/something happens
+
+    USAGE:
+        code example
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+clear_screen():
+
+    INPUTS:
+        variable        - data type, format, what it is
+        
+    OUTPUTS:
+        variables in a list, comma seperated
+
+        variable                - Data type, format, what its used for
+
+    DESCRIPTION:
+        what it does
+        what it does if succeed/fail/something happens
+
+    USAGE:
+        code example
+
+        
+
+=======================================================================================
+========================       lecture_note_generate.py      =========================
+=======================================================================================
+
+## TODO: Write all in here
+
+lecture_notes_generation_script():
+
+    INPUTS:
+        variable        - data type, format, what it is
+        
+    OUTPUTS:
+        variables in a list, comma seperated
+
+        variable                - Data type, format, what its used for
+
+    DESCRIPTION:
+        what it does
+        what it does if succeed/fail/something happens
+
+    USAGE:
+        code example
+
+=======================================================================================
+===========================        main_program_ui.py      ============================
+=======================================================================================
+
+## TODO: Write everything in here
+
+display_menu():
+
+    INPUTS:
+        variable        - data type, format, what it is
+        
+    OUTPUTS:
+        variables in a list, comma seperated
+
+        variable                - Data type, format, what its used for
+
+    DESCRIPTION:
+        what it does
+        what it does if succeed/fail/something happens
+
+    USAGE:
+        code example
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+menu_choice():
+
+    INPUTS:
+        variable        - data type, format, what it is
+        
+    OUTPUTS:
+        variables in a list, comma seperated
+
+        variable                - Data type, format, what its used for
+
+    DESCRIPTION:
+        what it does
+        what it does if succeed/fail/something happens
+
+    USAGE:
+        code example
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+!!! TEMPLATE, DO NOT DELETE !!!
+
+function_name():
+
+    INPUTS:
+        variable        - data type, format, what it is
+        
+    OUTPUTS:
+        variables in a list, comma seperated
+
+        variable                - Data type, format, what its used for
+
+    DESCRIPTION:
+        what it does
+        what it does if succeed/fail/something happens
+
+    USAGE:
+        code example

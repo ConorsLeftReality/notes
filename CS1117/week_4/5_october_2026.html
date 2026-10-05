@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lists and Loops (again)</title>
+<link rel="stylesheet" href="../../win95.css">
+<link rel="stylesheet" href="../../notes.css">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Lists and Loops (again) - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Lists and Loops (again)</h1>
+    <p class="note-meta">5 October 2026 &middot; CS1117 &middot; Ciaran &middot; Slides: UNSPECIFIED</p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-intro">Intro</a></li>
+        
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+        
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-intro">
+    
+        <h2>Intro</h2>
+        <p>Morning lecture was just revision on lists, accidentally slept in</p>
+        <p>Not much notes for afternoon lecture, just watching example programs :| </p>
+        <h3>Here is some code I wrote:</h3>
+        <p><a href="chips.py">chips.py</a></p>
+
+        <div class="code-block">
+        <div class="code-title">chips.py</div>
+        <pre><code>number_of_bags                  = int(input("Number of bags >>> "))
+number_of_chips_per_bag         = int(input("Number of chips per bag >>> "))
+
+bags_consumed = 0
+for bags_consumed in range(0,number_of_bags):
+    chips_consumed = 0
+    for chips_consumed in range(0,number_of_chips_per_bag):
+        print("Nom Nom Nom, nice chip")
+        chips_consumed += 1
+    print("BAG DONE")
+    bags_consumed += 1
+        
+        </code></pre>
+        </div>
+        <h3>Here is more code I wrote:</h3>
+        <p><a href="cards.py">cards.py</a></p>
+
+        <div class="code-block">
+        <div class="code-title">cards.py</div>
+        <pre><code>## Card deck
+
+def createDeck():
+    deck = []
+    
+    suits = ["s","h","d","c"]
+    special_cards = ["J","Q","K","A"]
+    
+    for suit in suits:
+        for i in range (2,11):
+            deck.append(f"{i}{suit}")
+        for special_card in special_cards:
+            deck.append(f"{special_card}{suit}")
+    
+    return deck
+
+deck_of_cards = createDeck()
+
+for card in deck_of_cards:
+    if "h" in card or "d" in card:
+        if "A" in card:
+            print(f"\033[0;31m{card}")
+        else:
+            print(f"\033[0;31m{card}",end=" | ")
+    else: 
+        if "A" in card:
+            print(f"\033[0;30m{card}")
+        else:
+            print(f"\033[0;30m{card}",end=" | ")
+        
+        </code></pre>
+        </div>
+
+    </section>
+    
+
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+            <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">Lists and Loops (again)</p>
+    <p class="status-bar-field">5 October 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1117_index.html">Back to CS1117 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
+        

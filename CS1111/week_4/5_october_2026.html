@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Representing Information 1 and 2</title>
+<link rel="stylesheet" href="../../win95.css">
+<link rel="stylesheet" href="../../notes.css">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Representing Information 1 and 2 - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Representing Information 1 and 2</h1>
+    <p class="note-meta">5 October 2026 &middot; CS1111 &middot; J.P. Morrison &middot; Slides: UNSPECIFIED</p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-recap">Recap</a></li>
+        <li><a href="#sec-ascii_tables">ASCII Tables</a></li>
+        <li><a href="#sec-interpretation_of_bits">Interpretation of Bits</a></li>
+
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+        
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-recap">
+    
+        <h2>Recap</h2>
+            <ul>
+                <li>4 bits = Nibble</li>
+                <li>8 bits = 2 Nibbles = 1 Byte</li>
+                
+            </ul>
+            
+            <h3>ASCII Tables</h3>
+                <ul>
+                    <li>ASCII is a standardised table where each number in a byte (0-255) is associated with a symbol or an action</li>
+                    <li>ASCII Tables in machines can vary depending on locale</li>
+                    <li>ASCII Table values can be represented in Hexadecimal too, often displayed on same table?</li>
+                    <li>ASCII Table is an effective way to associate a character with a number.</li>
+                    <li>Difference between character '5' and number 5? look up and update info here</li>
+                    <li>There is also a difference in upper and lowercase characters, make sure to remember this</li>
+                </ul>
+                <p>
+                    An ASCII Table has a Bit Pattern, Decimal, Signed Decimal, Hexadecimal value and a character
+                </p>
+                
+                <aside class="callout">
+                    <span class="callout-title">NOTE</span>
+                        <p>A signed decimal is the same as decimal until it passes Decimal=127 (midway point to 256 values), and then goes from -128 to 0 for the second half of the 256 ASCII Table values.</p>
+                </aside>
+
+                <p>
+                    At the machine level, the question always is "how many bits do we have and how are those bits interpreted"
+                </p>
+
+                <ol>
+                    <li>Character variables are only 1-byte in size, Integer values are normally many bytes in size</li>
+                    <li>Strongly typed programming languages are strict in distinguishing between characters and integers and will not allow the progammer to combine them in expressions</li>
+                </ol>
+
+            <h3>Bit Sequence Overflow</h3>
+                <p>A bit sequence (00000000 to 11111111) overflows after (2**8) -1</p>
+    </section>
+
+    <section class="note-section" id="sec-intro">
+            
+        <h2>Todays Lecture - Concept of bits being used for storage</h2>
+        
+            <h3>This is a text file</h3>
+
+            <div class="code-block">
+            <div class="code-title">test.txt</div>
+            <pre><code>hi
+            
+            </code></pre>
+            </div>
+
+            <h3>How big is this file</h3>
+                <p>4 Bytes</p>
+            <h3>Why is a text file (4 bytes) 4 KB on disk?</h3>
+                <p>Space on the disk is allocated in blocks</p>
+            <h3>What does this look in hex?</h3>
+                <p>HxD is a hex editor</p>
+                <p>Reading the same txt file we see 4 hexadecimal values</p>
+            <h3>What happens if we write this file to a Microsoft word document?</h3>
+                <p>Size becomes 11.3KB, 12KB on disk</p>
+                <p>This is due to extra data about the file (fonts, sizes, pages, etc.)</p>
+        <p>Through this, we can see that representing characters by numbers is another level of abstraction (and saves space because of this)</p>
+            
+    </section>
+
+    <section class="note-section" id="sec-interpretation_of_bits">
+            
+        <h2>Interpreting groups of bits</h2>
+            <p>We recognise that we only have a fixed number of bites to represent items of information on our computer.</p>
+            <p>Representation of data comes from a particular combination of bits</p>
+            <p>Representation of a combination of Bits requires context!!!</p>
+            <ul>
+                <li>If interpreting as natural numbers, each combination will interpreted as a binary number of 2**n - 1, where n is the number of bits</li>
+                <li>If interpreting as instructions, each part of the combination will be interpreted as different parts of an instruction</li>
+                <li>If interpreting as colours, parts of the combination will be assigned as a value for Red, Green and Blue</li>
+            </ul>
+
+            <h3>Representing Negative Numbers</h3>
+                <p>How do we represent negative numbers?</p>
+                <p>Since, for a given number of bits, we are limited to 2**n combinations</p>
+                <p>If we wish to represent both positive and negative numbers, we must evenly share these combinations between positive and negative numbers</p>
+                <ul>
+                    <li>2**n is always even</li>
+                    <li>Therefore we could say that range 0 => (2**n-1) - 1 is positive, and the range (2**n-1) => (2**n) - 1 is negative</li>
+                    <li>This would evenly split the range for both positive and negative numbers</li>
+                </ul>
+
+                <h4>Lets take n=4 for some insight</h4>
+                <div class="code-block">
+                <div class="code-title">Combination of 4 bits</div>
+                <pre><code>
+0000
+0001
+0010
+0011
+0100
+0101
+0110
+0111
+1000
+1001
+1010
+1011
+1100
+1101
+1110
+1111
+            
+                </code></pre>
+                </div>
+
+                <p>We see that if we only have one value for zero that the number of non-zero positives and non-zero negatives differ by 1</p>
+                <p>NOTE: The Most Significant Bit for positive numbers is 0, and the MSB for negative numbers is 1. Easy way to differenciate between pos and neg numbers</p>
+                <p>If we add a positive and negative binary number, the addition and subtraction works out the exact same as with decimal numbers</p>
+                <p><b>The unbalanced (Due to requiring a value for 0) convention for representing both positive and negative numbers is called "Two's Compliment"</b></p>
+                <p>The convention of representing negative numbers works for any amount of bits, such as 32 bits</p>
+
+    </section>
+    
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">Representing Information 1 and 2</p>
+    <p class="status-bar-field">5 October 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1111_index.html">Back to CS1111 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
+        
