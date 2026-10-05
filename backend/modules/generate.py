@@ -175,9 +175,11 @@ def create_module_index_page_html(module_code,acknowledged_known_module_director
                 #print("Made own module")
                 taskbar_of_modules = taskbar_of_modules + f"\t\t\t\t\t<li><a class=\"taskbar-item active\" href=\"../{module_directory}/{(module_directory.lower())}_index.html\">{module_directory}</a></li> \n"
                 acknowledged_known_module_directories.remove(module_directory)
+                continue
             elif module_directory != module_code:
                 #print("Made other module")
                 taskbar_of_modules = taskbar_of_modules + f"\t\t\t\t\t<li><a class=\"taskbar-item\" href=\"../{module_directory}/{(module_directory.lower())}_index.html\">{module_directory}</a></li> \n"
+                continue
         
         ## (4) Create message for specific module
         
