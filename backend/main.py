@@ -13,6 +13,8 @@
 ## ====================================================================
 
 import time # Sleep
+import os   # OS operations, for setting working directory
+import sys  # Graceful exit if working directory change fails
 
 ## GENERATION MODULE    - Clear Screen, make directory (MKDIR), Generate Module Index Page (MODULE_INDEX_PAGE), 
 ##                        Generate Lecture File (LECTURE_FILE), Generate Main Index Page (MAIN_INDEX_PAGE)
@@ -63,11 +65,29 @@ program_banner = r"""
         `8                  
 """
 
+repository_root_directory = "C:/Users/conormasterson/Documents/BSCSF1" # Set this as absolute path to repo, replace back slashes with forward slashes
 
 # Initial User Warning
-clear_screen() # Initial Graphics clear_screen
+# Try clear_screen, if fails, isok
+try:
+    clear_screen() # Initial Graphics clear_screen
+except Exception:
+    pass
+
 print("NOTE: PLEASE RUN THIS WITH THE WORKING DIRECTORY AS BSCSF1")
-pause()
+print("To do this, put the absolute filepath to the repo's root directory into the repository_root_directory variable in main.py")
+print(f"Current value for repository_root_directory: {repository_root_directory}\n")
+print("ALSO, SET THIS TAB AS FULLSCREEN!!!")
+
+# Doing manually because root dir not set yet
+input("Press Enter to continue...")
+
+try: 
+    os.chdir(repository_root_directory)
+except Exception as e:
+    print(f"Error setting working directory: {e}")
+    input("Press Enter to exit...")
+    sys.exit(0)
 
 # User Welcome
 clear_screen() # Refresh Graphics
