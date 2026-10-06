@@ -6,7 +6,7 @@ CREATE TABLE modules (
   enrolled        INTEGER NOT NULL CHECK (enrolled IN (0, 1)),  -- Whether we are enrolled, generation script stuff
   year_of_study   INTEGER NOT NULL,           -- Information for sorting files
   semester        INTEGER NOT NULL,           -- Which semester we study this module in. Also used for sorting
-  module_messages TEXT                        -- Message displayed on the modules index page (usually a quote)
+  module_message TEXT                        -- Message displayed on the modules index page (usually a quote)
 );
 
 CREATE TABLE lectures (
@@ -18,7 +18,7 @@ CREATE TABLE lectures (
   FOREIGN KEY (module_code) REFERENCES modules (module_id)
 );
 
-INSERT INTO modules (module_id, module_title, enrolled, year_of_study, semester, module_messages)
+INSERT INTO modules (module_id, module_title, enrolled, year_of_study, semester, module_message)
 VALUES
   ('CS1106', 'Intro to Relational Databases', 1, 1, 1, 'rm -rf /var/opt/gitlab/postgresql/data/ - some GitLab database enginner in January 2017'),
   ('CS1111', 'Systems Organisation 1', 1, 1, 1, 'System Heirarchy uses abstraction to ignore the small details. It couldnt be too hard me to do it too, right? right?'),
