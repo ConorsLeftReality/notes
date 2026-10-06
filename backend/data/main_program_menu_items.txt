@@ -1,2 +1,3 @@
 ## REMEMBER TO ADD A FUNCTION/RESULT FOR EACH ITEM IN THE LIST IN main.py
 Generate a new Lecture Notes file
+Refresh the index pages for every module

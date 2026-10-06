@@ -269,4 +269,64 @@ def menu_choice_resolver(number):
         create_module_index_page_html,
         write_index_file_to_module
         )
+    
+    elif number == 2:
+        ## Variable needed for refresh module index page function - all_module_index_page_refresh(repository_document_root), passed in from here
+        from main import repository_root_directory
+        all_module_index_page_refresh(repository_root_directory)
+
+## -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+def all_module_index_page_refresh(repository_document_root):
+    
+    os.chdir(repository_document_root)
+    files_in_working_dir = os.listdir() # Make list of files in working dir.
+    ENROLLED_MODULES = [] # Establish list to specify the modules that I actually study
+    
+    with open("backend/data/enrolled_modules.txt","r") as f:
+        for module in f:
+            if module.strip("\n") == "" or (module.strip(" "))[0] == "#":
+                continue
+            else:
+                module = module.strip("\n")
+                ENROLLED_MODULES.append(str(module))
+    
+    # Search through folders we can see from our working directory, if any match our enrolled modules, then add to a list so we know this
+    current_module_folders = []
+    
+    for file in files_in_working_dir:
+        if file in ENROLLED_MODULES:
+            current_module_folders.append(file) # Add to list so we know this directory exists
+
+
+    # REFRESH INDEX PAGE FOR EACH MODULE WE KNOW OF
+    
+    for module in current_module_folders:
+        success,data = create_module_index_page_html(module,current_module_folders)
+        
+        status = "Success" # Initial Status for all module writes
+        if success:
+            # If the status has been Fail or Partial Success in the past, but now succeeded, partial success
+            if status == "Fail" or status == "Partial Success":
+                status == "Partial Success"
+            else:
+                status = "Success"
+                
+            print("<<< SYSTEM >>> SUCCESS IN NEW INDEX FILE GENERATION")
+            write_index_file_to_module(module,data)
+            
+        else:
+            # If the status has been Success or Partial Success in the past, but now failed, partial success
+            if status == "Success" or status == "Partial Success":
+                status == "Partial Success"
+            else:
+                status = "Fail"
+                
+            print(f"ERROR IN INDEX FILE GENERATION/UPDATING FOR MODULE {module}: {data}")
+        
+
+    print(f"<<< MODULE INDEX PAGE REFRESH COMPLETE WITH STATUS '{status}' >>>")
+    pause()
+    clear_screen()
+    
 ## END OF FILE
