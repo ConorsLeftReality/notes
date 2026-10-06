@@ -1,0 +1,138 @@
+DATABASE MIGRATION
+==============================================================================================================================================================
+==============================================================================================================================================================
+START:  Commit 26 on 06/10/2026
+END:    TBC
+==============================================================================================================================================================
+==============================================================================================================================================================
+
+FILES IN USE BY PROGRAM BEFORE CHANGES:
+    backend\data\enrolled_modules.txt
+    backend\data\main_program_menu_items.txt
+    backend\data\module_messages.txt
+
+WHAT ARE THE FILES BEING REPLACED BY:
+    backend\data\notes.db 
+        - SQLite Database (Serverless, functions built-in for python since (middle-aged?) Python 2)
+    
+    backend\data\enrolled_modules.txt           ==>     'enrolled' column in the 'modules' table
+    backend\data\module_messages.txt            ==>     'module_messages' column in 'modules' table
+    backend\data\main_program_menu_items.txt    ==>     'menu_items' table #TODO LOW PRIORITY
+    
+PREVIOUSLY PLANNED DEVELOPMENT BEING ACCOUNTED FOR WHILE MIGRATING:
+    backend\data\year_of_study.txt              ==>     Previously was going to emulate a database in a .txt file, but better to migrate early
+    backend\data\semester_of_study.txt          ==>     Same as above
+    backend\data\module_titles.txt              ==>     Basically same as above, better to migrate to SQLite early. Wanted nice titles on index pages
+    backend\data\lecture_title.txt              ==>     Similar, wanted nice titles on index pages
+
+==============================================================================================================================================================
+==============================================================================================================================================================
+
+WHERE DOES CODE CALL EXTERNAL FILES CURRENTLY:
+
+==============================================================================================================================================================
+1. upper part of module_selection_resolver() in data_manipulator.py 
+==============================================================================================================================================================
+USES: backend/data/enrolled_modules.txt
+==============================================================================================================================================================
+
+files_in_working_dir = os.listdir() # Make list of files in working dir.
+ENROLLED_MODULES = [] # Establish list to specify the modules that I actually study
+
+with open("backend/data/enrolled_modules.txt","r") as f:
+    for module in f:
+        if module.strip("\n") == "" or (module.strip(" "))[0] == "#":
+            continue
+        else:
+            module = module.strip("\n")
+            ENROLLED_MODULES.append(str(module))
+
+# Search through folders we can see from our working directory, if any match our enrolled modules, then add to a list so we know this
+current_module_folders = []
+
+for file in files_in_working_dir:
+    if file in ENROLLED_MODULES:
+        current_module_folders.append(file) # Add to list so we know this directory exists
+
+==============================================================================================================================================================
+2. lower half of module_selection_resolver() in data_manipulator.py 
+==============================================================================================================================================================
+USES: backend/data/enrolled_modules.txt
+==============================================================================================================================================================
+FUNCTION: 
+==============================================================================================================================================================
+
+print(f"<<< SYSTEM >>> NO MODULE FOLDER FOUND FOR {lecture_module}")
+print("OPTIONS")
+print("================================================")
+print("CONTINUE, ENROLL AND CREATE FOLDER?          (Y)")
+print("ENTER NEW MODULE CODE?                       (N)")
+print("VIEW FOLDERS ACCESSIBLE AND ENROLLED MODULES (F)")
+user_choice = (input(" >>> ")).upper()
+
+if user_choice == "Y":
+    # Try make directory, if success, continue
+    if make_directory(lecture_module): # Error messages handled by function
+        with open("backend/data/enrolled_modules.txt", "a") as f:
+            f.write(f"\n{lecture_module}")
+            f.close()
+        module_selection_resolved = True
+
+==============================================================================================================================================================
+3. all_module_index_page_refresh() in data_manipulator.py - EXACT SAME AS 1. upper part of module_selection_resolver() in data_manipulator.py 
+==============================================================================================================================================================
+USES: backend/data/enrolled_modules.txt
+==============================================================================================================================================================
+
+files_in_working_dir = os.listdir() # Make list of files in working dir.
+ENROLLED_MODULES = [] # Establish list to specify the modules that I actually study
+
+with open("backend/data/enrolled_modules.txt","r") as f:
+    for module in f:
+        if module.strip("\n") == "" or (module.strip(" "))[0] == "#":
+            continue
+        else:
+            module = module.strip("\n")
+            ENROLLED_MODULES.append(str(module))
+
+# Search through folders we can see from our working directory, if any match our enrolled modules, then add to a list so we know this
+current_module_folders = []
+
+for file in files_in_working_dir:
+    if file in ENROLLED_MODULES:
+        current_module_folders.append(file) # Add to list so we know this directory exists
+
+==============================================================================================================================================================
+4. lower half of create_module_index_page_html() in generate.py
+==============================================================================================================================================================
+USES: backend/data/module_messages.txt
+==============================================================================================================================================================
+
+# Module Messages are stored in seperate file
+        # FORMAT: MODULECODE, "message here"
+        with open("backend/data/module_messages.txt") as f:
+            for line in f:
+                line = line.strip()
+                if not line or (line.strip(" "))[0] == "#":
+                    continue # Skip blank lines
+
+                # Split on first comma only
+                module, message = line.split(",", 1)
+                
+                if module == module_code:
+                    module_message = message
+
+==============================================================================================================================================================
+5. display_menu() in main_program_ui.py - NOT TOO VITAL, NEEDS ITS OWN TABLE ANYWAY
+==============================================================================================================================================================
+USES: backend/data/main_program_menu_items.txt
+==============================================================================================================================================================
+
+with open("backend/data/main_program_menu_items.txt","r") as f:
+    for line in f:
+        if line.strip("\n") == "" or (line.strip(" "))[0] == "#":
+            continue
+        else:
+            line = line.strip("\n")
+            MENU.append(str(line))
+

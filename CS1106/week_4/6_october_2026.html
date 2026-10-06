@@ -35,22 +35,55 @@
         </ul>
     </fieldset>
 
+    <section class="note-section" id="sec-review">
+            
+        <h2>Recap</h2>
+            <h3>SQL Composite Functions</h3>
+                <p>
+                    SQL can combine multiple conditions using the logical boolean operators AND, OR, and NOT
+                </p>
+                <p>
+                    SELECT - Used to select columns from a table normally (SELECT * FROM table_name;)
+                </p>
+                <p>
+                    Composite Functions covered were AND, OR, LIKE, NOT, ORDER BY
+                </p>
+            <h3>SQL - Useful code for LIKE</h3>
+                <p>Say we want to find a field with the word 'or' in it, how do we do that?</p>
+                <p>SELECT * FROM table_name WHERE word LIKE '%or%'</p>
+                <p><b>The % means that in its place, can be 0 or more of any character</b></p>
+                <p><b>An underscore (_) can be used too, but this is for just 0 to 1 character</b></p>
+                <p>Here are examples</p>
+                <ul>
+                    <li>'%k' - Zero or more characters followed by k</li>
+                    <li>'ck%1' - 'ck' followed by zero or more characters followed by 1</li>
+                    <li>'_a____%' - One character followed by 'a' followed by at least 4 characters</li>
+                </ul>
+            <h3>SQL - Concatination</h3>
+                <p>Say I had a variable, region, and I wanted to find countries with the region in its name</p>
+                <p>I would do this.</p>
+                <p><b>SELECT * FROM countries WHERE name LIKE '%' || region || '%';</b></p>
+                <p>The double lines (||) are used for concatination, but are only one of many other ways to concatinate in SQL</p>
+
+            
+    </section>
 
     <section class="note-section" id="sec-intro">
     
         <h2>Intro - Data and Arithmetic Operations</h2>
             <figure class="note-image">
-            <img alt="Reaction Picture" width="320"
-                src="../files/me_rn.jpeg">
-            <figcaption>Nevermind we're still on composite functions ffs</figcaption>
+                <img alt="Reaction Picture" width="320"
+                    src="../files/me_rn.jpeg">
+                <figcaption>TIME TO LEARN SOMETHING NEW</figcaption>
+                <figcaption>nevermind we're still on composite functions</figcaption>
             </figure>
-            <p>OKAY LECTURE TIME</p>
+            <p>OKAY NOW ITS LECTURE TIME</p>
             <h3>Data Analysis</h3>
                 <p>
                     Finding trends in data often requires processing the data before creating the result.
                 </p>
                 <p>
-                    Data is usually stored at the lowest level of granularity possible.
+                    Data is usually stored at the lowest level of granularity possible (lowest level of detail).
                 </p>
                 <p>
                     <b>NOTE: Null is used when it is nessecary to record the absence of a value.</b>

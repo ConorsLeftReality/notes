@@ -46,7 +46,6 @@ from modules.main_program_ui import display_menu, menu_choice
 from modules.lecture_note_generate import lecture_notes_generation_script
 
 
-## TODO: Make the program regenerate/update all index files if asked to, as new modules wont be indexed if generated
 ## TODO: Make program update the main index page with new module folders, and have title for module too (in file)
 
 ## =======================================================================================

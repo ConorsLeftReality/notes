@@ -2,11 +2,12 @@ PRAGMA foreign_keys = ON;
 
 CREATE TABLE modules (
   module_id       TEXT PRIMARY KEY NOT NULL,  -- The Module ID, one directory per module. Also used for directory name
+  lecturer_name   TEXT,                       -- Name of Lecturer
   module_title    TEXT,                       -- Title of the module, used on frontend such as index pages
   enrolled        INTEGER NOT NULL CHECK (enrolled IN (0, 1)),  -- Whether we are enrolled, generation script stuff
   year_of_study   INTEGER NOT NULL,           -- Information for sorting files
   semester        INTEGER NOT NULL,           -- Which semester we study this module in. Also used for sorting
-  module_message TEXT                        -- Message displayed on the modules index page (usually a quote)
+  module_message  TEXT                        -- Message displayed on the modules index page (usually a quote)
 );
 
 CREATE TABLE lectures (
@@ -15,6 +16,7 @@ CREATE TABLE lectures (
   module_code   TEXT NOT NULL,                -- Module this lecture belongs to
   created_at    TEXT NOT NULL,                -- Date created (YYYY-MM-DD), used for filename
   slides_link   TEXT,                         -- Link to slides
+  week          TEXT NOT NULL,                -- The week of study
   FOREIGN KEY (module_code) REFERENCES modules (module_id)
 );
 

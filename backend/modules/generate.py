@@ -181,7 +181,8 @@ def create_module_index_page_html(module_code,acknowledged_known_module_director
             """ 
         else:
             for week in WEEKS_IN_MODULE_DIR:
-                if "." in week:
+                # Skip files or the directory called 'files' as that holds images
+                if "." in week or week == 'files':
                     continue
                 else:
                     week_corrected = (week.capitalize()).replace("_"," ")
