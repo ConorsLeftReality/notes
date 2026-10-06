@@ -258,7 +258,7 @@ def write_index_file_to_module(lecture_module,data):
     
 ## -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-def menu_choice_resolver(number):
+def menu_choice_resolver(number,repository_root_directory):
     if number == 1:
         lecture_notes_generation_script(
         lecture_information_collection,
@@ -272,7 +272,6 @@ def menu_choice_resolver(number):
     
     elif number == 2:
         ## Variable needed for refresh module index page function - all_module_index_page_refresh(repository_document_root), passed in from here
-        from main import repository_root_directory
         all_module_index_page_refresh(repository_root_directory)
 
 ## -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -123,4 +123,4 @@ while True:
 
     ## Menu Choice Resolver -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    menu_choice_resolver(choice)
+    menu_choice_resolver(choice,repository_root_directory)
