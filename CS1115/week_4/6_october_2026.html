@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lecture 7</title>
+<link rel="stylesheet" href="../../win95.css">
+<link rel="stylesheet" href="../../notes.css">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Lecture 7 - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Lecture 7</h1>
+    <p class="note-meta">6 October 2026 &middot; CS1115 &middot; Derek Bridge &middot; Slides: <a href="https://www.cs.ucc.ie/~dgb/courses/WD/lectures/WD1_07.html">Slideshow 7</a></p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-intro">Activity</a></li>
+        <li><a href="#sec-url_continued">URL Continued</a></li>
+        
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+        
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-intro">
+    
+        <h2>Activity</h2>
+        <p>
+            Starting with an exercise on filepaths and how to write absolute and relative filepaths 
+            based on where a file is being called from
+        </p>
+
+        <aside class="callout">
+          <span class="callout-title">Note</span>
+          <p>When writing absolute filenames in relation to a web server question, write assuming that Document root is the same as root directory, such that '/www' == '/' </p>
+          <p><b>Important for exams</b></p>
+        </aside>
+        
+    </section>
+
+    <section class="note-section" id="sec-url_continued">
+            
+        <h2>URL Continued</h2>
+            <h3>URL - Fragment</h3>
+                <p>
+                    A Fragment is a part of a URL that brings you to different sections of a singular 
+                    webpage (Similar to the Contents at the top of this page)
+                </p>
+                <p>
+                    Fragments are assigned using id attributes <b>(Global attribute, so can be used on any element)</b>
+                </p>
+                <p>
+                    id attributes must be <u>unique</u>, so dont use multiple with the same name.
+                </p>
+                <p>
+                    A section can be referenced using &lt;a href="#fragment-id"&gt;. The hashtag is important for referencing the sections
+                </p>
+                <div class="code-block">
+                    <div class="code-title">example_code.html</div>
+                    <pre><code>
+&lt;a href="#fragment-id"&gt;Click here to go to *blah* section&lt;a&gt;
+                    </code></pre>
+                </div>
+            
+    </section>
+    
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+            <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">Lecture 7</p>
+    <p class="status-bar-field">6 October 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1115_index.html">Back to CS1115 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
+        
