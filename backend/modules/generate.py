@@ -114,7 +114,7 @@ def create_lecture_html_file(lecture_title,current_date,module_code,lecturer_nam
     <!--
     
     <figure class="note-image">
-        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320*80%"
             src="FILEPATH_HERE">
         <figcaption>CAPTION_HERE</figcaption>
     </figure>
