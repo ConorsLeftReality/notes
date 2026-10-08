@@ -1,5 +1,6 @@
 UPDATE lectures
-SET lecture_title = 'Test Title 2'
-WHERE id = '4';
+SET lecture_title = 'CS1112: Sets And Collections'
+WHERE id = '17';
 
--- SELECT * FROM lectures;
+SELECT * FROM lectures
+order by id;
