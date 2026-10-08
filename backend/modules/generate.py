@@ -172,6 +172,9 @@ def make_directory(directory_name):
 def create_module_index_page_html(module_code,acknowledged_known_module_directories):
     try:
         
+        
+        from modules.database_manipulation import fetch_module_message
+        
         ## (1) Create Module Lecture contents element ===================================================================
         WEEKS_IN_MODULE_DIR = os.listdir(f"{module_code}/")
         module_lecture_contents = ""
@@ -220,18 +223,7 @@ def create_module_index_page_html(module_code,acknowledged_known_module_director
         module_message = "NEW MODULE, ADD MESSAGE IN FILE - Conor"
         
         # Module Messages are stored in seperate file
-        # FORMAT: MODULECODE, "message here"
-        with open("backend/data/module_messages.txt") as f:
-            for line in f:
-                line = line.strip()
-                if not line or (line.strip(" "))[0] == "#":
-                    continue # Skip blank lines
-
-                # Split on first comma only
-                module, message = line.split(",", 1)
-                
-                if module == module_code:
-                    module_message = message
+        module_message = fetch_module_message(module_code)
                     
     
         ## (5) Create full HTML file ====================================================================================

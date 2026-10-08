@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lecture 8</title>
+<link rel="stylesheet" href="../../win95.css">
+<link rel="stylesheet" href="../../notes.css">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Lecture 8 - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Lecture 8</h1>
+    <p class="note-meta">8 October 2026 &middot; CS1115 &middot; Derek Bridge &middot; Slides: UNSPECIFIED</p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-intro">Heirarchal Structure</a></li>
+        <li><a href="#sec-syntax">Syntax of HTML</a></li>
+        <li><a href="#sec-character-sets">Character Sets</a></li>
+
+        
+
+        
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+        
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-intro">
+    
+        <h2>Heirarchal Structure</h2>
+            <p>File systems are like trees (If you were viewing one upside down)</p>
+            <p>HTML is also like trees in their elements</p>
+            <ul>
+                <li>Trees are graphs made of nodes</li>
+                <li>Nodes have one parent (or none)</li>
+                <li>A node can also have ancestors (Parent(s) of their parent)</li>
+                <li>A Node's descendants are the nodes that connect back to a given node</li>
+                <li>A node's siblings are nodes who share the same parent</li>
+                <li>The eldest node is the first occuring node from a parent</li>
+            </ul>
+            <h4>But why is this important?</h4>
+            <p>Because fuck you, that's why.</p>
+            <p>
+                <i>(The browser builds a webpage in order of the tree, from eldest to youngest)</i>
+            </p>
+                    
+    </section>
+
+    <section class="note-section" id="sec-syntax">
+            
+        <h2>Syntax of HTML</h2>
+            <ul>
+                <li>Only certain tags are permitted</li>
+                <li>
+                    Only certain attributes and values are permitted. E.G.
+                    <ul>
+                        <li>Any element can have the lang attribute as its Global</li>
+                        <li>Only a few elements can have alt attributes</li>
+                    </ul>
+                </li>
+                <li>
+                    Often, only certain content is permitted
+                    <ul>
+                        <li>&lt;p&gt; cannot contain &lt;p&gt;</li>
+                        <li>&lt;p&gt; cannot contain &lt;ul&gt; or &lt;ol&gt; elements</li>
+                        <li>&lt;ul&gt; or &lt;ol&gt; can only contain zero, one or more &lt;li&gt; element</li>
+                    </ul>
+                </li>
+                <li>Nesting must be done correctly</li>
+            </ul>
+            <h3>Types of HTML syntax</h3>
+                <p>HTML has 2 types of syntax, XML and HTML formatting</p>
+                <ul>
+                    <li>XML syntax uses very strict rules</li>
+                    <li>HTML syntax allows for rules to be broken</li>
+                </ul>
+                <p>In XML...</p>
+                <ul>
+                    <li>Tags must be lowercase</li>
+                    <li>Each start tag needs an end tag, or a slash for void elements</li>
+                    <li>Attribute values must be quoted</li>
+                    <li>and more...</li>
+                </ul>
+                <p>
+                    <b>Browsers dont give error messages, but you can validate your page on 
+                    <a href="https://validator.w3.org/nu/">https://validator.w3.org/nu/</a> or 
+                    <a href="https://validator.w3.org/">https://validator.w3.org/</a></b>
+                </p>
+            
+    </section>
+    
+    <section class="note-section" id="sec-character-sets">
+            
+        <h2>Character Sets</h2>
+            <h3>1/3 - Character Sets</h3>
+                <p>A character set is a collection of characters</p>
+                <p>E.G. ASCII (128 characters from the modern Latin alphabet)</p>
+                <p>Obviously this didnt work for multiple languages, and because it was developed in the west, it was all based around plain english, with no consideration for other languages (or just because they didnt have space)</p>
+                <p>"Feck those foreigners" - Derek Bridge on what the ASCII inventors probably said</p>
+                <p>"Feck the chinese, feck the greeks, feck them all" - Also Derek Brigde on what the ASCII inventors probably also said</p>
+                <p>
+                    <b>BUT,</b> The Unicode character set was invented, and is currently nearly 155,000 
+                    characters. This solved this issue. UTF-8 was then invented, with the most common 
+                    languages having the least bits in the dataset table.
+                </p>
+
+
+    </section>
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320*80%"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">Lecture 8</p>
+    <p class="status-bar-field">8 October 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1115_index.html">Back to CS1115 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
+        

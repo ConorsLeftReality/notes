@@ -204,8 +204,6 @@ for file in files_in_working_dir:
 ==============================================================================================================================================================
 USES: backend/data/enrolled_modules.txt
 ==============================================================================================================================================================
-FUNCTION: 
-==============================================================================================================================================================
 
 print(f"<<< SYSTEM >>> NO MODULE FOLDER FOUND FOR {lecture_module}")
 print("OPTIONS")
@@ -284,22 +282,12 @@ for file in files_in_working_dir:
 USES: backend/data/module_messages.txt
 ==============================================================================================================================================================
 
-# Module Messages are stored in seperate file
-        # FORMAT: MODULECODE, "message here"
-        with open("backend/data/module_messages.txt") as f:
-            for line in f:
-                line = line.strip()
-                if not line or (line.strip(" "))[0] == "#":
-                    continue # Skip blank lines
+## Find the module message for a given module
 
-                # Split on first comma only
-                module, message = line.split(",", 1)
-                
-                if module == module_code:
-                    module_message = message
+module_message = fetch_module_message(module_code)
 
 ==============================================================================================================================================================
-5. display_menu() in main_program_ui.py - NOT TOO VITAL, NEEDS ITS OWN TABLE ANYWAY
+5. display_menu() in main_program_ui.py - NOT TOO VITAL, NEEDS ITS OWN TABLE ANYWAY 
 ==============================================================================================================================================================
 USES: backend/data/main_program_menu_items.txt
 ==============================================================================================================================================================
@@ -312,3 +300,15 @@ with open("backend/data/main_program_menu_items.txt","r") as f:
             line = line.strip("\n")
             MENU.append(str(line))
 
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+UPDATES: AS OF NOW, COMMIT 31, 1-4 HEVE BEEN MIGRATED. 5 HAS YET TO BE MIGRATED (NEED TO CREATE TABLE)
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+==============================================================================================================================================================
+NEW ADDITIONS
+==============================================================================================================================================================
+
+## Lecture addition to DB (once done the update_lecture_db.py program)

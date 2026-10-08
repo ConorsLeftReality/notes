@@ -98,3 +98,147 @@ def update_enrollment_of_module(module_code,enrollment):
 
 ## -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+def fetch_module_message(module_code):
+    try:
+        # Connect to SQLite Database and create a cursor
+        sqliteConnection = sqlite3.connect('backend/data/notes.db')
+        
+        # Specifies only look at row 0 (Returns a properly formatted list) 
+        # (https://stackoverflow.com/questions/2854011/get-a-list-of-field-values-from-pythons-sqlite3-not-tuples-representing-rows)
+        sqliteConnection.row_factory = lambda cursor, row: row[0] 
+                
+        cursor = sqliteConnection.cursor()
+        #print('DB Init')
+
+        # Execute query to find which modules are enrolled
+        query = f'SELECT module_message FROM modules WHERE module_id = \'{module_code}\';'
+        cursor.execute(query)
+        
+        # Fetch and print the result
+        if cursor.fetchall() != []:
+            module_message = (cursor.fetchall())[0] # As we only get one message, the first in the returned list will be the module message
+        else:
+            module_message = "No message for this module, try again another time!"
+        #print(result)
+
+        # Close the cursor after use
+        cursor.close()
+
+    except sqlite3.Error as error:
+        print(f"ERROR IN DATABASE CONNECTION / DATABASE INTERACTION: {error}")
+        return None
+
+    finally:
+        # Ensure the database connection is closed
+        if sqliteConnection:
+            sqliteConnection.close()
+        
+    return module_message
+    
+## -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+def filename_not_in_lecture_table_db(filename):
+    try:
+        # Connect to SQLite Database and create a cursor
+        sqliteConnection = sqlite3.connect('backend/data/notes.db')
+        
+        # Specifies only look at row 0 (Returns a properly formatted list) 
+        # (https://stackoverflow.com/questions/2854011/get-a-list-of-field-values-from-pythons-sqlite3-not-tuples-representing-rows)
+        sqliteConnection.row_factory = lambda cursor, row: row[0] 
+        
+        cursor = sqliteConnection.cursor()
+        #print('DB Init')
+
+        # Execute query to find which modules are enrolled
+        query = f'SELECT filename FROM lectures WHERE filename = \'{filename}\';'
+        cursor.execute(query)
+        
+        # Fetch and print the result
+        result = cursor.fetchall()
+
+        # Close the cursor after use
+        cursor.close()
+
+    except sqlite3.Error as error:
+        print(f"ERROR IN DATABASE CONNECTION / DATABASE INTERACTION: {error}")
+        return None
+
+    finally:
+        # Ensure the database connection is closed
+        if sqliteConnection:
+            sqliteConnection.close()
+    
+    # Check if file exists
+    if filename in result:
+        return True
+    else:
+        return False 
+    
+## -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+def add_to_lectures_db(module_code,week,filename):
+    try:
+        # Connect to SQLite Database and create a cursor
+        sqliteConnection = sqlite3.connect('backend/data/notes.db')
+        
+        # Specifies only look at row 0 (Returns a properly formatted list) 
+        # (https://stackoverflow.com/questions/2854011/get-a-list-of-field-values-from-pythons-sqlite3-not-tuples-representing-rows)
+        sqliteConnection.row_factory = lambda cursor, row: row[0] 
+        
+        cursor = sqliteConnection.cursor()
+        
+        ## Define week
+        week_input = week[week.index("_")+1:]
+        
+        print(filename)
+        
+        ## Define created_at
+        underscore = filename.index("_")
+        dot = filename.index(".")
+    
+        #print(underscore)
+        
+        day = filename[0:underscore]
+        if len(day) == 1:
+            day = f"0{day}"
+        #print(day)
+        month = filename[underscore+1:dot-5]
+        #print(month)
+        year = filename[dot-4:dot]
+        #print(year)
+        
+        MONTHS = ["january", "february", "march", "april", "may", "june",
+          "july", "august", "september", "october", "november", "december"]
+
+        month_numerical = MONTHS.index(month) + 1
+        
+        created_at_input = f"{year}-{month_numerical}-{day} 00:00:00"
+        
+        #print(created_at_input)
+        
+        # Execute query to write record
+        query = f"""
+        INSERT INTO lectures 
+        VALUES                  (NULL, 'UNSPECIFIED', '{module_code}', '{created_at_input}', NULL, '{week_input}', '{filename}');
+        """
+        
+        print(query)
+        
+        cursor.execute(query)
+        
+        # Fetch and print the result
+        sqliteConnection.commit()
+
+        # Close the cursor after use
+        cursor.close()
+
+    except sqlite3.Error as error:
+        print(f"ERROR IN DATABASE CONNECTION / DATABASE INTERACTION: {error}")
+        return None
+
+    finally:
+        # Ensure the database connection is closed
+        if sqliteConnection:
+            sqliteConnection.close()
+    
+    return None

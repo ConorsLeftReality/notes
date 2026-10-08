@@ -17,6 +17,7 @@ CREATE TABLE lectures (
   created_at    TEXT NOT NULL,                -- Date created (YYYY-MM-DD), used for filename
   slides_link   TEXT,                         -- Link to slides
   week          TEXT NOT NULL,                -- The week of study
+  filename      TEXT NOT NULL,
   FOREIGN KEY (module_code) REFERENCES modules (module_id)
 );
 

@@ -18,6 +18,8 @@ from modules.main_program_ui import display_menu, menu_choice
 ##                      - USED TO GENERATE FILES OR DIRECTORIES
 from modules.generate import make_directory,create_module_index_page_html,create_lecture_html_file
 
+from modules.database_manipulation import check_enrolled_modules, update_enrollment_of_module
+
 ## ====================================================================
 ## ========================== IMPORT SCRIPTS ==========================
 ## ====================================================================
@@ -82,36 +84,31 @@ def module_selection_resolver(lecture_module):
         
         clear_screen()
         
+        ## Checks what files are in the working directory                           - files_in_working_dir = os.listdir()
+        ## Checks which modules I'm enrolled for, makes list of these               - SQL query returns ENROLLED_MODULES list
+        ## Finds which directories present are enrolled known module directories    - for file in files_in_working_dir: if file in ENROLLED_MODULES:
+        ## Adds these enrolled known module directories to as list as strings       - PRESENT_ENROLLED_MODULES.append(file)
+        
         files_in_working_dir = os.listdir() # Make list of files in working dir.
-        ENROLLED_MODULES = [] # Establish list to specify the modules that I actually study
-        
-        with open("backend/data/enrolled_modules.txt","r") as f:
-            for module in f:
-                if module.strip("\n") == "" or (module.strip(" "))[0] == "#":
-                    continue
-                else:
-                    module = module.strip("\n")
-                    ENROLLED_MODULES.append(str(module))
-        
-        # Search through folders we can see from our working directory, if any match our enrolled modules, then add to a list so we know this
-        current_module_folders = []
-        
-        for file in files_in_working_dir:
-            if file in ENROLLED_MODULES:
-                current_module_folders.append(file) # Add to list so we know this directory exists
 
+        ENROLLED_MODULES = check_enrolled_modules()
+        
+        PRESENT_ENROLLED_MODULES = []
+        for file in files_in_working_dir: 
+            if file in ENROLLED_MODULES:
+                PRESENT_ENROLLED_MODULES.append(file)
 
         # MODULE SELECTION RESOLUTION
         
         # Now check if the lecture module has a folder. If does, continue. If not, ask what to do.
         # ISOK, continue
-        if lecture_module in current_module_folders:
+        if lecture_module in PRESENT_ENROLLED_MODULES:
             print(f"<<< SYSTEM >>> FOUND ENROLLED MODULE FOLDER FOR {lecture_module}")
             module_selection_resolved = True
             pause()
             
         # ISOK kinda, folder doesnt exist yet, and its a module we take so make folder then continue
-        elif lecture_module not in current_module_folders and lecture_module in ENROLLED_MODULES:
+        elif lecture_module not in PRESENT_ENROLLED_MODULES and lecture_module in ENROLLED_MODULES:
             print(f"<<< SYSTEM >>> MODULE FOLDER DOESNT EXIST FOR {lecture_module}, BUT YOU ARE ENROLLED IN THIS MODULE")
             print("<<< SYSTEM >>> CREATING MODULE FOLDER NOW...")
             pause()
@@ -137,13 +134,11 @@ def module_selection_resolver(lecture_module):
             print("ENTER NEW MODULE CODE?                       (N)")
             print("VIEW FOLDERS ACCESSIBLE AND ENROLLED MODULES (F)")
             user_choice = (input(" >>> ")).upper()
-            
+
             if user_choice == "Y":
                 # Try make directory, if success, continue
                 if make_directory(lecture_module): # Error messages handled by function
-                    with open("backend/data/enrolled_modules.txt", "a") as f:
-                        f.write(f"\n{lecture_module}")
-                        f.close()
+                    update_enrollment_of_module(lecture_module,True)
                     module_selection_resolved = True
             
             elif user_choice == "N":
@@ -160,7 +155,7 @@ def module_selection_resolver(lecture_module):
                 print("INVALID CHOICE")
                 time.sleep(2)
             
-    return current_module_folders
+    return PRESENT_ENROLLED_MODULES
 
 ## -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -175,7 +170,7 @@ def week_selection_resolver(lecture_module):
         weeks_in_directory = []
         
         for content in files_in_module_dir:
-            if "index" not in content:
+            if "index" not in content and "files" not in content:
                 weeks_in_directory.append(content)
         
         print(" <<< SYSTEM >>> Here are the weeks in the folder:")  
@@ -279,16 +274,20 @@ def menu_choice_resolver(number,repository_root_directory):
 def all_module_index_page_refresh(repository_document_root):
     
     os.chdir(repository_document_root)
-    files_in_working_dir = os.listdir() # Make list of files in working dir.
-    ENROLLED_MODULES = [] # Establish list to specify the modules that I actually study
     
-    with open("backend/data/enrolled_modules.txt","r") as f:
-        for module in f:
-            if module.strip("\n") == "" or (module.strip(" "))[0] == "#":
-                continue
-            else:
-                module = module.strip("\n")
-                ENROLLED_MODULES.append(str(module))
+    ## Checks what files are in the working directory                           - files_in_working_dir = os.listdir()
+    ## Checks which modules I'm enrolled for, makes list of these               - SQL query returns ENROLLED_MODULES list
+    ## Finds which directories present are enrolled known module directories    - for file in files_in_working_dir: if file in ENROLLED_MODULES:
+    ## Adds these enrolled known module directories to as list as strings       - PRESENT_ENROLLED_MODULES.append(file)
+    
+    files_in_working_dir = os.listdir() # Make list of files in working dir.
+
+    ENROLLED_MODULES = check_enrolled_modules()
+    
+    PRESENT_ENROLLED_MODULES = []
+    for file in files_in_working_dir: 
+        if file in ENROLLED_MODULES:
+            PRESENT_ENROLLED_MODULES.append(file)
     
     # Search through folders we can see from our working directory, if any match our enrolled modules, then add to a list so we know this
     current_module_folders = []
