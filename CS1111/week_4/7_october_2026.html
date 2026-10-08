@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Memory Architecture</title>
+<link rel="stylesheet" href="../../win95.css">
+<link rel="stylesheet" href="../../notes.css">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Memory Architecture - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Memory Architecture</h1>
+    <p class="note-meta">7 October 2026 &middot; CS1111 &middot; J.P. Morrison &middot; Slides: UNSPECIFIED</p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+            
+        <li><a href="#sec-assignment">Before Lecture - Assignment</a></li>
+        <li><a href="#sec-intro">Intro</a></li>
+        <li><a href="#sec-memory-technology">Memory Technology</a></li>
+        <li><a href="#sec-memory_characteristics">Characteristics of Memory</a></li>
+        
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+        
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-assignment">
+    
+        <h2>Assignment</h2>
+            <p>Small assignment on Canvas, Binary - Hex numbers and some signed integers. Number bases in general it seems. </p>
+        
+    </section>
+
+    <section class="note-section" id="sec-intro">
+            
+        <h2>Memory Architecture</h2>
+            <p>
+                Memory heirarchy was one of the great ideas of Computer Architecture(?). 
+                The goal for memory is for it to be:
+            </p>
+            <ul>
+                <li>Fast</li>
+                <li>Reliable</li>
+                <li>Durable</li>
+                <li>Inexpensive</li>
+            </ul>
+            <p>
+                Memory becomes a bottleneck with speed - If we cant access data at the speed we can process it, we have to wait for data to be transferred
+            </p>
+            <p>
+                We need memory to be reliable and durable - Over time, memory will degrade due to hundreds of thousands of writes to itself. We want memory to be more durable and realiable to combat this.
+            </p>
+            <p>
+                Memory is a major cost of computing - 1Gb of memory cost £5000 in J.P. Morrison's memory of past computing prices
+            </p>
+            <p>
+                Due to memory becoming so cheap, many programmers are lazy and write code without the reservations and thoughtfulness of past programmers.
+            </p>
+
+            <aside class="callout">
+                <span class="callout-title">Interesting fact</span>
+                <p>Old Core memory plates were made of wire that went through ferrite (spelt right?) cores.</p>
+                <p><b>This is where the word 'Core' in computing came from</b></p>
+            </aside>
+            
+    </section>
+
+    <section class="note-section" id="sec-memory-technology">
+            
+        <h2>Memory Technology</h2>
+            <h3>DRAM - Dynamic Random Access Memory</h3>
+                <p>
+                    A stored value represented by a capacitor's charge state
+                </p>
+                <ul>
+                    <li>1 Capacitor</li>
+                    <li>1 access transistor</li>
+                </ul>
+                <p>
+                    A capacitor is like a small bucket, but it leaks. Not good for storing data :(
+                </p>
+                <p>
+                    The charge leaks unless the capacitor's charge is refreshed. 
+                    This refreshing is performed by CPU or by a dedicated memory controller
+                </p>
+            
+                <h3>SRAM - Static Random Access Memory</h3>
+                    <p>
+                        SRAM uses Two cross-coupled inverters to store a single bit
+                    </p>
+                    <ul>
+                        <li>Bit maintained by a feedback path</li>
+                        <li>4 transistors for storage</li>
+                        <li>2 transistors for access</li>
+                    </ul>
+                    <p>
+                        SRAM is faster but more expensive (Therefore used for cache)
+                    </p>
+                    <p>
+                        Benefit of SRAM is that it doesnt need to be refreshed, which makes it faster
+                    </p>
+                    
+                    <hr>
+
+                    <h4>SRAM more expensive but faster, so used for smaller Cache Memory. DRAM cheaper but slower, so used for larger Main Memory</h4>
+
+                    <hr>
+                    
+                    <p><b>An ideal computer would have...</b></p>
+                    <ul>
+                        <li>Zero access time</li>
+                        <li>Infinite Capacity</li>
+                        <li>Zero cost</li>
+                        <li>Infinite bandwidth (for multiple parallel access)</li>
+                    </ul>
+                    <p>However</p>
+                    <ul>
+                        <li>Bigger means slower - It takes longer to determine locations if the memory is bigger</li>
+                        <li>Greater bandwidth means more cost - More banks, more ports, higher frequency, faster technology</li>
+                    </ul>
+                
+                    <h3>Memory Heirarchy</h3>
+                        <ul>
+                            <li>Register File - 32 words, sub nanoseconds</li>
+                            <li>L1 Cache - ~32Kb, ~nsec</li>
+                            <li>L2 Cache - 512Kb~1MB, many nsec</li>
+                            <li>L3 Cache - .......</li>
+                            <li>Main Memory (DRAM) - Many GB, ~100 nsec</li>
+                            <li>Swap disk - 100Gb+ ~10 msec</li>    
+                        </ul>
+                    
+                        <figure class="note-image">
+                            <img alt="Diagram of Memory Heirarchy, in terms of speed and size (same as above)" width="320*80%"
+                                src="../files/memory_heirarchy1.png">
+                            <figcaption>Diagram from slides</figcaption>
+                        </figure>
+
+    <section class="note-section" id="sec-memory_characteristics">
+            
+        <h2>Characteristics of Memory</h2>
+            <p>
+                A memory address is a binary number. The number of bits needed to specify that number determines the max size of the memory.
+            </p>
+            <p>
+                Each location can store several bits. Nearly all computers have a standardized size of 8 bits per location, called a Byte
+            </p>
+            <p>
+                Bytes stored in memory are groups into words of a chosen size. A 32-bit word (4 bytes); 64-bit word (8 bytes); etc
+            </p>
+            <p>
+                <b>Most instructions operate on entire words, for example, two words may be added together.</b>
+            </p>
+
+            <aside class="callout">
+                <span class="callout-title">Note</span>
+                <p>The address is usually the first byte of the word(?). I'm not google, crosscheck this!</p>
+            </aside>
+
+            <h3>Words and word length</h3>
+                <p>
+                    In modern computers, bytes are generally grouped into 4-byte or 8-byte words and instructions manipulate an entire word as a single entity.</p>
+
+
+<p>
+    The number of bits in a word is called the word length
+</p>
+    </section>
+
+
+
+
+                
+            
+    </section>
+
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+<div class="status-bar">
+    <p class="status-bar-field">Memory Architecture</p>
+    <p class="status-bar-field">7 October 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1111_index.html">Back to CS1111 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
+        
