@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aggregation and Grouping</title>
+<link rel="stylesheet" href="../../win95.css">
+<link rel="stylesheet" href="../../notes.css">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Aggregation and Grouping - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Aggregation and Grouping</h1>
+    <p class="note-meta">6 October 2026 &middot; CS1106 &middot; UNDEFINED_LECTURER_NAME &middot; Slides: UNSPECIFIED</p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-intro">Intro - Data and Arithmetic Operations</a></li>
+        <li><a href="#sec-aggregation">Aggregation</a></li>
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+        
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-intro">
+    
+        <h2>Intro - Data and Arithmetic Operations</h2>
+            <figure class="note-image">
+            <img alt="Reaction Picture" width="320"
+                src="../files/me_rn.jpeg">
+            <figcaption>Nevermind we're still on composite functions ffs</figcaption>
+            </figure>
+            <p>OKAY LECTURE TIME</p>
+            <h3>Data Analysis</h3>
+                <p>
+                    Finding trends in data often requires processing the data before creating the result.
+                </p>
+                <p>
+                    Data is usually stored at the lowest level of granularity possible.
+                </p>
+                <p>
+                    <b>NOTE: Null is used when it is nessecary to record the absence of a value.</b>
+                </p>
+            <h3>Attributes(?)</h3>
+                <p>Each column in a database table will have a datatype/attibute.</p>
+                <p>E.G.</p>
+                <ul>
+                    <li>Name - TEXT</li>
+                    <li>Region - TEXT</li>
+                    <li>Area - in km**2 INT</li>
+                    <li>Population - INT</li>
+                </ul>
+            <h3>Arithmetic Operations</h3>
+                <p>
+                    Perform mathematical operations on table column(s) in a query
+                </p>
+                <p>More completely, these can be performed on</p>
+                <ul>
+                    <li>A single column</li>
+                    <li>Two or more columns</li>
+                    <li>Constant values with column data</li>
+                </ul>
+                <table>
+                    <tr>
+                        <td><b>Operator</b></td>
+                        <td><b>Desctiption</b></td>
+                    </tr>
+                    <tr>
+                        <td>+</td>
+                        <td>Addition</td>
+                    </tr>
+                    <tr>
+                        <td>-</td>
+                        <td>Subtraction</td>
+                    </tr>
+                    <tr>
+                        <td>/</td>
+                        <td>Division</td>
+                    </tr>
+                    <tr>
+                        <td>*</td>
+                        <td>Multiplication</td>
+                    </tr>
+                    <tr>
+                        <td>%</td>
+                        <td>Modulus (remainder)</td>
+                    </tr>
+                </table>
+
+                <h4>Example of possible use (Population Density)</h4>
+                <div class="code-block">
+                    <div class="code-title">example_arithmetic_operation.sql</div>
+                    <pre><code>SELECT name, population/area
+FROM countries
+WHERE region = 'Europe'
+ORDER BY population/area DESC;
+                    </code></pre>
+                </div>
+    </section>
+    
+    <section class="note-section" id="sec-aggregation">
+            
+        <h2>Aggregation</h2>
+            <p>
+                Summarise the data from all or part of a table
+            </p>
+            <h3>Aggregation Function</h3>
+                <p>
+                    A function that performs a calculation on a set of values and returns a single value
+                </p>
+            <h3>SQL Aggregation Functions</h3>
+                <p>COUNT() is the number of values of an attribute</p>
+                <p>E.G. Counts the number of rows in a specified field</p>
+                <p>SELECT COUNT(name) FROM countries; returns the number of values in the name column of table countries</p>
+                <p>SELECT COUNT(gdp) FROM countries; return the number of values in the gdp column of table countries</p>
+                <p>Query 1 could return a higher value than Query 2, as some of the fields in the gdp column could be NULL</p>
+                <hr>
+                <h4>Other Aggregation Functions</h4>
+                <ul>
+                    <li>MIN () - Smallest Value in column</li>
+                    <li>MAX () - Highest Value in column</li>
+                    <li>SUM () - Sum of a numerical column</li>
+                    <li>AVG () - Average value of a numerical column</li>
+                </ul>
+
+                <aside class="callout">
+                    <span class="callout-title">Note</span>
+                    <p>
+                        If the list of attributes in SELECT is a single aggregation function, the result is a 1 x 1 table
+                    </p>
+                </aside>
+
+                <h4>Unique Values</h4>
+                    <p>
+                        DISTINCT ensures each value in a column is only counted once, which can be used with any aggregate function but makes most sense with COUNT ()
+                    </p>
+                    <p>
+                        E.G. SELECT COUNT(DISTINCT region) FROM countries; would return the number of unique regions in a table
+                    </p>
+            
+    </section>
+    
+    <section class="note-section" id="sec-grouping">
+            
+        <h2>Grouping</h2>
+            <p>Aggregate functions are applied to groups of rows</p>
+            <p>
+                If no group is specified, there is a single, implicit group consisting of all the rows in the table
+            </p>
+            <p>
+                By defining a group, aggregate functions can calculate totals, counts, the average, smallest, and largest values within each group
+            </p>
+            <h3>How do we group?</h3>
+                <p>Add the clause GROUP BY to the SELECT statement</p>
+                <p><pre>E.G. 
+<b>SELECT region, SUM(population) 
+FROM countries
+GROUP BY region;
+</b></pre></p>
+                <p>
+                    This returns the sum of the population for each region, based off of common regions for each country
+                </p>
+
+    </section>
+
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+            <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">Aggregation and Grouping</p>
+    <p class="status-bar-field">6 October 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1106_index.html">Back to CS1106 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
+        
