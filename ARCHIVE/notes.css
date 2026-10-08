@@ -1,0 +1,300 @@
+/* ==========================================================================
+   notes.css — lecture-note blocks for win95.css
+   Load it AFTER win95.css:
+     <link rel="stylesheet" href="win95.css">
+     <link rel="stylesheet" href="notes.css">
+
+   Page skeleton:
+     <div class="window notepad">
+       <div class="title-bar"><div class="title-bar-text">Lecture 1 - Notepad</div></div>
+       <div class="notepad-body">
+         <h1>Title</h1>
+         <p class="note-meta">Date · Module · Lecturer</p>
+         <section class="note-section"> <h2>Topic</h2> ...blocks... </section>
+       </div>
+       <div class="status-bar"><p class="status-bar-field">Lecture 1</p></div>
+     </div>
+
+   Blocks (all go inside a .note-section):
+     p, h3, h4
+     ul (square) | ul.list-dash | ul.list-arrow | ul.list-check (li.done)
+     ol | ol.list-alpha | ol.list-roman
+     .code-block (+ .light, + .code-title)   inline: code, kbd, mark
+     figure.note-image (+ .left / .right)
+     a, a.link-btn
+     aside.callout (+ .definition / .warning)
+     blockquote, .table-wrap > table, hr
+   ========================================================================== */
+
+:root {
+  --note-font: Tahoma, "Segoe UI", Arial, sans-serif;
+  --note-mono: "Courier New", Courier, monospace;
+  --note-size: 13px;
+  --note-tip: #ffffe1;       /* classic tooltip yellow */
+}
+
+/* ---------- The notepad window ---------- */
+.notepad {
+  display: block;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.notepad.mono { --note-font: var(--note-mono); }   /* add .mono for a Notepad.exe feel */
+
+.notepad-body {
+  background: var(--w95-white);
+  box-shadow: var(--w95-sunken);
+  margin: 0 2px;
+  padding: 14px 22px 22px;
+  max-height: calc(100vh - 160px);    /* leaves room for title bar, status bar, taskbar */
+  overflow-y: auto;
+  line-height: 1.5;
+}
+
+/* win95.css forces 11px on everything inside .window, so reset it for notes */
+.notepad-body,
+.notepad-body * {
+  font-family: var(--note-font);
+  font-size: inherit;
+}
+.notepad-body { font-size: var(--note-size); }
+
+/* ---------- Title, meta, sections ---------- */
+.notepad-body h1 { font-size: 24px; line-height: 1.2; margin: 0 0 4px; }
+
+.note-meta {
+  margin: 0 0 18px;
+  padding-bottom: 10px;
+  color: #555;
+  border-bottom: 1px solid var(--w95-shadow);
+  box-shadow: 0 1px 0 var(--w95-light);
+}
+
+.note-section { margin: 0 0 30px; }
+.note-section::after { content: ""; display: block; clear: both; }   /* contain floated images */
+
+.notepad-body h2 {
+  font-size: 17px;
+  margin: 0 0 10px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid var(--w95-shadow);
+  box-shadow: 0 1px 0 var(--w95-light);
+}
+.notepad-body h3 { font-size: 14px; margin: 18px 0 6px; }
+.notepad-body h4 { font-size: 13px; margin: 14px 0 4px; text-decoration: underline; }
+.notepad-body p  { margin: 0 0 10px; }
+.notepad-body hr { margin: 20px 0; }
+
+.notepad-body fieldset { margin: 0 0 26px; }
+
+/* ---------- Lists ---------- */
+.notepad-body ul,
+.notepad-body ol { margin: 0 0 10px; padding-left: 24px; }
+.notepad-body li { margin: 2px 0; }
+.notepad-body li > ul,
+.notepad-body li > ol { margin: 2px 0; }
+
+.notepad-body ul { list-style: square; }
+.notepad-body ol { list-style: decimal; }
+.notepad-body ol.list-alpha { list-style: lower-alpha; }
+.notepad-body ol.list-roman { list-style: lower-roman; }
+
+/* custom bullet styles share this base */
+.notepad-body .list-dash,
+.notepad-body .list-arrow,
+.notepad-body .list-check { list-style: none; padding-left: 24px; }
+.list-dash > li,
+.list-arrow > li,
+.list-check > li { position: relative; }
+
+.list-dash > li::before  { content: "\2013"; position: absolute; left: -16px; }
+.list-arrow > li::before { content: "\25BA"; position: absolute; left: -18px; top: 0.2em; font-size: 0.7em; }
+
+.list-check > li::before {
+  content: "";
+  position: absolute;
+  left: -22px;
+  top: 3px;
+  width: 13px;
+  height: 13px;
+  background: var(--w95-white);
+  box-shadow: var(--w95-sunken);
+}
+.list-check > li.done::before {
+  background: var(--w95-white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='7' height='7'%3E%3Cpath d='M6 0h1v2H6v1H5v1H4v1H3v1H2V5H1V4H0V2h1v1h1v1h1V3h1V2h1V1h1z' fill='black'/%3E%3C/svg%3E") no-repeat center;
+}
+
+/* ---------- Inline text ---------- */
+.notepad-body a { color: #0000ee; }
+.notepad-body a:visited { color: #551a8b; }
+
+.notepad-body code {
+  font-family: var(--note-mono);
+  font-size: 12px;
+  background: #ececec;
+  border: 1px solid #c8c8c8;
+  padding: 0 3px;
+}
+.notepad-body kbd {
+  font-family: var(--note-mono);
+  font-size: 12px;
+  background: var(--w95-face);
+  box-shadow: var(--w95-raised);
+  padding: 1px 6px;
+}
+.notepad-body mark { background: #ffff00; color: #000; padding: 0 2px; }
+
+/* A link that looks like a Win95 button */
+.notepad-body a.link-btn {
+  display: inline-block;
+  padding: 4px 14px;
+  background: var(--w95-face);
+  color: #000;
+  text-decoration: none;
+  box-shadow: var(--w95-raised);
+}
+.notepad-body a.link-btn:active {
+  box-shadow: var(--w95-pressed);
+  padding: 5px 13px 3px 15px;
+}
+
+/* ---------- Code blocks ----------
+   <div class="code-block">
+     <div class="code-title">query.sql</div>          (optional)
+     <pre><code>SELECT * FROM students;</code></pre>
+   </div>
+   Add class="light" next to code-block for dark text on white.
+   Write < as &lt; and & as &amp; inside code.
+*/
+.code-block {
+  margin: 12px 0;
+  padding: 3px;
+  background: var(--w95-face);
+  box-shadow: var(--w95-window);
+}
+.notepad-body .code-title {
+  margin-bottom: 3px;
+  padding: 3px 5px;
+  background: linear-gradient(90deg, var(--w95-title-a), var(--w95-title-b));
+  color: var(--w95-white);
+  font-weight: bold;
+  font-size: 11px;
+}
+.notepad-body .code-block pre {
+  margin: 0;
+  padding: 8px 12px;
+  background: #000;
+  color: #c0c0c0;
+  box-shadow: var(--w95-sunken);
+  font-family: var(--note-mono);
+  font-size: 12px;
+  line-height: 1.4;
+  white-space: pre;
+  tab-size: 4;
+  overflow-x: auto;
+}
+.notepad-body .code-block pre code {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+}
+.notepad-body .code-block.light pre { background: var(--w95-white); color: #000; }
+
+/* ---------- Images ----------
+   <figure class="note-image">
+     <img src="images/diagram.png" alt="...">
+     <figcaption>Figure 1: ...</figcaption>
+   </figure>
+   Add class="right" or "left" to float it beside text.
+*/
+.note-image {
+  width: fit-content;
+  max-width: 100%;
+  margin: 12px 0;
+  padding: 4px;
+  background: var(--w95-face);
+  box-shadow: var(--w95-window);
+}
+.note-image img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--w95-shadow);
+}
+.notepad-body .note-image figcaption {
+  padding: 4px 2px 0;
+  font-size: 12px;
+}
+.note-image.right { float: right; margin: 4px 0 10px 16px; max-width: 45%; }
+.note-image.left  { float: left;  margin: 4px 16px 10px 0; max-width: 45%; }
+
+/* ---------- Callouts ----------
+   <aside class="callout [definition|warning]">
+     <span class="callout-title">Note</span>
+     <p>Text</p>
+   </aside>
+*/
+.callout {
+  position: relative;
+  margin: 12px 0;
+  padding: 8px 12px 8px 46px;
+  background: var(--note-tip);
+  border: 1px solid #000;
+}
+.callout::before {
+  content: "i";
+  position: absolute;
+  left: 11px;
+  top: 8px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #0000ff;
+  color: #fff;
+  font: bold 14px/22px var(--note-font);
+  text-align: center;
+  box-shadow: inset -2px -2px #000080, inset 2px 2px #8080ff;
+}
+.callout.definition::before {
+  content: "?";
+  background: #008080;
+  box-shadow: inset -2px -2px #004040, inset 2px 2px #60c0c0;
+}
+.callout.warning::before {
+  content: "!";
+  background: #ffff00;
+  color: #000;
+  box-shadow: inset -2px -2px #808000, inset 2px 2px #ffffa0;
+}
+.notepad-body .callout-title { display: block; margin-bottom: 2px; font-weight: bold; }
+.callout > :last-child { margin-bottom: 0; }
+
+/* ---------- Quotes ---------- */
+.notepad-body blockquote {
+  margin: 12px 0;
+  padding: 4px 14px;
+  background: #f4f4f4;
+  border-left: 4px solid var(--w95-shadow);
+}
+.notepad-body blockquote p:last-child { margin-bottom: 0; }
+
+/* ---------- Tables ---------- */
+.table-wrap { margin: 12px 0; overflow-x: auto; }
+.notepad-body table { margin: 0; white-space: normal; }
+.notepad-body table > thead > tr > * { position: static; text-align: left; padding: 3px 8px; }
+.notepad-body table td {
+  padding: 3px 8px;
+  border-right: 1px solid #c8c8c8;
+  border-bottom: 1px solid #c8c8c8;
+}
+.notepad-body table td:first-child { border-left: 1px solid #c8c8c8; }
+
+/* ---------- Small screens ---------- */
+@media (max-width: 600px) {
+  .notepad-body { padding: 10px 12px 16px; }
+  .note-image.left,
+  .note-image.right { float: none; max-width: 100%; margin: 12px 0; }
+}
