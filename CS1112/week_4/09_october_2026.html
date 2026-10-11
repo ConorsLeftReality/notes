@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sets and Collections II</title>
+<link rel="stylesheet" href="../../win95.css">
+<link rel="stylesheet" href="../../notes.css">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Sets and Collections II - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Sets and Collections II</h1>
+    <p class="note-meta">09 October 2026 &middot; CS1112 &middot; UNDEFINED_LECTURER_NAME &middot; Slides: UNSPECIFIED</p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-intro">Continuation of last week's slides</a></li>
+        <li><a href="#sec-functions_i">Functions I</a></li>
+        <li><a href="#sec-functions_ii">Functions II</a></li>
+        
+        
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+        
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-intro">
+    
+        <h2>Continuation of Sets and Collections II (Last week)</h2>
+
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <p><b>De Morgan's Law</b> - (A intesection B)' == A' union B'</p>
+        
+        <p>
+            <b>Ordered Pairs</b> - Same as row (with 2 columns) in DB
+        </p>
+
+        <p>
+            The <b>Carteisan Product</b> of two sets A and B is the set of all posssible ordered pairs, 
+            where the first element comes from A and the second element comes from B.
+        </p>
+
+        <p>
+            The <b>projection</b> of B onto A is the <u>subset of elements of A</u>, that appear (in the right position) in one of the tuples of B.
+        </p>
+
+        <div class="code-block">
+            <div class="code-title">example.sql</div>
+            <pre><code>select Director from table_name;
+/* In this query, Director is the project(ion) */
+
+            </code></pre>
+        </div>
+        
+    </section>
+
+    <section class="note-section" id="sec-functions_i">
+            
+        <h2>Functions I</h2>
+            <h3>What are Functions?</h3>
+                <p>
+                    Think of a function as a machine, you feed it an input, it does some work and spits out an output. Functions are the same.
+                </p>
+                <p>
+                    <b>Functions in computer science are the same as functions in maths (E.G. sin(x), cos(x*2), tan(x-3), etc etc)</b>
+                </p>
+                <p>
+                    A function f from A to B specifies for each element of A exactly one element of B.
+                </p>
+                <p>
+                    If f : A → B, then A is the domain, and B is the codomain.
+                </p>
+            <h3>What properties must functions have</h3>
+                <ul>
+                    <li>Every domain element has a partner in the codomain</li>
+                    <li>No domain element has two or more partners <li>
+                </ul>
+            <h3>Standard Function Concepts</h3>
+                <ul>
+                    <li>
+                        A function f: R→ R is linear if f(x) can be written f(x) = ax+b
+                        for some fixed integers a and b. 
+                    </li>
+                    <li>
+                        A function f: R → R is polynomial if f(x) can be written
+                        f(x) = a1xn + a2x(n-1) + ... an-1x + an for some fixed integers n and a1, a2, ..., an.
+                    </li>
+                    <li>
+                        A function f : R →R is exponential if f(x) contains a term
+                        ...ax for some fixed integer a.
+                    </li>
+                </ul>
+            <p>
+                Given N people, introduce everyone to n amount of people
+            </p>
+                <p>Amount of steps in this problem is 2**n</p>
+            <p>
+                Travelling salesmen problem
+            </p>
+            <p>AKA 12 pubs of XMAS graphed</p>
+            <p>
+                2**n steps 
+            </p>
+
+            <p><b>Problems that you can check in polynomial time, but not solve in polynomial time, then its an NP problem</b></p>
+            <p>If P = NP, every NP problem can become a P problem (P being Polymonial, NP being Non-Polynomial</p>
+            
+    </section>
+
+    <section class="note-section" id="sec-functions_ii">
+            
+        <h2>Functions II</h2>
+            <ul>
+                <li>Properties of Functions</li>
+                <li>Combining 2 functions</li>
+                <li>A new definition of set cardinality</li>
+            </ul>
+            <p>
+                From <a href="#sec-functions_i">Functions I</a>, given the text of an email, 
+                a function "encrypt" returns an encrypted version of the text.
+            </p>
+            <p>
+                <b>REMINDER</b>
+            </p>
+            <p>
+                Let A and B be two non-empty sets. A function f from A to B
+                specifies for each element of A exactly one element of B.
+                We write f : A → B, and if f specifies b for a, we write f(a)=b, or
+                f : A → B : a |→ b
+            </p>
+            <hr>
+            <h3>Properties of Functions</h3>
+                <p>
+                    Consider a function f:A→B
+                    If f(a) = b, then b is the image of a under f.
+                    The range of f is the subset of B to which elements of A are
+                    mapped.
+                </p>
+
+                <figure class="note-image">
+                    <img alt="Picture of the function description we just covered" width="320"
+                        src="../files/function_pic_1.png">
+                    <figcaption>Picture to accompany description of function above</figcaption>
+                </figure>
+
+            <h3>Types of Functions</h3>
+                <ul>
+                    <li>Surjective - (Many to one, and all codomain used) For every element in the domain, there is an element in the codomain</li>
+                    <li>Injective - (One to One, doesnt need all codomain used) If and only if no two elements of the domain map onto the same element of codomain.</li>
+                    <li>Bijective - (Full domain & codomain used, and ONLY one to one relationships.) If and only if the function is BOTH surjective and injective.</li>
+                </ul>
+
+                <p>
+
+                </p>
+
+    </section>
+
+    
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">Sets and Collections II</p>
+    <p class="status-bar-field">09 October 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1112_index.html">Back to CS1112 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
+        

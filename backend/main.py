@@ -65,7 +65,7 @@ program_banner = r"""
         `8                  
 """
 
-repository_root_directory = "C:/Users/conormasterson/Documents/BSCSF1" # Set this as absolute path to repo, replace back slashes with forward slashes
+repository_root_directory = "C:/Users/conormasterson/Documents/notes/" # Set this as absolute path to repo, replace back slashes with forward slashes
 
 # Initial User Warning
 # Try clear_screen, if fails, isok
