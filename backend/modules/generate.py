@@ -209,11 +209,11 @@ def create_module_index_page_html(module_code,acknowledged_known_module_director
                 
         ## (2) Create Taskbar list element ==============================================================================
         taskbar_of_modules = ""
-        acknowledged_known_module_directories.append(module_code)
-        acknowledged_known_module_directories.sort() # Sort it for the Taskbar to be in correct order
+        # Work on a local, de-duplicated copy so the caller's list is never modified
+        all_module_directories = sorted(set(acknowledged_known_module_directories) | {module_code}) # Sorted for the Taskbar to be in correct order
 
         taskbar_of_modules = taskbar_of_modules + f"\t<li><a class=\"taskbar-item\" href=\"../index.html\">Home</a></li> \n"
-        for module_directory in acknowledged_known_module_directories:
+        for module_directory in all_module_directories:
             if module_directory == module_code:
                 #print("Made own module")
                 taskbar_of_modules = taskbar_of_modules + f"\t\t\t\t\t<li><a class=\"taskbar-item active\" href=\"../{module_directory}/{(module_directory.lower())}_index.html\">{module_directory}</a></li> \n"
@@ -222,9 +222,6 @@ def create_module_index_page_html(module_code,acknowledged_known_module_director
                 #print("Made other module")
                 taskbar_of_modules = taskbar_of_modules + f"\t\t\t\t\t<li><a class=\"taskbar-item\" href=\"../{module_directory}/{(module_directory.lower())}_index.html\">{module_directory}</a></li> \n"
                 continue
-        
-        # Remove after the loop (removing while iterating skips the next module)
-        acknowledged_known_module_directories.remove(module_code)
         
         ## (4) Create message for specific module
         
