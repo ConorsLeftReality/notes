@@ -22,6 +22,7 @@
 ## ====================================================================
 
 import os
+import re
 
 ## =======================================================================================
 ## ============================           FUNCTIONS          =============================
@@ -181,7 +182,7 @@ def create_module_index_page_html(module_code,acknowledged_known_module_director
             """ 
         else:
             for week in WEEKS_IN_MODULE_DIR:
-                if "." in week:
+                if "." in week or week == "files":
                     continue
                 else:
                     week_corrected = (week.capitalize()).replace("_"," ")
@@ -190,9 +191,18 @@ def create_module_index_page_html(module_code,acknowledged_known_module_director
                     FILES_IN_WEEK = os.listdir(f"{module_code}/{week}/")
                     
                     for file in FILES_IN_WEEK:
-                        #file_without_extension = file[0:file.index(".")]
-                        #print(file_without_extension)
-                        module_lecture_contents = module_lecture_contents + f"\t\t\t\t\t\t\t<li><a href=\"{week}/{file}\">{file}</a></li>\n"
+                        
+                        ## Get title from HTML file
+                        if not file.endswith(".html"):
+                            file_title = file
+                        else:
+                            with open(f"{module_code}/{week}/{file}", encoding="utf-8") as f:
+                                html = f.read()
+
+                            title_match = re.search(r"<title[^>]*>(.*?)</title>", html, re.IGNORECASE | re.DOTALL)
+                            file_title = title_match.group(1).strip() if title_match else file # Fall back to filename
+                        
+                        module_lecture_contents = module_lecture_contents + f"\t\t\t\t\t\t\t<li><a href=\"{week}/{file}\">{file_title}</a></li>\n"
                         
                     module_lecture_contents = module_lecture_contents + "\t\t\t\t\t\t</ul>\n"
                     
@@ -207,12 +217,14 @@ def create_module_index_page_html(module_code,acknowledged_known_module_director
             if module_directory == module_code:
                 #print("Made own module")
                 taskbar_of_modules = taskbar_of_modules + f"\t\t\t\t\t<li><a class=\"taskbar-item active\" href=\"../{module_directory}/{(module_directory.lower())}_index.html\">{module_directory}</a></li> \n"
-                acknowledged_known_module_directories.remove(module_directory)
                 continue
             elif module_directory != module_code:
                 #print("Made other module")
                 taskbar_of_modules = taskbar_of_modules + f"\t\t\t\t\t<li><a class=\"taskbar-item\" href=\"../{module_directory}/{(module_directory.lower())}_index.html\">{module_directory}</a></li> \n"
                 continue
+        
+        # Remove after the loop (removing while iterating skips the next module)
+        acknowledged_known_module_directories.remove(module_code)
         
         ## (4) Create message for specific module
         
