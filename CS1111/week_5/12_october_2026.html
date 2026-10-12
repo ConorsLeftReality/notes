@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lecture 9 : Memory Architecture 2</title>
+<link rel="stylesheet" href="../../win95.css">
+<link rel="stylesheet" href="../../notes.css">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Lecture 9 : Memory Architecture 2 - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Lecture 9 : Memory Architecture 2</h1>
+    <p class="note-meta">12 October 2026 &middot; CS1111 &middot; J.P. Morrison &middot; Slides: UNSPECIFIED</p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-intro">Accessing Memory</a></li>
+        
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+        
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-intro">
+    
+        <h2>Accessing Memory</h2>
+            <p>RECAP FROM LAST DAY</p>
+            <p>
+                A memory address is a binary number
+            </p>
+            <p>
+                A 16-bit word consists of a high byte and a low byte (first 8 bits == high byte, last 8 bits == low byte)
+            </p>
+            <p>
+                To fetch a 16 bit word, we need to read first byte and then second byte after it to get 16 bits
+            </p>
+            <p>
+                A way to make this more efficient is by making a 2 byte read default for a 16 bit program, or a 4 byte read for 32 bit programs etc.
+            </p>
+            <h3>Words and word length</h3>
+                <p>
+                    In modern computers, words are normally grouped into 4 or 8-byte words and instructions manipulate an entire word as as single entity.
+                </p>
+                <p>
+                    The number of bits is the word length
+                </p>
+                <p>
+                    The word length reflects the structure and operations of a computer.
+                </p>
+                <ul>
+                    <li>Register sizes (32 or 64 bit?)</li>
+                    <li>Maximum data transfer between processor and memory in a single operation</li>
+                    <li>Data bus size</li>
+                    <li>Largest possible physical address size</li>
+                </ul>
+            <h3>Word Alignment</h3>
+                <p>
+                    To simplify design and speed up execution, many architectures require words to be aligned in memory at addresses that are multiples of the word size.
+                </p>
+                <p>
+                    This is called aligning on natural boundaries
+                </p>
+                <p>In order to accomocate for this, words are placed at addresses in the interval of the words length in bytes</p>
+                <p><b>E.G.</b> 4 byte words will be in addresses 4,8,12,16 ... etc</p>
+                <p>Similarly, 8 byte words will be in addresses 8,16,24,32 ... etc</p>
+                <hr>
+                <p>
+                    One option, to use the memory more fully is to use multiple word lengths for each kind of data or to adopt the length of the smallest data type and to encode other data types as multiples of this mininum size (usually 1 byte)
+                </p>
+                <p>
+                    Both schemes can adversely affect performance by either complicating
+                    memory address calculations to account for non-alignment or by increasing
+                    the number of memory accesses when fetching data great than 1 byte in size.
+                </p>
+                <p>Thus, the tradeoff is ultimately speed vs storage</p>
+            <h3>LAPTOP DIED, FOLLOW SLIDES FOR MORE (ON CANVAS)</h3>
+    </section>
+    
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">Lecture 9 : Memory Architecture 2</p>
+    <p class="status-bar-field">12 October 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1111_index.html">Back to CS1111 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
+        

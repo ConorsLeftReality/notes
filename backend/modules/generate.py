@@ -60,7 +60,7 @@ def create_lecture_html_file(lecture_title,current_date,module_code,lecturer_nam
     <fieldset>
         <legend>Contents</legend>
         <ul class="list-arrow">
-        <li><a href="#sec-intro">INTRODUCTION SECTION</a></li>
+        <li><a href="#sec-intro">INTRODUCTION_SECTION</a></li>
         
         <!--
         <li><a href="#sec-id">SECTION_NAME</a></li>
