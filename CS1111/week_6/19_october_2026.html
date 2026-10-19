@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Assembly Language Level 1</title>
+<link rel="stylesheet" href="../../win95.css">
+<link rel="stylesheet" href="../../notes.css">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Assembly Language Level 1 - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Assembly Language Level 1</h1>
+    <p class="note-meta">19 October 2026 &middot; CS1111 &middot; J.P. Morisson &middot; Slides: <a href="UNSPECIFIED">Linked</a></p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-assembly-intro">The Assembly Language Level</a></li>
+        <li><a href="#sec-why_assembly">Why program in Assembly?</a></li>
+        <li><a href="#sec-samphire_sim">The Samphire Simulator</a></li>
+
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+        
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-assembly-intro">
+    
+        <h2>The Assembly Language Level</h2>
+            <p>"High-Level" programs are translated to assembly language programs</p>
+            <p>
+                There are two distinct steps
+            </p>
+            <ol>
+                <li>Generation of an equivalent program</li>
+                <li>Execution of the newly generated program</li>
+            </ol>
+
+            <aside class="callout">
+                <span class="callout-title">Note</span>
+                <p>There is a one-to-one correspondance of assembly language statements to machine instructions</p>
+            </aside>
+
+            <p>
+                <b>The function of Assembly language is to abstract away from the machine language by using symbolic names for instructions instead of binary or hex values</b>
+            </p>
+            <p>
+                 - E.G. ADD, SUM, MUL and DIV
+            </p>
+            <p><b>Symbolic names can also be used for memory locations</b></p>
+            <p>
+                 - E.G. The assembler generates values for symbolic names that are used to indentify memory locations
+            </p>
+
+            <h3> - Everything that can be done in machine language can be done in assembly language.</h3>
+
+            <p>In contrast, many instructions, registers and low-level features are not directly available to high level language programmers.</p>
+
+            <p>Note: </p>
+            
+            <aside class="callout">Notes</span>
+                <p>1. Languages for system programming, such as C, have the syntax of a high-level language <u><i>but also low-level access to the machine.</i></u></p>
+                <p>2. An assembly program can only run on one family of machines, but high-level languages can run on many families of machines</p>
+            </aside>
+
+        
+    </section>
+
+    <section class="note-section" id="sec-why_assembly">
+            
+        <h2>Why program in Assembly?</h2>
+            <h3>Performance</h3>
+                <p>
+                    An expert assembly language programmer can produce code that is much smaller 
+                    and much faster than a high-level language programmer
+                </p>
+                <p>
+                    For some applications, speed and size are critical.
+                </p>
+                <p>
+                    E.G. Embedded systems and performance-critical real-time applications (flight systems etc.)
+                </p>
+            
+            <h3>Access to the machine</h3>
+                <p>
+                    Some procedures need complete access to the hardware, something usually impossible to high-level programmers
+                </p>
+                <p>
+                    E.G. the low-level interrupt and
+                    trap handlers in an operating system and
+                    the device controllers in many embedded
+                    real-time systems fall into this category
+                </p>
+            
+    </section>
+    <section class="note-section" id="sec-samphire_sim">
+            
+        <h2>The Samphire simulator</h2>
+            <h3>Features of Samphire</h3>
+            <ul>
+                <li>8-bit CPU</li>
+                <li>256 Bytes RAM</li>
+                <li>Input and Output ports</li>
+                <li>Simulated peripherals</li>
+                <li>Editor and Assembler</li>
+                <li>Single step through programs</li>
+                <li>Continuously run programs</li>
+            </ul>
+
+            <h3>Samphire Peripherals</h3>
+            <ul>
+                <li>Keyboard input</li>
+                <li>Memory Mapped VDU</li>
+                <li>Traffic Lights</li>
+                <li>Sevel Segment Display</li>
+            </ul>
+            
+            <h3>Samphire Architecture</h3>
+            <img src="../files/samphire_architecture_1.png" width="90%"/>`
+
+            <h3>Samphire Registers and RAM</h3>
+            <ul>
+                <li>All registers are 8-bits wide</li>
+                <li>4 General Purpose Registers: al, bl, cl, dl</li>
+                <li>Special Purpose Registers
+                    <ul>
+                        <li>Instruction Pointer (IP)</li>
+                        <li>Status Register (SR)</li>
+                        <li>Stack Pointer (SP)</li>
+                    </ul>
+                </li>
+                <li>256 Bytes RAM, Addresses [0] to [FF]</li>
+            </ul>
+
+
+    </section>
+    
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">Assembly Language Level 1</p>
+    <p class="status-bar-field">19 October 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1111_index.html">Back to CS1111 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
+        

@@ -69,9 +69,11 @@ def lecture_information_collection():
                 
     # Fix slides NULL
     if slides_link == "":
-        slides_link = "UNSPECIFIED"
+        slides_link_fixed = "UNSPECIFIED"
+    else:
+        slides_link_fixed = f"<a href=\"{slides_link}\">Here</a>"
         
-    return title_of_lecture,date,lecture_module,name_of_lecturer,slides_link
+    return title_of_lecture,date,lecture_module,name_of_lecturer,slides_link_fixed
 
 ## -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

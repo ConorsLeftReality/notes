@@ -1,0 +1,246 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSS Time - The Basics</title>
+<link rel="stylesheet" href="../../win95.css">
+<link rel="stylesheet" href="../../notes.css">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">CSS Time - The Basics - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>CSS Time - The Basics</h1>
+    <p class="note-meta">15 October 2026 &middot; CS1115 &middot; Derek Bridge &middot; Slides: <a href="https://www.cs.ucc.ie/~dgb/courses/WD/lectures/WD1_10.html">Here</a></p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-intro">What is CSS</a></li>
+        <li><a href="#sec-css_usecases">How to add CSS to web pages</a></li>
+        <li><a href="#sec-terminology">CSS Terminology</a></li>
+        sec-inheritance
+        
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+        
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-intro">
+    
+        <h2>What is CSS</h2>
+            <p>CSS, or Cascading Style Sheets, are used to modify a web pages appearance.</p>
+            <p>The current version is CSS3, specified by W3C</p>
+        
+            <h3>Why do we use CSS?</h3>
+                <p>
+                    In early HTML, HTML allowed markup that was presentational, and CSS did not exist.
+                </p>
+                <p>
+                    Moving from HTML4 to HTML5, we removed a lot of the appearance tags in order to incentivise making HTML and CSS seperate languages.
+                </p>
+                <p>
+                    A lot of the appearance tags still work on browsers (as a lot of websites are still on old HTML versions), so you should use a validation website to make sure
+                    that you are not using any deprecated tags
+                </p>
+                <h4>Some tags have been changed going from HTML4 to HTML5</h4>
+                    <p>
+                        b (bold -> bring to attention), i (italic -> interesting text), big (larger font -> removed), small(smaller font -> small print (legal stuff)).
+                    </p>
+                    
+            <h3>But why are we using 2 different languages and seperating them?</h3>
+                <p>"You build a house, and then paint it. You dont paint a house while its being built" - DGB</p>
+                <p>"You want builders to build a house, and decorators (creative people) to paint a house. These two activities are completely different" - DGB</p>
+                <p><i>Check out <a href="https://www.csszengarden.com">CSS Zen Garden</a> for more information (each page is the same HTML, just different CSS)</i></p>
+                
+    </section>
+
+    <section class="note-section" id="sec-css_usecases">
+            
+        <h2>How to add CSS to web pages</h2>
+            <ul>
+                <li>Inline Stylesheets</li>
+                <li>Embedded Stylesheets</li>
+                <li>External Stylesheets</li>
+            </ul>
+
+            <h3>Inline Styles</h3>
+                <p>In HTML, style is a global attribute. You can put CSS declarations onto elements</p>
+                <div class="code-block">
+                    <div class="code-title">inline_style.html</div>
+                    <pre><code>&lt;h1 style="color: red; background-color: green"&gt;Title here&lt;/h1&gt;</code></pre>
+                </div>
+                <p>Disadvantages: Harder to maintain and modify, you have to change multiple styles and its easy to miss something. It also bloats the whole page</p>
+            
+            <h3>Embedded Stylesheets</h3>
+                <p>You can embed CSS into your website using a &lt;style&gt; tag, usually in the head</p>
+                <div class="code-block">
+                    <div class="code-title">embedded_style.html</div>
+                    <pre><code>&lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;title&gt;Welcome!&lt;/title&gt;
+    &lt;style&gt;
+        p {
+            color: red;
+        }
+
+        h2 {
+            color: white;
+            background-color: black;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;</code></pre>
+                </div>
+                
+                <p>They are not ideal, especially when several web pages should look and feel about the same (inconsistent design).</p>
+            <h3>External Stylesheets</h3>
+                <p>External stylesheets are when your CSS is in a seperate file, and is linked into a HTML page through a link tag, similar to favicon linking</p>
+                <div class="code-block">
+                    <div class="code-title">embedded_style.html</div>
+                    <pre><code>&lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;title&gt;Welcome!&lt;/title&gt;
+    &lt;link rel="stylesheet" href="styles.css" /&gt;
+&lt;/head&gt;</code></pre>
+                </div>
+            
+                <p>
+                    All styles on all pages can be changed in one place
+                </p>
+    </section>
+    <section class="note-section" id="sec-terminology">
+            
+        <h2>CSS Terminology</h2>
+            <p>A CSS file contains:</p>
+            <ul>
+                <li>Zero, one or more rules</li>
+                <li>Zero, one or more @rules</li>
+                <li>comments</li>
+            </ul>
+
+            <p>A rule comprises</p>
+            <ul>
+                <li>one or more selectors and</li>
+                <li>a block of zero, one or more declarations in curly braces</li>
+            </ul>
+            <p>A declatation comprises of:</p>
+            <ul>
+                <li>a property and</li>
+                <li>its value, separated by a colon</li>
+            </ul>
+            <p>and is usually terminated by a semi-colon</p>
+    </section>
+
+    <section class="note-section" id="sec-inheritance">
+            
+        <h2>CSS Inheritance</h2>
+            <p>
+                Similar to the heirarchal structure in HTML (or filesystems, but focus on HTML), 
+                CSS operates on an inheritance structure.
+            </p>
+            <p>
+                If a paragraph tag is set to red in CSS, then any tags within the paragraph also have the same CSS by inheritance.
+            </p>
+            <h3>Inheritance</h3>
+                <p>
+                    If a paragraph tag is set to red in CSS, then any tags within the paragraph also have the same CSS by inheritance.
+                </p>
+                <p>
+                    Say, for example, the italics dont like red (theyre fussy blokes), italics can <b>BLOCK INHERITANCE</b>.
+                </p>
+                <p>
+                    In the CSS, if you make a rule in CSS for italics to be blue (below the red paragraph rule), it will block the red inheritance on the italic tag.
+                </p>
+                <h4>NOT EVERYTHING IS INHERITED</h4>
+                    <p>An improved definition for inheritance:</p>
+                    <p>
+                        <b>
+                        "For a given property, when no value for that property has been 
+                        specifed, an element's value for that property comes from its parent."
+                        </b>
+                    </p>
+                    <p>Example: If a p tag has a black border (like a box), the child elements will not inherit its parents CSS</p>
+                    <p><b>The DGB definition:</b></p>
+                    <p>At a rough approximation, the ones that are inherited are the ones concerned with the text: text colour, font, text spacing (discussed more for lecture 18)</p>
+
+    </section>
+    
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">CSS Time - The Basics</p>
+    <p class="status-bar-field">15 October 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1115_index.html">Back to CS1115 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
+        
