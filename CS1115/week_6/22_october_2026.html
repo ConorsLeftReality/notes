@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSS continued</title>
+<link rel="stylesheet" href="../../win95.css">
+<link rel="stylesheet" href="../../notes.css">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">CSS continued - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>CSS continued</h1>
+    <p class="note-meta">22 October 2026 &middot; CS1115 &middot; Derek Bridge &middot; Slides: <a href="UNSPECIFIED">Linked</a></p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-intro">CSS Selectors</a></li>
+        
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+        
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-intro">
+    
+        <h2>CSS Selectors</h2>
+            <p>Before we go through selectors, revise CSS terminology <a href="../week_5/15_october_2026.html#sec-terminology">here.</a></p>
+
+            <h3>The two kinds of CSS selectors</h3>
+                <ul>
+                    <li>Find Selectors - which are covered in detail this module</li>
+                    <li>Filter Selectors - which we will cover briefly</li>
+                </ul>
+            <p><b>KNOW FIND SELECTORS IN CHRISTMAS EXAM, THEY WILL SHOW UP, NO FILTER SELECTORS IN THE EXAM</b></p>
+
+            <h3>FIND SELECTORS (in our syllabus)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Selector</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>*</code></td>
+                        <td>Matches all elements</td>
+                    </tr>
+                    <tr>
+                        <td><code>E</code></td>
+                        <td>Matches all elements with tag name E</td>
+                    </tr>
+                    <tr>
+                        <td><code>#I</code></td>
+                        <td>Matches the element with id of I</td>
+                    </tr>
+                    <tr>
+                        <td><code>.C</code></td>
+                        <td>Matches all elements with class of C</td>
+                    </tr>
+                    <tr>
+                        <td><code>E &gt; F</code></td>
+                        <td>Matches all F elements that are children of E elements</td>
+                    </tr>
+                    <tr>
+                        <td><code>E F</code></td>
+                        <td>Matches all F elements that are descendants of E elements</td>
+                    </tr>
+                    <tr>
+                        <td><code>E + F</code></td>
+                        <td>Matches all F elements that are immediately preceded by sibling E</td>
+                    </tr>
+                    <tr>
+                        <td><code>E ~ F</code></td>
+                        <td>Matches all F elements preceded by sibling E</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Find Selectors</h3>
+                <h4>* selector</h4>
+                    <p>The * selector selects all elements</p>
+                <h4>'E' selector</h4>
+                    <p>Given an element with the tag name of 'E', the CSS applies to that element and any valid children</p>
+
+                <aside class="callout">
+                    <span class="callout-title">NOTE</span>
+                    <p>* selects every single element, and 'body' would just apply to body. If border was used (non-inheritable), then the outputs are different. (Body does not inherit borders, but * will put a border on <em>EVERYTHING</em>)</p>
+                </aside>
+
+                <h4># elements</h4>
+                    <p>Any elements that start with a # indicate that the CSS is applying to a specific ID (e.g. #section-id matches to HTML id="section-id")</p>
+                    <p>NOTE: IDs must be unique</p>
+
+                <h4>. elements</h4>
+                    <p>Any CSS thats selector starts with . matches with all elements in a Class (e.g. .class_name matches to HTML class="class_name"</p>
+                    <p>In HTML, a class is a way of grouping specific elements together. (e.g. video games in a HTML file formatted with &lt;i class="video-game"&gt;Game Name&lt;/i&gt; will be in the group of video games)</p>
+
+                <aside class="callout">
+                    <span class="callout-title">NOTE</span>
+                    <p>The difference between classes and id is that class SHOULD be repeadely mentioned, and id SHOULD only be mentioned once. Why? FUCK YOU THATS WHY KEEP FUCKING READING</p>
+                </aside> 
+                
+                <p>To avoid id-itis (or class-itis), just use these selectors.</p>
+                
+                <h4>Children selectors</h4>
+                    <p>Read these selectors as if it was arabic.</p>
+                    <p>e.g. section > p</p>
+                    <p>Meaning: CSS selects paragraphs WHERE the parent is a section</p>
+                    <p>THEREFORE, this selector matches all elements that are children of another specified element</p>
+                
+                <h4>Descendant Selectors</h4>
+                    <p>Again, read as arabic (according to Derek, which makes sense)</p>
+                    <p>e.g. E F</p>
+                    <p>Meaning: CSS selects all elements F that are descendants of elements E</p>
+                
+                <h4>Sibling Selectors - Immediately Preceding</h4>
+                    <p>Arabic again, lets just move to the ME already</p>
+                    <p>e.g. E + F</p>
+                    <p>Meaning: CSS selects all elements F that are immediately preceded by sibling E</p>
+                    <div class="code-block">
+                        <div class="code-title">example_immediate_sibling_selector.html</div>
+                        <pre><code>&lt;section&gt;&lt;/section&gt;
+&lt;p&gt;Matched by +&lt;/p&gt;</code></pre>
+                    </div>  
+                
+                <h4>Sibling Selectors - Not Immediately Preceding</h4>
+                    <p>Not even going to say it</p>
+                    <p>e.g. E ~ F</p>
+                    <p>Meaning: CSS selects all elements F that are preceded by sibling E</p>
+                    <div class="code-block">
+                        <div class="code-title">example_sibling_selector.html</div>
+                        <pre><code>&lt;section&gt;&lt;/section&gt;
+&lt;p&gt;Matched by + and ~&lt;/p&gt;
+&lt;p&gt;Matched by ~ only&lt;/p&gt;</code></pre>
+                    </div> 
+                
+                <h4>Filter Selections - NOT IN EXAM</h4>
+                    <p>There are three ways to combine a find selector with a filter.</p>
+                    <ul>
+                        <li>
+                            Attribute selectors — in square brackets, e.g.
+                            <ul>
+                                <li>E[foo] - finds E elements that have an attribute foo.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            Pseudo-classes — after a colon, e.g.
+                            <ul>
+                                <li>E:first-child - finds E elements that are the first child of their parent.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            Pseudo-classes — after a colon, e.g.
+                            <ul>
+                                <li>E:first-child - finds E elements that are the first child of their parent.</li>
+                                <li>E:hover - finds E elements, but only when the user hovers over them with the mouse.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            Pseudo-elements — after two colons, e.g.
+                            <ul>
+                                <li>E::first-letter - finds the first letter of E elements.</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+
+
+
+
+                    
+    </section>
+    
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">CSS continued</p>
+    <p class="status-bar-field">22 October 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1115_index.html">Back to CS1115 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
+        

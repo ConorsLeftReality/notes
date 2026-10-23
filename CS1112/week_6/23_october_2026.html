@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Intro to Relations</title>
+<link rel="stylesheet" href="../../win95.css">
+<link rel="stylesheet" href="../../notes.css">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Intro to Relations - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Intro to Relations</h1>
+    <p class="note-meta">23 October 2026 &middot; CS1112 &middot; Sub. Lecturer &middot; Slides: <a href="UNSPECIFIED">Linked</a></p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-intro">Introduction to relationships - Lecture 1</a></li>
+        <li><a href="#sec-properties_of_relations">Properties Of Relations - Lecture 2</a></li>
+
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+        
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-intro">
+        <h2>Introduction to relationships - Lecture 1</h2>
+
+            <h3>Modelling relations between objects</h3>
+                <p>Computer science is all about models - Representing them, using them, and understanding their properties</p>
+                <p>The basics of set representation allows us to talk about collections, and about which objects are in which collection</p>
+                <p>
+                    But we need more than this for modelling - we need to
+                    represent the connections between different objects, or the
+                    relationships between objects, and these relationships will
+                    have to be more general than functions
+                </p>
+
+            <h3>Overview of Computer Science</h3>
+                <p>
+                    How does a computer work ==> 
+                    How are computers networked together ==> 
+                    How do we write software to run on computers ==> 
+                    How do we represent information ==> 
+                    What applications are possible ==> 
+                    How do users interact with computers?
+                </p>
+            
+            <h3>Networking</h3>
+                <p>Some processes maintained by the OS allow communication with otehr devices on a <u>network</u></p>
+                <p>Devices communicate using various <u>protocols</u> - agreed schemes for sending and receiving messages</p>
+                <p><b>Devices on a network are arranged in different patterns, or <u>topology</u></b></p>
+            
+            <h3>Network Topologies</h3>
+                <figure class="note-image">
+                    <img alt="Examples of network topologies, one in the shape of a star with a central node, one in the shape of a ring and one in the shape of a line with nodes perpendicularly connected along it" width="320"
+                        src="../files/network_topology_examples.png">
+                    <figcaption>Network Topology Examples</figcaption>
+                </figure>
+            
+            <h3>Networking cont.</h3>
+                <p>Networks can be connected together, making a network of networks. This is called a WAN (wide access network) for internet networking. The internet and World Wide Web are examples of a WAN</p>
+            
+            <h3>Relational Databases</h3>
+                <p>The standard representation of data in databases is based on entities and the relationships between them</p>
+                <p>
+                    Relational databases often rely on multiple relations (e.g. find all student that have Prof. Kenny as their teacher has 2 relations)
+                </p>
+            
+            <h3>Representing Relations</h3>
+                <p>You can represent relations using...</p>
+                <ul>
+                    <li>a matrix</li>
+                    <li>a table</li>
+                    <li>an arrow diagram</li>
+                    <li>a set of ordered pairs</li>
+                </ul>
+                <figure class="note-image">
+                    <img alt="Picture of relation expressions, sorry blind people, I dont have fast enough typing to type this while keeping pace with class in real time." width="320"
+                        src="../files/relation_expression.png">
+                    <figcaption>We can write a relation expression as shown</figcaption>
+                </figure>
+
+                <aside class="callout">
+                    <span class="callout-title">NOTE</span>
+                    <p>Every relations has...</p>
+                    <ul>
+                        <li>a source (what are we relating from)</li>
+                        <li>a target (what are we relating to)</li>
+                        <li>an order (what order is the relation e.g. a student can be a student of a teacher, but a teacher cant be a student of a student)</li>
+                        <li>an inverse relation</li>
+                    </ul>
+                </aside>
+
+                <h4>Here are 3 slides, I want to write these better later, just need to look at it and understand it first</h4>
+                <p>L07-Relations in Canvas CS1112</p>
+
+                <figure class="note-image">
+                    <img alt="Slide" width="320"
+                        src="../files/slide_1_confusion.png">
+                    <figcaption>Slide 1</figcaption>
+                </figure>
+
+                <figure class="note-image">
+                    <img alt="Slide" width="320"
+                        src="../files/slide_2_confusion.png">
+                    <figcaption>Slide 2</figcaption>
+                </figure>
+
+                <figure class="note-image">
+                    <img alt="Slide" width="320"
+                        src="../files/slide_3_confusion.png">
+                    <figcaption>Slide 3</figcaption>
+                </figure>
+            <h3>Functional or Non-Functional Relationships</h3>
+                <p>
+                    A binary relation R &subseteq; A x B is <u>functional</u> if for each a &Element; A, 
+                    there is exactly one b &Element; B, s.t. (a,b) &Element; R
+                </p>
+    </section>
+
+    <section class="note-section" id="sec-properties_of_relations">
+            
+        <h2>Properties Of Relations - Lecture 2</h2>
+            <p>Note to self: please study this I dont understand shit</p>
+            <p>This lecture covers</p>
+            <ul>
+                <li>Operations on relations</li>
+                <li>Relations over multiple sets</li>
+            </ul>
+
+            <aside class="callout">
+                <span class="callout-title">NOTE</span>
+                <p>In this subject, we call relations by letters, like sets. Look at example below to understand more.</p>
+                <figure class="note-image">
+                    <img alt="Example showing connection between 2 sets shown as letters" width="320"
+                        src="../files/example_of_relations_as_letters.png">
+                    <figcaption>Example showing connection between 2 sets shown as letters</figcaption>
+                </figure>
+            </aside>
+            
+            <h3>Operations on relations</h3>
+                <p>Standard set operations on realtions produce new relations</p>
+                <p>Let R &subseteq; A x B and S &subseteq; CxD be to relations.</p>
+                <p>Then R&Union;S, R&Intersection;S, R \ S (difference), RxS and R' are all relations</p>
+
+            <h3>Composing 2 relations together</h3>
+                <figure class="note-image">
+                    <img alt="Example showing connection between 2 sets shown as letters" width="320"
+                        src="../files/example_of_relations_as_letters.png">
+                    <figcaption>Same image as before, showing how we display relations together</figcaption>
+                </figure>
+            
+            <h3>Two simple standard relations</h3>
+                <p>
+                    A <u>null relation</u> between two sets is the empty set (i.e. nothing
+                    in first is related to anything in second)
+                </p>
+                <p>
+                    (to get useful information out of this, we still need to know the
+                    source and target)
+                </p>
+                
+                <p>A <u>universal relation</u> between two sets is just the cartesian product of the sets (i.e. everything in first is related to everything in second)</p>
+
+            <h3>n-ary relations</h3>
+                <p>Let A1, A2, ..., An be sets.</p>
+                <p>R is a relation over A1, A2, ..., An if and only if R &subseteq; A1 x A2 x ... x An</p>
+                <p>Any element of R is an n-tuple (a1,a2, ..., an), with each ai &Element; Ai</p>
+
+            
+            
+    </section>
+
+    
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">Intro to Relations</p>
+    <p class="status-bar-field">23 October 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1112_index.html">Back to CS1112 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
+        

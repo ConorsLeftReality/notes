@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exploring the Samphire Instruction Set</title>
+<link rel="stylesheet" href="../../win95.css">
+<link rel="stylesheet" href="../../notes.css">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Exploring the Samphire Instruction Set - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Exploring the Samphire Instruction Set</h1>
+    <p class="note-meta">21 October 2026 &middot; CS1111 &middot; J.P. Morisson  &middot; Slides: <a href="UNSPECIFIED">Linked</a></p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-intro">INTRODUCTION_SECTION</a></li>
+        
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+        
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-intro">
+    
+        <h2>Information</h2>
+            <aside class="callout">
+                <span class="callout-title">NOTE</span>
+                <p>Work on Canvas, go do that later</p>
+            </aside>
+            <h3>Labs</h3>
+                <p>Make the demonstrators work.</p>
+                <p>Schedule on calendar</p>
+        
+    </section>
+
+    <section class="note-section" id="sec-id">
+        <h2>Samphire Registers</h2>
+        
+        <h3>General Purpose Registers</h3>
+            <p>The CPU has four general-purpose registers called AL, BL, CL and DL. These are eight bits or one byte wide. Registers
+                can hold unsigned numbers in the range 0 to +255 and signed numbers in the range −128 to +127. These are used as
+                temporary storage locations. Registers are used in preference to RAM locations because it takes a relatively long
+                time to transfer data between RAM and the CPU. Faster computers generally have more CPU registers or memory on the
+                CPU chip.
+            </p>
+            <p>
+                The registers are named AL, BL, CL and DL because the 16-bit version of this CPU has more registers called AH, BH,
+                CH and DH. The ‘L’ means Low and the ‘H’ means High. These are the low and high ends of the 16-bit register.
+            </p>
+        <h3>Special Purpose Registers</h3>
+            <p>
+                The special purpose registers in the CPU are called IP, SR and SP.
+            </p>
+        <h3>IP is the Instruction pointer</h3>
+            <p>
+                This register contains the address of the instruction being executed. When execution is complete, IP is increased to point to the next instruction. Jump instructions alter the value of IP so the program flow jumps to a new position. CALL and INT also change the value stored in IP. In the RAM displays, the instruction pointer is highlighted red with yellow text.
+            <p>
+        <h3>SR is the Status Register</h3>
+            <p>
+                This register contains flags that report the CPU status.
+            </p>
+            <ul>
+                <li>
+                    The ‘Z’ zero flag is set to one if a calculation gave a zero result.
+                </li>
+                <li>
+                    The ‘S’ sign flag is set to one if a calculation gave a negative result.
+                </li>
+                <li>
+                    The ‘O’ overflow flag is set if a result was too big to fit in a register.
+                </li>
+                <li>
+                    The ‘I’ interrupt is set if interrupts are enabled. See CLI and STI.
+                </li>
+            </ul>
+        <h3>SP is the Stack Pointer</h3>
+            <p>
+                The stack is an area of memory organised using the LIFO last in first out rule. The stack pointer points to the next free stack location. The simulator stack starts at address BF just below the RAM used for the video display. The stack grows towards address zero. Data is pushed onto the stack to save it for later use. Data is popped off the stack when needed. The stack pointer SP keeps track of where to push or pop data items. In the RAM displays, the stack pointer is highlighted blue with yellow text.
+            </p>
+        <h3>Random Access Memory</h3>
+            <p>
+                The simulator has 256 bytes of ram. The addresses are from 0 to 255 in decimal numbers or from [00] to [FF] in hexadecimal. RAM addresses are usually given in square brackets such as [7C] where 7C is a hexadecimal number. Read [7C] as “the data stored at location 7C”.
+            </p>
+            
+        <figure class="note-image">
+            <img alt="Picture describing how move instructions in Samphire relate to Machine code, with corresponding explanations" width="320"
+                src="../files/samphire_move_instructions_1.png">
+            <figcaption>Samphire Move Instructions</figcaption>
+        </figure>
+            
+
+
+    </section>
+    
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">Exploring the Samphire Instruction Set</p>
+    <p class="status-bar-field">21 October 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1111_index.html">Back to CS1111 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
+        
