@@ -20,7 +20,7 @@
     <div class="notepad-body">
 
     <h1>Lecture 11 - CSS_IDK</h1>
-    <p class="note-meta">27 October 2026 &middot; CS1115 &middot; Derek Bridge &middot; Slides: <a href="UNSPECIFIED">Linked</a></p>
+    <p class="note-meta">27 October 2026 &middot; CS1115 &middot; Derek Bridge &middot; Slides: <a href="https://www.cs.ucc.ie/~dgb/courses/WD/lectures/WD1_12.html">Linked</a></p>
 
 
     <fieldset>
@@ -144,7 +144,27 @@
                     A classic mistake is to use the cascade when you should instead use inheritance and the blocking of inheritance
                 </p>
 
+            <h3>Exploiting Stylesheets</h3>
+                <p>CSS experts exploit blocking of inheritance and conflicts to get a more elegant stylesheet.</p>
+                <p>E.g. Suppose we want all i elements to be blue, except ones referring to video games, which should be red.</p>
+                <p>A conflict is the natural solution</p>
+
+                <div class="code-block">
+                    <div class="code-title">conflict.css</div>
+                    <pre><code>i {
+    color: blue;
+}
+    
+.game {
+    color: red;
+}
+                    </code></pre>
+                </div>
+
+                <p>MAKE SURE YOU RUN THROUGH THE EXERCISES IN THE SLIDES!!! (linked)</p>
                 
+
+
 
 
             
