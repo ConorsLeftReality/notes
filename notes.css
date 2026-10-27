@@ -298,3 +298,70 @@
   .note-image.left,
   .note-image.right { float: none; max-width: 100%; margin: 12px 0; }
 }
+
+/* ===== Device Compatibility Adjustments (and seals css) ===== */
+
+/* Stop iOS inflating text in landscape */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+/* Fluid type: ~14px on phones, ~17px on large laptops */
+:root { --note-size: clamp(14px, 12px + 0.4vw, 17px); }
+.notepad-body h1 { font-size: clamp(22px, 5vw, 28px); }
+.notepad-body h2 { font-size: clamp(17px, 3.5vw, 20px); }
+
+/* Nothing inside a note may be wider than the note */
+.notepad-body { overflow-wrap: break-word; }
+.notepad-body img,
+.notepad-body video,
+.notepad-body iframe,
+.notepad-body svg { max-width: 100%; }
+
+/* ---- The seals embed ---- */
+#awesome_fucking_seals {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  height: auto;            /* overrides the iframe's height="..." attribute */
+  aspect-ratio: 16 / 9;    /* keeps the video shape at any width */
+  border: 0;
+  margin: 10px 0 0;
+}
+/* If the id is on a wrapper <div> instead, this makes the iframe fill it */
+#awesome_fucking_seals iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Use the visible viewport on mobile browsers (address bar shrinks/grows) */
+.notepad-body { max-height: calc(100vh - 160px); max-height: calc(100dvh - 160px); }
+
+/* Taskbar clears the home-bar on notched phones */
+.taskbar {
+  height: calc(28px + env(safe-area-inset-bottom, 0px));
+  padding-bottom: calc(2px + env(safe-area-inset-bottom, 0px));
+}
+
+/* Touch screens: bigger tap targets */
+@media (pointer: coarse) {
+  .taskbar { height: calc(42px + env(safe-area-inset-bottom, 0px)); padding-top: 4px; }
+  a.taskbar-item,
+  a.start-button { height: 34px; font-size: 14px; }
+  .taskbar-divider { height: 34px; }
+  .win95-desktop { padding-bottom: 64px; }
+}
+
+/* Phones and small tablets: let the PAGE scroll, not a box inside it */
+@media (max-width: 700px) {
+  .win95-desktop { padding: 6px 6px 56px; }
+  .notepad-body { max-height: none; overflow: visible; padding: 10px 12px 16px; }
+  .callout { padding-left: 42px; }
+  .callout::before { left: 8px; width: 20px; height: 20px; font-size: 13px; line-height: 20px; }
+}
+
+/* Big laptops and desktops: a little more room */
+@media (min-width: 1400px) {
+  .notepad { max-width: 1000px; }
+}
