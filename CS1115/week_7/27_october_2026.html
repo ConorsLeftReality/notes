@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lecture 11 - CSS_IDK</title>
+<link rel="stylesheet" href="../../win95.css">
+<link rel="stylesheet" href="../../notes.css">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Lecture 11 - CSS_IDK - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Lecture 11 - CSS_IDK</h1>
+    <p class="note-meta">27 October 2026 &middot; CS1115 &middot; Derek Bridge &middot; Slides: <a href="UNSPECIFIED">Linked</a></p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-recap">Refresh</a></li>
+        <li><a href="#sec-intro">Todays Lecture</a></li>
+        
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+        
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-recap">
+    
+        <h2>Refresh</h2>
+            <p>We ran through CSS teminology and Find selectors, a bit on filter selectors, and we are covering one more slide on filters (not examinable)</p>
+            <h3>
+                Filters
+            </h3>
+            <p>
+                What do these select?
+            </p>
+            <ul>
+                <li>.ingredient:first-child</li>
+                <li>.ingredient:first-child + .ingredient</li>
+            </ul>
+            <p><b>ANSWER</b></p>
+            <ul>
+                <li>Any item of class ingredient IF its a first child</li>
+                <li>Any item of class ingredient IF its a first child AND has a preceding ingredient</li>
+            </ul>
+        
+    </section>
+
+    <section class="note-section" id="sec-intro">
+            
+        <h2>Today's Lecture</h2>
+            <h3>Conflicts</h3>
+                <p>Often, the same element may be selected by more than one rule</p>
+                <p>Sometimes, the two rules can conflict E.G. p { color: green } followed by p { color:red }</p>
+                <aside class="callout definition">
+                    <span class="callout-title">NOTE</span>
+                    <p>For a given proeprty, two or more CSS rules select element and set different values</p>
+                </aside>
+                
+                <p><em>What happens?</em> Another cliffhanger, wait until later</p>
+                <aside class="callout">
+                    <span class="callout-title">NOTE</span>
+                    <p>Sometimes, the conflict can be obvious, but more often than not, the conflict isnt obvious.</p>
+                    <p>ANOTHER NOTE, more often than accidental conflicts, we often use conflicts because they can lead to more consise stylesheets</p>
+                </aside>
+            
+            <h3>Resolution of Conflicts</h3>
+                <p>Resolution uses 3 criteria, taken in this order</p>
+                <ol>
+                    <li>Origin</li>
+                    <li>Specificity</li>
+                    <li>Ordering</li>
+                </ol>
+                <p>Note: this is a simplified explanation</p>
+
+            <h3>(1) Origin</h3>
+                <p>CSS rules have different origins</p>
+                <ul>
+                    <li><b>Author Stylesheets:</b> the ones we write</li>
+                    <li><b>User-Agent Stylesheets:</b> the browser's default stylesheet</li>
+                </ul>
+                <p>It is because of the user-agent stylesheet that...</p>
+                <ul>
+                    <li>em & i elements are in italic;</li>
+                    <li>strong, b & h1-h6 elements are bold;</li>
+                    <li>h1 headings are bigger than h2 headings;</li>
+                    <li>consecutive paragraphs are separated by a blank line;</li>
+                    <li>and more.</li>
+                </ul>
+                <aside class="callout">
+                    <span class="callout-title">Stylesheet Origin Conflicts - What happens?</span>
+                    <p>
+                        If two rules conflict and one is from an author stylesheet and the other is from the user-agent stylesheet, then the author stylesheet wins.
+                    </p>
+                </aside>
+            
+            <h3>(2) Specificity</h3>
+                <p>If origin does not resolve a conflict, then we turn to specificity</p>
+                <p>Roughly,</p>
+                <ul>
+                    <li>Selecting by id is the most specific.</li>
+                    <li>Selecting by class is the second most specific.</li>
+                    <li>Then, a selector that is longer is more specific.</li>
+                </ul>
+
+                <p><b>Note:</b> * and combinators, such as space, >, +, ~, have no effect on specificity.</p>
+
+            <h3>(3) Ordering</h3>
+                <p>If origin and specificity do not resolve a conflict, then we turn to ordering</p>
+                <p>The <b>later</b> rule wins</p>
+                <aside class="callout">
+                    <span class="callout-title">NOTE</span>
+                    <p>
+                        Considering ordering, inline stylesheets are though of as coming later than embedded stylesheets, which come later than external stylesheets.
+                    </p>
+                </aside>
+            
+            <h3>The Cascade</h3>
+                <p>
+                    Note the way that conflict resolution cascades:
+                </p>
+                <ol>
+                    <li>origin</li>
+                    <li>to specificity</li>
+                    <li>then to ordering</li>
+                </ol>
+                <p>
+                    <b>BUT KEEP IN MIND,</b> this is only the cases of conflict
+                </p>
+                <p>
+                    A classic mistake is to use the cascade when you should instead use inheritance and the blocking of inheritance
+                </p>
+
+                
+
+
+            
+
+    </section>
+    
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">Lecture 11 - CSS_IDK</p>
+    <p class="status-bar-field">27 October 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1115_index.html">Back to CS1115 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
+        
