@@ -36,11 +36,14 @@ def create_lecture_html_file(lecture_title,current_date,module_code,lecturer_nam
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{lecture_title}</title>
-<link rel="stylesheet" href="../../win95.css">
-<link rel="stylesheet" href="../../notes.css">
+    <meta charset="UTF-8">
+    <title>{lecture_title}</title>
+
+    <link rel="stylesheet" href="../../win95.css">
+    <link rel="stylesheet" href="../../notes.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#c0c0c0">
 </head>
 
 <body class="win95-desktop">
@@ -73,7 +76,7 @@ def create_lecture_html_file(lecture_title,current_date,module_code,lecturer_nam
     <section class="note-section" id="sec-intro">
     
         <h2>INTRODUCTION_SECTION</h2>
-        <p>ENTER_TEXT_HERE</p>
+            <p>ENTER_TEXT_HERE</p>
         
     </section>
     
@@ -248,12 +251,14 @@ def create_module_index_page_html(module_code,acknowledged_known_module_director
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{module_code} - Lecture Index</title>
-  
-  <link rel="stylesheet" href="../win95.css">
-  <link rel="stylesheet" href="../notes.css">
+    <meta charset="UTF-8">
+    <title>{module_code} - Lecture Index</title>
+
+    <link rel="stylesheet" href="../win95.css">
+    <link rel="stylesheet" href="../notes.css">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#c0c0c0">
 </head>
 
 <body class="win95-desktop">
