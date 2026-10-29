@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assembly 2 - Electric Boogaloo</title>
+
+    <link rel="stylesheet" href="../../win95.css">
+    <link rel="stylesheet" href="../../notes.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#c0c0c0">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Assembly 2 - Electric Boogaloo - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Assembly 2 - Electric Boogaloo</h1>
+    <p class="note-meta">28 October 2026 &middot; CS1111 &middot; J.P. Morrison &middot; Slides: <a href="https://ucc.instructure.com/courses/95051/pages/lecture-12-samphire-instruction-set-part-2?module_item_id=3004941">Linked</a></p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+            <li><a href="#sec-intro"></a>Flow Instructions: Branching</li>
+        
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+        
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-intro">
+    
+        <h2>Flow Instructions: Branching</h2>
+            <p>Sometimes the flow of control is from one process to the next, but you can change the flow of control using branching.</p>
+            <p>Branching is normally done using jumps. There are different types of jumps, and these jumps look at the condition of flags in the Status Register (SR)</p>
+            
+            <p>We are interested in 3 flags in the Status Register (SR)</p>
+            
+            <ul>
+                <li>'Z' Flag - Set if most recent calculation gave a zero result (Pronounced Zero)</li>
+                <li>'S' Flag - Set if most recent calculation gave a negative result (Pronounced Sine/Sign?)</li>
+                <li>'O' Flag - Set if most recent calculation gave a result too big (Pronounced Overflow, as its the overflow flag)</li>
+            </ul>
+
+            <h3>Uses of the flags</h3>
+                <ul>
+                    <li>Equality and Inequality can be tested with the 'Z' flag (if raised or not raised)</li>
+                    <li>The 'S' Flag can determine if one number is bigger than the other</li>
+                </ul>
+
+                
+
+
+        
+    </section>
+    
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">Assembly 2 - Electric Boogaloo</p>
+    <p class="status-bar-field">28 October 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1111_index.html">Back to CS1111 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
+        
