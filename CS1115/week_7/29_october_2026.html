@@ -1,0 +1,298 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lecture 13 - CSS Boxes</title>
+
+    <link rel="stylesheet" href="../../win95.css">
+    <link rel="stylesheet" href="../../notes.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#c0c0c0">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Lecture 13 - CSS Boxes - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Lecture 13 - CSS Boxes</h1>
+    <p class="note-meta">29 October 2026 &middot; CS1115 &middot; Derek Bridge &middot; Slides: <a href="https://www.cs.ucc.ie/~dgb/courses/WD/lectures/WD1_13.html">Here</a></p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-intro">Part 1 of Lecture - It's all boxes?</a></li>
+        <li><a href="#sec-part2">Part 2 of Lecture - Sizing values/Tara's Slimming Program</a></li>
+        <li><a href="#sec-part3">Part 3 of Lecture - Box sizes</a></li>
+        
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+        
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-intro">
+    
+        <h2>Part 1 of Lecture - It's all boxes?</h2>
+            <p>Every HTML element and run of text generates zero, one or more CSS boxes</p>
+            <p>Visually, the tree of elements becomes a tree of boxes.</p>
+            <p>In CSS, we can style the boxes.</p>
+
+            <h3>Outer Display Type - Flow Layout</h3>
+                <p>Every box has an outer display type, either block or inline. This determines how the box is laid out in <b>flow layout</b></p>
+                <p><b>If an element has a block outer display type (e.g. &lt;p&gt; tags):</b></p>
+                <ul>
+                    <li>its box starts on a new line;</li>
+                    <li>it takes up the full width available (i.e. width of its container)</li>
+                </ul>
+                <p>Hence, they are laid out vertically</p>
+
+                <p><b>If an element has inline outer display type:</b></p>
+                <ul>
+                    <li>its box continues to the current line, if it can;</li>
+                    <li>it takes up only as much width as necessary for its content;</li>
+                </ul>
+                <p>Hence, they are laid out horizontally</p>
+            
+            <h3>Inner Display Type</h3>
+                <p>Every box also has an inner display type.</p>
+                <p>This determines how its contents (its child boxes) are laid out.</p>
+                <ul>
+                    <li>Most commonly, this will also be flow layout.</li>
+                    <li>But CSS3 also offers flexbox layout and grid layout.</li>
+                </ul>
+            
+                <table>
+                <thead>
+                    <tr>
+                    <th>CSS</th>
+                    <th>outer</th>
+                    <th>inner</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td><code>display: block</code></td>
+                    <td>block</td>
+                    <td>flow</td>
+                    </tr>
+                    <tr>
+                    <td><code>display: inline</code></td>
+                    <td>inline</td>
+                    <td>flow</td>
+                    </tr>
+                    <tr>
+                    <td><code>display: flex</code></td>
+                    <td>block</td>
+                    <td>flexbox</td>
+                    </tr>
+                    <tr>
+                    <td><code>display: grid</code></td>
+                    <td>block</td>
+                    <td>grid</td>
+                    </tr>
+                </tbody>
+                </table>
+            
+                <h3>Default Display Type</h3>
+                    <p>The initial value for all boxes is <code>display: inline</code></p>
+                    <p>The browsers default stylesheet applies a more sensible value</p>
+                    
+                    <div class="code-block">
+                        <div class="code-title">user-bleh-stylesheetCHANGEME</div>
+                        <pre><code>header, nav, main, section, article, aside, footer,
+figure, figcaption, div, p, h1, h2, h3, h4, h5, h6, 
+ul, ol, form, fieldset {
+    display: block;
+}                       </code></pre>
+                    </div>
+                    
+                    <p>Leaving the other elements inline.</p>
+
+                <h3>Changing the Display Type</h3>
+                    <p>You can change the elements display type in your own stylesheet with <code>img {display: block;}</code></p>
+    </section>
+
+    <section class="note-section" id="sec-part2">
+            
+        <h2>Part 2 of Lecture - Sizing values/Tara's Slimming Program</h2>
+            <h3>The Box Model</h3>
+                <figure class="note-image">
+                    <img alt="Image of the box model (Content within padding within border within margin)" width="320"
+                        src="../files/the_box_model.png">
+                </figure>
+
+                <h3>Sizes</h3>
+                    <p>You may sometimes want to set the width or the height of a box or part of a box.</p>
+                    <p>We can use <b>absolute</b> values or <b>relative</b> values</p>
+
+                    <h4>Absolute Values</h4>
+                    <p> - Absolute values do not depend on anything else</p>
+                        <ul>
+                            <li>200px</li>
+                        </ul>
+                    
+                    <h4>Relative Values</h4>
+                    <p> - Relative values depend on something else</p>
+                    <ul>
+                        <li>50em: depends on this element's font size</li>
+                        <li>50rem: depends on the root element's font size (usually 16px)</li>
+                        <li>50%: depends on the parent's width</li>
+                        <li>50vw: percentage of the viewport width</li>
+                        <li>50vh: percentage of the viewport's height</li>
+                    </ul>
+
+                    <p><b>Avoid absolute values, <u>embrace relative values</u></b></p>
+    </section>
+
+    <section class="note-section" id="sec-part3">
+            
+        <h2>Part 3 of Lecture - Box sizes</h2>
+            <p>The total width of a box on the screen is:</p>
+            <p>left margin + left border + left padding + width of content + right padding + right border + right margin</p>
+
+            <h3>Setting the width</h3>
+                <p>You can set the <i>width</i> of an element with <code>p { width: 50em; }</code>. But what does this affect?</p>
+                <p><b>It depends on the <u>box-sizing</u> property</b></p>
+
+                <ul>
+                    <li>
+                        box-sizing: content-box (default)
+                        <ul><li>when you set the width of an element, you are setting the width of the content.</li></ul>
+                    </li>
+                    <li>
+                        box-sizing: border-box
+                        <ul><li>when you set the width of an element, you are setting the width for the left- and right-borders, left- and right-padding and the width of the content.</li></ul>
+                    </li>
+                </ul>
+
+                <p>Many web developers like to use border-box, so they include this in their CSS.</p>
+                <div class="code-block">
+                    <div class="code-title">border-box.css</div>
+                    <pre><code>*, *:before, *:after {
+    box-sizing: border-box;
+}                   </code></pre>
+                </div>
+
+                <p>You can set the width, min-width and max-width to these values.</p>
+                <ul>
+                    <li>A length (e.g. px, em, rem, vw, vh) or percentage</li>
+                    <li>auto: the browser decides;</li>
+                    <li>max-content: as wide as it needs to be;</li>
+                    <li>min-content: as narrow as it can be;</li>
+                    <li>fit-content: as wide as the available space but no more than max-content</li>
+                </ul>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">Outer display type</th>
+                            <th scope="col">Type of element</th>
+                            <th scope="col">Width</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>block</td   >
+                            <td>any</td>
+                            <td rowspan="2">behaves as expected</td>
+                        </tr>
+                        <tr>
+                            <td>inline</td>
+                            <td>replaced element (e.g. image)</td>
+                        </tr>
+                        <tr>
+                            <td>inline</td>
+                            <td>non-replaced element (e.g. &lt;em&gt; or &lt;i&gt;)</td>
+                            <td>has no effect</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <aside class="callout">
+                    <span class="callout-title">NOTE</span>
+                    <p>If you want to set the width of an inline element, use <code>display: inline-block;</code></p>
+                </aside>
+            
+            <h3>Setting the height</h3>
+                <p>In short, dont.</p>
+                <p>Not in short, avoid setting heights if you can, as it may require the use of a scrollbar, which end-users dislike</p>
+            
+    </section>
+    
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">Lecture 13 - CSS Boxes</p>
+    <p class="status-bar-field">29 October 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1115_index.html">Back to CS1115 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
+        

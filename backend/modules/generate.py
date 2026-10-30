@@ -57,7 +57,7 @@ def create_lecture_html_file(lecture_title,current_date,module_code,lecturer_nam
     <div class="notepad-body">
 
     <h1>{lecture_title}</h1>
-    <p class="note-meta">{current_date} &middot; {module_code} &middot; {lecturer_name} &middot; Slides: <a href="{slides_reference}">Linked</a></p>
+    <p class="note-meta">{current_date} &middot; {module_code} &middot; {lecturer_name} &middot; Slides: {slides_reference}</p>
 
 
     <fieldset>
