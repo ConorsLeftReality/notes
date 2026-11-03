@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS Boxes Continued</title>
+
+    <link rel="stylesheet" href="../../win95.css">
+    <link rel="stylesheet" href="../../notes.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#c0c0c0">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">CSS Boxes Continued - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>CSS Boxes Continued</h1>
+    <p class="note-meta">3 November 2026 &middot; CS1115 &middot; Derek Bridge &middot; Slides: <a href="https://www.cs.ucc.ie/~dgb/courses/WD/lectures/WD1_14.html">Here</a></p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-intro">Box Model - Padding</a></li>
+        <li><a href="#sec-pretty_pretty_colours">Colours</a></li>
+        <li><a href="#sec-background_image">Background Images</a></li>
+        <li><a href="#sec-borders">Box Model - Borders</a></li>
+        <li><a href="#sec-margin">Box Model - Margins</a></li>
+        
+        
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+        
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-intro">
+    
+        <h2>Box Model - Padding</h2>
+            <aside class="callout">
+                <span class="callout-title">PREREQUISITES</span>
+                <p>Before continuing, know the box model, box-sizing and width</p>
+            </aside>
+
+            <p>Padding - Space between content and border</p>
+            <div class="code-block">
+                <div class="code-title">example_padding.css</div>
+                <pre><code>p {
+    padding-top: 0.5em; 
+    padding-right: 1em; 
+    padding-bottom: 0.5em; 
+    padding-left: 1em;
+}
+
+/* OR, USE BELOW FOR SHORTER */
+
+/* Clockwise (top, right, bottom, left) */
+
+p {
+    padding: 0.5em 1em 0.5em 1em;
+}
+
+/* Left and Right, then Top and Bottom */
+
+p {
+    padding: 0.5em 1em;
+}
+
+/* Same size for all sides */
+
+p {
+    padding: 0.5em;
+}</code></pre>
+            </div>
+            
+            <aside class="callout">
+                <span class="callout-title">NOTE</span>
+                <p>When change the background color, you change both the content and the padding. But, background only affects the background of the content</p>
+            </aside>
+    </section>
+
+    <section class="note-section" id="sec-pretty_pretty_colours">
+            
+        <h2>Colours</h2>
+            <p>In CSS, we have many ways to assign colour values</p>
+            <ul>
+                <li>Named Colours - There are 148 colours that have names (check w3schools)</li>
+                <li>RGB - We can assign colors to RGB values with <code>color: rgb(0-255 0-255 0-255)</code>, as long as the values are between 0 and 255</li>
+                <li>Hexadecimal - We can also assign colours to a 6 figure Hexadecimal number. <code>color: #000000</code> to <code>color: #FFFFFF</code></li>
+                <li>RGBa Values - A fourth channel, the alpha channel, can specify transparency. <code>rgb(0-255 0-255 0-255/0(transparent) to 1(fully opaque))</code></li>
+                <li>HSL - Hue, Saturation and Lightness (hue between 0 and 360, saturation is a percentage and lightness is a percentage)</li>
+            </ul>
+            
+    </section>
+
+    <section class="note-section" id="sec-background_image">
+            
+        <h2>Background Images</h2>
+            <p>Background Images can also be used. These show behind the content <b>AND</b> the padding</p>
+            <p>By default, the background image <i>tiles</i>. We can stop this with <code>background-repeat: </code></p>
+            <ul>
+                <li>no-repeat; - Stops the tiling</li>
+                <li>repeat; - Allows tiling</li>
+                <li>x-repeat; - Repeats on the X axis</li>
+                <li>y-repeat; - Repeats on the Y axis</li>
+            </ul>
+
+            <p>We can also <i>position</i> the background in the box with <code>background-position: </code></p>
+            <ul>
+                <li>top; - Top of the box</li>
+                <li>top top; - Top Left of the box</li>
+                <li>bottom; - Bottom of the box</li>
+                <li>center; - Centered in the box</li>
+                <li>and a fuckton more</li>
+            </ul>
+
+            <p><code>background-attachment: scroll;</code> allows the image to move as you scroll, but <code>background-attachment: fixed;</code> allows the background image to stay still.</p>
+
+            <p><code>background-size: contain;</code> makes the image fit within the border, and <code> background-size: cover;</code> fills the box with the image</p>
+
+
+            
+    </section>
+
+    <section class="note-section" id="sec-borders">
+            
+        <h2>Box Model - Borders</h2>
+            <p>For Borders, you <b>must</b> specify colour, width and style</p>
+            <div class="code-block">
+                <div class="code-title">example_border.css</div>
+                <pre><code>p {
+    border-width: 1px; 
+    border-style: solid; 
+    border-color: black;
+}
+
+/* OR MORE SIMPLY */
+
+/* witdh, style, colour */
+p {
+    border: 1px solid black;
+}</code></pre>
+            </div>
+
+            <p>There are many styles of borders, so GO LOOK ONLINE</p>
+            <p>YOU CAN ALSO ROUND BORDERS YOU FANCY FUCK, SO DONT ASK</p>
+
+            <div class="code-block">
+                <div class="code-title">example_border.css</div>
+                <pre><code>p {
+    border-radius: 16px
+}
+
+/* OR, OVAL CORNERS */
+
+p {
+    border-radius: 16px 10px
+}
+</code></pre>
+            </div>
+
+            <p>LETS MAKE SOME FUCKING SHADOWS YAY SO FUN RAHHHHHHH</p>
+            <div class="code-block">
+                <div class="code-title">example_border.css</div>
+                <pre><code>/* X axis, Y axis, Colour */
+
+p {
+box-shadow: 2em 3em gray;
+}</code></pre>
+            </div>
+
+    </section>
+    
+    <section class="note-section" id="sec-margin">
+            
+        <h2>Box Model - Margin</h2>
+            <p>The Margin is the space <b>outside</b> of the box</p>
+
+            <div class="code-block">
+                <div class="code-title">emxaple_margin.css</div>
+                <pre><code>p {
+    margin-top: 1em;
+    margin-right: 2em; 
+    margin-bottom: 1em; 
+    margin-left: 2em;
+}
+
+/* OR, SHORTER BELOW */
+
+p {
+    margin: 1em 2em 1em 2em;
+}</code></pre>
+            </div>
+
+            <p><b><u>BUT,</u></b> margin collapsing happens. Say a box has a margin of 1em, and the box below has a margin of 1em. These margins between the boxes wont be combined into 2em, but will be <b>1em</b> due to margin collapsing</p>
+            <p>We get awkward expections from stuff like &lt;em&gt; tags, like the last lectures mentioned</p>
+
+            
+    </section>
+
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">CSS Boxes Continued</p>
+    <p class="status-bar-field">3 November 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1115_index.html">Back to CS1115 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
+        
