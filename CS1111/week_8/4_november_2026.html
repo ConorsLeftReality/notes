@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ports Ports Ports</title>
+
+    <link rel="stylesheet" href="../../win95.css">
+    <link rel="stylesheet" href="../../notes.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#c0c0c0">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Ports Ports Ports - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Ports Ports Ports</h1>
+    <p class="note-meta">4 November 2026 &middot; CS1111 &middot; J.P. Morrison &middot; Slides: UNSPECIFIED</p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-intro">Ports</a></li>
+        <li><a href="#sec-stack">Stack</a></li>
+        
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+        
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-intro">
+    
+        <h2>Ports</h2>
+            <p>
+                The Samphire simulator uses the IN and OUT
+                instructions to get input from, and to send
+                output to, a specified Port.
+            </p>
+            <p>For Example:</p>
+            <ul>
+                <li>IN 00 - Gets the input from Port 00 (mapped to keyboard in samphire) and places the input into the AL register (by design)</li>
+            </ul>
+
+            <aside class="callout">
+                <span class="callout-title">NOTE</span>
+                <p>The input coming from the keyboard will be in ASCII, so pressing 1 on the keyboard will place '31' in the AL register.</p>
+            </aside>
+
+    </section>
+
+    <section class="note-section" id="sec-stack">
+            
+        <h2>Stack</h2>
+            <p>A stack works the same as a pile of plates. The first plate put into a stack is the last one to be taken out, and the last plate put into a stack is the first one to be taken out.</p>
+            <p>Rather than choosing random memory locations as temporary places to store values being copied between registers, it is better practice to use the stack</p>
+            <p>A stack uses 2 (main) commands</p>
+            <ul>
+                <li>push al - put the contents of AL onto the stack</li>
+                <li>pop bl  - places the value on the top of the stack into the BL register.</li>
+            </ul>
+            <p>The stack will be explained in more detail later.</p>
+            
+    </section>
+    
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">Ports Ports Ports</p>
+    <p class="status-bar-field">4 November 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1111_index.html">Back to CS1111 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
+        

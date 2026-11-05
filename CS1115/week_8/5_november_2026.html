@@ -1,0 +1,180 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page Layout</title>
+
+    <link rel="stylesheet" href="../../win95.css">
+    <link rel="stylesheet" href="../../notes.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#c0c0c0">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Page Layout - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Page Layout</h1>
+    <p class="note-meta">5 November 2026 &middot; CS1115 &middot; Derek Bridge &middot; Slides: <a href="https://www.cs.ucc.ie/~dgb/courses/WD/lectures/WD1_15.html">Here</a></p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-pagelayout">Page Layout</a></li>
+        <li><a href="#sec-cssgridlayout">CSS Grid Layout</a></li>
+        
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+        
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-pagelayout">
+    
+        <h2>Page Layout - Intro</h2>
+            <p>
+                Recall that pages have either fixed-width or liquid layouts. 
+                Multicolumn page layouts, with two or three columns, are very common
+            </p>
+            <p>Do not make these with methods such as floating or positioning, <b>use floating and positioning carefully.</b></p>
+            <p><b>Do</b> make these with flexbox layouts to follow modern CSS.</p>
+
+            <h3>Layout</h3>
+                <p>We can distinguish</p>
+                <ul>
+                    <li>Macro layout - page layout</li>
+                    <li>Micro layout - component layout</li>
+                </ul>
+                <p>There may be a layout for the page and seperate layouts for the components on the page.</p>
+
+            <h3>CSS Layouts</h3>
+                <p>
+                    <b>Flow layout:</b> 
+                    Based on the outer display type of each element.
+                </p>
+
+                <p>
+                    <b>Flexbox:</b> 
+                    One-dimensional layout based on <u>rows OR columns</u> but elements can 'flex' to fill additional space or shrink to fit
+                    smaller spaces.
+                </p>
+
+                <p>
+                    <b>Grid layout:</b> 
+                    Two-dimensional layout <u>(rows AND columns)</u>.
+                </p>
+
+                <p>Other: floating, positioning, multicolumn text. (use carefully)</p>
+
+                <h4>Different sections of a webpage can use different layout methods.</h4>
+
+            <h3>Responsive Web Design (RWD)</h3>
+                <p>In RWD, we adapt the layout to the characteristics of the device or window. (Page layout and/or component layout can narrow or widen depending on the device/window)</p>
+            
+            <h3>CSS Flexbox</h3>
+                <p>
+                    A flexbox contains items, which are laid out in a one-dimensional way,
+                    either in rows or in columns.
+                </p>
+                <p>
+                    The items in the flexbox can 'flex',
+                    grow or shrink.
+                </p>
+                <p>
+                    Don't use flexbox when flow layout is sufficient!
+                </p>
+            <h3>Flexbox Properties</h3>
+                <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">A complete guide to Flexbox can be found here.</a>
+                <p><b>MAKE SURE TO READ THE SLIDES AND LOOK AT THE EXAMPLES</b></p>
+            
+    </section>
+
+
+    <section class="note-section" id="sec-cssgridlayout">
+            
+        <h2>CSS Grid Layout</h2>
+            <p>Grid Layout makes two-dimensional layouts easy(/easier)</p>
+            <p>A grid contains items items arranged in columns and rows</p>
+            <a href="https://css-tricks.com/snippets/css/complete-guide-grid/">HERE IS A COMPLETE GUIDE TO GRID LAYOUT</a>
+            <p><b>MAKE SURE TO READ THE SLIDES AND LOOK AT THE EXAMPLES</b></p>
+
+            
+    </section>
+
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">Page Layout</p>
+    <p class="status-bar-field">5 November 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1115_index.html">Back to CS1115 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
+        
