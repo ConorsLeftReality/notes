@@ -1,0 +1,6 @@
+## Extra links shown at the end of a module index page, under their own heading
+## Use this for things that aren't files in a week folder (e.g. a revision deck)
+## Comments are allowed, just have the first character be a hashtag!!!
+## FORMAT: MODULECODE, Heading, URL, Link text
+
+MA1001, Revision, https://claude.ai/artifact/XRTfX421EV9iZq4aiqbiQs, MA1001 Revision Deck (slides, weeks 1-11)

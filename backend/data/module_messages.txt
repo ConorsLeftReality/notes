@@ -5,3 +5,4 @@ CS1111, "System Heirarchy uses abstraction to ignore the small details. It could
 CS1112, "Some people think I'm bonkers, but I just think I'm free - Dizzee Rascal in Bonkers"
 CS1115, "HTML is for structure, CSS is for appearance - Derek Bridge"
 CS1117, "if python_easy(): pass_exams()"
+MA1001, "Calculus, calculus, calculus. I fucking hate calculus. - Conor"

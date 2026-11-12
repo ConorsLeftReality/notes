@@ -32,8 +32,7 @@ def create_lecture_html_file(lecture_title,current_date,module_code,lecturer_nam
     
     # Try to generate the HTML File
     try:
-        html_file = f"""
-<!DOCTYPE html>
+        html_file = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -177,53 +176,88 @@ def create_module_index_page_html(module_code,acknowledged_known_module_director
     try:
         
         ## (1) Create Module Lecture contents element ===================================================================
-        WEEKS_IN_MODULE_DIR = os.listdir(f"{module_code}/")
+
+        # PDF titles are stored in a seperate file, as PDFs have no <title> to read
+        # FORMAT: path/from/repo/root.pdf, Title shown in the index
+        pdf_titles = {}
+        with open("backend/data/pdf_titles.txt", encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if not line or line[0] == "#":
+                    continue # Skip blank lines and comments
+                pdf_path, pdf_title = line.split(",", 1)
+                pdf_titles[pdf_path.strip()] = pdf_title.strip()
+
+        # Sort weeks by their number, so week_10 comes after week_9 (not after week_1)
+        def week_number(week):
+            number = re.search(r"\d+", week)
+            return int(number.group()) if number else 0
+
+        WEEKS_IN_MODULE_DIR = sorted(
+            [week for week in os.listdir(f"{module_code}/") if "." not in week and week != "files"],
+            key=week_number
+        )
         module_lecture_contents = ""
         if WEEKS_IN_MODULE_DIR == []:
-            module_lecture_contents = """
-            <h3>No Lectures yet</h3>
-            """ 
+            module_lecture_contents = "        <h3>No Lectures yet</h3>\n"
         else:
             for week in WEEKS_IN_MODULE_DIR:
-                if "." in week or week == "files":
-                    continue
-                else:
-                    week_corrected = (week.capitalize()).replace("_"," ")
-                    module_lecture_contents = module_lecture_contents + f"\n\t\t\t\t\t<h3>{week_corrected}</h3>\n" + "\t\t\t\t\t\t<ul class=\"list-arrow\">\n"
-                    
-                    FILES_IN_WEEK = os.listdir(f"{module_code}/{week}/")
-                    
-                    for file in FILES_IN_WEEK:
-                        
-                        ## Get title from HTML file
-                        if not file.endswith(".html"):
-                            file_title = file
-                        else:
-                            with open(f"{module_code}/{week}/{file}", encoding="utf-8") as f:
-                                html = f.read()
+                week_corrected = (week.capitalize()).replace("_"," ")
+                module_lecture_contents = module_lecture_contents + f"        <h3>{week_corrected}</h3>\n" + "        <ul class=\"list-arrow\">\n"
 
-                            title_match = re.search(r"<title[^>]*>(.*?)</title>", html, re.IGNORECASE | re.DOTALL)
-                            file_title = title_match.group(1).strip() if title_match else file # Fall back to filename
-                        
-                        module_lecture_contents = module_lecture_contents + f"\t\t\t\t\t\t\t<li><a href=\"{week}/{file}\">{file_title}</a></li>\n"
-                        
-                    module_lecture_contents = module_lecture_contents + "\t\t\t\t\t\t</ul>\n"
-                    
+                FILES_IN_WEEK = sorted(os.listdir(f"{module_code}/{week}/"))
+
+                for file in FILES_IN_WEEK:
+
+                    ## Get title from HTML file, or from pdf_titles.txt for a PDF
+                    if file.endswith(".html"):
+                        with open(f"{module_code}/{week}/{file}", encoding="utf-8") as f:
+                            html = f.read()
+
+                        title_match = re.search(r"<title[^>]*>(.*?)</title>", html, re.IGNORECASE | re.DOTALL)
+                        file_title = title_match.group(1).strip() if title_match else file # Fall back to filename
+                    elif file.endswith(".pdf"):
+                        file_title = pdf_titles.get(f"{module_code}/{week}/{file}", file) # Fall back to filename
+                    else:
+                        file_title = file
+
+                    module_lecture_contents = module_lecture_contents + f"          <li><a href=\"{week}/{file}\">{file_title}</a></li>\n"
+
+                module_lecture_contents = module_lecture_contents + "        </ul>\n\n"
+
+        ## (1b) Extra links for this module (things that aren't files in a week folder, e.g. a revision deck)
+        # FORMAT: MODULECODE, Heading, URL, Link text
+        extra_links = {}
+        with open("backend/data/extra_links.txt", encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if not line or line[0] == "#":
+                    continue # Skip blank lines and comments
+                link_module, heading, url, link_text = [part.strip() for part in line.split(",", 3)]
+                if link_module == module_code:
+                    extra_links.setdefault(heading, []).append((url, link_text))
+
+        for heading, links in extra_links.items():
+            module_lecture_contents = module_lecture_contents + f"        <h3>{heading}</h3>\n" + "        <ul class=\"list-arrow\">\n"
+            for url, link_text in links:
+                module_lecture_contents = module_lecture_contents + f"          <li><a href=\"{url}\">{link_text}</a></li>\n"
+            module_lecture_contents = module_lecture_contents + "        </ul>\n\n"
+
                 
         ## (2) Create Taskbar list element ==============================================================================
         taskbar_of_modules = ""
         # Work on a local, de-duplicated copy so the caller's list is never modified
         all_module_directories = sorted(set(acknowledged_known_module_directories) | {module_code}) # Sorted for the Taskbar to be in correct order
 
-        taskbar_of_modules = taskbar_of_modules + f"\t<li><a class=\"taskbar-item\" href=\"../index.html\">Home</a></li> \n"
+        taskbar_of_modules = taskbar_of_modules + "      <li><a class=\"taskbar-item\" href=\"../index.html\">Home</a></li>\n"
         for module_directory in all_module_directories:
             if module_directory == module_code:
                 #print("Made own module")
-                taskbar_of_modules = taskbar_of_modules + f"\t\t\t\t\t<li><a class=\"taskbar-item active\" href=\"../{module_directory}/{(module_directory.lower())}_index.html\">{module_directory}</a></li> \n"
+                taskbar_of_modules = taskbar_of_modules + f"      <li><a class=\"taskbar-item active\" href=\"../{module_directory}/{(module_directory.lower())}_index.html\">{module_directory}</a></li>\n"
                 continue
             elif module_directory != module_code:
                 #print("Made other module")
-                taskbar_of_modules = taskbar_of_modules + f"\t\t\t\t\t<li><a class=\"taskbar-item\" href=\"../{module_directory}/{(module_directory.lower())}_index.html\">{module_directory}</a></li> \n"
+                taskbar_of_modules = taskbar_of_modules + f"      <li><a class=\"taskbar-item\" href=\"../{module_directory}/{(module_directory.lower())}_index.html\">{module_directory}</a></li>\n"
                 continue
         
         ## (4) Create message for specific module
@@ -232,7 +266,7 @@ def create_module_index_page_html(module_code,acknowledged_known_module_director
         
         # Module Messages are stored in seperate file
         # FORMAT: MODULECODE, "message here"
-        with open("backend/data/module_messages.txt") as f:
+        with open("backend/data/module_messages.txt", encoding="utf-8") as f:
             for line in f:
                 line = line.strip()
                 if not line or (line.strip(" "))[0] == "#":
@@ -247,8 +281,7 @@ def create_module_index_page_html(module_code,acknowledged_known_module_director
     
         ## (5) Create full HTML file ====================================================================================
         
-        html_file = f"""
-<!DOCTYPE html>
+        html_file = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -274,9 +307,8 @@ def create_module_index_page_html(module_code,acknowledged_known_module_director
 
       <section class="note-section">
         <h2>Lectures</h2>
-        
-         {module_lecture_contents}
-      </section>
+
+{module_lecture_contents}      </section>
     
       <aside class="callout">
         <span class="callout-title">Message of the day!</span>
@@ -303,10 +335,7 @@ def create_module_index_page_html(module_code,acknowledged_known_module_director
     <div class="taskbar-divider"></div>
 
     <ul class="taskbar-nav">
-
-        {taskbar_of_modules}
-
-    </ul>
+{taskbar_of_modules}    </ul>
   </div>
 
 </body>
