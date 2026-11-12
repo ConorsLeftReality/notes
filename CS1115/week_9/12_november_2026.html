@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lecture 17 - Responsive Web Design</title>
+
+    <link rel="stylesheet" href="../../win95.css">
+    <link rel="stylesheet" href="../../notes.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#c0c0c0">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Lecture 17 - Responsive Web Design - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Lecture 17 - Responsive Web Design</h1>
+    <p class="note-meta">12 November 2026 &middot; CS1115 &middot; Derek Bridge &middot; Slides: <a href="https://www.cs.ucc.ie/~dgb/courses/WD/lectures/WD1_17.html">Here</a></p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-intro">Responsive Web Design - What is it?</a></li>
+        <li><a href="#sec-media_queries">CSS Media Queries</a></li>
+        <li><a href="#sec-images">Images in Responsive Layouts</a></li>
+
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+        
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-intro">
+    
+        <h2>Responsive Web Design - What is it?</h2>
+            <p>Responsive Web Design is used to adapt the layout of a website to the characteristics of the window/device</p>
+            <h3>Responsive Components</h3>
+                <p>Some of the things we have seen so far are already helpful for RWD.</p>
+                <ul>
+                    <li>Liquid layouts, using relative units or percentages.</li>
+                    <li>Flexbox, assuming, e.g. we allow items to wrap and to flex.</li>
+                    <li>Grid layout, if we use, e.g., repeat(auto-fill, 20em)</li>
+                </ul>
+                <p>When these do not suffice, then use media queries.</p>
+        
+    </section>
+
+    <section class="note-section" id="sec-media_queries">
+            
+        <h2>CSS Media Queries</h2>
+            <p>RWD uses media queries to adapt to a range of devices.</p>
+            <div class="code-block">
+                <div class="code-title">media_queries.css</div>
+                <pre><code>body {
+    color: white;
+    background-color: black;
+}
+
+@media screen and (min-width: 600px) {
+    body {
+        background-color: red;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    body {
+        background-color: blue;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    body {
+        background-color: yellow;
+    }
+}</code></pre>
+            </div>
+
+            <ul>
+                <li>Use a black background.</li>
+                <li>But, if the viewport is at least 600px, use a red background.</li>
+                <li>But, if the viewport is at least 800px, use a blue background.</li>
+                <li>But, if the viewport is at least 1000px, use a yellow background.</li>
+            </ul>
+            <p>If the viewport is 1200px, all of these are true, but the background ends up <b>yellow</b> because of the cascade (ordering: the later rule wins).</p>
+
+            <h3>Anatomy of a Media Query</h3>
+                <p>A simple media query <code>@media screen and (min-width: 800px) { … }</code> is made of:</p>
+                <ul>
+                    <li>the <b>media type</b>, e.g. <code>screen</code> (another one is <code>print</code>, and there are 8 more)</li>
+                    <li>an expression with a <b>media feature</b> (e.g. <code>min-width</code>) and a value (e.g. <code>800px</code>) in brackets</li>
+                    <li>some CSS between curly braces, which the browser only applies if the query is true</li>
+                </ul>
+
+            <aside class="callout">
+                <span class="callout-title">Container Queries</span>
+                <p>
+                    Media queries style things based on the device (e.g. viewport width). CSS now also has
+                    <b>container queries</b>, e.g. <code>@container (width &gt; 800px) { … }</code>, which style things based on the size of an element's container.
+                    Not covered in the lectures.
+                </p>
+            </aside>
+
+            <h3>Media Queries for RWD</h3>
+                <p>RWD uses media queries to adapt to a range of devices, e.g. a single-column layout for narrow viewports but multi-column layouts for wider ones. You can also adapt individual components, e.g. stacked vs horizontal nav menus, or a logo above vs beside a slogan.</p>
+                <p>(Remember: sometimes you don't need media queries at all - flexboxes can adapt on their own.)</p>
+
+            <p>When making websites, it is best to code for mobile devices first</p>
+            <ol>
+                <li>Write your core CSS:
+                    <ul>
+                        <li>colours; borders; fonts; margins; padding</li>
+                    </ul>
+                </li>
+                <li>Write CSS for the narrowest reasonable viewport widths:
+                    <ul>
+                        <li>e.g. a single-column layout</li>
+                        <li>(maybe you won't need any CSS!)</li>
+                    </ul>
+                </li>
+                <li>Write successive media queries that apply extra styles for relevant breakpoints:
+                    <ul>
+                        <li>e.g. multi-column when viewport <code>min-width</code> allows it;</li>
+                        <li>e.g. even ultimately a fixed-width design for very wide viewports.</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h3>Simple RWD example</h3>
+                <p>A simple example of RWD would be...</p>
+                <ul>
+                    <li><b>Narrow-Screen Devices:</b> use a one column layout for the webpage</li>
+                    <li><b>Wide-Screen Devices:</b> use a two column layout for the webpage</li>
+                </ul>
+                <div class="code-block">
+                    <div class="code-title">simple_rwd.css</div>
+                    <pre><code>/* Core CSS goes here (colours; borders; fonts; margins; padding) */
+
+/* Single-column layout for narrow devices */
+body {
+    margin: 0;
+}
+
+/* Two-column layout for wider devices */
+@media screen and (min-width: 600px) {
+    body {
+        width: 80%;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        grid-template-areas: "top top"
+                             "middle-left middle-right"
+                             "bottom bottom";
+    }
+    header { grid-area: top; }
+    nav    { grid-area: middle-left; }
+    main   { grid-area: middle-right; }
+    footer { grid-area: bottom; }
+}</code></pre>
+                </div>
+
+            <h3>Common Screen Size Breakpoints</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Breakpoint</th>
+                            <th>Typical devices</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>320px</td>
+                            <td>For small screen devices, like phones, held in portrait mode</td>
+                        </tr>
+                        <tr>
+                            <td>480px</td>
+                            <td>For small screen devices, like phones, held in landscape mode</td>
+                        </tr>
+                        <tr>
+                            <td>600px</td>
+                            <td>Smaller tablets held in portrait mode</td>
+                        </tr>
+                        <tr>
+                            <td>768px</td>
+                            <td>Ten-inch tablets held in portrait mode</td>
+                        </tr>
+                        <tr>
+                            <td>1024px</td>
+                            <td>Ten-inch tablets held in landscape mode, as well as some laptop, netbook and desktop displays</td>
+                        </tr>
+                        <tr>
+                            <td>1200px</td>
+                            <td>For widescreen displays, primarily laptop and desktop browsers</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><b>Problem:</b> there are far more devices than this table assumes, and it isn't future-proof. Instead, <b>let the content decide the breakpoints</b>: start with the small screen, widen it until it looks bad, and add a breakpoint there. A breakpoint is any point where you need a media query to make the page (or one component) look right.</p>
+                <p>Some people use <code>em</code> instead of <code>px</code> in media queries, so breakpoints scale when the user zooms, and so you can base them on readability (people are most comfortable with lines of 45-75 characters).</p>
+
+            <h3>One problem with Media Queries</h3>
+                <p>On many small-screen devices, there is a difference between the <i>layout viewport</i> and the <i>visual viewport</i>. E.g. an iPhone's layout viewport is 980px wide but its visual viewport is only 320px. The page is drawn on the layout viewport, then shrunk down to fit the visual one.</p>
+                <p><b>Media queries use the layout viewport, and so might not work.</b></p>
+                <h4>Thankfully, there is a fix</h4>
+                <p>
+                    To make RWD work on these devices, we need to make the two viewports of equal size.
+                    <b>Add the following inside the head element of each page of HTML:</b>
+                </p>
+                <div class="code-block">
+                    <div class="code-title">head.html</div>
+                    <pre><code>&lt;meta name="viewport" 
+      content="initial-scale=1.0, width=device-width" /&gt;</code></pre>
+                </div>
+                <p>(This isn't standard HTML, and putting visual settings in HTML isn't ideal, but the CSS alternative, <code>@viewport</code>, isn't widely supported.)</p>
+
+    </section>
+
+    <section class="note-section" id="sec-images">
+
+        <h2>Images in Responsive Layouts</h2>
+            <h3>The problem with images</h3>
+                <p>In liquid layouts, you don't know how much space is available for your images.</p>
+                <p>If the image is wider than the available space, it will overflow its container.</p>
+                <p>E.G. an aside that's 25% of the window is 300px wide in a 1200px window, but only 250px in a 1000px window - so a 275px image fits in the first but not the second.</p>
+                <p>One option is to hide the overflow with CSS, e.g. <code>figure { overflow: hidden; }</code> (overflow can be <code>visible</code> (default), <code>hidden</code>, <code>scroll</code> or <code>auto</code>). Usually, though, we let the browser scale the image:</p>
+
+                <h4>Images for Liquid Layouts</h4>
+                    <p>Responsive Web Design recommends we set the max-width to 100% in the CSS:</p>
+                    <div class="code-block">
+                        <div class="code-title">img_max_width.css</div>
+                        <pre><code>img {
+    max-width: 100%;
+}</code></pre>
+                    </div>
+                    <p>
+                        If the image is narrower than its container, it will display at its normal size.
+                        If it is wider than its container, it will be scaled down to match the width of the container.
+                    </p>
+                    <p>Alternatively, you could set the width to 100%:</p>
+                    <div class="code-block">
+                        <div class="code-title">img_width.css</div>
+                        <pre><code>img {
+    width: 100%;
+}</code></pre>
+                    </div>
+                    <p>Then the image scales up or down to match the container.</p>
+                    <ul>
+                        <li>Downside: the browser spends time scaling, and you might download a big image just to shrink it (wasting bandwidth)</li>
+                        <li>Keep <code>height: auto</code> so the aspect ratio is preserved (or if you set the height, leave the width as auto)</li>
+                        <li>For known shapes, the CSS <code>aspect-ratio</code> property helps, e.g. <code>.thumb { aspect-ratio: 1/1; }</code>, <code>.hero { aspect-ratio: 16/9; }</code></li>
+                    </ul>
+
+            <h3>More problems that exist... :(</h3>
+                <ul>
+                    <li>
+                        <b>Resolution switching problem: </b>
+                        you want to serve smaller image files to narrow screen devices, 
+                        and also optionally you want to serve different resolution images 
+                        to high density/low density screens
+                    </li>
+                    <li>
+                        <b>Art direction problem: </b>
+                        you want to serve different images for different layouts — 
+                        for example a wide image showing a full scene for a desktop layout, 
+                        and a narrower, cropped image showing a close-up for a mobile layout
+                    </li>
+                </ul>
+
+                <h4>Resolution Switching</h4>
+                    <p>HTML solves this using the srcset and sizes attributes, e.g.:</p>
+                    <div class="code-block">
+                        <div class="code-title">html_res_switch_1.html</div>
+                        <pre><code>&lt;img
+     srcset="wombat-small.jpg 480w,
+             wombat-large.jpg 800w"
+     sizes="(max-width: 600px) 480px,
+            800px"
+     src="wombat-large.jpg"
+     alt="..." /&gt;</code></pre>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-title">html_res_switch_2.html</div>
+                        <pre><code>&lt;img 
+     srcset="wombat.jpg,
+             wombat-hi-res.jpg 1.5x"
+     src="wombat-hi-res.jpg"
+     alt="..." /&gt;</code></pre>
+                    </div>
+
+                    <ul>
+                        <li>You prepare several versions of the image (different sizes or resolutions)</li>
+                        <li>In the first example, <code>srcset</code> lists each file and its width (using <code>w</code>, not <code>px</code>). <code>sizes</code> hints to the browser: if up to 600px of <i>viewport</i> is available, use the 480px image, otherwise the 800px one</li>
+                        <li>The second example picks by screen <b>resolution</b> (the 1.5x image for high-density screens)</li>
+                    </ul>
+
+                    <aside class="callout">
+                        <span class="callout-title">NOTE</span>
+                        <p>
+                            Do note, even though we are using modern HTML such as 'srcset'
+                            and 'sizes', still include a 'src' attribute in case the browser does
+                            not understand the modern HTML (or none of the hints apply).
+                        </p>
+                    </aside>
+
+                <h4>The Art Direction Problem</h4>
+                    <p>Here you don't just want a smaller copy of the same image, you want a <b>different</b> image for different layouts, e.g. the full wide scene on desktop, but a cropped close-up on mobile.</p>
+                    <p>HTML solves this using the picture and source elements, e.g.</p>
+                    <div class="code-block">
+                        <div class="code-title">html_art_direction.html</div>
+                        <pre><code>&lt;picture&gt;
+    &lt;source media="(max-width: 799px)" srcset="wombat-cropped.jpg" /&gt;
+    &lt;source media="(min-width: 800px)" srcset="wombat.jpg" /&gt;
+    &lt;img src="wombat.jpg" alt="..." /&gt;
+&lt;/picture&gt;</code></pre>
+                    </div>
+                
+            
+    </section>
+    
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">Lecture 17 - Responsive Web Design</p>
+    <p class="status-bar-field">12 November 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1115_index.html">Back to CS1115 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
+        

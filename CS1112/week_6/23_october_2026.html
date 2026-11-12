@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#c0c0c0">
-<title>Intro to Relations</title>
+<title>Lecture 7 and 8 - Intro to Relations</title>
 <link rel="stylesheet" href="../../win95.css">
 <link rel="stylesheet" href="../../notes.css">
 </head>
@@ -15,13 +14,13 @@
 <div class="window notepad">
 
     <div class="title-bar">
-    <div class="title-bar-text">Intro to Relations - Notepad</div>
+    <div class="title-bar-text">Lecture 7 and 8 - Intro to Relations - Notepad</div>
     </div>
 
     <div class="notepad-body">
 
-    <h1>Intro to Relations</h1>
-    <p class="note-meta">23 October 2026 &middot; CS1112 &middot; Sub. Lecturer &middot; Slides: <a href="UNSPECIFIED">Linked</a></p>
+    <h1>Lecture 7 and 8 - Intro to Relations</h1>
+    <p class="note-meta">23 October 2026 &middot; CS1112 &middot; Sub. Lecturer (Barry O'Sullivan's slides) &middot; Slides: <a href="https://ucc.instructure.com/courses/95057/files/10842284">Lecture 7</a>, <a href="https://ucc.instructure.com/courses/95057/files/10842324">Lecture 8</a></p>
 
 
     <fieldset>
@@ -62,7 +61,7 @@
                 </p>
             
             <h3>Networking</h3>
-                <p>Some processes maintained by the OS allow communication with otehr devices on a <u>network</u></p>
+                <p>Some processes maintained by the OS allow communication with other devices on a <u>network</u></p>
                 <p>Devices communicate using various <u>protocols</u> - agreed schemes for sending and receiving messages</p>
                 <p><b>Devices on a network are arranged in different patterns, or <u>topology</u></b></p>
             
@@ -74,12 +73,12 @@
                 </figure>
             
             <h3>Networking cont.</h3>
-                <p>Networks can be connected together, making a network of networks. This is called a WAN (wide access network) for internet networking. The internet and World Wide Web are examples of a WAN</p>
+                <p>Networks can be connected together, making a network of networks. This is called a WAN (wide area network) for internet networking. The internet and World Wide Web are examples of a WAN</p>
             
             <h3>Relational Databases</h3>
                 <p>The standard representation of data in databases is based on entities and the relationships between them</p>
                 <p>
-                    Relational databases often rely on multiple relations (e.g. find all student that have Prof. Kenny as their teacher has 2 relations)
+                    Relational databases often rely on multiple relations (e.g. find all students that have Prof. Kenny as their teacher has 2 relations)
                 </p>
             
             <h3>Representing Relations</h3>
@@ -107,8 +106,26 @@
                     </ul>
                 </aside>
 
-                <h4>Here are 3 slides, I want to write these better later, just need to look at it and understand it first</h4>
-                <p>L07-Relations in Canvas CS1112</p>
+                <h4>Formal Definitions (the 3 slides below, written out)</h4>
+                <ul>
+                    <li>Let A and B be sets. <b>R is a binary relation between A and B if and only if R &sube; A &times; B</b> - i.e. a relation is just a set of ordered pairs (a,b)</li>
+                    <li>A is the <b>source</b> and B is the <b>target</b>: source(R) = A, target(R) = B</li>
+                    <li>a is R-related to b if and only if (a,b) &isin; R. We write it as <b>R(a,b)</b>, <b>aRb</b>, or just (a,b) &isin; R (like how we write 3 &lt; 7 instead of (3,7) &isin; &lt;)</li>
+                    <li>If a is not related to b: (a,b) &notin; R, or &not;R(a,b)</li>
+                </ul>
+                <p><b>A function is a special type of relation.</b> If f : A &rarr; B, then f = {(a,b) | a &isin; A, b &isin; B, b = f(a)}, so f &sube; A &times; B. The difference:</p>
+                <table>
+                    <thead>
+                        <tr><th scope="col">Functions f</th><th scope="col">Relations R</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>&sube; A &times; B</td><td>&sube; A &times; B</td></tr>
+                        <tr><td>Every a &isin; A has a partner b</td><td>Some a &isin; A might have no partner at all</td></tr>
+                        <tr><td>Every a has <b>at most one</b> partner</td><td>Some a might have several partners, (a,b) and (a,c)</td></tr>
+                        <tr><td>We write f(a) = b</td><td>We write R(a,b) or aRb</td></tr>
+                    </tbody>
+                </table>
+                <p>Slides from L07-Relations on Canvas:</p>
 
                 <figure class="note-image">
                     <img alt="Slide" width="320"
@@ -137,7 +154,6 @@
     <section class="note-section" id="sec-properties_of_relations">
             
         <h2>Properties Of Relations - Lecture 2</h2>
-            <p>Note to self: please study this I dont understand shit</p>
             <p>This lecture covers</p>
             <ul>
                 <li>Operations on relations</li>
@@ -155,11 +171,18 @@
             </aside>
             
             <h3>Operations on relations</h3>
-                <p>Standard set operations on realtions produce new relations</p>
-                <p>Let R &subseteq; A x B and S &subseteq; CxD be to relations.</p>
+                <p>Standard set operations on relations produce new relations</p>
+                <p>Let R &subseteq; A x B and S &subseteq; CxD be two relations.</p>
                 <p>Then R&Union;S, R&Intersection;S, R \ S (difference), RxS and R' are all relations</p>
 
+            <h3>Relations are ordered</h3>
+                <p>R(a,b) does <b>not</b> mean R(b,a), even if A and B are the same set. E.G. "&lt;" over {0,1,2,3,4} contains (0,1) but not (1,0).</p>
+
+            <h3>Inverse of a relation</h3>
+                <p>The inverse R<sup>-1</sup> is all the original pairs flipped: (y,x) &isin; R<sup>-1</sup> if and only if (x,y) &isin; R. E.G. the inverse of "is the mentor of" is "is mentored by".</p>
+
             <h3>Composing 2 relations together</h3>
+                <p>If R &sube; A &times; B and S &sube; B &times; C, then "S after R" (written S &#8728; R) is a new relation from A to C: <b>(a,c) &isin; S &#8728; R if and only if there's some b with (a,b) &isin; R and (b,c) &isin; S</b>. You follow an arrow in R, then an arrow in S.</p>
                 <figure class="note-image">
                     <img alt="Example showing connection between 2 sets shown as letters" width="320"
                         src="../files/example_of_relations_as_letters.png">
@@ -182,6 +205,24 @@
                 <p>Let A1, A2, ..., An be sets.</p>
                 <p>R is a relation over A1, A2, ..., An if and only if R &subseteq; A1 x A2 x ... x An</p>
                 <p>Any element of R is an n-tuple (a1,a2, ..., an), with each ai &Element; Ai</p>
+                <p>E.G. a database table is an n-ary relation: the STUDENT table (Name, Id, Address, Degree, MId) is a relation over 5 sets, and each row is a 5-tuple.</p>
+
+            <h3>Relations vs Databases - terminology</h3>
+                <table>
+                    <thead><tr><th scope="col">Relations</th><th scope="col">Databases</th></tr></thead>
+                    <tbody>
+                        <tr><td>set</td><td>attribute, data type</td></tr>
+                        <tr><td>position in product</td><td>column, field</td></tr>
+                        <tr><td>tuple</td><td>record, row</td></tr>
+                        <tr><td>relation</td><td>database table</td></tr>
+                    </tbody>
+                </table>
+
+            <h3>Selection and Projection</h3>
+                <ul>
+                    <li><b>Selection</b> - keep only the tuples of R that satisfy some condition C (a new relation, a subset of R). E.G. select films with year &gt; 1970. Like SQL's <code>WHERE</code></li>
+                    <li><b>Projection</b> - keep only some of the attributes of each tuple, throwing the rest away. E.G. project the film table over (title, genre). Like choosing columns in SQL's <code>SELECT</code></li>
+                </ul>
 
             
             
@@ -236,7 +277,7 @@
     </div>
 
     <div class="status-bar">
-    <p class="status-bar-field">Intro to Relations</p>
+    <p class="status-bar-field">Lecture 7 and 8 - Intro to Relations</p>
     <p class="status-bar-field">23 October 2026</p>
     </div>
 </div>

@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Page Layout</title>
+    <title>Lecture 15 - Page Layout</title>
 
     <link rel="stylesheet" href="../../win95.css">
     <link rel="stylesheet" href="../../notes.css">
@@ -17,12 +16,12 @@
 <div class="window notepad">
 
     <div class="title-bar">
-    <div class="title-bar-text">Page Layout - Notepad</div>
+    <div class="title-bar-text">Lecture 15 - Page Layout - Notepad</div>
     </div>
 
     <div class="notepad-body">
 
-    <h1>Page Layout</h1>
+    <h1>Lecture 15 - Page Layout</h1>
     <p class="note-meta">5 November 2026 &middot; CS1115 &middot; Derek Bridge &middot; Slides: <a href="https://www.cs.ucc.ie/~dgb/courses/WD/lectures/WD1_15.html">Here</a></p>
 
 
@@ -56,7 +55,7 @@
                     <li>Macro layout - page layout</li>
                     <li>Micro layout - component layout</li>
                 </ul>
-                <p>There may be a layout for the page and seperate layouts for the components on the page.</p>
+                <p>There may be a layout for the page and separate layouts for the components on the page.</p>
 
             <h3>CSS Layouts</h3>
                 <p>
@@ -96,6 +95,44 @@
                 </p>
             <h3>Flexbox Properties</h3>
                 <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">A complete guide to Flexbox can be found here.</a>
+                <p>Turn an element into a flexbox with <code>display: flex;</code> on the container.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">Parent properties (the flexbox / container)</th>
+                            <th scope="col">Child properties (the flex items)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>flex-direction</td><td>order</td></tr>
+                        <tr><td>flex-wrap</td><td>flex-grow</td></tr>
+                        <tr><td>justify-content</td><td>flex-shrink</td></tr>
+                        <tr><td>align-items</td><td>flex-basis</td></tr>
+                        <tr><td>align-content</td><td>align-self</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="code-block">
+                    <div class="code-title">flexbox_example.css</div>
+                    <pre><code>.parent {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.child {
+    flex: initial;
+}</code></pre>
+                </div>
+                <ul>
+                    <li><code>flex: initial</code> - items keep their default size and don't grow</li>
+                    <li><code>flex: auto</code> - items can grow, but bigger items get more of the space</li>
+                    <li><code>flex: 1</code> - items can grow, and they share all the space equally</li>
+                </ul>
+                <p><code>justify-content</code> distributes spare space in the flex direction, and <code>align-items</code> distributes it in the other direction.</p>
+                <p>With <code>flex-wrap: wrap</code>, items move onto new rows when they run out of room, but don't expect them to line up in columns with the rows above (unless you fix their sizes). If you want that, use grid layout.</p>
                 <p><b>MAKE SURE TO READ THE SLIDES AND LOOK AT THE EXAMPLES</b></p>
             
     </section>
@@ -105,8 +142,30 @@
             
         <h2>CSS Grid Layout</h2>
             <p>Grid Layout makes two-dimensional layouts easy(/easier)</p>
-            <p>A grid contains items items arranged in columns and rows</p>
+            <p>A grid contains items arranged in columns and rows</p>
             <a href="https://css-tricks.com/snippets/css/complete-guide-grid/">HERE IS A COMPLETE GUIDE TO GRID LAYOUT</a>
+            <p>Grid terminology: <b>lines</b>, <b>tracks</b> (a row or column), <b>areas</b> and <b>cells</b></p>
+
+            <div class="code-block">
+                <div class="code-title">grid_example.css</div>
+                <pre><code>.parent {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1em;
+}</code></pre>
+            </div>
+            <p><code>fr</code> = a fraction of the free space. Other values for <code>grid-template-columns</code>:</p>
+            <ul>
+                <li><code>1fr 2fr 1fr</code> - middle column twice as wide</li>
+                <li><code>repeat(4, 1fr)</code> - four equal columns</li>
+                <li><code>3fr repeat(2, 1fr)</code></li>
+                <li><code>repeat(auto-fill, 20em)</code> - as many 20em columns as fit</li>
+            </ul>
+
+            <aside class="callout">
+                <span class="callout-title">Classic Mistake</span>
+                <p>Grid and flexbox only place their <i>children</i>, not grandchildren. To place grandchildren, put <code>display: contents;</code> on the children, which removes them from the tree as if the grandchildren were children.</p>
+            </aside>
             <p><b>MAKE SURE TO READ THE SLIDES AND LOOK AT THE EXAMPLES</b></p>
 
             
@@ -160,7 +219,7 @@
     </div>
 
     <div class="status-bar">
-    <p class="status-bar-field">Page Layout</p>
+    <p class="status-bar-field">Lecture 15 - Page Layout</p>
     <p class="status-bar-field">5 November 2026</p>
     </div>
 </div>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,13 +22,14 @@
     <div class="notepad-body">
 
     <h1>Lecture 16 - More more more CSS</h1>
-    <p class="note-meta">10 November 2026 &middot; CS1115 &middot; Derek Bridge &middot; Slides: <a href="https://www.cs.ucc.ie/~dgb/courses/WD/lectures/WD1_15.html">Here</a></p>
+    <p class="note-meta">10 November 2026 &middot; CS1115 &middot; Derek Bridge &middot; Slides: <a href="https://www.cs.ucc.ie/~dgb/courses/WD/lectures/WD1_16.html">Here</a></p>
 
 
     <fieldset>
         <legend>Contents</legend>
         <ul class="list-arrow">
-        <li><a href="#sec-intro">INTRODUCTION_SECTION</a></li>
+        <li><a href="#sec-intro">More Aligning &amp; Styling</a></li>
+        <li><a href="#sec-page-layout">Multi-column Page Layouts</a></li>
         
         <!--
         <li><a href="#sec-id">SECTION_NAME</a></li>
@@ -52,7 +52,21 @@
                 <p>Even though its called text-align, it acts on the <b>CONTENT</b> of a box</p>
             
             <h3>Aligning the block itself</h3>
-                <p>To center a single element whose display is block horizontally within a parent element, set its left and right margin to auto with <code>margin-left:auto;</code> and <code>margin-right:auto;</code></p>
+                <p>To center a single element whose display is block horizontally within a parent element, set its left and right margin to auto with <code>margin-left:auto;</code> and <code>margin-right:auto;</code> (common shorthand: <code>margin: 0 auto;</code>)</p>
+                <p>Nothing will happen unless the element is narrower than its parent!</p>
+                <p>The same trick is often used to center the whole page:</p>
+                <div class="code-block">
+                    <div class="code-title">centering_the_page.css</div>
+                    <pre><code>html {
+    background-color: white;
+}
+
+body {
+    width: 80%;
+    margin: 0 auto;
+    background-color: green;
+}</code></pre>
+                </div>
             
             <h3>Centering Several Elements</h3>
                 <p>To center <i>several elements</i> horizontally within a parent element, use a flexbox and justify-content</p>
@@ -129,8 +143,71 @@ nav a:hover
     background-color: rgb(200 200 200);
 }</code></pre>
                 </div>
-                
-        
+                <p>To get a <b>stacked</b> (vertical) menu, change <code>flex-direction: row</code> to <code>column</code>, and swap the values of <code>justify-content</code> and <code>align-items</code> (since the main direction has flipped).</p>
+
+            <h3>Styling a header</h3>
+                <p>A header with a logo and a title, laid out with a flexbox:</p>
+                <div class="code-block">
+                    <div class="code-title">styling_header_1.css</div>
+                    <pre><code>header {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2em;
+}
+
+header h1 {
+    font-size: 2em;
+}</code></pre>
+                </div>
+                <p>If the header holds an h1 and a nav, use <code>justify-content: space-between</code> to push them to opposite ends. With a logo, h1 and nav, keep <code>flex-start</code> and give the nav <code>margin-left: auto;</code> to push just the nav to the right. The nav itself can be its own flexbox (as above).</p>
+
+    </section>
+
+    <section class="note-section" id="sec-page-layout">
+
+        <h2>Multi-column Page Layouts</h2>
+            <h3>Stacked Page Layout</h3>
+                <p>header, nav, main, footer one under the other: CSS flow layout handles this on its own, no extra CSS needed.</p>
+
+            <h3>Two-column using Flexbox</h3>
+                <div class="code-block">
+                    <div class="code-title">two_column_flexbox.css</div>
+                    <pre><code>body {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+header { width: 100%; }
+nav    { width: 25%; }
+main   { width: 75%; }
+footer { width: 100%; }</code></pre>
+                </div>
+
+            <h3>Two-column using Grid</h3>
+                <div class="code-block">
+                    <div class="code-title">two_column_grid.css</div>
+                    <pre><code>body {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-areas: "top top"
+                         "middle-left middle-right"
+                         "bottom bottom";
+}
+
+header { grid-area: top; }
+nav    { grid-area: middle-left; }
+main   { grid-area: middle-right; }
+footer { grid-area: bottom; }</code></pre>
+                </div>
+                <p>The default <code>align-items: stretch</code> isn't great here, so change it.</p>
+
     </section>
     
     <!-- SECTION TEMPLATE -->
@@ -138,7 +215,7 @@ nav a:hover
     
     <section class="note-section" id="sec-id">
             
-        <h2>INTRODUCTION_SECTION</h2>
+        <h2>More Aligning &amp; Styling</h2>
             <p>ENTER_TEXT_HERE</p>
             
     </section>

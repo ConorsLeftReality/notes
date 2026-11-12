@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>CSS Boxes Continued</title>
+    <title>Lecture 14 - CSS Boxes Continued</title>
 
     <link rel="stylesheet" href="../../win95.css">
     <link rel="stylesheet" href="../../notes.css">
@@ -17,12 +16,12 @@
 <div class="window notepad">
 
     <div class="title-bar">
-    <div class="title-bar-text">CSS Boxes Continued - Notepad</div>
+    <div class="title-bar-text">Lecture 14 - CSS Boxes Continued - Notepad</div>
     </div>
 
     <div class="notepad-body">
 
-    <h1>CSS Boxes Continued</h1>
+    <h1>Lecture 14 - CSS Boxes Continued</h1>
     <p class="note-meta">3 November 2026 &middot; CS1115 &middot; Derek Bridge &middot; Slides: <a href="https://www.cs.ucc.ie/~dgb/courses/WD/lectures/WD1_14.html">Here</a></p>
 
 
@@ -70,7 +69,7 @@ p {
     padding: 0.5em 1em 0.5em 1em;
 }
 
-/* Left and Right, then Top and Bottom */
+/* Top and Bottom, then Left and Right */
 
 p {
     padding: 0.5em 1em;
@@ -85,7 +84,7 @@ p {
             
             <aside class="callout">
                 <span class="callout-title">NOTE</span>
-                <p>When change the background color, you change both the content and the padding. But, background only affects the background of the content</p>
+                <p><code>color</code> only affects the text. <code>background-color</code> (and <code>background-image</code>) affect the content <b>AND</b> the padding, but not the border or margin.</p>
             </aside>
     </section>
 
@@ -111,14 +110,14 @@ p {
             <ul>
                 <li>no-repeat; - Stops the tiling</li>
                 <li>repeat; - Allows tiling</li>
-                <li>x-repeat; - Repeats on the X axis</li>
-                <li>y-repeat; - Repeats on the Y axis</li>
+                <li>repeat-x; - Repeats on the X axis</li>
+                <li>repeat-y; - Repeats on the Y axis</li>
             </ul>
 
             <p>We can also <i>position</i> the background in the box with <code>background-position: </code></p>
             <ul>
                 <li>top; - Top of the box</li>
-                <li>top top; - Top Left of the box</li>
+                <li>top left; - Top Left of the box</li>
                 <li>bottom; - Bottom of the box</li>
                 <li>center; - Centered in the box</li>
                 <li>and a fuckton more</li>
@@ -126,7 +125,8 @@ p {
 
             <p><code>background-attachment: scroll;</code> allows the image to move as you scroll, but <code>background-attachment: fixed;</code> allows the background image to stay still.</p>
 
-            <p><code>background-size: contain;</code> makes the image fit within the border, and <code> background-size: cover;</code> fills the box with the image</p>
+            <p><code>background-size: contain;</code> scales the image so all of it fits inside the box (some of the box may be left uncovered), and <code>background-size: cover;</code> scales it so the whole box is covered (some of the image may be cut off)</p>
+            <p>Background colours display behind background images, which display behind the content. There's also a <code>background</code> shorthand property that sets them all at once.</p>
 
 
             
@@ -146,7 +146,7 @@ p {
 
 /* OR MORE SIMPLY */
 
-/* witdh, style, colour */
+/* width, style, colour */
 p {
     border: 1px solid black;
 }</code></pre>
@@ -161,7 +161,7 @@ p {
     border-radius: 16px
 }
 
-/* OR, OVAL CORNERS */
+/* OR, OVAL CORNERS (horizontal radius, vertical radius) */
 
 p {
     border-radius: 16px 10px
@@ -178,6 +178,12 @@ p {
 box-shadow: 2em 3em gray;
 }</code></pre>
             </div>
+            <ul>
+                <li>Horizontal offset: positive = shadow on the right, negative = on the left</li>
+                <li>Vertical offset: positive = shadow below, negative = above</li>
+                <li>Add <code>inset</code> for an inner shadow, and optionally a blur radius and spread radius</li>
+                <li>Shadows don't change the total size of the box</li>
+            </ul>
 
     </section>
     
@@ -187,7 +193,7 @@ box-shadow: 2em 3em gray;
             <p>The Margin is the space <b>outside</b> of the box</p>
 
             <div class="code-block">
-                <div class="code-title">emxaple_margin.css</div>
+                <div class="code-title">example_margin.css</div>
                 <pre><code>p {
     margin-top: 1em;
     margin-right: 2em; 
@@ -202,8 +208,16 @@ p {
 }</code></pre>
             </div>
 
-            <p><b><u>BUT,</u></b> margin collapsing happens. Say a box has a margin of 1em, and the box below has a margin of 1em. These margins between the boxes wont be combined into 2em, but will be <b>1em</b> due to margin collapsing</p>
-            <p>We get awkward expections from stuff like &lt;em&gt; tags, like the last lectures mentioned</p>
+            <p><b><u>BUT,</u></b> margin collapsing happens. Adjacent bottom and top margins don't add up: if a box has a bottom margin of 5px and the box below has a top margin of 10px, the gap is <b>10px</b>, not 15px (the smaller margin is eliminated)</p>
+            <p>As with padding, percentage margins are based on the width of the element's parent.</p>
+
+            <h3>Awkward Exceptions</h3>
+            <p>For <b>inline non-replaced</b> elements (e.g. &lt;em&gt;), like the last lecture mentioned:</p>
+            <ul>
+                <li>Setting the width/height has no effect</li>
+                <li>Setting the top/bottom padding/margin won't push other boxes away</li>
+                <li>Use <code>display: inline-block;</code> to change this</li>
+            </ul>
 
             
     </section>
@@ -256,7 +270,7 @@ p {
     </div>
 
     <div class="status-bar">
-    <p class="status-bar-field">CSS Boxes Continued</p>
+    <p class="status-bar-field">Lecture 14 - CSS Boxes Continued</p>
     <p class="status-bar-field">3 November 2026</p>
     </div>
 </div>

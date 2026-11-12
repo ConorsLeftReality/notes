@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Assembly 2 - Electric Boogaloo</title>
+    <title>Lecture 12 - Assembly 2 - Electric Boogaloo</title>
 
     <link rel="stylesheet" href="../../win95.css">
     <link rel="stylesheet" href="../../notes.css">
@@ -17,13 +16,13 @@
 <div class="window notepad">
 
     <div class="title-bar">
-    <div class="title-bar-text">Assembly 2 - Electric Boogaloo - Notepad</div>
+    <div class="title-bar-text">Lecture 12 - Assembly 2 - Electric Boogaloo - Notepad</div>
     </div>
 
     <div class="notepad-body">
 
-    <h1>Assembly 2 - Electric Boogaloo</h1>
-    <p class="note-meta">28 October 2026 &middot; CS1111 &middot; J.P. Morrison &middot; Slides: <a href="https://ucc.instructure.com/courses/95051/pages/lecture-12-samphire-instruction-set-part-2?module_item_id=3004941">Linked</a></p>
+    <h1>Lecture 12 - Assembly 2 - Electric Boogaloo</h1>
+    <p class="note-meta">28 October 2026 &middot; CS1111 &middot; J.P. Morrison &middot; Slides: <a href="https://ucc.instructure.com/courses/95051/pages/lecture-12-samphire-instruction-set-part-2">Here</a></p>
 
 
     <fieldset>
@@ -49,7 +48,7 @@
             
             <ul>
                 <li>'Z' Flag - Set if most recent calculation gave a zero result (Pronounced Zero)</li>
-                <li>'S' Flag - Set if most recent calculation gave a negative result (Pronounced Sine/Sign?)</li>
+                <li>'S' Flag - Set if most recent calculation gave a negative result (Sign)</li>
                 <li>'O' Flag - Set if most recent calculation gave a result too big (Pronounced Overflow, as its the overflow flag)</li>
             </ul>
 
@@ -58,6 +57,30 @@
                     <li>Equality and Inequality can be tested with the 'Z' flag (if raised or not raised)</li>
                     <li>The 'S' Flag can determine if one number is bigger than the other</li>
                 </ul>
+
+            <h3>The Unconditional Jump - <code>jmp label</code></h3>
+                <p><code>jmp</code> always jumps to the instruction marked by the label, either backwards (to repeat code) or forwards (to skip code).</p>
+                <div class="code-block">
+                    <div class="code-title">jump.asm</div>
+                    <pre><code>start:
+    inc al      ; add 1 to al
+    jmp start   ; jump back and do it again (forever)</code></pre>
+                </div>
+                <ul>
+                    <li>The assembler turns <code>jmp label</code> into <code>C0 number</code>, where the number is how many bytes to jump (negative if the label is earlier in the code, positive if later)</li>
+                    <li>The CPU runs it by adding that number to the Instruction Pointer (IP)</li>
+                    <li>In the example above, al overflows back to 00 when 1 is added to FF</li>
+                </ul>
+
+            <aside class="callout">
+                <span class="callout-title">NOTE</span>
+                <p>A label is an <b>assembler directive</b>: it gives the assembler helpful information but isn't translated into a machine instruction itself. An assembly language <i>instruction</i> becomes a machine instruction run by the hardware; a directive doesn't.</p>
+            </aside>
+
+            <h3>Memory Mapped Output - the VDU</h3>
+                <p>The part of Samphire's RAM from <b>C0 to FF</b> is linked to the Visual Display Unit. Whatever values are put there are treated as ASCII codes and displayed.</p>
+                <p>A good strategy for writing several characters is to keep the address of the next free VDU location in a register (e.g. bl), start it at C0, and increment it each time round a loop.</p>
+                <p><b>Problem:</b> when bl reaches FF and is incremented, it overflows to 00, and you start overwriting your own program! To keep writing inside the VDU, reset bl back to C0 when it reaches the end - which needs a <b>conditional</b> jump (using the flags above).</p>
 
                 
 
@@ -113,7 +136,7 @@
     </div>
 
     <div class="status-bar">
-    <p class="status-bar-field">Assembly 2 - Electric Boogaloo</p>
+    <p class="status-bar-field">Lecture 12 - Assembly 2 - Electric Boogaloo</p>
     <p class="status-bar-field">28 October 2026</p>
     </div>
 </div>

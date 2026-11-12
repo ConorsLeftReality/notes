@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#c0c0c0">
-<title>Representing Information 1 and 2</title>
+<title>Lecture 6 and 7 - Representing Information 1 and 2</title>
 <link rel="stylesheet" href="../../win95.css">
 <link rel="stylesheet" href="../../notes.css">
 </head>
@@ -15,13 +14,13 @@
 <div class="window notepad">
 
     <div class="title-bar">
-    <div class="title-bar-text">Representing Information 1 and 2 - Notepad</div>
+    <div class="title-bar-text">Lecture 6 and 7 - Representing Information 1 and 2 - Notepad</div>
     </div>
 
     <div class="notepad-body">
 
-    <h1>Representing Information 1 and 2</h1>
-    <p class="note-meta">5 October 2026 &middot; CS1111 &middot; J.P. Morrison &middot; Slides: UNSPECIFIED</p>
+    <h1>Lecture 6 and 7 - Representing Information 1 and 2</h1>
+    <p class="note-meta">5 October 2026 &middot; CS1111 &middot; J.P. Morrison &middot; Slides: <a href="https://ucc.instructure.com/courses/95051/pages/lecture-6-representing-information-1">Lecture 6</a>, <a href="https://ucc.instructure.com/courses/95051/pages/lecture-7-representing-information-2">Lecture 7</a></p>
 
 
     <fieldset>
@@ -29,7 +28,8 @@
         <ul class="list-arrow">
         <li><a href="#sec-recap">Recap</a></li>
         <li><a href="#sec-ascii_tables">ASCII Tables</a></li>
-        <li><a href="#sec-interpretation_of_bits">Interpretation of Bits</a></li>
+        <li><a href="#sec-intro">Today's Lecture - Bits for Storage</a></li>
+        <li><a href="#sec-interpretation_of_bits">Interpreting groups of bits</a></li>
 
         <!--
         <li><a href="#sec-id">SECTION_NAME</a></li>
@@ -48,13 +48,13 @@
                 
             </ul>
             
-            <h3>ASCII Tables</h3>
+            <h3 id="sec-ascii_tables">ASCII Tables</h3>
                 <ul>
-                    <li>ASCII is a standardised table where each number in a byte (0-255) is associated with a symbol or an action</li>
+                    <li>ASCII is a standardised table where each number (0-127, using 7 bits) is associated with a symbol or an action. Extended ASCII uses the full byte (128-255) for extra characters</li>
                     <li>ASCII Tables in machines can vary depending on locale</li>
-                    <li>ASCII Table values can be represented in Hexadecimal too, often displayed on same table?</li>
+                    <li>ASCII Table values can be represented in Hexadecimal too, and tables usually show both (e.g. 'A' = 65 = 41 hex)</li>
                     <li>ASCII Table is an effective way to associate a character with a number.</li>
-                    <li>Difference between character '5' and number 5? look up and update info here</li>
+                    <li>The character '5' and the number 5 are different: '5' is ASCII 53 (35 hex), while the number 5 is just 00000101. To turn a digit character into its number, subtract the code for '0' (30 hex) - this is exactly what we do in Samphire (Lecture 15)</li>
                     <li>There is also a difference in upper and lowercase characters, make sure to remember this</li>
                 </ul>
                 <p>
@@ -63,7 +63,7 @@
                 
                 <aside class="callout">
                     <span class="callout-title">NOTE</span>
-                        <p>A signed decimal is the same as decimal until it passes Decimal=127 (midway point to 256 values), and then goes from -128 to 0 for the second half of the 256 ASCII Table values.</p>
+                        <p>A signed decimal is the same as decimal until it passes Decimal=127 (midway point to 256 values), and then goes from -128 up to -1 for the second half of the 256 ASCII Table values.</p>
                 </aside>
 
                 <p>
@@ -72,7 +72,7 @@
 
                 <ol>
                     <li>Character variables are only 1-byte in size, Integer values are normally many bytes in size</li>
-                    <li>Strongly typed programming languages are strict in distinguishing between characters and integers and will not allow the progammer to combine them in expressions</li>
+                    <li>Strongly typed programming languages are strict in distinguishing between characters and integers and will not allow the programmer to combine them in expressions</li>
                 </ol>
 
             <h3>Bit Sequence Overflow</h3>
@@ -81,7 +81,7 @@
 
     <section class="note-section" id="sec-intro">
             
-        <h2>Todays Lecture - Concept of bits being used for storage</h2>
+        <h2>Today's Lecture - Concept of bits being used for storage</h2>
         
             <h3>This is a text file</h3>
 
@@ -109,11 +109,11 @@
     <section class="note-section" id="sec-interpretation_of_bits">
             
         <h2>Interpreting groups of bits</h2>
-            <p>We recognise that we only have a fixed number of bites to represent items of information on our computer.</p>
+            <p>We recognise that we only have a fixed number of bits to represent items of information on our computer.</p>
             <p>Representation of data comes from a particular combination of bits</p>
             <p>Representation of a combination of Bits requires context!!!</p>
             <ul>
-                <li>If interpreting as natural numbers, each combination will interpreted as a binary number of 2**n - 1, where n is the number of bits</li>
+                <li>If interpreting as natural numbers, each combination will be interpreted as a binary number of 2**n - 1, where n is the number of bits</li>
                 <li>If interpreting as instructions, each part of the combination will be interpreted as different parts of an instruction</li>
                 <li>If interpreting as colours, parts of the combination will be assigned as a value for Red, Green and Blue</li>
             </ul>
@@ -153,9 +153,9 @@
                 </div>
 
                 <p>We see that if we only have one value for zero that the number of non-zero positives and non-zero negatives differ by 1</p>
-                <p>NOTE: The Most Significant Bit for positive numbers is 0, and the MSB for negative numbers is 1. Easy way to differenciate between pos and neg numbers</p>
+                <p>NOTE: The Most Significant Bit for positive numbers is 0, and the MSB for negative numbers is 1. Easy way to differentiate between pos and neg numbers</p>
                 <p>If we add a positive and negative binary number, the addition and subtraction works out the exact same as with decimal numbers</p>
-                <p><b>The unbalanced (Due to requiring a value for 0) convention for representing both positive and negative numbers is called "Two's Compliment"</b></p>
+                <p><b>The unbalanced (Due to requiring a value for 0) convention for representing both positive and negative numbers is called "Two's Complement"</b></p>
                 <p>The convention of representing negative numbers works for any amount of bits, such as 32 bits</p>
 
     </section>
@@ -172,10 +172,44 @@
     
     -->
     
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    
     </div>
 
     <div class="status-bar">
-    <p class="status-bar-field">Representing Information 1 and 2</p>
+    <p class="status-bar-field">Lecture 6 and 7 - Representing Information 1 and 2</p>
     <p class="status-bar-field">5 October 2026</p>
     </div>
 </div>

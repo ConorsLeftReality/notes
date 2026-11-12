@@ -1,18 +1,43 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Sets And Collections</title>
-    </head>
-    <body>
-        <!-- Havent made a lectures note template yet, doing after kayaking -->
-        <h1>
-            Sets And Collections
-        </h1>
-        <p>
-            Professor Barry O'Sullivan
-        </p>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#c0c0c0">
+<title>Lecture 3 and 4 - Sets and Collections</title>
+<link rel="stylesheet" href="../../win95.css">
+<link rel="stylesheet" href="../../notes.css">
+</head>
 
-        <hr>
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Lecture 3 and 4 - Sets and Collections - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Lecture 3 and 4 - Sets and Collections</h1>
+    <p class="note-meta">2 October 2026 &middot; CS1112 &middot; Barry O'Sullivan &middot; Slides: <a href="https://ucc.instructure.com/courses/95057/files/10842317">Lecture 3</a>, <a href="https://ucc.instructure.com/courses/95057/files/10842314">Lecture 4</a></p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-sets">Sets</a></li>
+        <li><a href="#sec-sets_cont">Sets and Collections (Cont.)</a></li>
+
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-sets">
 
         <h2>
             Sets
@@ -48,16 +73,16 @@
                 <p>
                     <b>NOTE - A set must use curly brackets, MUST</b>
                 </p>
-                <p> - TO WRITE A SET, use curly brackets, and seperate items with commas</p>
+                <p> - TO WRITE A SET, use curly brackets, and separate items with commas</p>
             <h3>Specifying a set</h3>
                 <ul>
                     <li>For simple sets, we write down each thing in a list</li>
-                    <li>This style of writing sets is known as set enumeration, or set display, or extensional definiton</li>
+                    <li>This style of writing sets is known as set enumeration, or set display, or extensional definition</li>
                     <li>Sometimes, when the pattern is clear, we will write the first few items, three dots, then pick up again from a point in a set further on</li>
                     <li></li>
                 </ul>
             <h3>Specifying more complex sets</h3>
-                <p>specifying more compelx sets, we specify a template, then a rule, such that everything that matches the template and obeys the rule is in the set</p>
+                <p>specifying more complex sets, we specify a template, then a rule, such that everything that matches the template and obeys the rule is in the set</p>
                 <p><b>Examples</b></p>
                 <hr>
                 <p>{y | y is a library book with 'databases' in the title}</p>
@@ -67,14 +92,22 @@
                 <p>
                     In order to talk about sets, we need more formal notation. Let A be the name of a set, and let x be some thing.
                 </p>
-                <p>
-                    Element of symbol, not element of symbol (find for css, make basic example, thats all missing here)
-                </p>
+                <ul>
+                    <li>x is a member of A: <b>x &isin; A</b></li>
+                    <li>x is NOT a member of A: <b>x &notin; A</b></li>
+                </ul>
             <h3>Set notation and membership</h3>
-                <p>Set or complex sets, and the element of, or not element of symbol. some examples in a list #TODO</p>
+                <p>Examples (from the slides):</p>
+                <ul>
+                    <li>CS1112 &isin; {CS1106, CS1110, CS1112, CS1115, CS1117} - true</li>
+                    <li>7 &isin; { y | y is a single digit } - true</li>
+                    <li>Galway &notin; {z | z is a county in Munster} - true (Galway is in Connacht)</li>
+                    <li>clare &isin; {cork, clare, limerick, waterford, tipperary} - true</li>
+                </ul>
+                <p>A definition using a template and rule (like {x | x is an even integer}) is called an <b>intensional definition</b>. It doesn't matter which letter you use in the template, as long as the rule is clear.</p>
             <h3>Two most important properties of sets</h3>
                 <p>
-                    The order in which you weire down the elements in an enumeration doesnt matter
+                    The order in which you write down the elements in an enumeration doesnt matter
                 </p>
                 <p>
                     There is only one copy of each element in a set, so repeated elements in an enumeration are ignored.
@@ -108,11 +141,12 @@
                 <p>
                     A set union of two sets is a new set consisting of every member of the two sets.
                 </p>
-                <p></p>
+                <p>E.G. A = {x,y,w}, B = {y,z} &rarr; A &cup; B = {x,y,w,z}</p>
             <h3>Set Intersection</h3>
                 <p>
                     A set intersection of two sets is a new set consisting of members in both sets (common elements)
                 </p>
+                <p>E.G. A = {x,y,w}, B = {y,z} &rarr; A &cap; B = {y}</p>
             <h3>Set difference</h3>
                 <p>
                     The set difference of two sets is a new set consisting of each element of the first that is NOT an element of the second.
@@ -121,26 +155,26 @@
                 <p>A = {x,y,w} , B = {y,z}</p>
                 <p>A \ B = {x,w}</p>
             
-            <hr>
+    </section>
+
+    <section class="note-section" id="sec-sets_cont">
 
             <h2>Sets and Collections (Cont.)</h2>
 
-            <hr>
-
-            <h3>Set Complimentary</h3>
+            <h3>Set Complement</h3>
                     <p>
-                        The set compliment of a set is a new set consistion of every element of the universal set that is NOT an element of the first set
+                        The set complement of a set is a new set consisting of every element of the universal set that is NOT an element of the first set
                     </p>
                     <p>E.G.</p>
                     <p>A = {x,y,w} , B = {y,z}, U = {p,x,y,w,z}</p>
                     <p>A' = {p,z}</p>
                     <p><b>NOTE: A' = U \ A</b></p>
-                    <p>For X in U, x elememt of A' if and only if x not element of A</p>
+                    <p>For X in U, x element of A' if and only if x not element of A</p>
             
             <h3>Set Cardinality</h3>
                     <p>The cardinality of a finite set is the number of elements in the set</p>
                     <p>E.G.</p>
-                    <p>A = {a,b,c,d,}</p>
+                    <p>A = {a,b,c,d}</p>
                     <p>|A| = 4</p>
             <h3>Set theory - cont.</h3>
                     <p>We can mix and match the elements - they do not have to be of the same type</p>
@@ -165,16 +199,82 @@
                     <p>Like maths, set operations can have different outputs based on order. KEEP IN MIND (and brackets count too)</p>
                     <p>Union and intersection are associative</p>
                     <p>Set difference is NOT associative</p>
-                    <p>Intersection distributes over union</p>'
+                    <p>Intersection distributes over union: <b>A &cap; (B &cup; C) = (A &cap; B) &cup; (A &cap; C)</b></p>
                     <p>
-                        - One operation can be distibuted over multiple things
-                        - A * (B+C) == A*B + A*C
+                        - One operation can be distributed over multiple things, like A * (B+C) == A*B + A*C in normal maths
                     </p>
-                    <p>Union distributes over intersection</p>
-                    <p>
-                        - Similar to above
-                    </p>
-                    <p>De Morgan's Law - IMPORTANT (Double negative, I don't want this one AND I don't want that one)</p>
-                    
-        </body>
+                    <p>Union distributes over intersection: <b>A &cup; (B &cap; C) = (A &cup; B) &cap; (A &cup; C)</b></p>
+                    <p>De Morgan's Laws - IMPORTANT (Double negative, I don't want this one AND I don't want that one)</p>
+                    <ul>
+                        <li><b>(A &cup; B)' = A' &cap; B'</b> - not in (A or B) means not in A and not in B</li>
+                        <li><b>(A &cap; B)' = A' &cup; B'</b> - not in (A and B) means not in A or not in B</li>
+                    </ul>
+
+    </section>
+
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">Lecture 3 and 4 - Sets and Collections</p>
+    <p class="status-bar-field">2 October 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1112_index.html">Back to CS1112 Home</a></li>
+    </ul>
+</div>
+
+</body>
 </html>
+        

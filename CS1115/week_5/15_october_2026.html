@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#c0c0c0">
-<title>CSS Time - The Basics</title>
+<title>Lecture 10 - CSS Time - The Basics</title>
 <link rel="stylesheet" href="../../win95.css">
 <link rel="stylesheet" href="../../notes.css">
 </head>
@@ -15,12 +14,12 @@
 <div class="window notepad">
 
     <div class="title-bar">
-    <div class="title-bar-text">CSS Time - The Basics - Notepad</div>
+    <div class="title-bar-text">Lecture 10 - CSS Time - The Basics - Notepad</div>
     </div>
 
     <div class="notepad-body">
 
-    <h1>CSS Time - The Basics</h1>
+    <h1>Lecture 10 - CSS Time - The Basics</h1>
     <p class="note-meta">15 October 2026 &middot; CS1115 &middot; Derek Bridge &middot; Slides: <a href="https://www.cs.ucc.ie/~dgb/courses/WD/lectures/WD1_10.html">Here</a></p>
 
 
@@ -52,7 +51,7 @@
                     In early HTML, HTML allowed markup that was presentational, and CSS did not exist.
                 </p>
                 <p>
-                    Moving from HTML4 to HTML5, we removed a lot of the appearance tags in order to incentivise making HTML and CSS seperate languages.
+                    Moving from HTML4 to HTML5, we removed a lot of the appearance tags in order to incentivise making HTML and CSS separate languages.
                 </p>
                 <p>
                     A lot of the appearance tags still work on browsers (as a lot of websites are still on old HTML versions), so you should use a validation website to make sure
@@ -109,9 +108,9 @@
                 
                 <p>They are not ideal, especially when several web pages should look and feel about the same (inconsistent design).</p>
             <h3>External Stylesheets</h3>
-                <p>External stylesheets are when your CSS is in a seperate file, and is linked into a HTML page through a link tag, similar to favicon linking</p>
+                <p>External stylesheets are when your CSS is in a separate file, and is linked into a HTML page through a link tag, similar to favicon linking</p>
                 <div class="code-block">
-                    <div class="code-title">embedded_style.html</div>
+                    <div class="code-title">external_style.html</div>
                     <pre><code>&lt;head&gt;
     &lt;meta charset="utf-8" /&gt;
     &lt;title&gt;Welcome!&lt;/title&gt;
@@ -138,7 +137,7 @@
                 <li>one or more selectors and</li>
                 <li>a block of zero, one or more declarations in curly braces</li>
             </ul>
-            <p>A declatation comprises of:</p>
+            <p>A declaration comprises of:</p>
             <ul>
                 <li>a property and</li>
                 <li>its value, separated by a colon</li>
@@ -150,18 +149,15 @@
             
         <h2>CSS Inheritance</h2>
             <p>
-                Similar to the heirarchal structure in HTML (or filesystems, but focus on HTML), 
+                Similar to the hierarchical structure in HTML (or filesystems, but focus on HTML), 
                 CSS operates on an inheritance structure.
-            </p>
-            <p>
-                If a paragraph tag is set to red in CSS, then any tags within the paragraph also have the same CSS by inheritance.
             </p>
             <h3>Inheritance</h3>
                 <p>
                     If a paragraph tag is set to red in CSS, then any tags within the paragraph also have the same CSS by inheritance.
                 </p>
                 <p>
-                    Say, for example, the italics dont like red (theyre fussy blokes), italics can <b>BLOCK INHERITANCE</b>.
+                    Say, for example, the italics dont like red (they're fussy blokes), italics can <b>BLOCK INHERITANCE</b>.
                 </p>
                 <p>
                     In the CSS, if you make a rule in CSS for italics to be blue (below the red paragraph rule), it will block the red inheritance on the italic tag.
@@ -171,7 +167,7 @@
                     <p>
                         <b>
                         "For a given property, when no value for that property has been 
-                        specifed, an element's value for that property comes from its parent."
+                        specified, an element's value for that property comes from its parent."
                         </b>
                     </p>
                     <p>Example: If a p tag has a black border (like a box), the child elements will not inherit its parents CSS</p>
@@ -228,7 +224,7 @@
     </div>
 
     <div class="status-bar">
-    <p class="status-bar-field">CSS Time - The Basics</p>
+    <p class="status-bar-field">Lecture 10 - CSS Time - The Basics</p>
     <p class="status-bar-field">15 October 2026</p>
     </div>
 </div>

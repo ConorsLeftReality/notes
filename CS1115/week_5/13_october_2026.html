@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#c0c0c0">
+    <title>Lecture 9 - HTML Page Structure and Phrases</title>
+    <link rel="stylesheet" href="../../win95.css">
+    <link rel="stylesheet" href="../../notes.css">
+</head>
+
+<body class="win95-desktop">
+
+    <div class="window notepad">
+
+        <div class="title-bar">
+            <div class="title-bar-text">Lecture 9 - HTML Page Structure and Phrases - Notepad</div>
+        </div>
+
+        <div class="notepad-body">
+
+            <h1>Lecture 9 - HTML Page Structure and Phrases</h1>
+            <p class="note-meta">13 October 2026 &middot; CS1115 &middot; Derek Bridge &middot; Slides: <a
+                    href="https://www.cs.ucc.ie/~dgb/courses/WD/lectures/WD1_09.html">Here</a></p>
+
+            <aside class="callout">
+                <span class="callout-title">Note</span>
+                <p>No notes were taken in this lecture, so this page was written up from the slides afterwards.</p>
+            </aside>
+
+            <fieldset>
+                <legend>Contents</legend>
+                <ul class="list-arrow">
+                    <li><a href="#sec-intro">Logical Structure</a></li>
+                    <li><a href="#sec-sections">Sections and Articles</a></li>
+                    <li><a href="#sec-phrases">Words and Phrases</a></li>
+
+                    <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+
+                </ul>
+            </fieldset>
+
+
+            <section class="note-section" id="sec-intro">
+
+                <h2>Logical Structure</h2>
+                <p>We often want to group consecutive elements that are logically related, e.g. a heading and the
+                    paragraphs after it form a section.</p>
+                <p>Why?</p>
+                <ul>
+                    <li>These chunks can be targets for CSS &amp; JavaScript</li>
+                    <li>They give info to screen-readers &amp; search engine crawlers</li>
+                </ul>
+
+                <h3>The div Element</h3>
+                <p>Older HTML grouped everything with <code>&lt;div&gt;</code>, but div is very generic, so developers
+                    stuck loads of id attributes on them to show what each one was for.</p>
+
+                <h3>HTML5 Elements for Structure</h3>
+                <ul>
+                    <li><b>header</b> - a group of introductory elements</li>
+                    <li><b>nav</b> - a group of navigation links (a navigation menu)</li>
+                    <li><b>main</b> - the main content of the page (only one per page, and never nested inside the other
+                        elements in this list)</li>
+                    <li><b>aside</b> - content only loosely related to the page or what's around it (e.g. an advertising
+                        sidebar)</li>
+                    <li><b>footer</b> - info about the page/section/article (author, copyright, etc.)</li>
+                    <li><b>div</b> - still exists, but only as a last resort when nothing else fits</li>
+                </ul>
+
+            </section>
+
+            <section class="note-section" id="sec-sections">
+
+                <h2>Sections and Articles</h2>
+                <p>A <b>section</b> is a thematic grouping, usually part of a larger whole.</p>
+                <p>An <b>article</b> is also a thematic grouping, but one that is <b>self-contained</b>.</p>
+                <p>Sections and articles can be nested inside other sections and articles.</p>
+
+                <aside class="callout">
+                    <span class="callout-title">Rule of thumb</span>
+                    <p>If you can imagine copying the content and reusing it on another page or site, use article. E.g.
+                        press releases, news stories, blog posts, adverts.</p>
+                </aside>
+
+                <h3>Advice</h3>
+                <ul>
+                    <li>A section/article shouldn't usually contain just one paragraph</li>
+                    <li>The validator will warn you if a section/article has no heading</li>
+                    <li>Use headings of the right rank (h1-h6) for how deep the nesting is</li>
+                    <li>Try to pick the right one of section vs article, but there are no real consequences, so don't
+                        over-think it</li>
+                </ul>
+
+            </section>
+
+            <section class="note-section" id="sec-phrases">
+
+                <h2>Words and Phrases</h2>
+                <p>Sometimes we want to mark up a word or phrase so it stands out (same reasons as above: CSS/JS
+                    targets, screen-readers and crawlers).</p>
+
+                <h3>The span Element</h3>
+                <p><code>&lt;span&gt;</code> is the phrase-level version of div: very generic, so only use it as a last
+                    resort.</p>
+
+                <h3>Elements for Words or Phrases</h3>
+                <ul>
+                    <li><b>em</b> (emphasis) - to emphasise a word or phrase, especially for contrast. E.g. That's not a
+                        <em>bee</em>! It's a <em>wasp</em>!</li>
+                    <li><b>strong</b> (strong importance) - for something important, serious or urgent. E.g.
+                        <strong>Save your work to disk frequently.</strong></li>
+                    <li><b>i</b> (interesting text) - to set apart titles, names, technical terms and foreign-language
+                        phrases</li>
+                    <li><b>b</b> (bring to attention) - to pick out keywords or key phrases</li>
+                </ul>
+
+                <aside class="callout">
+                    <span class="callout-title">NOTE</span>
+                    <p><b>b</b> does not mean 'bold' and <b>i</b> does not mean 'italic'. The browser's default CSS just
+                        happens to show b and strong in bold, and i and em in italic.</p>
+                </aside>
+
+                <p>Don't over-do it: only mark up words that actually need to be distinguished from the text around
+                    them. Try to pick the right one of em/strong/i/b, but again, don't over-think it.</p>
+
+            </section>
+
+            <!-- SECTION TEMPLATE -->
+            <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+
+            <!-- INFO BUBBLE TEMPLATE -->
+            <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+
+            <!-- CODE BLOCK TEMPLATE -->
+            <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+
+            <!-- IMAGE BLOCK TEMPLATE -->
+            <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+
+        </div>
+
+        <div class="status-bar">
+            <p class="status-bar-field">Lecture 9 - HTML Page Structure and Phrases</p>
+            <p class="status-bar-field">13 October 2026</p>
+        </div>
+    </div>
+
+    <!-- Taskbar -->
+    <div class="taskbar">
+        <a class="start-button" href="../../index.html">Start</a>
+        <div class="taskbar-divider"></div>
+
+        <ul class="taskbar-nav">
+            <li><a class="taskbar-item" href="../cs1115_index.html">Back to CS1115 Home</a></li>
+        </ul>
+    </div>
+
+</body>
+
+</html>
