@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#c0c0c0">
-<title>Lecture 9 : Memory Architecture 2</title>
+<title>Lecture 9 - Memory Architecture 2</title>
 <link rel="stylesheet" href="../../win95.css">
 <link rel="stylesheet" href="../../notes.css">
 </head>
@@ -15,13 +14,13 @@
 <div class="window notepad">
 
     <div class="title-bar">
-    <div class="title-bar-text">Lecture 9 : Memory Architecture 2 - Notepad</div>
+    <div class="title-bar-text">Lecture 9 - Memory Architecture 2 - Notepad</div>
     </div>
 
     <div class="notepad-body">
 
-    <h1>Lecture 9 : Memory Architecture 2</h1>
-    <p class="note-meta">12 October 2026 &middot; CS1111 &middot; J.P. Morrison &middot; Slides: UNSPECIFIED</p>
+    <h1>Lecture 9 - Memory Architecture 2</h1>
+    <p class="note-meta">12 October 2026 &middot; CS1111 &middot; J.P. Morrison &middot; Slides: <a href="https://ucc.instructure.com/courses/95051/pages/lecture-9-memory-architecture-2">Here</a></p>
 
 
     <fieldset>
@@ -55,7 +54,7 @@
             </p>
             <h3>Words and word length</h3>
                 <p>
-                    In modern computers, words are normally grouped into 4 or 8-byte words and instructions manipulate an entire word as as single entity.
+                    In modern computers, bytes are normally grouped into 4 or 8-byte words and instructions manipulate an entire word as a single entity.
                 </p>
                 <p>
                     The number of bits is the word length
@@ -64,7 +63,7 @@
                     The word length reflects the structure and operations of a computer.
                 </p>
                 <ul>
-                    <li>Register sizes (32 or 64 bit?)</li>
+                    <li>Register sizes (e.g. 32 or 64 bits)</li>
                     <li>Maximum data transfer between processor and memory in a single operation</li>
                     <li>Data bus size</li>
                     <li>Largest possible physical address size</li>
@@ -76,20 +75,54 @@
                 <p>
                     This is called aligning on natural boundaries
                 </p>
-                <p>In order to accomocate for this, words are placed at addresses in the interval of the words length in bytes</p>
+                <p>In order to accommodate for this, words are placed at addresses in the interval of the words length in bytes</p>
                 <p><b>E.G.</b> 4 byte words will be in addresses 4,8,12,16 ... etc</p>
                 <p>Similarly, 8 byte words will be in addresses 8,16,24,32 ... etc</p>
                 <hr>
                 <p>
-                    One option, to use the memory more fully is to use multiple word lengths for each kind of data or to adopt the length of the smallest data type and to encode other data types as multiples of this mininum size (usually 1 byte)
+                    One option, to use the memory more fully is to use multiple word lengths for each kind of data or to adopt the length of the smallest data type and to encode other data types as multiples of this minimum size (usually 1 byte)
                 </p>
                 <p>
                     Both schemes can adversely affect performance by either complicating
                     memory address calculations to account for non-alignment or by increasing
-                    the number of memory accesses when fetching data great than 1 byte in size.
+                    the number of memory accesses when fetching data greater than 1 byte in size.
                 </p>
                 <p>Thus, the tradeoff is ultimately speed vs storage</p>
-            <h3>LAPTOP DIED, FOLLOW SLIDES FOR MORE (ON CANVAS)</h3>
+            <aside class="callout">
+                <span class="callout-title">Note</span>
+                <p>Laptop died here - everything below was written up from the slides afterwards.</p>
+            </aside>
+
+            <h3>Error Checking - Parity</h3>
+                <p>Modern memory is reliable, and controllers usually only check for errors at start-up. But some memory chips that need extra reliability use <b>parity checks</b>: one extra bit for every 8 bits of data.</p>
+                <ul>
+                    <li><b>Even parity:</b> when writing, count the 1s in the byte. If odd, set the parity bit to 1; if even, set it to 0. So the total number of 1s (including the parity bit) is always even</li>
+                    <li><b>Odd parity:</b> the opposite - the total is always odd</li>
+                </ul>
+                <p>When reading, the chip checks the byte still follows the scheme. If not, it reports an error.</p>
+                <p>E.G. (even parity): 11011011 has six 1s, so parity bit = 0. 11010011 has five 1s, so parity bit = 1. (With odd parity it'd be 1 and 0.)</p>
+                <h4>Limitations</h4>
+                <ul>
+                    <li>Parity can <b>detect</b> an error but can't tell you which bit is wrong, so it can't fix it</li>
+                    <li>If two bits flip in the same byte, the parity still looks fine and the error goes unnoticed (unlikely, but possible)</li>
+                    <li>Parity can be done per word instead of per byte, and is used in lots of communication schemes too</li>
+                </ul>
+                <p><b>Error Correcting Codes (ECCs)</b>, used in mission-critical systems, use several extra bits so they can detect multi-bit errors and <b>correct</b> single-bit errors.</p>
+
+            <h3>Endianness</h3>
+                <p>Endianness is the order the bytes of a word are stored in memory. For a 4-byte word with bytes 1 (most significant) to 4:</p>
+                <ul>
+                    <li><b>Big Endian:</b> the most significant byte (Byte 1) goes at the <b>lowest</b> address, then Byte 2 at the next address, etc.</li>
+                    <li><b>Little Endian:</b> the most significant byte goes at the <b>highest</b> address, Byte 2 at the next lower address, etc.</li>
+                </ul>
+
+            <h3>Locality of Reference</h3>
+                <p>Items "close to each other" tend to be accessed many times in a short period. Two kinds:</p>
+                <ul>
+                    <li><b>Temporal locality</b> (in time): the same data is used again soon, so keep it in fast storage</li>
+                    <li><b>Spatial locality</b> (in space): nearby addresses are used soon, so keep nearby data in fast storage too</li>
+                </ul>
+                <p>Locality comes from program structure (loops, ifs, data structures), which makes memory access predictable. Caching and prefetching exploit this - it's why the memory hierarchy works.</p>
     </section>
     
     <!-- SECTION TEMPLATE -->
@@ -140,7 +173,7 @@
     </div>
 
     <div class="status-bar">
-    <p class="status-bar-field">Lecture 9 : Memory Architecture 2</p>
+    <p class="status-bar-field">Lecture 9 - Memory Architecture 2</p>
     <p class="status-bar-field">12 October 2026</p>
     </div>
 </div>

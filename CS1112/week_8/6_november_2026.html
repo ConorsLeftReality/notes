@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +22,7 @@
     <div class="notepad-body">
 
     <h1>Lecture 11 and 12 - Introduction to Logic</h1>
-    <p class="note-meta">6 November 2026 &middot; CS1112 &middot; Barry O'Sullivan &middot; Slides: UNSPECIFIED</p>
+    <p class="note-meta">6 November 2026 &middot; CS1112 &middot; Barry O'Sullivan &middot; Slides: <a href="https://ucc.instructure.com/courses/95057/files/10842321">Lecture 11</a>, <a href="https://ucc.instructure.com/courses/95057/files/10842322">Lecture 12</a></p>
 
 
     <fieldset>
@@ -31,9 +30,7 @@
         <ul class="list-arrow">
         <li><a href="#sec-intro">Exam Info</a></li>
         <li><a href="#sec-logic">Intro To Logic</a></li>
-        <li><a href="#sec-lecture12">LECTURE 12 RAHHHH</a>
-        
-        </a></li>
+        <li><a href="#sec-lecture12">LECTURE 12 RAHHHH - Compound Statements</a></li>
         
         <!--
         <li><a href="#sec-id">SECTION_NAME</a></li>
@@ -68,41 +65,57 @@
                 facts, how do we decide whether or not the argument is justified?
             </p>
             <p>
-                In order to do this, we need a precise language to state ... CONTINUE FROM SLIDES
+                In order to do this, we need a precise language to state the facts, the conclusions and the steps of the argument.
             </p>
-            
+            <p>E.G. "If Ireland are playing in Dublin, they wear green. Ireland are wearing green. Therefore Ireland are playing in Dublin" is <b>not</b> a valid argument, even though it sounds reasonable.</p>
+
             <h3>History of Logic</h3>
                 <p>Studied since the greeks, Aristotle (c350BC) analysed argument, and his methods were used for more or less 2000 years.</p>
-                <p>George Boole, under UCC, published a paper on the topic</p>
-                <p>Boom, boolean logic</p>
+                <p>George Boole, here at UCC, published "An Investigation of the Laws of Thought" in 1854</p>
+                <p>Boom, boolean logic. Boole's work made modern digital computers possible, and led to symbolic logic (started by Gottlob Frege in 1879)</p>
+
+            <h3>Logic in Computer Science</h3>
+                <p>Logic is about cold, calm, rational argument (not emotions or who shouts loudest). In CS we use it to design circuits, decide which branch of an <code>if</code> runs, specify what programs must do, test and prove programs correct, check security systems and databases, and build AI/expert systems.</p>
+                <p>Humans are generally bad at logic (we jump to conclusions), and in CS logical mistakes can be serious - e.g. bank security code, pharmaceutical processes, power station emergency sequences.</p>
 
             <h3>Logical Testing</h3>
-                <p>bleh bleh, check the fucking slides asshole</p>
-            
+                <p>E.G. a method must return false if its input is even. To test it, what do you actually need to check? Random even inputs (must give false) are needed. Random odd inputs tell you nothing, because the spec doesn't say what odd inputs should give. Getting the spec's logic right tells you what's worth testing.</p>
+
             <h3>What does CS1112 look at?</h3>
                 <p>
-                    CS1112 looks at <b>propositional logic</b>, its simple statements, how to test them, how to prove them, i wish the fucking slides were public.
+                    CS1112 looks at <b>propositional logic</b>: simple statements that are either true or false, how to write them, how to build complex statements, how to work out if they're true or false, and how to prove them. (CS1113 moves on to <b>predicate logic</b>, with variables and collections.)
                 </p>
 
-            <h4>THERES STUFF I MISSED HERE, FINISH LATER!!!</h4>
-            
+            <h3>Propositions</h3>
+                <p>An <b>atomic statement</b>, or <b>proposition</b>, is a phrase or sentence that declares a fact, and is either true or false. E.G. "Dublin is the capital of Ireland" (true), "Homer Simpson lives in Cork" (false), "7 + 2 = 9" (true).</p>
+                <p><b>Not</b> propositions: questions ("Are we nearly there yet?"), commands ("Yield at the junction."), exclamations ("Ouch!"), and anything with unbound variables like "x = y+2" (could be true or false depending on x and y).</p>
+                <p>True (T) and False (F) are the <b>truth values</b>. Each proposition has exactly one, so there's a <b>truth function</b> from propositions to {T, F}.</p>
+
             <h3>Logical Compound Statements</h3>
-                
+                <p>We build complex statements by combining simple ones with <b>connectives</b>. The truth value of the whole thing depends on the truth values of the parts and which connective is used. We write propositions as p, q, r, ...</p>
+
             <h3>Logic Symbols</h3>
-                <p>&not; - Not, &and; - And, &or; - Or, &Implies; - Implies, biconditional symbol - Biconditional </p>
+                <p>&not; - Not, &and; - And, &or; - Or, &rArr; - Implies (conditional), &hArr; - Biconditional</p>
+
+            <h3>Negation (&not;)</h3>
+                <p>Applies to a single proposition and just flips its truth value. If p = "Dublin is the capital of Ireland" (T), then &not;p = "Dublin is not the capital of Ireland" (F).</p>
 
     </section>
 
     <section class="note-section" id="sec-lecture12">
             
-        <h2>LECTURE 12 RAHHHHHHHH</h2>
-            <h3>Conditional Statements</h3>
-                <p>Inclusive OR</p>
+        <h2>LECTURE 12 RAHHHHHHHH - Compound Statements</h2>
+            <h3>Disjunction (&or;) - Inclusive OR</h3>
+                <p>p &or; q is true if one <b>or both</b> of p and q are true, and false only if both are false.</p>
+                <p>The English word "or" is ambiguous: "asparagus or pat&eacute;" on a menu probably means one but not both (exclusive or). In logic, &or; is always the <b>inclusive</b> or.</p>
+
+            <h3>Conditional Statements (&rArr;)</h3>
+                <p>p &rArr; q ("if p then q") is false <b>only</b> when p is true and q is false. Whenever p is false, the conditional is true no matter what q is.</p>
                 <table>
                     <tr>
                         <th>P</th>
                         <th>Q</th>
-                        <th>P &Implies; Q</th>
+                        <th>P &rArr; Q</th>
                     </tr>
                     <tr>
                         <td>T</td>
@@ -117,17 +130,30 @@
                     <tr>
                         <td>F</td>
                         <td>T</td>
-                        <td>F</td>
+                        <td>T</td>
                     </tr>
                     <tr>
                         <td>F</td>
                         <td>F</td>
-                        <td>F</td>
+                        <td>T</td>
                     </tr>
                 </table>
-            
-            <h3>Biconditional</h3>
-                <p></p>
+                <aside class="callout">
+                    <span class="callout-title">Beware!</span>
+                    <p>&rArr; does <b>not</b> mean "causes". It only says that whenever p is true, q is also true. E.G. "the moon is made of blue cheese &rArr; anything" is true, because p is false.</p>
+                </aside>
+                <p><b>The conditional as a contract:</b> p = "you get 40% in CS1112", q = "you get a pass". UCC promises p &rArr; q. If you get 40% and pass, the contract is kept (T). If you get 40% and don't pass, it's broken (F). If you get under 40%, UCC hasn't promised anything, so whether you pass or not, the contract isn't broken (T, T).</p>
+
+            <h3>Biconditional (&hArr;)</h3>
+                <p>p &hArr; q ("p if and only if q") is true whenever p and q have the <b>same</b> truth value, and false otherwise.</p>
+                <table>
+                    <tr><th>P</th><th>Q</th><th>P &hArr; Q</th></tr>
+                    <tr><td>T</td><td>T</td><td>T</td></tr>
+                    <tr><td>T</td><td>F</td><td>F</td></tr>
+                    <tr><td>F</td><td>T</td><td>F</td></tr>
+                    <tr><td>F</td><td>F</td><td>T</td></tr>
+                </table>
+                <p>E.G. "I am qualified to enter 2nd year &hArr; I gain 50 credits in 1st year". Same warnings as the conditional: &hArr; doesn't mean "is the same thing as", just that the two have the same truth value.</p>
     </section>
 
     <!-- SECTION TEMPLATE -->

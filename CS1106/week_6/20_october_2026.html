@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#c0c0c0">
-<title>SQL bs again</title>
+<title>Lecture 7 - Joining Relations</title>
 <link rel="stylesheet" href="../../win95.css">
 <link rel="stylesheet" href="../../notes.css">
 </head>
@@ -15,20 +14,23 @@
 <div class="window notepad">
 
     <div class="title-bar">
-    <div class="title-bar-text">SQL bs again - Notepad</div>
+    <div class="title-bar-text">Lecture 7 - Joining Relations - Notepad</div>
     </div>
 
     <div class="notepad-body">
 
-    <h1>SQL bs again</h1>
-    <p class="note-meta">20 October 2026 &middot; CS1106 &middot; UNDEFINED_LECTURER_NAME &middot; Slides: <a href="UNSPECIFIED">Linked</a></p>
+    <h1>Lecture 7 - Joining Relations</h1>
+    <p class="note-meta">20 October 2026 &middot; CS1106 &middot; K. Herley &middot; Slides: <a href="https://ucc.instructure.com/courses/95030/files/10954924">Here</a></p>
 
 
     <fieldset>
         <legend>Contents</legend>
         <ul class="list-arrow">
-        <li><a href="#sec-intro">INTRODUCTION_SECTION</a></li>
-        
+        <li><a href="#sec-intro">Why Join?</a></li>
+        <li><a href="#sec-cross">Cartesian Product (CROSS JOIN)</a></li>
+        <li><a href="#sec-joins">Types of Join</a></li>
+        <li><a href="#sec-self">Self Joins</a></li>
+
         <!--
         <li><a href="#sec-id">SECTION_NAME</a></li>
         -->
@@ -39,9 +41,111 @@
 
     <section class="note-section" id="sec-intro">
     
-        <h2>INTRODUCTION_SECTION</h2>
-            <p>ENTER_TEXT_HERE</p>
-        
+        <aside class="callout">
+            <span class="callout-title">Note</span>
+            <p>No notes were taken in this lecture, so this page was written up from the slides afterwards.</p>
+        </aside>
+
+        <h2>Why Join?</h2>
+            <p>A join is a way to say that two relations (tables) are connected, and to navigate from one to the other, usually through a <b>foreign key</b> (e.g. <code>albums.artistId</code> links to <code>artists.artistId</code>).</p>
+            <p>The slides' running example has two tables:</p>
+            <ul>
+                <li><code>persons</code> - each person's details (person_id, first_name, last_name, birth_date, street, town, county)</li>
+                <li><code>favourite_foods</code> - who likes what (person_id, food)</li>
+            </ul>
+            <h3>Why multiple tables?</h3>
+                <p>There are rules (normalisation) about how attributes are organised into tables, especially around the key that uniquely identifies rows. Benefits:</p>
+                <ul>
+                    <li>Less unintentional data redundancy (copies of the same data in several places cause problems when updating)</li>
+                    <li>Less storage needed</li>
+                </ul>
+                <p>The downside: some queries need data from more than one table. E.g. "list everyone who likes pizza" - <code>SELECT person_id FROM favourite_foods WHERE food = 'Pizza';</code> only gives the ids, not their names.</p>
+
+    </section>
+
+    <section class="note-section" id="sec-cross">
+
+        <h2>Cartesian Product (CROSS JOIN)</h2>
+            <p>The Cartesian product of sets S and T is the set of all pairs (s, t) with s from S and t from T. Its size is |S| &times; |T|.</p>
+            <div class="code-block">
+                <div class="code-title">cross_join.sql</div>
+                <pre><code>SELECT *
+FROM persons
+CROSS JOIN favourite_foods;</code></pre>
+            </div>
+            <p>Every row of persons gets paired with every row of favourite_foods (6 &times; 15 = 90 rows). <b>Most of these rows are meaningless</b> - the useful ones are where an attribute in one table matches an attribute in the other (e.g. both person_id values are 345678, i.e. Aoife's row paired with Aoife's foods).</p>
+
+            <h3>The Join Operator</h3>
+                <p>A join of R and S picks one attribute A from R and one attribute B from S. Each tuple r from R is compared with each tuple s from S, and when r's A value equals s's B value, they're combined into one tuple; otherwise no tuple is formed.</p>
+                <ul>
+                    <li>The result could be empty (no A value appears in the B column)</li>
+                    <li>At most it's |R| &times; |S| (if every value matches)</li>
+                    <li>Usually each row of R pairs with some, but not all, rows of S</li>
+                </ul>
+
+    </section>
+
+    <section class="note-section" id="sec-joins">
+
+        <h2>Types of Join</h2>
+            <ul>
+                <li><b>(INNER) JOIN</b> - only rows that have matching values in both tables</li>
+                <li><b>LEFT (OUTER) JOIN</b> - all rows from the left table, plus the matching rows from the right</li>
+                <li><b>RIGHT (OUTER) JOIN</b> - all rows from the right table, plus the matching rows from the left</li>
+                <li><b>FULL (OUTER) JOIN</b> - all rows where there's a match in either table</li>
+            </ul>
+
+            <h3>Natural Join</h3>
+                <p>Joins on the columns that have the <b>same name</b> (and compatible types) in both tables. No condition needed, and the duplicate column only appears once.</p>
+                <div class="code-block">
+                    <div class="code-title">natural_join.sql</div>
+                    <pre><code>SELECT *
+FROM persons
+NATURAL JOIN favourite_foods;</code></pre>
+                </div>
+
+            <h3>Inner Join with ON</h3>
+                <p>Usually you want more control, so you state the join condition explicitly:</p>
+                <div class="code-block">
+                    <div class="code-title">inner_join.sql</div>
+                    <pre><code>SELECT first_name, last_name, food
+FROM persons
+INNER JOIN favourite_foods
+    ON persons.person_id = favourite_foods.person_id
+WHERE food = 'Pizza';
+
+-- Aliases make it shorter to read
+SELECT first_name, last_name, food
+FROM persons AS p
+INNER JOIN favourite_foods AS foods
+    ON p.person_id = foods.person_id;</code></pre>
+                </div>
+
+            <h3>How to Think About a Join Query</h3>
+                <p>For reasoning only (the database engine won't actually do it this way):</p>
+                <ol>
+                    <li>Make the full Cartesian product C of the tables</li>
+                    <li>Keep only the rows of C that satisfy the <code>ON</code> condition</li>
+                    <li>Keep only the rows that satisfy the <code>WHERE</code> condition</li>
+                </ol>
+
+    </section>
+
+    <section class="note-section" id="sec-self">
+
+        <h2>Self Joins</h2>
+            <p>A self join is a normal join where a table is joined with <b>itself</b>, using two aliases. E.g. list all pairs of people from the same county:</p>
+            <div class="code-block">
+                <div class="code-title">self_join.sql</div>
+                <pre><code>SELECT p1.first_name, p1.last_name, 'and',
+       p2.first_name, p2.last_name, 'both come from', p1.county
+FROM persons AS p1
+JOIN persons AS p2
+    ON p1.county = p2.county
+   AND p1.person_id &lt; p2.person_id;</code></pre>
+            </div>
+            <p>Without the last condition you get self-pairs (everyone paired with themselves) and every pair twice (A-B and B-A). Using <code>&lt;</code> on the id keeps exactly one of each pair. Both ON and WHERE filter rows, but putting it in ON is arguably more readable.</p>
+
     </section>
     
     <!-- SECTION TEMPLATE -->
@@ -92,7 +196,7 @@
     </div>
 
     <div class="status-bar">
-    <p class="status-bar-field">SQL bs again</p>
+    <p class="status-bar-field">Lecture 7 - Joining Relations</p>
     <p class="status-bar-field">20 October 2026</p>
     </div>
 </div>

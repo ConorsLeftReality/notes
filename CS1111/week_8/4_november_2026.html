@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Ports Ports Ports</title>
+    <title>Lecture 15 - Ports Ports Ports</title>
 
     <link rel="stylesheet" href="../../win95.css">
     <link rel="stylesheet" href="../../notes.css">
@@ -17,13 +16,13 @@
 <div class="window notepad">
 
     <div class="title-bar">
-    <div class="title-bar-text">Ports Ports Ports - Notepad</div>
+    <div class="title-bar-text">Lecture 15 - Ports Ports Ports - Notepad</div>
     </div>
 
     <div class="notepad-body">
 
-    <h1>Ports Ports Ports</h1>
-    <p class="note-meta">4 November 2026 &middot; CS1111 &middot; J.P. Morrison &middot; Slides: UNSPECIFIED</p>
+    <h1>Lecture 15 - Ports Ports Ports</h1>
+    <p class="note-meta">4 November 2026 &middot; CS1111 &middot; J.P. Morrison &middot; Slides: <a href="https://ucc.instructure.com/courses/95051/pages/lecture-15-keyboard-input-and-adding-numbers">Here</a></p>
 
 
     <fieldset>
@@ -55,8 +54,29 @@
 
             <aside class="callout">
                 <span class="callout-title">NOTE</span>
-                <p>The input coming from the keyboard will be in ASCII, so pressing 1 on the keyboard will place '31' in the AL register.</p>
+                <p>The input coming from the keyboard will be in ASCII, so pressing 1 on the keyboard will place 31 (hex) in the AL register.</p>
             </aside>
+
+            <h3>From ASCII to Integer</h3>
+                <p>To work with numbers rather than characters, subtract the ASCII code for '0' (30 hex) from the character you read. E.G. pressing '1' gives 31, and 31 - 30 = 1.</p>
+                <p>Adding two numbers from the keyboard: read each character, convert both to integers, add them, then add 30 back to turn the result into a character for the VDU (assuming the result is &le; 9).</p>
+
+            <h3>Reading a 2-Digit Number</h3>
+                <p>E.G. to read '2' then '3' as the integer 23:</p>
+                <ol>
+                    <li>Read the first character and convert it to an integer</li>
+                    <li>Multiply it by 10</li>
+                    <li>Read the second character and convert it to an integer</li>
+                    <li>Add the two together</li>
+                </ol>
+
+            <h3>Writing a 2-Digit Number to the VDU</h3>
+                <ol>
+                    <li>Divide a copy of the number by 10 - this is the number of tens</li>
+                    <li>Add 30 to convert it to ASCII and write it to the VDU</li>
+                    <li>Use <code>mod</code> 10 on the original number to get the remainder - the number of units</li>
+                    <li>Add 30 and write that to the VDU too</li>
+                </ol>
 
     </section>
 
@@ -122,7 +142,7 @@
     </div>
 
     <div class="status-bar">
-    <p class="status-bar-field">Ports Ports Ports</p>
+    <p class="status-bar-field">Lecture 15 - Ports Ports Ports</p>
     <p class="status-bar-field">4 November 2026</p>
     </div>
 </div>

@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#c0c0c0">
-<title>Sets and Collections II</title>
+<title>Lecture 5 and 6 - Functions (and the end of Sets II)</title>
 <link rel="stylesheet" href="../../win95.css">
 <link rel="stylesheet" href="../../notes.css">
 </head>
@@ -15,13 +14,13 @@
 <div class="window notepad">
 
     <div class="title-bar">
-    <div class="title-bar-text">Sets and Collections II - Notepad</div>
+    <div class="title-bar-text">Lecture 5 and 6 - Functions (and the end of Sets II) - Notepad</div>
     </div>
 
     <div class="notepad-body">
 
-    <h1>Sets and Collections II</h1>
-    <p class="note-meta">09 October 2026 &middot; CS1112 &middot; UNDEFINED_LECTURER_NAME &middot; Slides: UNSPECIFIED</p>
+    <h1>Lecture 5 and 6 - Functions (and the end of Sets II)</h1>
+    <p class="note-meta">9 October 2026 &middot; CS1112 &middot; Barry O'Sullivan &middot; Slides: <a href="https://ucc.instructure.com/courses/95057/files/10842283">Lecture 5</a>, <a href="https://ucc.instructure.com/courses/95057/files/10842294">Lecture 6</a></p>
 
 
     <fieldset>
@@ -49,14 +48,14 @@
             <li></li>
             <li></li>
         </ul>
-        <p><b>De Morgan's Law</b> - (A intesection B)' == A' union B'</p>
+        <p><b>De Morgan's Law</b> - (A intersection B)' == A' union B'</p>
         
         <p>
             <b>Ordered Pairs</b> - Same as row (with 2 columns) in DB
         </p>
 
         <p>
-            The <b>Carteisan Product</b> of two sets A and B is the set of all posssible ordered pairs, 
+            The <b>Cartesian Product</b> of two sets A and B is the set of all possible ordered pairs, 
             where the first element comes from A and the second element comes from B.
         </p>
 
@@ -103,11 +102,11 @@
                     </li>
                     <li>
                         A function f: R → R is polynomial if f(x) can be written
-                        f(x) = a1xn + a2x(n-1) + ... an-1x + an for some fixed integers n and a1, a2, ..., an.
+                        f(x) = a<sub>1</sub>x<sup>n</sup> + a<sub>2</sub>x<sup>n-1</sup> + ... + a<sub>n-1</sub>x + a<sub>n</sub> for some fixed integers n and a<sub>1</sub>, a<sub>2</sub>, ..., a<sub>n</sub>.
                     </li>
                     <li>
                         A function f : R →R is exponential if f(x) contains a term
-                        ...ax for some fixed integer a.
+                        a<sup>x</sup> for some fixed integer a.
                     </li>
                 </ul>
             <p>
@@ -115,15 +114,24 @@
             </p>
                 <p>Amount of steps in this problem is 2**n</p>
             <p>
-                Travelling salesmen problem
+                Travelling salesman problem
             </p>
             <p>AKA 12 pubs of XMAS graphed</p>
             <p>
-                2**n steps 
+                2**n steps
             </p>
+            <aside class="callout">
+                <span class="callout-title">Check this</span>
+                <p>
+                    These two examples aren't in the Lecture 5 slides (they were said in the lecture), so double-check the numbers.
+                    The slides only say these function types "will be used heavily in later years, when studying how long algorithms take to run".
+                    For reference: introducing every pair of N people is N(N-1)/2 introductions (polynomial, not 2<sup>N</sup>),
+                    and checking every route in the travelling salesman problem is (N-1)!/2 routes, which grows even faster than 2<sup>N</sup>.
+                </p>
+            </aside>
 
-            <p><b>Problems that you can check in polynomial time, but not solve in polynomial time, then its an NP problem</b></p>
-            <p>If P = NP, every NP problem can become a P problem (P being Polymonial, NP being Non-Polynomial</p>
+            <p><b>NP problems are ones where a proposed answer can be <i>checked</i> in polynomial time, even if nobody knows how to <i>solve</i> them in polynomial time</b></p>
+            <p>If P = NP, every NP problem can become a P problem (P being Polynomial, NP being Nondeterministic Polynomial)</p>
             
     </section>
 
@@ -165,7 +173,7 @@
 
             <h3>Types of Functions</h3>
                 <ul>
-                    <li>Surjective - (Many to one, and all codomain used) For every element in the domain, there is an element in the codomain</li>
+                    <li>Surjective (onto) - (all codomain used) Every element of the codomain is the image of at least one element of the domain, i.e. the range = the codomain</li>
                     <li>Injective - (One to One, doesnt need all codomain used) If and only if no two elements of the domain map onto the same element of codomain.</li>
                     <li>Bijective - (Full domain & codomain used, and ONLY one to one relationships.) If and only if the function is BOTH surjective and injective.</li>
                 </ul>
@@ -225,8 +233,8 @@
     </div>
 
     <div class="status-bar">
-    <p class="status-bar-field">Sets and Collections II</p>
-    <p class="status-bar-field">09 October 2026</p>
+    <p class="status-bar-field">Lecture 5 and 6 - Functions (and the end of Sets II)</p>
+    <p class="status-bar-field">9 October 2026</p>
     </div>
 </div>
 

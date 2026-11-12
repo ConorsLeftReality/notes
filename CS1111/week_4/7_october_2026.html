@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#c0c0c0">
-<title>Memory Architecture</title>
+<title>Lecture 8 - Memory Architecture 1</title>
 <link rel="stylesheet" href="../../win95.css">
 <link rel="stylesheet" href="../../notes.css">
 </head>
@@ -15,13 +14,13 @@
 <div class="window notepad">
 
     <div class="title-bar">
-    <div class="title-bar-text">Memory Architecture - Notepad</div>
+    <div class="title-bar-text">Lecture 8 - Memory Architecture 1 - Notepad</div>
     </div>
 
     <div class="notepad-body">
 
-    <h1>Memory Architecture</h1>
-    <p class="note-meta">7 October 2026 &middot; CS1111 &middot; J.P. Morrison &middot; Slides: UNSPECIFIED</p>
+    <h1>Lecture 8 - Memory Architecture 1</h1>
+    <p class="note-meta">7 October 2026 &middot; CS1111 &middot; J.P. Morrison &middot; Slides: <a href="https://ucc.instructure.com/courses/95051/pages/lecture-8-memory-architecture-1">Here</a></p>
 
 
     <fieldset>
@@ -52,7 +51,7 @@
             
         <h2>Memory Architecture</h2>
             <p>
-                Memory heirarchy was one of the great ideas of Computer Architecture(?). 
+                Memory hierarchy was one of the "Great Ideas in Computer Architecture" (Lecture 4). 
                 The goal for memory is for it to be:
             </p>
             <ul>
@@ -65,7 +64,7 @@
                 Memory becomes a bottleneck with speed - If we cant access data at the speed we can process it, we have to wait for data to be transferred
             </p>
             <p>
-                We need memory to be reliable and durable - Over time, memory will degrade due to hundreds of thousands of writes to itself. We want memory to be more durable and realiable to combat this.
+                We need memory to be reliable and durable - Over time, memory will degrade due to hundreds of thousands of writes to itself. We want memory to be more durable and reliable to combat this.
             </p>
             <p>
                 Memory is a major cost of computing - 1Gb of memory cost £5000 in J.P. Morrison's memory of past computing prices
@@ -76,7 +75,7 @@
 
             <aside class="callout">
                 <span class="callout-title">Interesting fact</span>
-                <p>Old Core memory plates were made of wire that went through ferrite (spelt right?) cores.</p>
+                <p>Old Core memory plates were made of wire that went through ferrite cores.</p>
                 <p><b>This is where the word 'Core' in computing came from</b></p>
             </aside>
             
@@ -136,7 +135,7 @@
                         <li>Greater bandwidth means more cost - More banks, more ports, higher frequency, faster technology</li>
                     </ul>
                 
-                    <h3>Memory Heirarchy</h3>
+                    <h3>Memory Hierarchy</h3>
                         <ul>
                             <li>Register File - 32 words, sub nanoseconds</li>
                             <li>L1 Cache - ~32Kb, ~nsec</li>
@@ -147,7 +146,7 @@
                         </ul>
                     
                         <figure class="note-image">
-                            <img alt="Diagram of Memory Heirarchy, in terms of speed and size (same as above)" width="320*80%"
+                            <img alt="Diagram of Memory Hierarchy, in terms of speed and size (same as above)" width="320*80%"
                                 src="../files/memory_heirarchy1.png">
                             <figcaption>Diagram from slides</figcaption>
                         </figure>
@@ -162,7 +161,7 @@
                 Each location can store several bits. Nearly all computers have a standardized size of 8 bits per location, called a Byte
             </p>
             <p>
-                Bytes stored in memory are groups into words of a chosen size. A 32-bit word (4 bytes); 64-bit word (8 bytes); etc
+                Bytes stored in memory are grouped into words of a chosen size. A 32-bit word (4 bytes); 64-bit word (8 bytes); etc
             </p>
             <p>
                 <b>Most instructions operate on entire words, for example, two words may be added together.</b>
@@ -170,7 +169,7 @@
 
             <aside class="callout">
                 <span class="callout-title">Note</span>
-                <p>The address is usually the first byte of the word(?). I'm not google, crosscheck this!</p>
+                <p>A word's address is the address of its first (lowest-addressed) byte, e.g. a 4-byte word at address 4 occupies addresses 4, 5, 6 and 7. Which <i>end</i> of the word goes in that first byte depends on endianness (Lecture 9).</p>
             </aside>
 
             <h3>Words and word length</h3>
@@ -233,7 +232,7 @@
     </div>
 
 <div class="status-bar">
-    <p class="status-bar-field">Memory Architecture</p>
+    <p class="status-bar-field">Lecture 8 - Memory Architecture 1</p>
     <p class="status-bar-field">7 October 2026</p>
     </div>
 </div>

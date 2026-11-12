@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#c0c0c0">
-<title>CSS Conflicts - Resolution of Conflicts</title>
+<title>Lecture 12 - CSS Conflicts - Resolution of Conflicts</title>
 <link rel="stylesheet" href="../../win95.css">
 <link rel="stylesheet" href="../../notes.css">
 </head>
@@ -15,20 +14,20 @@
 <div class="window notepad">
 
     <div class="title-bar">
-    <div class="title-bar-text">CSS Conflicts - Resolution of Conflicts - Notepad</div>
+    <div class="title-bar-text">Lecture 12 - CSS Conflicts - Resolution of Conflicts - Notepad</div>
     </div>
 
     <div class="notepad-body">
 
-    <h1>CSS Conflicts - Resolution of Conflicts</h1>
-    <p class="note-meta">27 October 2026 &middot; CS1115 &middot; Derek Bridge &middot; Slides: <a href="https://www.cs.ucc.ie/~dgb/courses/WD/lectures/WD1_12.html">Linked</a></p>
+    <h1>Lecture 12 - CSS Conflicts - Resolution of Conflicts</h1>
+    <p class="note-meta">27 October 2026 &middot; CS1115 &middot; Derek Bridge &middot; Slides: <a href="https://www.cs.ucc.ie/~dgb/courses/WD/lectures/WD1_12.html">Here</a></p>
 
 
     <fieldset>
         <legend>Contents</legend>
         <ul class="list-arrow">
         <li><a href="#sec-recap">Refresh</a></li>
-        <li><a href="#sec-intro">Todays Lecture</a></li>
+        <li><a href="#sec-intro">Today's Lecture</a></li>
         
         <!--
         <li><a href="#sec-id">SECTION_NAME</a></li>
@@ -41,7 +40,7 @@
     <section class="note-section" id="sec-recap">
     
         <h2>Refresh</h2>
-            <p>We ran through CSS teminology and Find selectors, a bit on filter selectors, and we are covering one more slide on filters (not examinable)</p>
+            <p>We ran through CSS terminology and Find selectors, a bit on filter selectors, and we are covering one more slide on filters (not examinable)</p>
             <h3>
                 Filters
             </h3>
@@ -54,8 +53,8 @@
             </ul>
             <p><b>ANSWER</b></p>
             <ul>
-                <li>Any item of class ingredient IF its a first child</li>
-                <li>Any item of class ingredient IF its a first child AND has a preceding ingredient</li>
+                <li>Any element of class ingredient IF it's the first child of its parent (in the slides' recipe: flour and stewing beef)</li>
+                <li>Any element of class ingredient whose <i>immediately preceding sibling</i> is a first-child ingredient, i.e. the second ingredient in each list (butter and an onion)</li>
             </ul>
         
     </section>
@@ -68,14 +67,14 @@
                 <p>Sometimes, the two rules can conflict E.G. p { color: green } followed by p { color:red }</p>
                 <aside class="callout definition">
                     <span class="callout-title">NOTE</span>
-                    <p>For a given proeprty, two or more CSS rules select element and set different values</p>
+                    <p>For a given property, two or more CSS rules select element and set different values</p>
                 </aside>
                 
                 <p><em>What happens?</em> Another cliffhanger, wait until later</p>
                 <aside class="callout">
                     <span class="callout-title">NOTE</span>
                     <p>Sometimes, the conflict can be obvious, but more often than not, the conflict isnt obvious.</p>
-                    <p>ANOTHER NOTE, more often than accidental conflicts, we often use conflicts because they can lead to more consise stylesheets</p>
+                    <p>ANOTHER NOTE, more often than accidental conflicts, we often use conflicts because they can lead to more concise stylesheets</p>
                 </aside>
             
             <h3>Resolution of Conflicts</h3>
@@ -125,7 +124,7 @@
                 <aside class="callout">
                     <span class="callout-title">NOTE</span>
                     <p>
-                        Considering ordering, inline stylesheets are though of as coming later than embedded stylesheets, which come later than external stylesheets.
+                        Considering ordering, inline stylesheets are thought of as coming later than embedded stylesheets, which come later than external stylesheets.
                     </p>
                 </aside>
             
@@ -220,7 +219,7 @@
     </div>
 
     <div class="status-bar">
-    <p class="status-bar-field">CSS Conflicts - Resolution of Conflicts</p>
+    <p class="status-bar-field">Lecture 12 - CSS Conflicts - Resolution of Conflicts</p>
     <p class="status-bar-field">27 October 2026</p>
     </div>
 </div>

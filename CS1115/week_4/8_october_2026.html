@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,13 +20,13 @@
     <div class="notepad-body">
 
     <h1>Lecture 8 - HTML structure, syntax and character sets</h1>
-    <p class="note-meta">8 October 2026 &middot; CS1115 &middot; Derek Bridge &middot; Slides: UNSPECIFIED</p>
+    <p class="note-meta">8 October 2026 &middot; CS1115 &middot; Derek Bridge &middot; Slides: <a href="https://www.cs.ucc.ie/~dgb/courses/WD/lectures/WD1_08.html">Here</a></p>
 
 
     <fieldset>
         <legend>Contents</legend>
         <ul class="list-arrow">
-        <li><a href="#sec-intro">Heirarchal Structure</a></li>
+        <li><a href="#sec-intro">Hierarchical Structure</a></li>
         <li><a href="#sec-syntax">Syntax of HTML</a></li>
         <li><a href="#sec-character-sets">Character Sets</a></li>
 
@@ -44,7 +43,7 @@
 
     <section class="note-section" id="sec-intro">
     
-        <h2>Heirarchal Structure</h2>
+        <h2>Hierarchical Structure</h2>
             <p>File systems are like trees (If you were viewing one upside down)</p>
             <p>HTML is also like trees in their elements</p>
             <ul>
@@ -53,7 +52,7 @@
                 <li>A node can also have ancestors (Parent(s) of their parent)</li>
                 <li>A Node's descendants are the nodes that connect back to a given node</li>
                 <li>A node's siblings are nodes who share the same parent</li>
-                <li>The eldest node is the first occuring node from a parent</li>
+                <li>The eldest node is the first occurring node from a parent</li>
             </ul>
             <h4>But why is this important?</h4>
             <p>Because fuck you, that's why.</p>
@@ -83,8 +82,23 @@
                         <li>&lt;ul&gt; or &lt;ol&gt; can only contain zero, one or more &lt;li&gt; element</li>
                     </ul>
                 </li>
-                <li>Nesting must be done correctly</li>
+                <li>Nesting must be done correctly, e.g. <code>&lt;p&gt;This is &lt;em&gt;correct&lt;/em&gt;&lt;/p&gt;</code>, but <code>&lt;p&gt;This is &lt;em&gt;incorrect&lt;/p&gt;&lt;/em&gt;</code> isn't</li>
             </ul>
+            <h3>Nested Lists</h3>
+                <p>A common mistake: a nested list has to go <b>inside</b> an &lt;li&gt;, not directly inside the outer &lt;ul&gt; (a &lt;ul&gt; can only contain &lt;li&gt;s)</p>
+                <div class="code-block">
+                    <div class="code-title">nested_list.html</div>
+                    <pre><code>&lt;ul&gt;
+    &lt;li&gt;badgers&lt;/li&gt;
+    &lt;li&gt;wombats
+        &lt;ul&gt;
+            &lt;li&gt;common wombat&lt;/li&gt;
+            &lt;li&gt;hairy-nosed wombat&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;squirrels&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                </div>
             <h3>Types of HTML syntax</h3>
                 <p>HTML has 2 types of syntax, XML and HTML formatting</p>
                 <ul>
@@ -114,12 +128,51 @@
                 <p>E.G. ASCII (128 characters from the modern Latin alphabet)</p>
                 <p>Obviously this didnt work for multiple languages, and because it was developed in the west, it was all based around plain english, with no consideration for other languages (or just because they didnt have space)</p>
                 <p>"Feck those foreigners" - Derek Bridge on what the ASCII inventors probably said</p>
-                <p>"Feck the chinese, feck the greeks, feck them all" - Also Derek Brigde on what the ASCII inventors probably also said</p>
+                <p>"Feck the chinese, feck the greeks, feck them all" - Also Derek Bridge on what the ASCII inventors probably also said</p>
                 <p>
                     <b>BUT,</b> The Unicode character set was invented, and is currently nearly 155,000 
                     characters. This solved this issue. UTF-8 was then invented, with the most common 
                     languages having the least bits in the dataset table.
                 </p>
+
+            <h3>2/3 - Coded Character Sets and Encodings</h3>
+                <p>A <b>coded character set</b> gives every character its own unique number. E.G. in Unicode (and ASCII), 'A' is 65 and 'a' is 97</p>
+                <p>A <b>character encoding</b> is how those numbers get turned into bytes for storing and sending</p>
+                <ul>
+                    <li><b>ASCII</b> - 7 bits for every character</li>
+                    <li><b>UTF-32</b> - 4 bytes for every character</li>
+                    <li><b>UTF-8</b> - 1 byte for ASCII characters, and 2, 3 or 4 bytes for everything else</li>
+                </ul>
+                <p>(UTF = Unicode Transformation Format)</p>
+
+                <h4>Character Encoding of Web Pages</h4>
+                <p>The browser (and the validator) need to know which encoding your page was saved in. Check what your editor uses and put it in a meta tag in the head:</p>
+                <div class="code-block">
+                    <div class="code-title">charset.html</div>
+                    <pre><code>&lt;meta charset="utf-8" /&gt;</code></pre>
+                </div>
+                <p>If the editor uses one encoding and you specify a different one, some characters show up as the wrong characters, or as &#xFFFD;</p>
+
+                <aside class="callout">
+                    <span class="callout-title">A Better Solution</span>
+                    <p>
+                        Apache can be set up to convert text files (e.g. to UTF-8) as it serves them, and it puts the encoding in the
+                        <code>Content-Type</code> HTTP header. Browsers trust the HTTP header over the meta tag.
+                        Chrome (since version 55) just assumes UTF-8 no matter what the charset tag says, and other browsers are following.
+                    </p>
+                </aside>
+
+            <h3>3/3 - Reserved Characters and Character References</h3>
+                <p>Some characters mean something special in HTML, so to display them you use their character references:</p>
+                <ul>
+                    <li>&lt; - <code>&amp;lt;</code></li>
+                    <li>&gt; - <code>&amp;gt;</code></li>
+                    <li>&quot; - <code>&amp;quot;</code></li>
+                    <li>&amp; - <code>&amp;amp;</code></li>
+                </ul>
+                <p>You can also use references for characters that aren't in your character set or are hard to type, e.g. &Aacute; (<code>&amp;Aacute;</code>), &aacute; (<code>&amp;aacute;</code>), &euro; (<code>&amp;euro;</code>), &frac12; (<code>&amp;frac12;</code>)</p>
+                <p>A reference can be by name, hexadecimal number or decimal number, e.g. <code>&amp;aacute;</code>, <code>&amp;#x000E1;</code> and <code>&amp;#225;</code> all give &aacute;</p>
+                <p>If your page is UTF-8 anyway, this matters a lot less (except for the reserved characters).</p>
 
 
     </section>
