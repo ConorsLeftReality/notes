@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#c0c0c0">
+<title>2D Matrices (Canvas Week 10)</title>
+<link rel="stylesheet" href="../../win95.css">
+<link rel="stylesheet" href="../../notes.css">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">2D Matrices (Canvas Week 10) - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>2D Matrices (Canvas Week 10)</h1>
+    <p class="note-meta">9 November 2026 &middot; CS1117 &middot; CS1117 lecturers &middot; Slides: <a href="https://ucc.instructure.com/courses/95076/files/11055179">Here</a></p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-matrices">2D Matrices (Lists of Lists)</a></li>
+
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-matrices">
+
+        <h2>2D Matrices (Lists of Lists)</h2>
+
+            <aside class="callout">
+                <span class="callout-title">Note</span>
+                <p>No notes were taken in this lecture, and the slides couldn't be opened when this page was written, so it covers the standard material on 2D lists. <b>Check it against the slides.</b></p>
+            </aside>
+            <p>A 2D matrix in Python is a <b>list of lists</b>: each inner list is one row.</p>
+            <div class="code-block">
+                <div class="code-title">matrix.py</div>
+                <pre><code>matrix = [[1, 2, 3],
+          [4, 5, 6],
+          [7, 8, 9]]
+
+matrix[0]       # [1, 2, 3]  - the first row
+matrix[1][2]    # 6          - row 1, column 2 (both start at 0)
+len(matrix)     # 3 rows
+len(matrix[0])  # 3 columns</code></pre>
+            </div>
+
+            <h3>Going through every element (nested loops)</h3>
+            <div class="code-block">
+                <div class="code-title">nested_loops.py</div>
+                <pre><code>for row in range(len(matrix)):
+    for col in range(len(matrix[row])):
+        print(matrix[row][col], end=" ")
+    print()   # new line after each row
+
+# Row totals
+for row in matrix:
+    print(sum(row))</code></pre>
+            </div>
+
+            <h3>Making an empty matrix</h3>
+            <div class="code-block">
+                <div class="code-title">make_matrix.py</div>
+                <pre><code>rows, cols = 3, 4
+grid = [[0] * cols for _ in range(rows)]   # 3 separate rows of 4 zeros</code></pre>
+            </div>
+            <aside class="callout">
+                <span class="callout-title">Watch out</span>
+                <p><code>[[0] * 4] * 3</code> looks the same, but it makes 3 references to the <b>same</b> row, so changing <code>grid[0][0]</code> changes the first element of every row. Use the list comprehension above instead.</p>
+            </aside>
+
+    </section>
+
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">2D Matrices (Canvas Week 10)</p>
+    <p class="status-bar-field">9 November 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1117_index.html">Back to CS1117 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>

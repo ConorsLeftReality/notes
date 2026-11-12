@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#c0c0c0">
+<title>Files (Canvas Week 7)</title>
+<link rel="stylesheet" href="../../win95.css">
+<link rel="stylesheet" href="../../notes.css">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Files (Canvas Week 7) - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Files (Canvas Week 7)</h1>
+    <p class="note-meta">19 October 2026 &middot; CS1117 &middot; Dr. Aisling O'Driscoll &middot; Slides: <a href="https://ucc.instructure.com/courses/95076/files/10950240">Here</a></p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-intro">Files and File Types</a></li>
+        <li><a href="#sec-reading">Reading a File</a></li>
+        <li><a href="#sec-writing">Writing and Appending</a></li>
+
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-intro">
+
+        <h2>Files and File Types</h2>
+            <aside class="callout">
+                <span class="callout-title">Note</span>
+                <p>No notes were taken in this lecture, so this page was written up from the slides afterwards. Most of the code on the slides is in images, so the examples here are written to match them.</p>
+            </aside>
+            <p>Computers use files to store documents, programs, images, webpages and more. Files are <b>persistent</b>: the data is kept between runs of a program, unlike normal program variables, which disappear when it ends.</p>
+            <ul>
+                <li><b>Text files</b> - only printable characters (ASCII or Unicode), split into lines. Readable in a simple editor like Notepad, and not tied to any system or application</li>
+                <li><b>Binary files</b> - e.g. .jpg images, .doc files. Not human-readable without the right software, and tied to a system or application</li>
+            </ul>
+            <p>Python processes text files <b>sequentially</b>, from beginning to end, in either read-only or write-only mode.</p>
+
+    </section>
+
+    <section class="note-section" id="sec-reading">
+
+        <h2>Reading a File</h2>
+
+            <p>Always the same three steps: <b>open</b>, <b>read/write</b>, <b>close</b>. <code>open</code> gives you a <b>file object</b> (think of it as a pipe to the file), stored in a variable you name.</p>
+            <div class="code-block">
+                <div class="code-title">readline.py</div>
+                <pre><code># Reading one line at a time with readline()
+textfile = open("notes.txt", "r")   # "r" = read only
+count = 0
+line = textfile.readline()
+while line != "":                  # readline() gives "" at the end of the file
+    count += 1
+    line = textfile.readline()
+textfile.close()
+print(count, "lines")</code></pre>
+            </div>
+            <p><code>read()</code> reads the whole file into one string, and <code>readlines()</code> reads it all into a list of lines - fine for small files.</p>
+
+            <h3>The better way: a file iterator</h3>
+            <div class="code-block">
+                <div class="code-title">iterator.py</div>
+                <pre><code>with open("notes.txt", "r") as textfile:
+    count = 0
+    for line in textfile:   # each time round, line is the next line of the file
+        count += 1
+print(count, "lines")</code></pre>
+            </div>
+            <p><code>with</code> wraps the file code and opens and closes the file for you (the close is invisible), so it's neater and you can't forget to close it.</p>
+            <aside class="callout">
+                <span class="callout-title">Critique</span>
+                <p>This code crashes if the file can't be found, can't be opened (corrupted?) or can't be read (not text?). To handle that we need <b>exception handling</b>, which is coming later.</p>
+            </aside>
+
+    </section>
+
+    <section class="note-section" id="sec-writing">
+
+        <h2>Writing and Appending</h2>
+
+            <table>
+                <thead><tr><th>Mode</th><th>Meaning</th></tr></thead>
+                <tbody>
+                    <tr><td><code>"r"</code></td><td>read only</td></tr>
+                    <tr><td><code>"w"</code></td><td>write only - <b>erases</b> whatever was in the file before</td></tr>
+                    <tr><td><code>"a"</code></td><td>append - adds to the end and keeps the old contents</td></tr>
+                    <tr><td><code>"b"</code></td><td>binary (non-text) files, e.g. <code>"rb"</code></td></tr>
+                </tbody>
+            </table>
+            <div class="code-block">
+                <div class="code-title">powers.py</div>
+                <pre><code># Write a file of powers of numbers
+with open("powers.txt", "w") as outfile:
+    for i in range(1, 11):
+        outfile.write(str(i) + " " + str(i ** 2) + " " + str(i ** 3) + "\n")</code></pre>
+            </div>
+            <p><code>write()</code> only takes strings, and doesn't add a new line for you, so add <code>"\n"</code> yourself. Each write goes after the last one.</p>
+            <div class="code-block">
+                <div class="code-title">append.py</div>
+                <pre><code>with open("powers.txt", "a") as outfile:
+    outfile.write("This line goes on the end\n")</code></pre>
+            </div>
+
+    </section>
+
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">Files (Canvas Week 7)</p>
+    <p class="status-bar-field">19 October 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1117_index.html">Back to CS1117 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
