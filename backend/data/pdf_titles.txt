@@ -1,0 +1,26 @@
+## Titles for PDF files in the module index pages
+## Without a line here, a PDF shows its filename in the index (HTML pages use their <title> instead)
+## Comments are allowed, just have the first character be a hashtag!!!
+## FORMAT: path/from/repo/root.pdf, Title shown in the index
+
+CS1106/week_1/15_september_2026.pdf, 15 September 2026 (PDF)
+CS1106/week_1/16_september_2026.pdf, 16 September 2026 (PDF)
+
+CS1111/week_1/14_september_2026.pdf, 14 September 2026 (PDF)
+CS1111/week_1/16_september_2026.pdf, 16 September 2026 (PDF)
+CS1111/week_2/21_september_2026.pdf, 21 September 2026 (PDF)
+CS1111/week_2/23_september_2026.pdf, 23 September 2026 (PDF)
+CS1111/week_3/28_september_2026.pdf, 28 September 2026 (PDF)
+
+CS1112/week_2/25_september_2026.pdf, Lecture 1 and 2 - 25 September 2026 (PDF)
+
+CS1115/week_1/15_september_2026.pdf, Lecture 1 - 15 September 2026 (PDF)
+CS1115/week_1/17_september_2026.pdf, Lecture 2 - 17 September 2026 (PDF)
+CS1115/week_2/22_september_2026.pdf, Lecture 3 - 22 September 2026 (PDF)
+CS1115/week_2/24_september_2026.pdf, Lecture 4 - 24 September 2026 (PDF)
+
+CS1117/week_1/14_september_2026.pdf, 14 September 2026 (PDF)
+CS1117/week_1/14_september_2026_1.pdf, 14 September 2026 (PDF - part 2)
+CS1117/week_2/21_september_2026.pdf, 21 September 2026 (PDF)
+CS1117/week_3/28_september_2026.pdf, 28 September 2026 (PDF)
+CS1117/week_3/28_september_2026_1.pdf, 28 September 2026 (PDF - part 2)

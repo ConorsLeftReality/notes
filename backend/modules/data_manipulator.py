@@ -243,7 +243,7 @@ def write_lecture_notes_html(date,lecture_module,week_selected,data):
     filepath = f"{lecture_module}/{week_selected}/{filename}"
 
     ## (5b) Write data to file under filename
-    with open(filepath, "w") as f:
+    with open(filepath, "w", encoding="utf-8") as f:
         f.write(data)
         f.close()
 
@@ -253,7 +253,7 @@ def write_index_file_to_module(lecture_module,data):
     ## (6a) Write Index page to folder
         filename = f"{(lecture_module).lower()}_index.html"
         filepath = f"{lecture_module}/{filename}"
-        with open(filepath, "w") as f:
+        with open(filepath, "w", encoding="utf-8") as f:
             f.write(data)
             f.close()
         print("<<< SYSTEM >>> SUCCESS IN INDEX FILE OVERWRITE")
