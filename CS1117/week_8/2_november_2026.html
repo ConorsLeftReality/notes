@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#c0c0c0">
+<title>Dictionaries and List Comprehensions (Canvas Week 9)</title>
+<link rel="stylesheet" href="../../win95.css">
+<link rel="stylesheet" href="../../notes.css">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Dictionaries and List Comprehensions (Canvas Week 9) - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Dictionaries and List Comprehensions (Canvas Week 9)</h1>
+    <p class="note-meta">2 November 2026 &middot; CS1117 &middot; Dr. Aisling O'Driscoll &middot; Slides: <a href="https://ucc.instructure.com/courses/95076/files/11035554">Dictionaries</a>, <a href="https://ucc.instructure.com/courses/95076/files/11035553">List Comprehensions</a></p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-dicts">Dictionaries</a></li>
+        <li><a href="#sec-comprehensions">List Comprehensions</a></li>
+
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-dicts">
+
+        <h2>Dictionaries</h2>
+            <aside class="callout">
+                <span class="callout-title">Note</span>
+                <p>No notes were taken in this lecture, so this page was written up from the slides afterwards. Most of the code on the slides is in images, so the examples here are written to match them.</p>
+            </aside>
+            <p>A dictionary stores <b>key: value</b> pairs (also called a hash table or associative array). You look things up by key instead of by position.</p>
+            <div class="code-block">
+                <div class="code-title">dictionaries.py</div>
+                <pre><code>d = {"duck": "water", "horse": "land"}
+
+d["duck"]          # "water"
+d["back"]          # KeyError - the key doesn't exist
+d.get("back", "?") # "?" - get() gives a default instead of crashing
+
+del d["horse"]     # d is now {"duck": "water"}
+d["back"] = "rug"  # insert a new key
+d["duck"] = "duik" # overwrite an existing key</code></pre>
+            </div>
+
+            <h3>Going through a dictionary</h3>
+            <div class="code-block">
+                <div class="code-title">traversing.py</div>
+                <pre><code>d = {"duck": "water", "horse": "land", "back": "rug"}
+
+d.keys()    # the keys:   "duck", "horse", "back"
+d.values()  # the values: "water", "land", "rug"
+d.items()   # the pairs:  ("duck", "water"), ("horse", "land"), ("back", "rug")
+
+for animal, place in d.items():
+    print(animal, "lives on", place)
+
+if "duck" in d:   # 'in' checks the keys
+    print("found")</code></pre>
+            </div>
+            <p><code>keys()</code>, <code>values()</code> and <code>items()</code> give a <b>view</b> of the dictionary rather than a copy. Use a <code>for</code> loop to process them (or <code>list()</code> to turn one into a list).</p>
+
+            <h3>Example: letter frequency</h3>
+            <div class="code-block">
+                <div class="code-title">letter_frequency.py</div>
+                <pre><code>text = "wuthering heights"
+freq = {}
+for letter in text:
+    if letter.isalpha():
+        freq[letter] = freq.get(letter, 0) + 1   # add 1 to its count
+
+total = sum(freq.values())
+for letter, count in sorted(freq.items()):
+    print(letter, round(count / total * 100, 1), "%")</code></pre>
+            </div>
+            <p>The slides also use a dictionary to translate Wuthering Heights into <b>Morse code</b>: the keys are letters and the values are their Morse codes, e.g. <code>{"a": ".-", "b": "-...", ...}</code>.</p>
+
+    </section>
+
+    <section class="note-section" id="sec-comprehensions">
+
+        <h2>List Comprehensions</h2>
+
+            <p>A list comprehension builds a new list from another in one line. It's square brackets around an expression, a <code>for</code> clause, then optionally <code>for</code>/<code>if</code> clauses. It always gives you back a list.</p>
+            <div class="code-block">
+                <div class="code-title">syntax.py</div>
+                <pre><code>new_list = [expression for item in old_list if condition]
+
+# is the same as:
+new_list = []
+for item in old_list:
+    if condition:          # the 'if' part is called a filter, and is optional
+        new_list.append(expression)</code></pre>
+            </div>
+            <div class="code-block">
+                <div class="code-title">squares.py</div>
+                <pre><code># Squares of 1 to 10, the long way
+squares = []
+for x in range(1, 11):
+    squares.append(x ** 2)
+
+# The same with a list comprehension
+squares = [x ** 2 for x in range(1, 11)]
+
+# Only the odd squares (with a filter)
+odd_squares = [x ** 2 for x in range(1, 11) if x % 2 == 1]   # [1, 9, 25, 49, 81]
+
+# Nested loops
+pairs = [(x, y) for x in range(3) for y in range(3)]</code></pre>
+            </div>
+            <p><b>When to use one:</b> when it's short and still easy to read. If it gets long or complicated, a normal loop is clearer.</p>
+
+    </section>
+
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">Dictionaries and List Comprehensions (Canvas Week 9)</p>
+    <p class="status-bar-field">2 November 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1117_index.html">Back to CS1117 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>

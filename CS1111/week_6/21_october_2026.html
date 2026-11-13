@@ -28,7 +28,8 @@
         <ul class="list-arrow">
         <li><a href="#sec-intro">Information</a></li>
         <li><a href="#sec-registers">Samphire Registers</a></li>
-        
+        <li><a href="#sec-howto">How To: Writing Samphire Programs</a></li>
+
         <!--
         <li><a href="#sec-id">SECTION_NAME</a></li>
         -->
@@ -104,8 +105,91 @@
                 src="../files/samphire_move_instructions_1.png">
             <figcaption>Samphire Move Instructions</figcaption>
         </figure>
-            
 
+
+
+    </section>
+
+    <section class="note-section" id="sec-howto">
+
+        <h2>How To: Writing Samphire Programs</h2>
+            <p>Step-by-step recipes for the instructions from this lecture, based on the lecture's example programs (moves, increment/decrement, arithmetic/logic) and the labs.</p>
+
+            <h3>How to write and run a program</h3>
+                <ol>
+                    <li>Type your program into the Samphire editor, one instruction per line</li>
+                    <li>Use <code>;</code> for comments - everything after it on the line is ignored</li>
+                    <li><b>All numbers are hexadecimal</b>: <code>10</code> means sixteen, <code>0A</code> means ten</li>
+                    <li>Finish the program with <code>end</code></li>
+                    <li>Assemble it, then <b>step</b> through one instruction at a time to watch the registers and RAM change, or run it continuously</li>
+                </ol>
+
+            <h3>How to move data (<code>mov</code>)</h3>
+                <p>The destination always comes <b>first</b>: <code>mov destination, source</code>. All of these use the same mnemonic, but they're different machine instructions with different opcodes:</p>
+                <table>
+                    <thead>
+                        <tr><th>Instruction</th><th>Type</th><th>Opcode</th><th>What it does</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>mov al, 40</code></td><td>immediate</td><td>D0</td><td>put the value 40 into al</td></tr>
+                        <tr><td><code>mov bl, [03]</code></td><td>direct (read)</td><td>D1</td><td>copy the value at address 03 into bl</td></tr>
+                        <tr><td><code>mov [80], al</code></td><td>direct (write)</td><td>D2</td><td>copy al into address 80</td></tr>
+                        <tr><td><code>mov cl, [al]</code></td><td>register indirect (read)</td><td>D3</td><td>copy the value at the address held <i>in</i> al into cl</td></tr>
+                        <tr><td><code>mov [dl], bl</code></td><td>register indirect (write)</td><td>D4</td><td>copy bl into the address held <i>in</i> dl</td></tr>
+                    </tbody>
+                </table>
+
+                <aside class="callout">
+                    <span class="callout-title">NOT ALLOWED in Samphire</span>
+                    <ul>
+                        <li><code>mov al, bl</code> - no register-to-register moves (use <code>push bl</code> then <code>pop al</code> instead)</li>
+                        <li><code>mov [cl], 80</code> - you can't put a number straight into memory. Put it in a register first, then move the register into memory</li>
+                    </ul>
+                </aside>
+
+            <h3>How to add or take away 1 (<code>inc</code> / <code>dec</code>)</h3>
+                <div class="code-block">
+                    <div class="code-title">increment_decrement.asm</div>
+                    <pre><code>mov al, 10
+inc al      ; al = 11
+inc al      ; al = 12
+dec al      ; al = 11
+dec al      ; al = 10
+end</code></pre>
+                </div>
+                <p><code>inc al</code> does the same as <code>add al, 01</code> but takes less memory, and usually has its own hardware support, so it skips the ALU. (An example of Amdahl's law: make the common case fast.)</p>
+
+            <h3>How to do arithmetic and logic</h3>
+                <ol>
+                    <li>Put the first value in a register: <code>mov al, 10</code></li>
+                    <li>Apply the operation with the register <b>first</b>: <code>add al, 05</code> (immediate, opcode B0) or <code>add al, bl</code> (register, opcode A0)</li>
+                    <li>The answer replaces the first operand, so the old value of al is lost. <b>If you need it later, copy it somewhere first</b></li>
+                </ol>
+                <p>Available: <code>add</code>, <code>sub</code>, <code>mul</code>, <code>div</code>, <code>mod</code> (remainder), and the bitwise <code>and</code>, <code>or</code>, <code>xor</code>, <code>not</code>.</p>
+                <div class="code-block">
+                    <div class="code-title">arithmetic_logic.asm</div>
+                    <pre><code>; Calculate 10*4+3 (all hex)
+mov al, 10
+mul al, 04   ; al = 40
+add al, 03   ; al = 43
+
+; Logic works bit by bit
+mov cl, 03   ; 0000 0011
+mov dl, F0   ; 1111 0000
+or  cl, dl   ; cl = F3 (1111 0011)
+not cl       ; cl = 0C (0000 1100)
+end</code></pre>
+                </div>
+
+            <h3>How to write a character to the screen (VDU)</h3>
+                <ol>
+                    <li>The screen is RAM addresses <b>C0 to FF</b>. Whatever ASCII code you put there gets displayed</li>
+                    <li>Keep the next screen address in a register: <code>mov al, C0</code></li>
+                    <li>Put the character's ASCII code in another register: <code>mov bl, 48</code> ('H')</li>
+                    <li>Write it with a register indirect move: <code>mov [al], bl</code></li>
+                    <li>Move to the next position with <code>inc al</code>, and repeat</li>
+                </ol>
+                <p>This is how Lab 2 prints "Hello" (48, 65, 6C, 6C, 6F).</p>
 
     </section>
     

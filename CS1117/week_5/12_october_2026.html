@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#c0c0c0">
+<title>While Loops (Canvas Week 6)</title>
+<link rel="stylesheet" href="../../win95.css">
+<link rel="stylesheet" href="../../notes.css">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">While Loops (Canvas Week 6) - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>While Loops (Canvas Week 6)</h1>
+    <p class="note-meta">12 October 2026 &middot; CS1117 &middot; Dr. Luca Longo &amp; Ciar&aacute;n &Oacute; Floinn &middot; Slides: <a href="https://ucc.instructure.com/courses/95076/files/10922954">Here</a></p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-intro">While Loops vs For Loops</a></li>
+        <li><a href="#sec-control">The Control Variable and Infinite Loops</a></li>
+        <li><a href="#sec-examples">Examples</a></li>
+        <li><a href="#sec-accumulators">Accumulators</a></li>
+
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-intro">
+
+        <h2>While Loops vs For Loops</h2>
+            <aside class="callout">
+                <span class="callout-title">Note</span>
+                <p>No notes were taken in this lecture, so this page was written up from the slides afterwards. Most of the code on the slides is in images, so the examples here are written to match them.</p>
+            </aside>
+            <p><b>Rule of thumb:</b> use a <code>while</code> loop when you're not sure how many times the code needs to run (an <b>indefinite</b> loop), and a <code>for</code> loop when you want to repeat it a set number of times.</p>
+            <div class="code-block">
+                <div class="code-title">while_syntax.py</div>
+                <pre><code>while condition:
+    body</code></pre>
+            </div>
+            <ul>
+                <li>The condition is a Boolean expression, just like in an <code>if</code> statement</li>
+                <li>The body keeps running as long as the condition is <b>True</b>. When it becomes False, the loop stops</li>
+                <li>The condition is checked at the <b>top</b> of the loop (a pre-test), so if it's False to begin with, the body never runs at all</li>
+            </ul>
+
+    </section>
+
+    <section class="note-section" id="sec-control">
+
+        <h2>The Control Variable and Infinite Loops</h2>
+
+            <div class="code-block">
+                <div class="code-title">counting.py</div>
+                <pre><code>i = 0            # set up the control variable before the loop
+while i &lt;= 10:
+    print(i, end=" ")
+    i += 1       # same as i = i + 1 - change it every time round</code></pre>
+            </div>
+            <p><code>i</code> is the <b>control variable</b> (you can call it anything). You have to set it up before the loop and change it inside the loop, otherwise the condition never changes.</p>
+            <aside class="callout">
+                <span class="callout-title">Infinite loops</span>
+                <p>If you forget the <code>i += 1</code>, <code>i</code> stays 0, the condition <code>i &lt;= 10</code> is always True, and the loop never ends. If you get stuck in one: press <b>Ctrl+C</b> first, then Ctrl+Alt+Delete if that doesn't work, then fix your program!</p>
+            </aside>
+
+    </section>
+
+    <section class="note-section" id="sec-examples">
+
+        <h2>Examples</h2>
+
+            <h3>Letting the user choose the limit</h3>
+            <div class="code-block">
+                <div class="code-title">counting4.py</div>
+                <pre><code>print("Printing even numbers")
+limit = int(input("Provide the last number &gt;&gt;&gt; "))
+i = 0
+while i &lt;= limit:
+    print(i, end=" ")
+    i += 2</code></pre>
+            </div>
+
+            <h3>Bouncing ball</h3>
+                <p>Ask for a starting height. The ball bounces to half its height each time. Print each rebound, stopping once the ball is 1mm (0.001m) or less off the ground.</p>
+            <div class="code-block">
+                <div class="code-title">bouncingBall.py</div>
+                <pre><code>SMALL_NUMBER = 0.001   # 1mm in metres
+
+print("This program computes the number and height of the rebounds of a dropped ball")
+height = float(input("What is the starting height? "))
+bounce_count = 0
+
+while height &gt;= SMALL_NUMBER:
+    height = height / 2
+    bounce_count += 1
+    print("Rebound #", bounce_count, ":", round(height, 6), "m")</code></pre>
+            </div>
+                <p>Starting at 10m this prints 14 rebounds, from 5.0m down to 0.00061m.</p>
+
+            <h3>Mobile data warning</h3>
+                <p>Keep asking how much data was used today, subtracting it from what's left, until you hit the warning level - then say whether you were warned in time.</p>
+            <div class="code-block">
+                <div class="code-title">DataUsage.py</div>
+                <pre><code>available_data = int(input("How much data did you purchase? "))
+warning_level = int(input("When would you like to trigger a warning? "))
+
+while available_data &gt; warning_level:
+    usage_today = int(input("How much did you use today? "))
+    available_data -= usage_today   # same as available_data = available_data - usage_today
+    print("You have " + str(available_data) + "MB left.")
+
+if available_data &lt;= 0:
+    print("OOPS you used up your data before I could warn you.")
+else:
+    print("WARNING you are about to reach your usage limit")</code></pre>
+            </div>
+
+    </section>
+
+    <section class="note-section" id="sec-accumulators">
+
+        <h2>Accumulators</h2>
+
+            <p>An <b>accumulator</b> is a variable that stores a result as you go round a loop, e.g. a running total. Give it a meaningful name.</p>
+            <div class="code-block">
+                <div class="code-title">factorial.py</div>
+                <pre><code>factorial = 1      # accumulator starts at 1 for multiplying (0 for adding)
+i = 1
+while i &lt;= 5:
+    factorial *= i
+    i += 1
+print(factorial)   # 120, which is 1*2*3*4*5</code></pre>
+            </div>
+
+    </section>
+
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">While Loops (Canvas Week 6)</p>
+    <p class="status-bar-field">12 October 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1117_index.html">Back to CS1117 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
