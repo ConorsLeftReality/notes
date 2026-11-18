@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lecture 18 - CSS Text and Font Properties</title>
+
+    <link rel="stylesheet" href="../../win95.css">
+    <link rel="stylesheet" href="../../notes.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#c0c0c0">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Lecture 18 - CSS Text and Font Properties - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Lecture 18 - CSS Text and Font Properties</h1>
+    <p class="note-meta">17 November 2026 &middot; CS1115 &middot; Derek Bridge &middot; Slides: <a href="https://www.cs.ucc.ie/~dgb/courses/WD/lectures/WD1_18.html">Here</a></p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-intro">Text Properties</a></li>
+        
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+        
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-intro">
+    
+        <h2>Text Properties</h2>
+            <p>We can set the properties of text, such as...</p>
+            <ul>
+                <li>color: blue;</li>
+                <li>letter-spacing: 1em;</li>
+                <li>line-height: 90%;</li>
+                <li>text-align: right;</li>
+                <li>text-indent: 1em;</li>
+                <li>text-transform: uppercase;</li>
+                <li>word-spacing: 2em;</li>
+                <li>text-decoration: underline;</li>
+                <li>text-shadow: 2px 1px gray;</li>
+            </ul>
+
+            <p>For example, here is how to make newspaper text (in a very basic form)</p>
+
+            <div class="code-block">
+                <div class="code-title">newspaperish.css</div>
+                <pre><code>main {
+    column-width: 20em;
+    column-gap: 2em;
+    column-rule: 1px solid gray;
+}
+    
+main h1 {
+    column-span: all;
+}
+    
+figure {
+    break-inside: avoid;
+}
+    
+img {
+    max-width: 100%;
+}</code></pre>
+            </div>
+
+            <h3>Hyphenation</h3>
+                <p>
+                    What if a word is too long for a column? Does it stop, does it continue, does it split itself?
+                    Hyphenation is important for this
+                </p>
+                <p>Either...</p>
+                <ul>
+                    <li>Set <code>hyphens: manual;</code> and the container, and put &amp;shy; wherever a word can be split in the HTML</li>
+                    <li>OR set <code>hyphens: auto;</code> on the container and make sure the container has, or inherits, <i>a lang attribute</i></li>
+                </ul>
+        
+    </section>
+
+    <section class="note-section" id="sec-id">
+            
+        <h2>Font Properties</h2>
+                <h3>Font Sizing</h3>
+                <p>There are also various font properties</p>
+                <ul>
+                    <li>font-family: "Times New Roman";</li>
+                    <li>font-size: 12px;</li>
+                    <li>font-style: italic;</li>
+                    <li>font-weight: bold;</li>
+                </ul>
+
+                <p>In CSS, we define the font-size. This can either be absolute or relative font sizing</p>
+                <p>For sizing, use pixels for <code>:root { font-size: 16px }</code> and use <code>em</code> and <code>rem</code> sizing for other font sizing</p>
+                <p>Note: YOU DO NOT NEED TO SPECIFY ROOT FONT SIZE</p>
+
+            <h3>Fonts</h3>
+                <ul>
+                    <li>Some fonts are <b>proportional</b>, others are <b>monospace</b></li>
+                    <li>Some fonts have <b>serifs (with squigly bits)</b>; others are <b>sans-serifs (without squigly bits)</b></li>
+                </ul>
+
+                <p>
+                    <b>A problem that we have</b> is that every person has different fonts on their computer. 
+                    To account for this, we create a <i>font stack</i>. For example, <code>font-family: Verdana, Geneva, Tahoma, sans-serif;</code>
+                </p>
+                <p>
+                    <b>BUT</b> this isnt what we want, we want to be fancy fucks. We can use 
+                    <code>@font-face { font-family: MuseoSans; src: url('fonts/museosans-500-webfont.woff2') format('woff2') }</code>
+                </p>
+                <h4>Think about copyright, think about readability</h4>
+                <p>Thankfully, there are a lot of free fonts!!!</p>
+                <ul>
+                    <li><a href="https://fontlibrary.org/">https://fontlibrary.org/</a></li>
+                    <li><a href="https://fonts.google.com/">https://fonts.google.com/</a></li>
+                    <li><a href="https://www.freefaces.gallery/">https://www.freefaces.gallery/</a></li>
+                </ul>
+
+    </section>
+
+    
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">Lecture 18 - CSS Text and Font Properties</p>
+    <p class="status-bar-field">17 November 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1115_index.html">Back to CS1115 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
+        
