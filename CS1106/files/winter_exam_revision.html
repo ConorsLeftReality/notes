@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CS1106 - Winter Exam Revision</title>
+
+    <link rel="stylesheet" href="../../win95.css">
+    <link rel="stylesheet" href="../../notes.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#c0c0c0">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">CS1106 - Winter Exam Revision - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>CS1106 - Winter Exam Revision</h1>
+    <p class="note-meta">Revision &middot; CS1106 &middot; Based on the Winter 2023, 2024 and 2025 papers</p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-format">Exam Format</a></li>
+        <li><a href="#sec-er">Q1 - ER Diagrams</a></li>
+        <li><a href="#sec-q2">Q2 - One Table (DDL and DML)</a></li>
+        <li><a href="#sec-q3">Q3 - Queries (the big one)</a></li>
+
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-format">
+
+        <h2>Exam Format</h2>
+            <p><b>1.5 hours, 70 marks, answer ALL questions.</b> No calculators. It's been the exact same 3 questions for the last 3 years:</p>
+            <ul>
+                <li><b>Q1 (10 marks)</b> - draw an <b>ER diagram</b> from a written scenario</li>
+                <li><b>Q2 (18 marks)</b> - one table: CREATE TABLE, INSERT, UPDATE, DELETE and simple SELECTs</li>
+                <li><b>Q3 (42 marks)</b> - 6 queries (7 marks each) over a 3-4 table schema. <b>This is 60% of the paper</b></li>
+            </ul>
+            <p>Past scenarios:</p>
+            <ul>
+                <li><b>2023:</b> travellers/trips/locations (ER), restaurant reviews (Q2), hotel bookings (Q3)</li>
+                <li><b>2024:</b> university modules/lecturers/students (ER), Christmas presents (Q2), movies/actors/castings (Q3)</li>
+                <li><b>2025:</b> TV series/episodes/characters/actors (ER), Gruff Tours trips (Q2), world cities/countries/languages (Q3)</li>
+            </ul>
+
+    </section>
+
+    <section class="note-section" id="sec-er">
+
+        <h2>Q1 - ER Diagrams</h2>
+            <p>Read the scenario and pick out the <b>nouns</b> (entities) and the <b>verbs</b> between them (relationships)</p>
+            <ul>
+                <li>Every entity gets its attributes and a <b>key</b> (underline it)</li>
+                <li>Label every relationship with its cardinality: <b>1:1</b>, <b>1:N</b> or <b>M:N</b></li>
+                <li>Watch for attributes that belong to a <b>relationship</b>, not an entity, e.g. a traveller's score for a location (2023), the character an actor plays in a series (2025)</li>
+                <li>Watch for "but not the same ones every semester" type wording - that usually means the relationship needs a date/semester on it</li>
+            </ul>
+            <p>See <a href="../week_10/17_november_2026.html">Lecture 11 - Designing Databases</a> and <a href="../week_10/18_november_2026.html">Lecture 12 - Normalisation</a></p>
+
+    </section>
+
+    <section class="note-section" id="sec-q2">
+
+        <h2>Q2 - One Table (DDL and DML)</h2>
+            <p>Easy marks, 3 each. Know the syntax off by heart. See <a href="../week_5/13_october_2026.html">Lecture 6</a></p>
+            <div class="code-block">
+                <div class="code-title">q2_patterns.sql</div>
+                <pre><code>CREATE TABLE trips (
+    id INTEGER PRIMARY KEY,
+    title VARCHAR(100) NOT NULL,
+    dep_date DATE,
+    length INTEGER,
+    places INTEGER,
+    price DECIMAL(7,2)
+);
+
+INSERT INTO trips VALUES
+    (1, 'Treasures of Sicily', '2026-07-04', 7, 30, 1299.99),
+    (2, 'Rome in a Weekend', '2026-09-12', 3, 20, 549.00),
+    (3, 'Lakes of Kerry', '2027-01-01', 5, 25, 799.50);
+
+UPDATE trips
+SET price = price * 2
+WHERE dep_date BETWEEN '2026-07-01' AND '2026-07-31';
+
+DELETE FROM trips
+WHERE dep_date &lt; '2024-01-01';
+
+SELECT *
+FROM presents
+WHERE occasion = 'birthday'
+ORDER BY price_limit DESC;</code></pre>
+            </div>
+            <p>Increase by 5% = <code>SET rating = rating * 1.05</code>. Dates are always <code>'YYYY-MM-DD'</code> in quotes.</p>
+            
+            <aside class="callout">
+                <span class="callout-title">2025 had a design part (8 marks)</span>
+                <p>"Add customers who book trips". A customer can book many trips and a trip has many customers, so it's <b>M:N</b>: make a <code>customers(id, name, address)</code> table and a <b>link table</b> <code>bookings(customer_id, trip_id)</code> with both as the key, and each one a foreign key to its table.</p>
+            </aside>
+
+    </section>
+
+    <section class="note-section" id="sec-q3">
+
+        <h2>Q3 - Queries (the big one)</h2>
+            <p>The same handful of patterns come up every year. If you can do these, you can do Q3:</p>
+            <ul>
+                <li><b>Join + filter + ORDER BY</b> (often 2 sort keys, one DESC). Use <code>DISTINCT</code> if they say "each hotel should appear at most once". See <a href="../week_6/20_october_2026.html">Lecture 7</a> and <a href="../week_7/27_october_2026.html">Lecture 8</a></li>
+                <li><b>GROUP BY + HAVING</b> - "for each city/year... only those with at least 1000". See <a href="../week_4/6_october_2026.html">Lecture 5</a></li>
+                <li><b>Biggest/smallest</b> - sometimes "do not use MAX", so use <code>&gt;= ALL</code> or ORDER BY + LIMIT 1</li>
+                <li><b>Pairs</b> - self join the table to itself, with <code>a.id &lt; b.id</code> so each pair only shows once</li>
+                <li><b>"Did NOT..."</b> - <code>NOT IN (subquery)</code>. See <a href="../week_9/10_november_2026.html">Lecture 10</a></li>
+                <li><b>Compare to an aggregate</b> - per capita GNP bigger than the English-speaking average: subquery that works out the average</li>
+                <li><b>Dates</b> - a month is a BETWEEN, and two bookings <b>overlap</b> if each one starts before the other ends</li>
+            </ul>
+            <div class="code-block">
+                <div class="code-title">q3_patterns.sql</div>
+                <pre><code>-- Largest city WITHOUT using MAX (2025)
+SELECT name
+FROM cities
+WHERE population &gt;= ALL (SELECT population FROM cities);
+
+-- Pairs of cities with the same name in different countries (2025)
+SELECT c1.name, c1.country_code, c2.country_code
+FROM cities AS c1 JOIN cities AS c2
+    ON c1.name = c2.name AND c1.country_code &lt; c2.country_code;
+
+-- Films from 1961 NOT starring Gregory Peck (2024)
+SELECT title, score
+FROM movies
+WHERE yr = 1961
+AND id NOT IN (SELECT c.movieid
+               FROM castings AS c JOIN actors AS a ON c.actorid = a.id
+               WHERE a.name = 'Gregory Peck');
+
+-- "Good" years: 10 or more films scoring 7.5+ (2024)
+SELECT yr, COUNT(*)
+FROM movies
+WHERE yr BETWEEN 1960 AND 2000 AND score &gt;= 7.5
+GROUP BY yr
+HAVING COUNT(*) &gt;= 10;
+
+-- Overlapping bookings for the same guest in the same hotel (2023)
+SELECT h.hotel_name, g.guest_name, b1.arr_date, b1.dep_date, b2.arr_date, b2.dep_date
+FROM bookings AS b1
+    JOIN bookings AS b2 ON b1.hotel_num = b2.hotel_num
+                       AND b1.guest_num = b2.guest_num
+                       AND b1.booking_num &lt; b2.booking_num
+    JOIN hotels AS h ON b1.hotel_num = h.hotel_num
+    JOIN guests AS g ON b1.guest_num = g.guest_num
+WHERE b1.arr_date &lt; b2.dep_date AND b2.arr_date &lt; b1.dep_date;</code></pre>
+            </div>
+            
+            <aside class="callout">
+                <span class="callout-title">Tip</span>
+                <p>7 marks each, so even a half-right query gets marks. Write the FROM/JOIN part first, then WHERE, then GROUP BY/ORDER BY.</p>
+            </aside>
+
+    </section>
+
+    <!-- SECTION TEMPLATE -->
+    <!--
+
+    <section class="note-section" id="sec-id">
+
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+
+    </section>
+
+    -->
+
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+
+    -->
+
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+
+        </code></pre>
+    </div>
+
+    -->
+
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">CS1106 - Winter Exam Revision</p>
+    <p class="status-bar-field">Winter Exams 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1106_index.html">Back to CS1106 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>

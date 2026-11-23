@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MA1001 - Winter Exam Revision</title>
+
+    <link rel="stylesheet" href="../../win95.css">
+    <link rel="stylesheet" href="../../notes.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#c0c0c0">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">MA1001 - Winter Exam Revision - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>MA1001 - Winter Exam Revision</h1>
+    <p class="note-meta">Revision &middot; MA1001 &middot; Based on the Winter 2023, 2024 and 2025 papers</p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-format">Exam Format</a></li>
+        <li><a href="#sec-q1-q3">Q1 to Q3</a></li>
+        <li><a href="#sec-q4-q6">Q4 to Q6</a></li>
+
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-format">
+
+        <h2>Exam Format</h2>
+            <p><b>1.5 hours, answer ALL 6 questions</b> (10 marks each in 2025). <b>No calculators.</b> A formula sheet (derivatives, integrals, trig) is given at the back.</p>
+            
+            <aside class="callout">
+                <span class="callout-title">The same 6 questions every year</span>
+                <p>2023, 2024 and 2025 all had the exact same 6 types of question in the same order. Practise these 6 and you've practised the exam.</p>
+            </aside>
+            <ol>
+                <li>Piecewise function: values, increasing/decreasing, sketch it, sketch a transformed version</li>
+                <li>Solve a log equation</li>
+                <li>Equation of a tangent line</li>
+                <li>Related rates</li>
+                <li>Critical points, increasing/decreasing, sketch</li>
+                <li>Which function satisfies this differential equation?</li>
+            </ol>
+            <p>See the <a href="https://claude.ai/artifact/XRTfX421EV9iZq4aiqbiQs">MA1001 Revision Deck</a> and <a href="../week_7/26_october_2026.html">Study Sesh 1</a></p>
+
+    </section>
+
+    <section class="note-section" id="sec-q1-q3">
+
+        <h2>Q1 to Q3</h2>
+            <h3>Q1 - Piecewise functions</h3>
+                <p>To get f(a), find which piece's range a falls into (watch &lt; vs &le;). Decreasing on an interval = derivative of that piece is negative there.</p>
+                <p><b>g(x) = f(&minus;x) + c</b>: reflect the graph in the <b>y-axis</b>, then shift it <b>up by c</b>.</p>
+                <p>E.G. (2024) f = x&sup2; for x &lt; &minus;1, 0 for &minus;1 &le; x &lt; 1, ln x for x &ge; 1. So f(&minus;1) = 0, f(1) = ln 1 = 0, and on (&minus;&infin;, &minus;1), f' = 2x &lt; 0, so it's decreasing.</p>
+            <h3>Q2 - Log equations</h3>
+                <p>Get all the logs on one side, combine with log a + log b = log(ab) or log a &minus; log b = log(a/b), then log<sub>2</sub>(stuff) = 3 means stuff = 2<sup>3</sup> = 8.</p>
+                <p><b>Always check the answers in the original equation</b> - you can't take the log of a negative number, so usually one answer gets thrown out.</p>
+                <p>E.G. (2024) log<sub>2</sub>(x+1) = 3 &minus; log<sub>2</sub>(x&minus;1) &rarr; (x+1)(x&minus;1) = 8 &rarr; x&sup2; = 9 &rarr; x = 3 (x = &minus;3 is out)</p>
+                <p>E.G. (2025) log<sub>2</sub>(x&sup2;&minus;6x) = 3 + log<sub>2</sub>(1&minus;x) &rarr; x&sup2;&minus;6x = 8(1&minus;x) &rarr; x&sup2;+2x&minus;8 = 0 &rarr; x = 2 or &minus;4. Need 1&minus;x &gt; 0, so <b>x = &minus;4</b></p>
+            <h3>Q3 - Tangent lines</h3>
+                <p>Point: y<sub>0</sub> = f(a). Slope: m = f'(a) (it's always a <b>chain rule</b> one). Line: y &minus; y<sub>0</sub> = m(x &minus; a).</p>
+                <p>E.G. (2024) y = e<sup>sin x</sup> at x = &pi;: y = e<sup>0</sup> = 1, y' = cos x &middot; e<sup>sin x</sup> = &minus;1, so <b>y = &minus;x + &pi; + 1</b></p>
+
+    </section>
+
+    <section class="note-section" id="sec-q4-q6">
+
+        <h2>Q4 to Q6</h2>
+            <h3>Q4 - Related rates</h3>
+                <ol>
+                    <li>Draw it and name the changing things (x, y, &theta;, shadow s...)</li>
+                    <li>Write an equation linking them (Pythagoras, similar triangles, tan &theta;)</li>
+                    <li>Differentiate both sides with respect to <b>t</b></li>
+                    <li>Only <b>then</b> plug in the numbers</li>
+                </ol>
+                <p>E.G. (2024) circle x&sup2; + y&sup2; = 100&sup2; &rarr; 2x x' + 2y y' = 0 &rarr; y' = &minus;(60)(10)/80 = <b>&minus;7.5 m/s</b></p>
+                <p>E.G. (2025) streetlight 4.5m, car 1.8m, shadow s, distance x. Similar triangles: 4.5/(x+s) = 1.8/s &rarr; s = 2x/3 &rarr; s' = (2/3)(&minus;9) = <b>&minus;6 m/s</b> (shrinking)</p>
+            <h3>Q5 - Critical points and sketching</h3>
+                <p>Set f'(x) = 0 (quotient rule for fractions), then check the sign of f' between the critical points: + = increasing, &minus; = decreasing. Also say what happens as x &rarr; &plusmn;&infin;.</p>
+                <p>E.G. (2024) f = x/(x&sup2;+1), f' = (1&minus;x&sup2;)/(x&sup2;+1)&sup2; = 0 at x = &plusmn;1. Decreasing, increasing, decreasing. Min (&minus;1, &minus;&frac12;), max (1, &frac12;), and f &rarr; 0 at both ends.</p>
+            <h3>Q6 - Checking a differential equation</h3>
+                <p>For each option, work out the <b>left side</b> (df/dx) and the <b>right side</b> separately, and see if they match. More than one can work!</p>
+                <p>E.G. (2025) df/dx = &minus;f + e<sup>&minus;x</sup>. For f = xe<sup>&minus;x</sup>: left = e<sup>&minus;x</sup> &minus; xe<sup>&minus;x</sup>, right = &minus;xe<sup>&minus;x</sup> + e<sup>&minus;x</sup>. Same, so <b>(c) works</b>. The others don't.</p>
+                <p>E.G. (2024) df/dx = &minus;f/x + 3x: both <b>x&sup2;</b> and <b>x&sup2; + 1/x</b> work.</p>
+
+    </section>
+
+    <!-- SECTION TEMPLATE -->
+    <!--
+
+    <section class="note-section" id="sec-id">
+
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+
+    </section>
+
+    -->
+
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+
+    -->
+
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+
+        </code></pre>
+    </div>
+
+    -->
+
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">MA1001 - Winter Exam Revision</p>
+    <p class="status-bar-field">Winter Exams 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../ma1001_index.html">Back to MA1001 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
