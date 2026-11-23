@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CS1112 - Winter Exam Revision</title>
+
+    <link rel="stylesheet" href="../../win95.css">
+    <link rel="stylesheet" href="../../notes.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#c0c0c0">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">CS1112 - Winter Exam Revision - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>CS1112 - Winter Exam Revision</h1>
+    <p class="note-meta">Revision &middot; CS1112 &middot; No past papers in the library - written from the lecture notes</p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-format">Exam Format</a></li>
+        <li><a href="#sec-sets">Sets and Functions</a></li>
+        <li><a href="#sec-relations">Relations</a></li>
+        <li><a href="#sec-logic">Logic</a></li>
+
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-format">
+
+        <h2>Exam Format</h2>
+            
+            <aside class="callout">
+                <span class="callout-title">Note</span>
+                <p>The library has <b>no past papers</b> for CS1112 (the library doesn't publish MCQ papers, so it may be one). Check Canvas or ask Barry O'Sullivan what format it is. This page is just the key facts from the lectures.</p>
+            </aside>
+
+    </section>
+
+    <section class="note-section" id="sec-sets">
+
+        <h2>Sets and Functions</h2>
+            <p>See <a href="../week_3/02_october_2026.html">Lectures 3 and 4</a> and <a href="../week_4/09_october_2026.html">Lectures 5 and 6</a></p>
+            <ul>
+                <li>Order and repeats don't matter in a set. <b>{} and {&empty;} are different</b></li>
+                <li>A &cup; B (either), A &cap; B (both), A \ B (in A not B), A' = U \ A</li>
+                <li>|P(A)| = 2<sup>|A|</sup></li>
+                <li>Partition: non-empty, non-overlapping subsets that cover the whole set</li>
+                <li>De Morgan: (A &cup; B)' = A' &cap; B' and (A &cap; B)' = A' &cup; B'</li>
+                <li>Functions: <b>injective</b> (no two inputs share an output), <b>surjective</b> (every output is hit), <b>bijective</b> (both)</li>
+            </ul>
+
+    </section>
+
+    <section class="note-section" id="sec-relations">
+
+        <h2>Relations</h2>
+            <p>See <a href="../week_6/23_october_2026.html">Lectures 7 and 8</a> and <a href="../week_7/30_october_2026.html">Lectures 9 and 10</a></p>
+            <ul>
+                <li>A relation is a subset of A &times; B</li>
+                <li><b>Reflexive</b> (every x relates to itself), <b>symmetric</b> (xRy means yRx), <b>antisymmetric</b> (xRy and yRx means x = y), <b>transitive</b> (xRy and yRz means xRz)</li>
+                <li><b>Equivalence relation</b> = reflexive + symmetric + transitive. Its classes partition the set</li>
+                <li><b>Partial order</b> = reflexive + antisymmetric + transitive</li>
+            </ul>
+
+    </section>
+
+    <section class="note-section" id="sec-logic">
+
+        <h2>Logic</h2>
+            <p>See <a href="../week_8/6_november_2026.html">Lectures 11 and 12</a>, <a href="../week_9/13_november_2026.html">Lectures 13 and 14</a> and <a href="../week_10/20_november_2026.html">Lectures 15 and 16</a></p>
+            <ul>
+                <li>p &rarr; q is only false when p is true and q is false</li>
+                <li>p &rarr; q &equiv; &not;p &or; q &equiv; &not;q &rarr; &not;p (contrapositive)</li>
+                <li>Tautology (always true), contradiction (always false). Prove equivalence with a truth table</li>
+                <li>An argument is <b>valid</b> if the conclusion is true whenever all the premises are true</li>
+                <li>Bad arguments: <b>affirming the consequent</b> (p &rarr; q, q, so p) and <b>denying the antecedent</b> (p &rarr; q, &not;p, so &not;q)</li>
+            </ul>
+
+    </section>
+
+    <!-- SECTION TEMPLATE -->
+    <!--
+
+    <section class="note-section" id="sec-id">
+
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+
+    </section>
+
+    -->
+
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+
+    -->
+
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+
+        </code></pre>
+    </div>
+
+    -->
+
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">CS1112 - Winter Exam Revision</p>
+    <p class="status-bar-field">Winter Exams 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1112_index.html">Back to CS1112 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>

@@ -4,3 +4,8 @@
 ## FORMAT: MODULECODE, Heading, URL, Link text
 
 MA1001, Revision, https://claude.ai/artifact/XRTfX421EV9iZq4aiqbiQs, MA1001 Revision Deck (slides, weeks 1-11)
+CS1106, Revision, files/winter_exam_revision.html, Winter Exam Revision (from past papers)
+CS1111, Revision, files/winter_exam_revision.html, Winter Exam Revision (from past papers)
+CS1112, Revision, files/winter_exam_revision.html, Winter Exam Revision (from the lectures)
+CS1115, Revision, files/winter_exam_revision.html, Winter Exam Revision (from past papers)
+MA1001, Revision, files/winter_exam_revision.html, Winter Exam Revision (from past papers)

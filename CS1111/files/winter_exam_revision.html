@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CS1111 - Winter Exam Revision</title>
+
+    <link rel="stylesheet" href="../../win95.css">
+    <link rel="stylesheet" href="../../notes.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#c0c0c0">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">CS1111 - Winter Exam Revision - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>CS1111 - Winter Exam Revision</h1>
+    <p class="note-meta">Revision &middot; CS1111 &middot; Based on the Winter 2023 and 2025 papers</p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-format">Exam Format</a></li>
+        <li><a href="#sec-theory">Theory That Keeps Coming Up</a></li>
+        <li><a href="#sec-vm">Virtual Memory and Cloud</a></li>
+        <li><a href="#sec-samphire">Samphire Programs</a></li>
+
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-format">
+
+        <h2>Exam Format</h2>
+            <p><b>1.5 hours, 80 marks, attempt ALL questions</b> (2 questions, 40 marks each). Non-programmable calculators allowed (2025).</p>
+            <ul>
+                <li><b>Q1</b> - lots of short theory parts (a) to (h), 2-12 marks each</li>
+                <li><b>Q2</b> - virtual memory / cloud, then <b>Samphire programs</b> worth 26-30 marks</li>
+            </ul>
+            
+            <aside class="callout">
+                <span class="callout-title">Free marks</span>
+                <p>The <b>exact same number, 7FAC13B4</b>, was asked for big/little endian in both 2023 and 2025. The cloud IaaS/PaaS/SaaS stack question was word-for-word the same too.</p>
+            </aside>
+
+    </section>
+
+    <section class="note-section" id="sec-theory">
+
+        <h2>Theory That Keeps Coming Up</h2>
+            <h3>Abstraction levels (6-12 marks, both years)</h3>
+                <p>From top to bottom: <b>Problem-oriented language</b> &rarr; <b>Assembly language</b> &rarr; <b>Operating system machine</b> &rarr; <b>Instruction Set Architecture (ISA)</b> &rarr; <b>Microarchitecture</b> &rarr; <b>Digital logic</b>. 2-3 sentences each.</p>
+            <h3>Endianness (4-6 marks, both years)</h3>
+                <p>7FAC13B4 = bytes <code>7F AC 13 B4</code>, at addresses n to n+3:</p>
+                <ul>
+                    <li><b>Big Endian:</b> 7F, AC, 13, B4 (most significant byte at the lowest address)</li>
+                    <li><b>Little Endian:</b> B4, 13, AC, 7F (least significant byte at the lowest address)</li>
+                </ul>
+            <h3>Memory (see <a href="../week_4/7_october_2026.html">Lecture 8</a> and <a href="../week_5/12_october_2026.html">Lecture 9</a>)</h3>
+                <ul>
+                    <li><b>DRAM vs SRAM</b> - DRAM is a capacitor, needs refreshing, cheap and dense (main memory). SRAM is flip-flops, no refresh, fast and expensive (cache)</li>
+                    <li><b>Parity</b> - one extra bit per byte to make the count of 1s even (or odd). Detects 1-bit errors, can't fix them. <b>ECC</b> uses several extra bits to detect multi-bit errors and <b>correct</b> single-bit ones</li>
+                    <li><b>Locality of reference</b> - temporal (same data again soon) and spatial (nearby data soon). Cache keeps recently used data and whole blocks around it in fast memory</li>
+                    <li><b>Word alignment</b> - the speed vs space trade-off: aligned words are faster to fetch but waste memory as padding</li>
+                </ul>
+            <h3>Instructions (see <a href="../week_6/19_october_2026.html">Lecture 10</a> and <a href="../week_6/21_october_2026.html">Lecture 11</a>)</h3>
+                <ul>
+                    <li><b>Immediate addressing</b> - operand is in the instruction: <code>MOV AL,15</code>. <b>Register addressing</b> - operand is in a register: <code>ADD AL,BL</code></li>
+                    <li>Same mnemonic, different op-codes: <code>MOV AL,15</code>, <code>MOV AL,[15]</code> and <code>MOV [AL],BL</code> are all "MOV" but need different op-codes because the operand types differ</li>
+                    <li>Instruction fields: <b>op-code</b>, <b>operands/addresses</b>, addressing <b>mode</b>. More op-code bits = more instructions, more address bits = more memory reachable, but a longer instruction word</li>
+                </ul>
+
+    </section>
+
+    <section class="note-section" id="sec-vm">
+
+        <h2>Virtual Memory and Cloud</h2>
+            <p>See <a href="../week_10/23_november_2026.html">Lecture 19</a> and <a href="../week_10/23_november_2026_cloud.html">Lecture 20</a></p>
+            <h3>MMU translating 32-bit virtual to 15-bit physical (12 marks, 2023)</h3>
+                <p>With 4KB pages, the offset is <b>12 bits</b>. So the 32-bit virtual address = <b>20-bit page number</b> + 12-bit offset. The page table maps the page number to a <b>3-bit page frame number</b> (8 frames). Physical address = 3-bit frame + same 12-bit offset = <b>15 bits</b>. If the page's present bit is 0, that's a <b>page fault</b>.</p>
+            <h3>Page replacement (4 marks, 2025)</h3>
+                <p><b>LRU</b> - evict the page used least recently. <b>FIFO</b> - evict the oldest page.</p>
+            <h3>The cloud stack (6 marks, both years)</h3>
+                <p>Stack: 1 Applications, 2 Data, 3 Runtime, 4 Middleware, 5 O/S, 6 Virtualization, 7 Servers, 8 Storage, 9 Networking</p>
+                <ul>
+                    <li><b>IaaS:</b> you manage 1-5</li>
+                    <li><b>PaaS:</b> you manage 1-2</li>
+                    <li><b>SaaS:</b> you manage none of them</li>
+                </ul>
+                <p>Also know 2 of the cloud characteristics, e.g. <b>on-demand self-service</b> and <b>rapid elasticity</b>.</p>
+
+    </section>
+
+    <section class="note-section" id="sec-samphire">
+
+        <h2>Samphire Programs</h2>
+            <p>26-30 marks every year. Past questions:</p>
+            <ul>
+                <li><b>2025:</b> a delay subroutine using AL, called with a 2-digit number from the keyboard (20 marks), and "compile" an if/else into Samphire (10 marks)</li>
+                <li><b>2023:</b> add 10 numbers stored from address 80 using ORG and DB, and show the result on the VDU (16 marks). Read 10 characters and write them to the VDU in reverse using the stack (10 marks)</li>
+            </ul>
+            <div class="code-block">
+                <div class="code-title">delay_subroutine.asm</div>
+                <pre><code>start:
+  in 00          ; tens digit
+  sub al, 30     ; ASCII to number
+  mul al, 0a
+  push al
+  pop bl         ; bl = tens * 10
+  in 00          ; units digit
+  sub al, 30
+  add al, bl     ; al = the 2-digit number
+  call 70        ; delay for al counts
+  jmp start
+
+org 70           ; delay subroutine
+delay:
+  dec al
+  jnz delay      ; keep counting down until al = 0
+  ret
+
+end</code></pre>
+            </div>
+            <div class="code-block">
+                <div class="code-title">reverse_with_stack.asm</div>
+                <pre><code>  mov cl, 0a     ; 10 characters
+read:
+  in 00
+  push al        ; stack is last in, first out...
+  dec cl
+  jnz read
+  mov bl, c0     ; start of the VDU
+  mov cl, 0a
+write:
+  pop al         ; ...so they come back out reversed
+  mov [bl], al
+  inc bl
+  dec cl
+  jnz write
+end</code></pre>
+            </div>
+            <div class="code-block">
+                <div class="code-title">sum_ten_numbers.asm</div>
+                <pre><code>  mov bl, 80     ; address of the first number
+  mov al, 0      ; running total
+  mov cl, 0a     ; 10 numbers
+loop:
+  mov dl, [bl]   ; arithmetic can't read memory directly, so copy it first
+  add al, dl
+  inc bl
+  dec cl
+  jnz loop
+  ; then split al into tens and units with DIV/MOD 0a,
+  ; add 30 to each and MOV them to [c0] and [c1] (like lab 3)
+  end
+
+org 80
+db 1
+db 2
+db 3
+db 4
+db 5
+db 6
+db 7
+db 8
+db 9
+db 0a</code></pre>
+            </div>
+            
+            <aside class="callout">
+                <span class="callout-title">If/else into Samphire</span>
+                <p>Read A and B into registers, <code>CMP</code> them, then a conditional jump (<code>JS</code> if A &lt; B) to the else part, with a <code>JMP</code> at the end of the if part to skip over the else. See <a href="../week_8/2_november_2026.html">Lecture 14</a> and <a href="../week_9/11_november_2026.html">Lecture 17</a>.</p>
+            </aside>
+
+    </section>
+
+    <!-- SECTION TEMPLATE -->
+    <!--
+
+    <section class="note-section" id="sec-id">
+
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+
+    </section>
+
+    -->
+
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+
+    -->
+
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+
+        </code></pre>
+    </div>
+
+    -->
+
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">CS1111 - Winter Exam Revision</p>
+    <p class="status-bar-field">Winter Exams 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1111_index.html">Back to CS1111 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>

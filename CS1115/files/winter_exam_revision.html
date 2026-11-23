@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CS1115 - Winter Exam Revision</title>
+
+    <link rel="stylesheet" href="../../win95.css">
+    <link rel="stylesheet" href="../../notes.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#c0c0c0">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">CS1115 - Winter Exam Revision - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>CS1115 - Winter Exam Revision</h1>
+    <p class="note-meta">Revision &middot; CS1115 &middot; Based on the Winter 2022 paper (the only one in the library)</p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-format">Exam Format</a></li>
+        <li><a href="#sec-html">Q1 and Q2 - HTML</a></li>
+        <li><a href="#sec-urls">Q3 - URLs and Web Servers</a></li>
+        <li><a href="#sec-css">Q4 and Q5 - Selectors and the Cascade</a></li>
+
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-format">
+
+        <h2>Exam Format</h2>
+            <p><b>90 minutes, 5 questions, 15 marks each, answer ALL</b> (about 18 minutes per question). Non-programmable calculators allowed.</p>
+            <ul>
+                <li><b>Q1</b> - pick the right HTML tag and <b>justify</b> it</li>
+                <li><b>Q2</b> - spot the HTML error, external stylesheets, draw the DOM tree</li>
+                <li><b>Q3</b> - web server file system: absolute/relative URLs and which file gets served</li>
+                <li><b>Q4</b> - CSS selectors: what does it select and why</li>
+                <li><b>Q5</b> - the cascade: explain <b>why</b> a rule wins</li>
+            </ul>
+            
+            <aside class="callout">
+                <span class="callout-title">Note</span>
+                <p>The library only has the 2022 paper for this module, so the later stuff (box model, flexbox, grid, responsive design, custom properties) could easily come up too. Don't skip <a href="../week_7/29_october_2026.html">Lectures 13-19</a>.</p>
+            </aside>
+
+    </section>
+
+    <section class="note-section" id="sec-html">
+
+        <h2>Q1 and Q2 - HTML</h2>
+            <p>Tags to choose from were: <code>article, b, div, em, h1, i, p, section, strong, span</code>. See <a href="../week_5/13_october_2026.html">Lecture 9</a></p>
+            <ul>
+                <li><b>article</b> - self-contained, makes sense on its own (a review, a blog post)</li>
+                <li><b>section</b> - a themed chunk of a page, usually with a heading</li>
+                <li><b>strong</b> = importance, <b>em</b> = stress emphasis (changes the meaning when read aloud)</li>
+                <li><b>b</b> = draw attention with no extra importance (product names), <b>i</b> = different voice (a technical term, a phrase from another language)</li>
+                <li><b>div / span</b> - no meaning at all, only use when nothing else fits (block / inline)</li>
+            </ul>
+            <p><code>&lt;link rel="stylesheet" href="styles.css"&gt;Stylesheet&lt;/link&gt;</code> is wrong because <b>link is a void element</b>: no content and no closing tag.</p>
+            <p>Advantage of an <b>external</b> stylesheet: one file styles every page on the site, so a change only has to be made once (and the browser can cache it).</p>
+            <p>DOM tree: html at the top, head and body under it, and every nested tag is a child of the tag it's inside. Text and <code>img</code> are leaves.</p>
+
+    </section>
+
+    <section class="note-section" id="sec-urls">
+
+        <h2>Q3 - URLs and Web Servers</h2>
+            <p>See <a href="../week_3/12am_tuesday_and_3pm_thursday.html">Lectures 5 and 6</a> and <a href="../week_4/6_october_2026.html">Lecture 7</a></p>
+            <p>The 2022 server had <code>DocumentRoot "/www"</code>, <code>ErrorDocument 404 /error.html</code> and <code>DirectoryIndex index.html</code>. Files: /www/index.html, /www/error.html, /www/dairy/{index, milk, curd}.html, /www/images/cow.jpg and /meat/beef.html.</p>
+            <ul>
+                <li><b>Files hosted:</b> only things inside the DocumentRoot, so <b>6</b> (beef.html is outside /www)</li>
+                <li><b>Absolute URLs</b> from /www/dairy/index.html: <code>/images/cow.jpg</code>, <code>/dairy/curd.html</code></li>
+                <li><b>Relative URLs</b> from the same page: <code>../images/cow.jpg</code>, <code>curd.html</code></li>
+                <li><code>http://www.exam.org/</code> &rarr; /www/index.html (DirectoryIndex)</li>
+                <li><code>http://www.exam.org/dairy/</code> &rarr; /www/dairy/index.html</li>
+                <li><code>http://www.exam.org/meat/beef.html</code> &rarr; /www/meat/beef.html doesn't exist, so a 404 and <b>/www/error.html</b> is served</li>
+            </ul>
+
+    </section>
+
+    <section class="note-section" id="sec-css">
+
+        <h2>Q4 and Q5 - Selectors and the Cascade</h2>
+            <p>See <a href="../week_6/22_october_2026.html">Lecture 11 - Selectors</a> and <a href="../week_7/27_october_2026.html">Lecture 12 - Conflicts</a></p>
+            <ul>
+                <li><code>A B</code> - B anywhere inside A (descendant)</li>
+                <li><code>A &gt; B</code> - B directly inside A (child)</li>
+                <li><code>A + B</code> - B straight after A, same parent (adjacent sibling)</li>
+                <li><code>A ~ B</code> - any B after A, same parent (general sibling)</li>
+            </ul>
+            <p>2022 examples (milk pudding list): <code>h1 li</code> selects nothing because no li is inside the h1. <code>li &gt; .solid</code> misses cardamom because its parent is a ul, not an li. <code>#B &gt; #H &gt; * &gt; li ~ li</code> picks the 2nd-4th method steps, and the shortest selector for the same thing was <code>.cool</code>.</p>
+            <h3>Who wins a conflict?</h3>
+                <ol>
+                    <li>A rule that targets the element <b>directly</b> always beats a value it <b>inherits</b> from a parent (even if the parent's rule uses an id)</li>
+                    <li>Then <b>specificity</b>: ids (1,0,0) &gt; classes (0,1,0) &gt; element names (0,0,1). <code>#K</code> beats <code>ul &gt; li &gt; ul &gt; li</code></li>
+                    <li>Same specificity: the rule that comes <b>last</b> wins</li>
+                </ol>
+            
+            <aside class="callout">
+                <span class="callout-title">Exam tip</span>
+                <p>Q5 says "explain why <b>in detail</b>". Say which rules match the element, whether each one is direct or inherited, and the specificity of each.</p>
+            </aside>
+
+    </section>
+
+    <!-- SECTION TEMPLATE -->
+    <!--
+
+    <section class="note-section" id="sec-id">
+
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+
+    </section>
+
+    -->
+
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+
+    -->
+
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+
+        </code></pre>
+    </div>
+
+    -->
+
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">CS1115 - Winter Exam Revision</p>
+    <p class="status-bar-field">Winter Exams 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1115_index.html">Back to CS1115 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
