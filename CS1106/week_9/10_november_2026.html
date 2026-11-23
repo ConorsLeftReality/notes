@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#c0c0c0">
+<title>Lecture 10 - Subqueries</title>
+<link rel="stylesheet" href="../../win95.css">
+<link rel="stylesheet" href="../../notes.css">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Lecture 10 - Subqueries - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Lecture 10 - Subqueries</h1>
+    <p class="note-meta">10 November 2026 &middot; CS1106 &middot; K. Herley &middot; Slides: <a href="https://ucc.instructure.com/courses/95030/files/11063314">Here</a></p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-0">Subqueries</a></li>
+
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-0">
+
+        <h2>Subqueries</h2>
+            <p>A subquery is a query <b>inside</b> another query. The outer query uses its result as a value, a list of values, or a temporary table</p>
+            <p>They can go in the <code>WHERE</code> clause, the <code>FROM</code> clause, or the <code>SELECT</code> list</p>
+            <div class="code-block">
+                <div class="code-title">scalar_subquery.sql</div>
+                <pre><code>-- The film(s) with the highest score
+SELECT title
+FROM movies
+WHERE score = (SELECT MAX(score) FROM movies);</code></pre>
+            </div>
+            <h3>IN and EXISTS</h3>
+            <ul>
+                <li><code>x IN (subquery)</code> - true if x is one of the results</li>
+                <li><code>EXISTS (subquery)</code> - true if the subquery returns any rows</li>
+                <li>Both have NOT versions: <code>NOT IN</code>, <code>NOT EXISTS</code></li>
+            </ul>
+            <h3>Subquery in FROM</h3>
+            <p>Acts like a temporary table, give it an alias so you can use it</p>
+            <div class="code-block">
+                <div class="code-title">from_subquery.sql</div>
+                <pre><code>-- Students with more points than average
+SELECT first_name, last_name
+FROM students, (SELECT AVG(points) AS avg_points FROM students) AS avg_table
+WHERE points &gt; avg_table.avg_points;</code></pre>
+            </div>
+
+    </section>
+
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">Lecture 10 - Subqueries</p>
+    <p class="status-bar-field">10 November 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1106_index.html">Back to CS1106 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>

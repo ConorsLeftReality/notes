@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lecture 19 - Virtual Memory</title>
+
+    <link rel="stylesheet" href="../../win95.css">
+    <link rel="stylesheet" href="../../notes.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#c0c0c0">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Lecture 19 - Virtual Memory - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Lecture 19 - Virtual Memory</h1>
+    <p class="note-meta">23 November 2026 &middot; CS1111 &middot; J.P. Morrison &middot; Slides: <a href="https://ucc.instructure.com/courses/95051/pages/lecture-19-virtual-memory-4">Here</a></p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-virtmem">Virtual Memory</a></li>
+        <li><a href="#sec-paging">Paging</a></li>
+        <li><a href="#sec-demand">Page Faults and Demand Paging</a></li>
+        <li><a href="#sec-replacement">Page Replacement</a></li>
+        
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+        
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-virtmem">
+    
+        <h2>Virtual Memory</h2>
+            <p>
+                In early computers, memory was small and expensive. In those days, 
+                programmers had to spend a lot of time making
+                programs small enough to fit on the small amount of memory they had
+            </p>
+            <p>
+                The traditional solution was to use a secondary memory, such as disk, to hold parts of the program,
+                called overlays, and to move these overlays from secondary memory to main memory such as RAM.
+            </p>
+
+            <aside class="callout definition">
+                <span class="callout-title">Definition</span>
+                <p>
+                    <b>Virtual memory</b> is a memory management technique that uses space on a 
+                    storage drive (like an SSD or HDD) to extend physical RAM
+                </p>
+            </aside>
+
+            <p>
+                The idea was to separate the concepts of
+                address space and memory locations
+                and to break the code up into pieces,
+                called <b>pages</b>.
+            </p>
+        
+    </section>
+
+    <section class="note-section" id="sec-paging">
+            
+        <h2>Paging</h2>
+            <p>
+                The technique for automatic overlaying is called <b>paging</b>, and the 
+                group of program instructions are called pages
+            </p>
+            <p>
+                Addresses referred to by programs and the compiler
+                are collectively called the virtual address space, and
+                the physical memory locations, the physical address
+                space.
+            </p>
+            <p>
+                A memory map or page table specifies for each
+                virtual address what the corresponding physical
+                address is.
+            </p>
+            <p>
+                Paging gives the programmer the illusion of a large,
+                continuous, linear main memory, the same size as
+                the virtual address space.
+            </p>
+            <p>
+                Whenever an address is referenced, the proper
+                instruction or data word appears to be immediately
+                available.
+            </p>
+            <p>
+                Because the programmer can program without
+                reference to the paging mechanism, it is said to be
+                <b>transparent</b>.
+            </p>
+
+            <aside class="callout">
+                <span class="callout-title">Note</span>
+                <p>In virtual memory, <b>a disk is required to hold the whole program and all its data</b></p>
+                <p>
+                    When changes are made to the copy in main memory, they should be reflected on the disk (eventually).
+                </p>
+            </aside>
+
+            <p>
+                Question. Do we really have to replace the contents of the
+                whole physical memory every time a new page
+                is referenced?
+            </p>
+
+            <p>
+                We can get around this by making smaller
+                pages and by partitioning the physical address
+                into logical pieces also. These pieces are called
+                <b>Page Frames</b> and are chosen to be the same
+                size as the (smaller) pages.
+            </p>
+
+            <p>
+                Page sizes are usually between 512 Bytes and 64 KBytes (sometimes up to 4 MBytes),
+                and are always a <b>power of 2</b>
+            </p>
+
+            <h3>Implementing Paging</h3>
+                <p>With 32 bits we can make 2<sup>32</sup> (about 4 billion) addresses. With 4KB pages, that's about 1 million pages</p>
+                <p>The <b>page table</b> has one entry for every page in the virtual address space</p>
+                <p>E.G. 64KB of virtual memory = 16 pages of 4KB. If we only have 32KB of main memory, that's <b>8 page frames</b> of 4KB</p>
+                <ul>
+                    <li>The whole physical memory can be addressed with <b>15 bits</b> (2<sup>15</sup> = 32K)</li>
+                    <li>Each instruction inside a frame can be addressed with <b>12 bits</b> (2<sup>12</sup> = 4K)</li>
+                </ul>
+
+    </section>
+
+    <section class="note-section" id="sec-demand">
+
+        <h2>Page Faults and Demand Paging</h2>
+            <p>When a program refers to an address on a page that <b>isn't in main memory</b>, a <b>page fault</b> happens</p>
+            <p>The OS then has to:</p>
+            <ol>
+                <li>Read the page in from the disk</li>
+                <li>Put its new physical location in the page table</li>
+                <li>Repeat the instruction that caused the fault</li>
+            </ol>
+            <p>This is called <b>demand paging</b> - a page is only brought in when it's asked for, not in advance</p>
+
+            <h3>Working Set Model</h3>
+                <p>Programs don't use their address space evenly, their references cluster on a small number of pages (the <b>locality principle</b>)</p>
+                <p>The <b>working set</b> is the set of pages used by the most recent memory references. It changes slowly, so when a program restarts we can guess which pages it'll need and load them in advance</p>
+
+    </section>
+
+    <section class="note-section" id="sec-replacement">
+
+        <h2>Page Replacement</h2>
+            <p>To make room for a new page, another page usually has to go back to the disk. The OS tries to pick the page that's <b>least useful</b></p>
+            <ul>
+                <li><b>LRU (Least Recently Used)</b> - evicts the page used least recently, since it probably isn't in the working set any more</li>
+                <li><b>FIFO (First In First Out)</b> - evicts the <b>oldest</b> page, no matter when it was last used. Each frame has a counter that goes up after every page fault, and the page with the highest counter goes</li>
+            </ul>
+
+            <aside class="callout">
+                <span class="callout-title">Thrashing</span>
+                <p>
+                    If the working set is bigger than the number of page frames, no algorithm works well (LRU is the least bad).
+                    A program that causes page faults constantly is said to be <b>thrashing</b>
+                </p>
+            </aside>
+
+            <p>If a page being evicted <b>hasn't been changed</b> since it was read in (likely if it's program code, not data), it doesn't need to be written back to disk. If it has been changed, the disk copy is out of date and it must be written back first</p>
+
+    </section>
+    
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">Lecture 19 - Virtual Memory</p>
+    <p class="status-bar-field">23 November 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1111_index.html">Back to CS1111 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
+        

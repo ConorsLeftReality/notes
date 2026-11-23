@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#c0c0c0">
+<title>Lecture 8 - Multi-way Joins</title>
+<link rel="stylesheet" href="../../win95.css">
+<link rel="stylesheet" href="../../notes.css">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Lecture 8 - Multi-way Joins - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Lecture 8 - Multi-way Joins</h1>
+    <p class="note-meta">27 October 2026 &middot; CS1106 &middot; K. Herley &middot; Slides: <a href="https://ucc.instructure.com/courses/95030/files/10988972">Here</a></p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-0">Joining More Than Two Tables</a></li>
+        <li><a href="#sec-1">Building a Complex Query</a></li>
+
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-0">
+
+        <h2>Joining More Than Two Tables</h2>
+            <p>Joins usually link a <b>primary key</b> in one table to a <b>foreign key</b> in another. A multi-way join just keeps going: joining n tables is done as (n - 1) two-way joins, and the order doesn't matter (joins are associative)</p>
+            <div class="code-block">
+                <div class="code-title">multiway_join.sql</div>
+                <pre><code>SELECT actors.name, movies.title
+FROM actors
+JOIN castings ON actors.id = castings.actorid
+JOIN movies   ON castings.movieid = movies.id
+WHERE movies.yr = 1972;</code></pre>
+            </div>
+
+    </section>
+
+    <section class="note-section" id="sec-1">
+
+        <h2>Building a Complex Query</h2>
+            <p>Don't write it all in one go, build it up step by step</p>
+            <ol>
+                <li>Understand the question - what should the output look like?</li>
+                <li>Find the tables you need and how they're linked (primary/foreign keys)</li>
+                <li>Join them</li>
+                <li>Check the join - right rows? duplicates? anything missing?</li>
+                <li>Pick the columns (projection)</li>
+                <li>Filter the rows (WHERE)</li>
+                <li>Group if it says count / total / average / max / "per something" (GROUP BY)</li>
+                <li>Conditions on the groups (HAVING)</li>
+                <li>Sort and limit (ORDER BY, LIMIT)</li>
+            </ol>
+            <aside class="callout">
+                <span class="callout-title">NOTE</span>
+                <p>SQL runs the clauses in this order, not the order you write them: FROM/JOIN, WHERE, GROUP BY, HAVING, SELECT, ORDER BY, LIMIT</p>
+            </aside>
+
+    </section>
+
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">Lecture 8 - Multi-way Joins</p>
+    <p class="status-bar-field">27 October 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1106_index.html">Back to CS1106 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#c0c0c0">
+<title>Lecture 18 - Operating System Basics</title>
+<link rel="stylesheet" href="../../win95.css">
+<link rel="stylesheet" href="../../notes.css">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Lecture 18 - Operating System Basics - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Lecture 18 - Operating System Basics</h1>
+    <p class="note-meta">16 November 2026 &middot; CS1111 &middot; J.P. Morrison &middot; Slides: <a href="https://ucc.instructure.com/courses/95051/pages/lecture-18-operating-system-basics">Here</a></p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-0">The Operating System Machine Level</a></li>
+
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-0">
+
+        <h2>The Operating System Machine Level</h2>
+            <p>The OS level sits on top of the ISA level. It has nearly all the ISA instructions plus new ones called <b>system calls</b> (e.g. read from a file)</p>
+            <ul>
+                <li>System calls are <b>interpreted</b> - the OS carries them out step by step</li>
+                <li>Normal ISA instructions run directly on the hardware</li>
+            </ul>
+            <p>Not every computer has an OS - a microwave just runs one simple program forever</p>
+            <h3>What an OS does</h3>
+            <ul>
+                <li>Manages the hardware and software resources (CPU, memory, disk...)</li>
+                <li>Gives apps a consistent way to use the hardware (an API), so they work on different machines</li>
+            </ul>
+            <p>Six jobs: <b>processor, memory, device and storage management</b>, plus the <b>application interface</b> and <b>user interface</b></p>
+            <p>Processor management = making sure every process gets enough CPU time, while wasting as few cycles as possible</p>
+
+    </section>
+
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">Lecture 18 - Operating System Basics</p>
+    <p class="status-bar-field">16 November 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1111_index.html">Back to CS1111 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>

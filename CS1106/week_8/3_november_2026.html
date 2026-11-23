@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#c0c0c0">
+<title>Lecture 9 - Compound Select</title>
+<link rel="stylesheet" href="../../win95.css">
+<link rel="stylesheet" href="../../notes.css">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Lecture 9 - Compound Select - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Lecture 9 - Compound Select</h1>
+    <p class="note-meta">3 November 2026 &middot; CS1106 &middot; K. Herley &middot; Slides: <a href="https://ucc.instructure.com/courses/95030/files/11017743">Here</a></p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-0">Compound Select</a></li>
+
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-0">
+
+        <h2>Compound Select</h2>
+            <p>Another way to solve a problem: split it into smaller queries, solve each one, then <b>combine the results</b></p>
+            <ul>
+                <li><code>UNION</code> - rows from either query, duplicates removed (<code>UNION ALL</code> keeps them)</li>
+                <li><code>INTERSECT</code> - rows in <b>both</b> queries</li>
+                <li><code>EXCEPT</code> - rows in the first query but <b>not</b> the second</li>
+            </ul>
+            <div class="code-block">
+                <div class="code-title">intersect.sql</div>
+                <pre><code>-- Films with both Humphrey Bogart and Katharine Hepburn
+SELECT movieid FROM castings
+JOIN actors ON actors.id = castings.actorid
+WHERE name = 'Humphrey Bogart'
+INTERSECT
+SELECT movieid FROM castings
+JOIN actors ON actors.id = castings.actorid
+WHERE name = 'Katharine Hepburn';</code></pre>
+            </div>
+            <aside class="callout">
+                <span class="callout-title">NOTE</span>
+                <p>Every SELECT has to return the same number of columns. The column names come from the first one, and only the last one can have ORDER BY / LIMIT. SQLite doesn't allow brackets around the parts</p>
+            </aside>
+
+    </section>
+
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">Lecture 9 - Compound Select</p>
+    <p class="status-bar-field">3 November 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1106_index.html">Back to CS1106 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>

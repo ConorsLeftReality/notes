@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#c0c0c0">
+<title>Lecture 17 - Introducing Subroutines</title>
+<link rel="stylesheet" href="../../win95.css">
+<link rel="stylesheet" href="../../notes.css">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Lecture 17 - Introducing Subroutines - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Lecture 17 - Introducing Subroutines</h1>
+    <p class="note-meta">11 November 2026 &middot; CS1111 &middot; J.P. Morrison &middot; Slides: <a href="https://ucc.instructure.com/courses/95051/pages/lecture-17-introducing-subroutines">Here</a></p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-0">CALL and RET</a></li>
+        <li><a href="#sec-1">Traffic Lights with a Delay Subroutine</a></li>
+
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-0">
+
+        <h2>CALL and RET</h2>
+            <p>A subroutine is a bit of code you write once and use loads of times (like a function)</p>
+            <ul>
+                <li><code>call 70</code> - pushes the return address (the next instruction) onto the <b>stack</b>, then jumps to address 70</li>
+                <li><code>ret</code> - pops the return address off the stack back into the IP, so we carry on after the call</li>
+                <li><code>org 70</code> - assembler directive: put the following code at address 70</li>
+            </ul>
+            <div class="code-block">
+                <div class="code-title">callRet.asm</div>
+                <pre><code>mov al, 30   ; ASCII '0'
+call 70      ; subroutine call
+mov [c0], al
+call 70
+mov [c0], al
+
+org 70       ; subroutine code
+add al, 1
+ret
+
+end</code></pre>
+            </div>
+
+    </section>
+
+    <section class="note-section" id="sec-1">
+
+        <h2>Traffic Lights with a Delay Subroutine</h2>
+            <p>Pass the length of the delay in by setting BL <b>before</b> the call</p>
+            <div class="code-block">
+                <div class="code-title">trafficLightsWithSubroutine.asm</div>
+                <pre><code>start:
+  mov al, 84   ; red-green
+  out 01
+  mov bl, 80   ; delay length
+  call 70
+  mov al, 48   ; amber-amber
+  out 01
+  mov bl, fa
+  call 70
+  jmp start
+
+org 70         ; delay subroutine
+loop:
+  inc bl
+  cmp bl, 00   ; count up until bl overflows to 0
+  jnz loop
+  ret
+
+end</code></pre>
+            </div>
+            <p>Much shorter and easier to read than copying the delay code everywhere</p>
+
+    </section>
+
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">Lecture 17 - Introducing Subroutines</p>
+    <p class="status-bar-field">11 November 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1111_index.html">Back to CS1111 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>

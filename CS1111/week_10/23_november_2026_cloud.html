@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#c0c0c0">
+<title>Lecture 20 - Some Cloud Computing Concepts</title>
+<link rel="stylesheet" href="../../win95.css">
+<link rel="stylesheet" href="../../notes.css">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Lecture 20 - Some Cloud Computing Concepts - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Lecture 20 - Some Cloud Computing Concepts</h1>
+    <p class="note-meta">23 November 2026 &middot; CS1111 &middot; J.P. Morrison &middot; Slides: <a href="https://ucc.instructure.com/courses/95051/pages/lecture-20-some-cloud-computing-concepts">Here</a></p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-cloud">Cloud Computing</a></li>
+        <li><a href="#sec-virtualisation">Hardware Virtualisation</a></li>
+
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-cloud">
+
+        <h2>Cloud Computing</h2>
+            <p>The NIST definition: cloud computing gives <b>on-demand network access to a shared pool of configurable resources</b> (servers, storage, applications, bandwidth...) that can be handed out and released quickly, with very little management effort</p>
+            <p>The cloud is made up of <b>5 essential characteristics</b>, <b>3 service models</b> and <b>4 deployment models</b></p>
+
+            <h3>5 Essential Characteristics</h3>
+                <ul>
+                    <li>On-demand self-service</li>
+                    <li>Broad network access</li>
+                    <li>Resource pooling</li>
+                    <li>Rapid elasticity</li>
+                    <li>Measured service</li>
+                </ul>
+
+            <h3>3 Service Models</h3>
+                <ul>
+                    <li><b>SaaS (Software as a Service)</b> - you use the provider's apps, usually through a browser. You don't manage anything underneath, e.g. Gmail, Google Photos, Instagram</li>
+                    <li><b>PaaS (Platform as a Service)</b> - you deploy your own app onto the provider's platform (languages, databases, servers). You control your app, not the OS or network, e.g. hosting your own site</li>
+                    <li><b>IaaS (Infrastructure as a Service)</b> - you get the raw resources (virtual machines, storage, networks, firewalls, load balancers) and can run anything, including your own OS</li>
+                </ul>
+
+            <h3>4 Deployment Models</h3>
+                <ul>
+                    <li><b>Private</b> - for one organisation only</li>
+                    <li><b>Community</b> - shared by organisations with the same concerns (security, policy, compliance)</li>
+                    <li><b>Public</b> - open to the general public</li>
+                    <li><b>Hybrid</b> - two or more of the above joined together, e.g. bursting from private to public when busy</li>
+                </ul>
+
+    </section>
+
+    <section class="note-section" id="sec-virtualisation">
+
+        <h2>Hardware Virtualisation</h2>
+            <p>Hardware used to run <b>one OS at a time</b>. Cloud servers now run <b>multiple operating systems at the same time</b> on one physical server, using virtualisation (with extra support built into the hardware)</p>
+            <ul>
+                <li><b>Host</b> - the physical server (CPU, memory, disk drives)</li>
+                <li><b>Hypervisor</b> - software that creates and runs the virtual machines, and keeps them isolated from each other</li>
+                <li><b>Virtual machines (guests)</b> - software emulations of a whole computer, each with its own OS</li>
+            </ul>
+
+            <h3>Advantages</h3>
+                <ul>
+                    <li><b>Cheaper</b> - several systems on one server, so less space and power</li>
+                    <li><b>Easier backup and recovery</b></li>
+                    <li><b>Easier to manage</b> - software is easier to look after than lots of hardware, so less downtime</li>
+                    <li>Running VMs can be moved between servers to spread the load</li>
+                    <li>Service Level Agreements give admins fine control over resources</li>
+                </ul>
+
+            <h3>Disadvantages</h3>
+                <ul>
+                    <li><b>Cost</b> - you need decent hardware to support virtualisation in the first place</li>
+                    <li><b>Security</b> - the provider controls the servers, so you can feel disconnected from your data</li>
+                    <li><b>Availability</b> - the provider can go offline unexpectedly</li>
+                </ul>
+
+    </section>
+
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">Lecture 20 - Some Cloud Computing Concepts</p>
+    <p class="status-bar-field">23 November 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1111_index.html">Back to CS1111 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
