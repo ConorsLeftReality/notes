@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#c0c0c0">
+<title>Lecture 11 - Designing Databases</title>
+<link rel="stylesheet" href="../../win95.css">
+<link rel="stylesheet" href="../../notes.css">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Lecture 11 - Designing Databases - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Lecture 11 - Designing Databases</h1>
+    <p class="note-meta">17 November 2026 &middot; CS1106 &middot; K. Herley &middot; Slides: <a href="https://ucc.instructure.com/courses/95030/files/11084978">Here</a></p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-0">ER Diagrams</a></li>
+
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-0">
+
+        <h2>ER Diagrams</h2>
+            <p>An Entity-Relationship diagram is a blueprint of the database, drawn <b>before</b> you build it. Good design = no redundancy, data integrity, efficient</p>
+            <p>Trick for finding entities: the important <b>nouns</b> in the description are usually entities, the <b>verbs</b> are relationships. E.g. "students enrol in modules taught by lecturers" (a grade is an attribute of an enrolment, not an entity)</p>
+            <h3>Chen Notation</h3>
+            <ul>
+                <li><b>Entity</b> - rectangle (weak entity = double rectangle, needs another entity to be identified)</li>
+                <li><b>Attribute</b> - oval. Key attributes are <u>underlined</u>, derived attributes (e.g. total price) are dashed, composite attributes (e.g. full name) branch into smaller ovals</li>
+                <li><b>Relationship</b> - diamond, labelled with a verb</li>
+            </ul>
+            <h3>Cardinality</h3>
+            <ul>
+                <li><b>1:1</b> - one user has one settings record</li>
+                <li><b>1:N</b> - one customer places many orders</li>
+                <li><b>M:N</b> - students and modules</li>
+            </ul>
+            <p>Most relationships are <b>binary</b> (2 entities), some are ternary (3), e.g. Doctor treats Patient using Medicine</p>
+
+    </section>
+
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">Lecture 11 - Designing Databases</p>
+    <p class="status-bar-field">17 November 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1106_index.html">Back to CS1106 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>

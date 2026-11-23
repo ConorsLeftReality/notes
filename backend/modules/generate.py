@@ -205,7 +205,11 @@ def create_module_index_page_html(module_code,acknowledged_known_module_director
                 week_corrected = (week.capitalize()).replace("_"," ")
                 module_lecture_contents = module_lecture_contents + f"        <h3>{week_corrected}</h3>\n" + "        <ul class=\"list-arrow\">\n"
 
-                FILES_IN_WEEK = sorted(os.listdir(f"{module_code}/{week}/"))
+                # Sort by the numbers in the filename, so 9_november comes before 11_november
+                def natural_order(filename):
+                    return [int(part) if part.isdigit() else part.lower() for part in re.split(r"(\d+)", filename)]
+
+                FILES_IN_WEEK = sorted(os.listdir(f"{module_code}/{week}/"), key=natural_order)
 
                 for file in FILES_IN_WEEK:
 

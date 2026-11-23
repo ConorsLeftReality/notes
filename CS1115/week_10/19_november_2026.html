@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#c0c0c0">
+<title>Lecture 19 - CSS Custom Properties</title>
+<link rel="stylesheet" href="../../win95.css">
+<link rel="stylesheet" href="../../notes.css">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Lecture 19 - CSS Custom Properties - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Lecture 19 - CSS Custom Properties</h1>
+    <p class="note-meta">19 November 2026 &middot; CS1115 &middot; Derek Bridge &middot; Slides: <a href="https://www.cs.ucc.ie/~dgb/courses/WD/lectures/WD1_19.html">Here</a></p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-0">CSS Custom Properties (Variables!)</a></li>
+
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-0">
+
+        <h2>CSS Custom Properties (Variables!)</h2>
+            <p>If you use the same colours everywhere, changing your colour scheme means changing loads of rules. Custom properties fix this, they're basically variables</p>
+            <ul>
+                <li>Define them inside a rule, names start with <code>--</code> (and ARE case-sensitive)</li>
+                <li>Use them with <code>var()</code></li>
+                <li>JavaScript can change them, e.g. for theme switching</li>
+            </ul>
+            <div class="code-block">
+                <div class="code-title">custom_properties.css</div>
+                <pre><code>html {
+    --base-color: black;
+    --base-bgcolor: lightgray;
+    --main-color: white;
+    --main-bgcolor: green;
+}
+
+header, nav, aside, footer {
+    color: var(--base-color);
+    background-color: var(--base-bgcolor);
+}
+
+main {
+    color: var(--main-color);
+    background-color: var(--main-bgcolor);
+}
+
+table {
+    border: 1px solid var(--main-bgcolor);
+}</code></pre>
+            </div>
+            <p>Use them for a whole <b>theme</b>, not just colours: spacing (margins, padding), borders, fonts and font sizes</p>
+
+    </section>
+
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">Lecture 19 - CSS Custom Properties</p>
+    <p class="status-bar-field">19 November 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1115_index.html">Back to CS1115 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>

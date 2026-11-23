@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#c0c0c0">
+<title>Lecture 15 and 16 - Logical Arguments and Bad Arguments</title>
+<link rel="stylesheet" href="../../win95.css">
+<link rel="stylesheet" href="../../notes.css">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Lecture 15 and 16 - Logical Arguments and Bad Arguments - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Lecture 15 and 16 - Logical Arguments and Bad Arguments</h1>
+    <p class="note-meta">20 November 2026 &middot; CS1112 &middot; Barry O'Sullivan &middot; Slides: <a href="https://ucc.instructure.com/courses/95057/files/10842320">Lecture 15</a>, <a href="https://ucc.instructure.com/courses/95057/files/10842327">Lecture 16</a></p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-0">Logical Arguments - Lecture 15</a></li>
+        <li><a href="#sec-1">Bad Arguments and Translation - Lecture 16</a></li>
+
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-0">
+
+        <h2>Logical Arguments - Lecture 15</h2>
+            <aside class="callout">
+                <span class="callout-title">NOTE</span>
+                <p>The Lecture 15 slides wouldn't load when this was written, so this section is the standard material - check it against the slides</p>
+            </aside>
+            <p>An argument is some <b>premises</b> and a <b>conclusion</b>. It's <b>valid</b> if whenever all the premises are true, the conclusion is true too</p>
+            <p>Check it with a truth table: look at every row where all the premises are T - the conclusion must be T in all of them</p>
+            <ul>
+                <li><b>Modus ponens</b>: p &rArr; q, p, therefore q</li>
+                <li><b>Modus tollens</b>: p &rArr; q, &not;q, therefore &not;p</li>
+            </ul>
+
+    </section>
+
+    <section class="note-section" id="sec-1">
+
+        <h2>Bad Arguments and Translation - Lecture 16</h2>
+            <p>Logic is how we write <b>specifications</b> precisely. English is messy, so be careful translating</p>
+            <p>These all mean p &rArr; q: "if p then q", "p implies q", "p only if q", "p is sufficient for q", "q is necessary for p", "q whenever p", "q follows from p"</p>
+            <h3>Related statements for p &rArr; q</h3>
+            <ul>
+                <li><b>Contrapositive</b> &not;q &rArr; &not;p - <b>equivalent</b> to the original</li>
+                <li><b>Converse</b> q &rArr; p - NOT equivalent</li>
+                <li><b>Inverse</b> &not;p &rArr; &not;q - NOT equivalent</li>
+            </ul>
+            <p>Classic fallacies: assuming the converse (affirming the consequent) or the inverse (denying the antecedent). E.g. "if you don't eat your dinner you can't have pudding" doesn't actually promise pudding if you do</p>
+
+    </section>
+
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">Lecture 15 and 16 - Logical Arguments and Bad Arguments</p>
+    <p class="status-bar-field">20 November 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1112_index.html">Back to CS1112 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>

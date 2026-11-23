@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#c0c0c0">
+<title>Lecture 6 - Data Manipulation and Data Definition</title>
+<link rel="stylesheet" href="../../win95.css">
+<link rel="stylesheet" href="../../notes.css">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Lecture 6 - Data Manipulation and Data Definition - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Lecture 6 - Data Manipulation and Data Definition</h1>
+    <p class="note-meta">13 October 2026 &middot; CS1106 &middot; K. Herley &middot; Slides: <a href="https://ucc.instructure.com/courses/95030/files/10928976">Here</a></p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-0">DML - Changing the Data</a></li>
+        <li><a href="#sec-1">DDL - Defining the Tables</a></li>
+
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-0">
+
+        <h2>DML - Changing the Data</h2>
+            <p>DML statements change what's <b>in</b> the tables. All three work on rows, and can hit <b>multiple rows at once</b>, so be careful</p>
+            <ul>
+                <li><code>INSERT</code> - add new rows</li>
+                <li><code>UPDATE</code> - change values in existing rows</li>
+                <li><code>DELETE</code> - remove rows</li>
+            </ul>
+            <div class="code-block">
+                <div class="code-title">dml.sql</div>
+                <pre><code>INSERT INTO students (id_number, first_name, last_name)
+VALUES ('987654321', 'Graine', 'Gogerty');   -- missing columns become NULL (or their default)
+
+UPDATE students
+SET points = points + 10
+WHERE hometown = 'Cork';
+
+DELETE FROM students
+WHERE hometown = 'Cork';</code></pre>
+            </div>
+            <aside class="callout">
+                <span class="callout-title">NOTE</span>
+                <p>No WHERE clause on an UPDATE or DELETE = it hits EVERY row. Always list the column names in an INSERT too, so it doesn't break if the table changes</p>
+            </aside>
+            <h3>NULL</h3>
+            <p>NULL means the value is unknown or doesn't apply. You can't check it with <code>=</code>, use <code>IS NULL</code> / <code>IS NOT NULL</code>. Loads of NULLs can mean a badly designed database</p>
+
+    </section>
+
+    <section class="note-section" id="sec-1">
+
+        <h2>DDL - Defining the Tables</h2>
+            <p>DDL defines the <b>structure</b>: tables, indexes, views. The schema is the blueprint of the database</p>
+            <div class="code-block">
+                <div class="code-title">create_table.sql</div>
+                <pre><code>CREATE TABLE students (
+    id_number     CHAR(9),
+    first_name    VARCHAR(20),
+    last_name     VARCHAR(20),
+    date_of_birth DATE,
+    hometown      VARCHAR(20),
+    course        CHAR(5),
+    points        INT,
+    PRIMARY KEY (id_number)
+);</code></pre>
+            </div>
+            <ul>
+                <li><code>CHAR(n)</code> - exactly n characters (shorter ones get padded)</li>
+                <li><code>VARCHAR(n)</code> - up to n characters, good when you don't know the length (e.g. addresses)</li>
+                <li>SQLite doesn't really enforce types - it maps them to 5 "affinities" instead</li>
+            </ul>
+
+    </section>
+
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">Lecture 6 - Data Manipulation and Data Definition</p>
+    <p class="status-bar-field">13 October 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1106_index.html">Back to CS1106 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>

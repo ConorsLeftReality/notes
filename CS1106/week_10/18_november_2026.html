@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#c0c0c0">
+<title>Lecture 12 - Normalisation</title>
+<link rel="stylesheet" href="../../win95.css">
+<link rel="stylesheet" href="../../notes.css">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Lecture 12 - Normalisation - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Lecture 12 - Normalisation</h1>
+    <p class="note-meta">18 November 2026 &middot; CS1106 &middot; K. Herley &middot; Slides: <a href="https://ucc.instructure.com/courses/95030/files/11097629">Here</a></p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-0">Normalisation</a></li>
+
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-0">
+
+        <h2>Normalisation</h2>
+            <p>The rule: <b>one fact in one place</b>. Normalisation removes redundancy so data doesn't get updated in one place and not another</p>
+            <h3>Keys</h3>
+            <ul>
+                <li><b>Natural key</b> - has real-world meaning (student number, email, EirCode)</li>
+                <li><b>Surrogate key</b> - an auto-incrementing ID the database makes up</li>
+                <li><b>Candidate key</b> - unique and minimal (no column you could drop)</li>
+                <li><b>Primary key</b> - the candidate key the designer picks</li>
+            </ul>
+            <h3>Normal Forms</h3>
+            <ul>
+                <li><b>1NF</b> - every value is atomic (no lists in a cell), no repeating groups, every row uniquely identifiable</li>
+                <li><b>2NF</b> - 1NF + no <b>partial dependencies</b> (non-key columns depend on the <i>whole</i> key, not part of it)</li>
+                <li><b>3NF</b> - 2NF + no <b>transitive dependencies</b> (non-key columns depend only on the key, not on other non-key columns)</li>
+            </ul>
+            <p>There are 6 normal forms, but most designs only use the first 3 (BCNF is a stricter 3NF)</p>
+
+    </section>
+
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">Lecture 12 - Normalisation</p>
+    <p class="status-bar-field">18 November 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1106_index.html">Back to CS1106 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
