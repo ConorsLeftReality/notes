@@ -253,7 +253,28 @@ def create_module_index_page_html(module_code,acknowledged_known_module_director
         # Work on a local, de-duplicated copy so the caller's list is never modified
         all_module_directories = sorted(set(acknowledged_known_module_directories) | {module_code}) # Sorted for the Taskbar to be in correct order
 
-        taskbar_of_modules = taskbar_of_modules + "      <li><a class=\"taskbar-item\" href=\"../index.html\">Home</a></li>\n"
+        # Which semester each module is in (backend/data/module_semesters.txt)
+        # FORMAT: MODULECODE, semester page, Semester name
+        module_semesters = {}
+        with open("backend/data/module_semesters.txt", encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if not line or line[0] == "#":
+                    continue # Skip blank lines and comments
+                semester_module, semester_page, semester_name = [part.strip() for part in line.split(",", 2)]
+                module_semesters[semester_module] = (semester_page, semester_name)
+
+        # Home goes to this module's semester page (or the main page if it isn't listed)
+        home_page, semester_name = module_semesters.get(module_code, ("index.html", ""))
+
+        # Only show modules from the same semester in the taskbar
+        if module_code in module_semesters:
+            all_module_directories = [
+                module_directory for module_directory in all_module_directories
+                if module_semesters.get(module_directory, (None,))[0] == home_page
+            ]
+
+        taskbar_of_modules = taskbar_of_modules + f"      <li><a class=\"taskbar-item\" href=\"../{home_page}\">Home</a></li>\n"
         for module_directory in all_module_directories:
             if module_directory == module_code:
                 #print("Made own module")
@@ -307,7 +328,7 @@ def create_module_index_page_html(module_code,acknowledged_known_module_director
 
     <div class="notepad-body">
       <h1>{module_code} - Lecture Index</h1>
-      <p class="note-meta">Semester 1 &middot; Lecture Index</p>
+      <p class="note-meta">{semester_name + " &middot; " if semester_name else ""}Lecture Index</p>
 
       <section class="note-section">
         <h2>Lectures</h2>
