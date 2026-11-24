@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#c0c0c0">
+<title>Lecture 20 - Floating and Positioning</title>
+<link rel="stylesheet" href="../../win95.css">
+<link rel="stylesheet" href="../../notes.css">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Lecture 20 - Floating and Positioning - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Lecture 20 - Floating and Positioning</h1>
+    <p class="note-meta">24 November 2026 &middot; CS1115 &middot; Derek Bridge &middot; Slides: <a href="https://www.cs.ucc.ie/~dgb/courses/WD/lectures/WD1_20.html">Here</a></p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-intro">Out of Flow</a></li>
+        <li><a href="#sec-float">Floating</a></li>
+        <li><a href="#sec-shapes">CSS Shapes</a></li>
+        <li><a href="#sec-position">Positioning</a></li>
+
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+
+        </ul>
+    </fieldset>
+
+    <aside class="callout">
+        <span class="callout-title">Warning from Derek</span>
+        <p>Fog of details ahead! Don't learn this off, look it up when you need it</p>
+    </aside>
+
+
+    <section class="note-section" id="sec-intro">
+
+        <h2>Out of Flow</h2>
+            <p>By default, elements are laid out in the order they appear in the HTML</p>
+            <p>There are ways of moving elements so they show up somewhere else, not based on the order of the HTML</p>
+            <ul>
+                <li>Some take the element <b>out of flow</b> - the other elements don't know it exists (absolute and fixed positioning)</li>
+                <li>Others leave it <b>in flow</b> - the other elements still know it exists (floating and relative positioning)</li>
+            </ul>
+
+    </section>
+
+    <section class="note-section" id="sec-float">
+
+        <h2>Floating</h2>
+            <p>Floating an element...</p>
+            <ul>
+                <li>moves it to the left or right within its parent</li>
+                <li>makes its outer display type <b>block</b>, if it wasn't already</li>
+                <li>lets text and other inline content wrap around beside and below it</li>
+            </ul>
+            <p>The main use is for <b>images</b>, but you can float anything. You'll probably want to set a width and give it some margins too</p>
+
+            <div class="code-block">
+                <div class="code-title">floating_an_image.css</div>
+                <pre><code>img {
+    float: left;
+}</code></pre>
+            </div>
+
+    </section>
+
+    <section class="note-section" id="sec-shapes">
+
+        <h2>CSS Shapes</h2>
+            <p>CSS shapes let the text flow around a shape that <i>isn't a rectangle</i></p>
+            <p>The element the text flows around must...</p>
+            <ul>
+                <li>be floated left or right, and have a width and height</li>
+                <li>have the <code>shape-outside</code> property, with a value like <code>circle</code>, <code>ellipse</code>, <code>inset</code> (= rectangle) or <code>polygon</code></li>
+            </ul>
+
+            <div class="code-block">
+                <div class="code-title">shape_circle.css</div>
+                <pre><code>#shape {
+    float: left;
+    height: 10em;
+    width: 10em;
+    shape-outside: circle();
+}</code></pre>
+            </div>
+
+            <ul>
+                <li>By default the circle's radius is 50% of the element's width, centred in the middle</li>
+                <li>Change the radius: <code>shape-outside: circle(20%);</code></li>
+                <li>Change the radius and the centre: <code>shape-outside: circle(20% at 30% 70%);</code></li>
+                <li>You can add a gap with <code>shape-margin: 2em;</code></li>
+            </ul>
+
+            <aside class="callout">
+                <span class="callout-title">Gotcha</span>
+                <p>If the shape is bigger than the element, the text flows around the <b>element</b>, not the shape. So 50% is the biggest radius that does anything (and shape-margin can easily cause this too)</p>
+            </aside>
+
+            <h3>Getting rid of the empty div</h3>
+                <p>An empty <code>&lt;div id="shape"&gt;</code> just to make a shape spoils the HTML. Two ways around it:</p>
+                <p><b>1. Generated content</b> - make the shape in CSS with <code>::before</code></p>
+                <div class="code-block">
+                    <div class="code-title">shape_generated_content.css</div>
+                    <pre><code>#seashells::before {
+    content: "";
+    float: left;
+    height: 10em;
+    width: 10em;
+    shape-outside: circle();
+}</code></pre>
+                </div>
+                <p><b>2. Use an image</b> - float the image and give it the shape. If the image has a transparent background (alpha channel), you can even use the image itself as the shape</p>
+                <div class="code-block">
+                    <div class="code-title">shape_from_image.css</div>
+                    <pre><code>#seashells img {
+    float: left;
+    shape-outside: url("seashell.png");
+}</code></pre>
+                </div>
+                <p>Note: the image has to be CORS-compatible for this to work</p>
+
+    </section>
+
+    <section class="note-section" id="sec-position">
+
+        <h2>Positioning</h2>
+            <p>CSS positioning lets you put an element <b>exactly</b> where you want it</p>
+            <p><b>BUT AVOID IT! (Mostly)</b> People used to lay out whole pages with positioning. Don't, flexbox and grid are way better now</p>
+
+            <p>The <code>position</code> property says how it's positioned:</p>
+            <ul>
+                <li><code>static</code></li>
+                <li><code>relative</code></li>
+                <li><code>absolute</code></li>
+                <li><code>fixed</code></li>
+                <li><code>sticky</code></li>
+            </ul>
+            <p>Then the offset properties <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code> (any units, px, em, %...) say where it goes. <code>z-index</code> says what goes on top of what</p>
+            <p>If you set both top and bottom, bottom gets ignored. Same with left and right, right gets ignored</p>
+
+            <h3>Static</h3>
+                <p>The default, normal layout. The offset properties do nothing</p>
+
+            <h3>Relative</h3>
+                <p>For <b>nudging</b> an element. The offsets move it from where it <i>would have been</i>, e.g. <code>top: 2em;</code> nudges it down, <code>top: -2em;</code> nudges it up</p>
+                <p>It's still in flow, so it <b>leaves a gap behind</b></p>
+                <div class="code-block">
+                    <div class="code-title">relative.css</div>
+                    <pre><code>#phrase {
+    position: relative;
+    top: 2em;
+    left: 3em;
+}</code></pre>
+                </div>
+
+            <h3>Absolute</h3>
+                <p>Taken <b>out of flow</b>, so no gap left behind</p>
+                <p>It's positioned relative to its <b>containing element</b>: the nearest ancestor that isn't static, or if there isn't one, the <b>viewport</b> (the browser window)</p>
+                <p>The offsets are now the distance from the edges of that containing element</p>
+                <p>To get it working how you want, you usually set <code>position: relative;</code> on the <b>parent</b> (with no offsets, so the parent doesn't actually move)</p>
+                <div class="code-block">
+                    <div class="code-title">absolute.css</div>
+                    <pre><code>#container {
+    position: relative;
+}
+
+#phrase {
+    position: absolute;
+    top: 2em;
+    left: 3em;
+}</code></pre>
+                </div>
+
+            <h3>Fixed</h3>
+                <p>Like absolute, but <b>always</b> relative to the viewport. It stays put when you scroll</p>
+
+            <h3>Sticky</h3>
+                <p>Acts normal until you scroll it to a certain distance from the edge of the viewport, then it acts like fixed and sticks there</p>
+                <div class="code-block">
+                    <div class="code-title">sticky.css</div>
+                    <pre><code>h1 {
+    position: sticky;
+    top: 0;
+    left: 0;
+}</code></pre>
+                </div>
+
+            <h3>When to actually use it</h3>
+                <p>Putting text over an image (Derek's example was a CENSORED stamp over a picture)</p>
+                <div class="code-block">
+                    <div class="code-title">text_over_image.css</div>
+                    <pre><code>#censoredfigure {
+    width: fit-content;
+    position: relative;
+}
+
+#censoredmessage {
+    color: red;
+    background-color: white;
+    border: 2px solid red;
+    position: absolute;
+    top: 45%;
+    left: 25%;
+    transform: rotate(-30deg);
+}</code></pre>
+                </div>
+                <p>Fixed headers and footers, so only the main scrolls</p>
+                <div class="code-block">
+                    <div class="code-title">fixed_header_footer.css</div>
+                    <pre><code>header {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}</code></pre>
+                </div>
+
+    </section>
+
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">Lecture 20 - Floating and Positioning</p>
+    <p class="status-bar-field">24 November 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1115_index.html">Back to CS1115 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
