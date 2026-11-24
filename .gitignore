@@ -1,1 +1,4 @@
 backend/modules/__pycache__/*
+
+# Lecture recordings and transcripts (private, not committed)
+recordings/
