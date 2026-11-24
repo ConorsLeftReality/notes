@@ -6,24 +6,29 @@
   <meta name="theme-color" content="#c0c0c0">
   <title>Conor's Lecture Notes - Homepage</title>
   <!--
-  Some CSS I got claude to spin up for me 
-  (Would it be better for me to use AI, or to spend 
+  Some CSS I got claude to spin up for me
+  (Would it be better for me to use AI, or to spend
   hundreds of hours remaking the graphics of Windows 95)
   -->
   <link rel="stylesheet" href="win95.css">
   <link rel="stylesheet" href="notes.css">
 </head>
 
+<!--
+  Main page: only links to each semester's home page (yearX_semesterY.html).
+  Each semester home page has that semester's module list and its own taskbar.
+-->
+
 <body class="win95-desktop">
 
   <div class="window notepad">
     <div class="title-bar">
-      <div class="title-bar-text">Conor's Lecture Notes - Module Index</div>
+      <div class="title-bar-text">Conor's Lecture Notes - Home</div>
     </div>
 
     <div class="notepad-body">
       <h1>Conor's Lecture Notes</h1>
-      <p class="note-meta">Module Index page</p>
+      <p class="note-meta">Home &middot; Pick a semester</p>
 
       <section class="note-section">
 
@@ -35,36 +40,66 @@
         <h2>Year 1</h2>
 
           <h2>&middot; Semester 1</h2>
-
-            <h2>&dash; Modules</h2>
-            <!-- Add one <li> per lecture page. Keep this list in step with the taskbar below. -->
+            <p class="note-meta">September - December 2026</p>
             <ul class="list-arrow">
-              <li><a href="CS1106/cs1106_index.html">CS1106 - Intro to Relational Databases</a></li>
-              <li><a href="CS1111/cs1111_index.html">CS1111 - Intro to Systems Organisation</a></li>
-              <li><a href="CS1112/cs1112_index.html">CS1112 - Foundations of Computer Science 1</a></li>
-              <li><a href="CS1115/cs1115_index.html">CS1115 - Web Development 1</a></li>
-              <li><a href="CS1117/cs1117_index.html">CS1117 - Intro to Programming</a></li>
-              <li><a href="MA1001/ma1001_index.html">MA1001 - Calculus for Science 1</a></li>
+              <li><a href="year1_semester1.html"><b>Semester 1 Home</b></a> - CS1106, CS1111, CS1112, CS1115, CS1117, MA1001</li>
             </ul>
-          
-            <!--
 
           <h2>&middot; Semester 2</h2>
-              <h2>&dash; Modules</h2>
-
-            -->
+            <p class="note-meta">January - May 2027</p>
+            <ul class="list-arrow">
+              <li><a href="year1_semester2.html"><b>Semester 2 Home</b></a> - CS1110, CS1113, CS1116, CS1117 (continued), MA1002</li>
+            </ul>
 
 <!--
-        <h2>Year X</h2>
+        <h2>Year 2</h2>
+
           <h2>&middot; Semester 1</h2>
-            <h2>&dash; Modules</h2>
+            <p class="note-meta">September - December 2027</p>
+            <ul class="list-arrow">
+              <li><a href="year2_semester1.html"><b>Semester 1 Home</b></a> - MODULE_CODES</li>
+            </ul>
 
           <h2>&middot; Semester 2</h2>
-            <h2>&dash; Modules</h2>
-        
+            <p class="note-meta">January - May 2028</p>
+            <ul class="list-arrow">
+              <li><a href="year2_semester2.html"><b>Semester 2 Home</b></a> - MODULE_CODES</li>
+            </ul>
+-->
+
+<!--
+        <h2>Year 3</h2>
+
+          <h2>&middot; Semester 1</h2>
+            <p class="note-meta">September - December 2028</p>
+            <ul class="list-arrow">
+              <li><a href="year3_semester1.html"><b>Semester 1 Home</b></a> - MODULE_CODES</li>
+            </ul>
+
+          <h2>&middot; Semester 2</h2>
+            <p class="note-meta">January - May 2029</p>
+            <ul class="list-arrow">
+              <li><a href="year3_semester2.html"><b>Semester 2 Home</b></a> - MODULE_CODES</li>
+            </ul>
+-->
+
+<!--
+        <h2>Year 4</h2>
+
+          <h2>&middot; Semester 1</h2>
+            <p class="note-meta">September - December 2029</p>
+            <ul class="list-arrow">
+              <li><a href="year4_semester1.html"><b>Semester 1 Home</b></a> - MODULE_CODES</li>
+            </ul>
+
+          <h2>&middot; Semester 2</h2>
+            <p class="note-meta">January - May 2030</p>
+            <ul class="list-arrow">
+              <li><a href="year4_semester2.html"><b>Semester 2 Home</b></a> - MODULE_CODES</li>
+            </ul>
 -->
       </section>
-    
+
       <aside class="callout">
         <span class="callout-title">Message of the day!</span>
         <p>"This could be the day that we push through, it could be the day that all our dreams come true" - Tame Impala, Apocalypse Dreams</p>
@@ -95,28 +130,27 @@
 
   <!-- ======================================================================
        TASKBAR MENU
-       On each page, put class="active" on that page's own link 
-       and remove it from the others.
-       ====================================================================== 
+       The main page's taskbar links to each semester home page.
+       Each semester home page has its own module taskbar.
+       ======================================================================
   -->
-  
+
   <div class="taskbar">
     <a class="start-button" href="index.html">Start</a>
     <div class="taskbar-divider"></div>
 
     <ul class="taskbar-nav">
       <li><a class="taskbar-item active" href="index.html">Home</a></li>
-      <li><a class="taskbar-item" href="CS1106/cs1106_index.html">CS1106</a></li>
-      <li><a class="taskbar-item" href="CS1111/cs1111_index.html">CS1111</a></li>
-      <li><a class="taskbar-item" href="CS1112/cs1112_index.html">CS1112</a></li>
-      <li><a class="taskbar-item" href="CS1115/cs1115_index.html">CS1115</a></li>
-      <li><a class="taskbar-item" href="CS1117/cs1117_index.html">CS1117</a></li>
-      <li><a class="taskbar-item" href="MA1001/ma1001_index.html">MA1001</a></li>
+      <li><a class="taskbar-item" href="year1_semester1.html">Y1 Semester 1</a></li>
+      <li><a class="taskbar-item" href="year1_semester2.html">Y1 Semester 2</a></li>
 
-      <!-- 
-
-      <li><a class="taskbar-item" href="file_name">module_name</a></li> 
-
+      <!-- Uncomment each year's links when it starts
+      <li><a class="taskbar-item" href="year2_semester1.html">Y2 Semester 1</a></li>
+      <li><a class="taskbar-item" href="year2_semester2.html">Y2 Semester 2</a></li>
+      <li><a class="taskbar-item" href="year3_semester1.html">Y3 Semester 1</a></li>
+      <li><a class="taskbar-item" href="year3_semester2.html">Y3 Semester 2</a></li>
+      <li><a class="taskbar-item" href="year4_semester1.html">Y4 Semester 1</a></li>
+      <li><a class="taskbar-item" href="year4_semester2.html">Y4 Semester 2</a></li>
       -->
 
     </ul>

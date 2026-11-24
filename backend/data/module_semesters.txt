@@ -1,0 +1,18 @@
+## Which semester home page each module belongs to
+## Used by option 2 (index refresh): the module index's Home link goes to this page,
+## the taskbar only shows modules from the same semester, and the subtitle shows the semester name
+## Modules not listed here link Home to the main index.html
+## Comments are allowed, just have the first character be a hashtag!!!
+## FORMAT: MODULECODE, semester page, Semester name
+
+CS1106, year1_semester1.html, Year 1 Semester 1
+CS1111, year1_semester1.html, Year 1 Semester 1
+CS1112, year1_semester1.html, Year 1 Semester 1
+CS1115, year1_semester1.html, Year 1 Semester 1
+CS1117, year1_semester1.html, Year 1 Semester 1
+MA1001, year1_semester1.html, Year 1 Semester 1
+
+CS1110, year1_semester2.html, Year 1 Semester 2
+CS1113, year1_semester2.html, Year 1 Semester 2
+CS1116, year1_semester2.html, Year 1 Semester 2
+MA1002, year1_semester2.html, Year 1 Semester 2
