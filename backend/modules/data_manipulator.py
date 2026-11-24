@@ -276,6 +276,19 @@ def menu_choice_resolver(number,repository_root_directory):
         ## Variable needed for refresh module index page function - all_module_index_page_refresh(repository_document_root), passed in from here
         all_module_index_page_refresh(repository_root_directory)
 
+    elif number == 3:
+        ## Record a lecture, then transcribe it (backend/lecture_recorder.py)
+        ## Imported here so the menu still works even if the recording packages aren't installed
+        try:
+            from lecture_recorder import run_recorder
+        except ImportError as e:
+            print(f"<<< SYSTEM >>> Recorder needs extra packages: {e}")
+            print("Install them with: python -m pip install sounddevice soundfile numpy faster-whisper")
+            pause()
+            return
+        run_recorder()
+        pause()
+
 ## -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 def all_module_index_page_refresh(repository_document_root):
