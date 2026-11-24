@@ -9,3 +9,4 @@ CS1111, Revision, files/winter_exam_revision.html, Winter Exam Revision (from pa
 CS1112, Revision, files/winter_exam_revision.html, Winter Exam Revision (from the lectures)
 CS1115, Revision, files/winter_exam_revision.html, Winter Exam Revision (from past papers)
 MA1001, Revision, files/winter_exam_revision.html, Winter Exam Revision (from past papers)
+CS1115, Derek's Secret Lecture Shortcuts, files/dereks_secret_lecture_shortcuts.html, Keyboard shortcuts for Derek's slides
