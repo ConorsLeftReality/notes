@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#c0c0c0">
+<title>Lecture 13 - Normalisation Example</title>
+<link rel="stylesheet" href="../../win95.css">
+<link rel="stylesheet" href="../../notes.css">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Lecture 13 - Normalisation Example - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Lecture 13 - Normalisation Example</h1>
+    <p class="note-meta">24 November 2026 &middot; CS1106 &middot; K. Herley &middot; Slides: <a href="https://ucc.instructure.com/courses/95030/files/11124397">Here</a></p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-intro">Normal Forms Recap</a></li>
+        <li><a href="#sec-example">Worked Example - Movies</a></li>
+
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-intro">
+
+        <h2>Normal Forms Recap</h2>
+            <p>The design principle: <b>one fact in one place</b>, avoid redundancy as much as possible</p>
+            <ul>
+                <li><b>1NF</b> - every value is <b>atomic</b> (can't be split) and no repeating groups. Each row is uniquely identifiable - <i>"the key"</i></li>
+                <li><b>2NF</b> - in 1NF, and no <b>partial dependencies</b>: non-key columns depend on the <i>whole</i> primary key - <i>"the whole key"</i></li>
+                <li><b>3NF</b> - in 2NF, and no <b>transitive dependencies</b>: non-key columns depend only on the key, not on other non-key columns - <i>"and nothing but the key"</i></li>
+            </ul>
+            <p>There's also <b>BCNF</b> (Boyce-Codd), a stricter version of 3NF that some textbooks use</p>
+
+            <aside class="callout definition">
+                <span class="callout-title">Functional Dependency</span>
+                <p>Y is functionally dependent on X (<b>X &rarr; Y</b>) if whenever two rows agree on X, they're guaranteed to agree on Y too</p>
+            </aside>
+
+    </section>
+
+    <section class="note-section" id="sec-example">
+
+        <h2>Worked Example - Movies</h2>
+            <p>Start with a spreadsheet of movies: title, year, genre, director, director's country, and an <b>Actors</b> column with a comma-separated list of names</p>
+
+            <h3>Unnormalised (UNF)</h3>
+                <ul>
+                    <li>Multiple actors in one cell (or Actor, Actor, Actor columns = repeating groups)</li>
+                    <li>No primary key - two movies could share a title</li>
+                    <li>Redundant data - Denis Villeneuve and Canada appear over and over</li>
+                </ul>
+
+            <h3>UNF &rarr; 1NF</h3>
+                <p>Split the actors so each row has <b>one</b> actor (one row per movie-actor pair). Same data, more rows</p>
+                <p>Give each movie a <b>MovieID</b> and each actor an <b>ActorID</b>, then the key is the composite <b>(MovieID, ActorID)</b></p>
+
+            <h3>1NF &rarr; 2NF</h3>
+                <p>Look at the dependencies:</p>
+                <ul>
+                    <li>MovieID &rarr; Title, Year, Genre, Director, Director Country</li>
+                    <li>ActorID &rarr; Actor</li>
+                </ul>
+                <p>These only depend on <b>part</b> of the key, so split them out. Now 3 tables:</p>
+                <ul>
+                    <li><b>Movies</b>(MovieID, Title, Year, Genre, Director, Director Country)</li>
+                    <li><b>Actors</b>(ActorID, Actor)</li>
+                    <li><b>Castings</b>(MovieID, ActorID) - the identifying relationship</li>
+                </ul>
+
+            <h3>2NF &rarr; 3NF</h3>
+                <p>In Movies: MovieID &rarr; Director &rarr; Director Country. Country depends on the director, not the movie, so that's a <b>transitive dependency</b></p>
+                <p>Give directors a <b>DirectorID</b> and move them into their own table. Now 4 tables:</p>
+                <ul>
+                    <li><b>Movies</b>(MovieID, Title, Year, Genre, DirectorID)</li>
+                    <li><b>Directors</b>(DirectorID, Director, Director Country)</li>
+                    <li><b>Actors</b>(ActorID, Actor)</li>
+                    <li><b>Castings</b>(MovieID, ActorID)</li>
+                </ul>
+
+            <aside class="callout">
+                <span class="callout-title">Exercise</span>
+                <p>Write the SQL DDL (CREATE TABLE) for these 4 tables. What constraints would you add? (primary keys, foreign keys, NOT NULL...)</p>
+            </aside>
+
+    </section>
+
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">Lecture 13 - Normalisation Example</p>
+    <p class="status-bar-field">24 November 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1106_index.html">Back to CS1106 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
