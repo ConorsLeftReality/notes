@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#c0c0c0">
+<title>Lecture 14 - ER Modelling Example</title>
+<link rel="stylesheet" href="../../win95.css">
+<link rel="stylesheet" href="../../notes.css">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Lecture 14 - ER Modelling Example - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Lecture 14 - ER Modelling Example</h1>
+    <p class="note-meta">25 November 2026 &middot; CS1106 &middot; K. Herley &middot; Slides: <a href="https://ucc.instructure.com/courses/95030/files/11126553">Here</a></p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-intro">Specifications to Schemas</a></li>
+        <li><a href="#sec-entities">Entities</a></li>
+        <li><a href="#sec-relationships">Relationships</a></li>
+
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-intro">
+
+        <h2>Specifications to Schemas</h2>
+            <p>Example: the <b>COMPANY</b> database (from Elmasri and Navathe, "Fundamentals of Database Systems"), which keeps track of employees, departments and projects</p>
+            <p>The requirements description doesn't need to model the whole company, just what needs to go in the database</p>
+            <ul>
+                <li>The company is split into <b>departments</b>. Each has a unique name, a unique number, a manager (an employee) with a start date, and maybe several locations</li>
+                <li>A department controls <b>projects</b>, each with a unique name, unique number and one location</li>
+                <li>Each <b>employee</b> has a name, SSN, address, salary, gender and birth date. They're in one department, but can work on several projects (from any department). Track hours per week on each project, and each employee's direct supervisor (another employee)</li>
+                <li>Each employee's <b>dependents</b> (for insurance): first name, sex, birth date, relationship to the employee</li>
+            </ul>
+
+    </section>
+
+    <section class="note-section" id="sec-entities">
+
+        <h2>Entities</h2>
+            <p>The <b>nouns</b> in the description are usually the entities</p>
+            <ul>
+                <li><b>DEPARTMENT</b> - Name, Number, Locations, Manager, Manager_start_date</li>
+                <li><b>PROJECT</b> - Name, Number, Location, Controlling_department</li>
+                <li><b>EMPLOYEE</b> - Name, Ssn, Gender, Address, Salary, Birth_date, Department, Supervisor, Works_on</li>
+                <li><b>DEPENDENT</b> - Employee, Dependent_name, Gender, Birth_date, Relationship</li>
+            </ul>
+            <ul>
+                <li>Name and Number of a department are <b>both</b> (separate) key attributes, since each is unique</li>
+                <li>Locations is a <b>multivalued attribute</b></li>
+                <li>Name and Address might be <b>composite</b> attributes (first/last name etc.), but the requirements don't say, so you'd have to check</li>
+                <li>Works_on could be a multivalued composite attribute (Project, Hours)</li>
+            </ul>
+
+            <aside class="callout">
+                <span class="callout-title">Implicit Relationships</span>
+                <p>Whenever an attribute of one entity refers to another entity (Manager, Controlling_department, Supervisor, Department), there's a relationship hiding in it. In the ER model, make these <b>explicit relationships</b>, not attributes</p>
+            </aside>
+
+    </section>
+
+    <section class="note-section" id="sec-relationships">
+
+        <h2>Relationships</h2>
+            <p>The <b>verbs</b> in the description are usually the relationships. The cardinality comes from the requirements (if it can't, ask the users)</p>
+            <ul>
+                <li><b>MANAGES</b> - 1:1 between EMPLOYEE and DEPARTMENT, with the attribute Start_date on the relationship</li>
+                <li><b>WORKS_FOR</b> - 1:N between DEPARTMENT and EMPLOYEE</li>
+                <li><b>CONTROLS</b> - 1:N between DEPARTMENT and PROJECT</li>
+                <li><b>SUPERVISION</b> - 1:N between EMPLOYEE (supervisor) and EMPLOYEE (supervisee). A <b>reflexive</b> relationship, both ends are the same entity</li>
+                <li><b>WORKS_ON</b> - M:N between EMPLOYEE and PROJECT, with the attribute Hours</li>
+                <li><b>DEPENDENTS_OF</b> - 1:N between EMPLOYEE and DEPENDENT. This is the <b>identifying relationship</b> for the <b>weak entity</b> DEPENDENT</li>
+            </ul>
+            <p>The final ER diagram uses (min, max) notation and role names. The multivalued Locations attribute gets replaced with a LOCATIONS entity and relationships HAS_LOCATION (department) and LOCATED_AT (project)</p>
+
+    </section>
+
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">Lecture 14 - ER Modelling Example</p>
+    <p class="status-bar-field">25 November 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1106_index.html">Back to CS1106 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
