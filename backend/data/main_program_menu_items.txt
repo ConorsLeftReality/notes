@@ -1,4 +1,6 @@
 ## REMEMBER TO ADD A FUNCTION/RESULT FOR EACH ITEM IN THE LIST IN main.py
 Generate a new Lecture Notes file
 Refresh the index pages for every module
-Record a lecture and transcribe it
+Record a lecture (type notes while it records)
+Make transcripts from recordings (one lecture, a day or a week)
+Add notes to a recording
