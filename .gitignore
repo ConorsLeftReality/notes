@@ -1,4 +1,6 @@
-backend/modules/__pycache__/*
+# Python cache files (rebuilt automatically every time the scripts run)
+__pycache__/
+*.pyc
 
 # Lecture recordings and transcripts (private, not committed)
 recordings/
