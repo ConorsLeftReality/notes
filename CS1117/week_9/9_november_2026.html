@@ -20,13 +20,15 @@
     <div class="notepad-body">
 
     <h1>2D Matrices (Canvas Week 10)</h1>
-    <p class="note-meta">9 November 2026 &middot; CS1117 &middot; CS1117 lecturers &middot; Slides: <a href="https://ucc.instructure.com/courses/95076/files/11055179">Here</a></p>
+    <p class="note-meta">9 November 2026 &middot; CS1117 &middot; Dr. Aisling O'Driscoll &middot; Slides: <a href="https://ucc.instructure.com/courses/95076/files/11055179">Here</a></p>
 
 
     <fieldset>
         <legend>Contents</legend>
         <ul class="list-arrow">
         <li><a href="#sec-matrices">2D Matrices (Lists of Lists)</a></li>
+        <li><a href="#sec-create">Creating, Changing and Printing</a></li>
+        <li><a href="#sec-treasure">Treasure Hunt Challenge</a></li>
 
         <!--
         <li><a href="#sec-id">SECTION_NAME</a></li>
@@ -39,47 +41,102 @@
     <section class="note-section" id="sec-matrices">
 
         <h2>2D Matrices (Lists of Lists)</h2>
-
-            <aside class="callout">
-                <span class="callout-title">Note</span>
-                <p>No notes were taken in this lecture, and the slides couldn't be opened when this page was written, so it covers the standard material on 2D lists. <b>Check it against the slides.</b></p>
-            </aside>
-            <p>A 2D matrix in Python is a <b>list of lists</b>: each inner list is one row.</p>
+            <p>A <b>matrix</b> is 2D data: values arranged in <b>rows and columns</b> (e.g. a 3 x 4 matrix has 3 rows and 4 columns)</p>
+            <p>Python has no built-in matrix type, so we use a <b>list of lists</b>. <b>Each inner list is a row</b></p>
             <div class="code-block">
                 <div class="code-title">matrix.py</div>
-                <pre><code>matrix = [[1, 2, 3],
-          [4, 5, 6],
-          [7, 8, 9]]
-
-matrix[0]       # [1, 2, 3]  - the first row
-matrix[1][2]    # 6          - row 1, column 2 (both start at 0)
-len(matrix)     # 3 rows
-len(matrix[0])  # 3 columns</code></pre>
+                <pre><code>A = [[1, 4, 5],
+     [-5, 8, 9]]    # 2 rows, 3 columns</code></pre>
             </div>
 
-            <h3>Going through every element (nested loops)</h3>
+            <h3>Double indices</h3>
+                <p><code>A[row][column]</code>, both start at 0. Negative indices work too</p>
+                <div class="code-block">
+                    <div class="code-title">double_indices.py</div>
+                    <pre><code>A = [[1, 4, 5, 12],
+     [-5, 8, 9, 0],
+     [-6, 7, 11, 19]]
+
+print("A[1] =", A[1])          # 2nd row             -> [-5, 8, 9, 0]
+print("A[1][2] =", A[1][2])    # 3rd element, 2nd row -> 9
+print("A[0][-1] =", A[0][-1])  # last element, 1st row -> 12
+
+column = []
+for row in A:
+    column.append(row[2])
+print("3rd column =", column)  # [5, 9, 11]</code></pre>
+                </div>
+                <p>Getting a row is easy (<code>A[1]</code>), but a <b>column</b> needs a loop, taking the same index from every row</p>
+
+    </section>
+
+    <section class="note-section" id="sec-create">
+
+        <h2>Creating, Changing and Printing</h2>
+            <h3>Creating a matrix without hardcoding</h3>
+                <p>Make an empty outer list, build each row as an inner list, and append each row to the outer list</p>
+                <p>E.G. a cinema with 5 rows of 5 seats, all empty (0):</p>
+                <div class="code-block">
+                    <div class="code-title">create_cinema.py</div>
+                    <pre><code>cinema = []
+
+for j in range(5):
+    column = []
+    for i in range(5):
+        column.append(0)
+    cinema.append(column)</code></pre>
+                </div>
+                <p>(matrix.py on Canvas has other ways of making it, e.g. <code>[[0] * 5 for _ in range(5)]</code>)</p>
+
+                <aside class="callout">
+                    <span class="callout-title">Watch out</span>
+                    <p><code>[[0] * 5] * 5</code> looks the same but makes 5 references to the <b>same</b> row, so changing one seat changes it in every row</p>
+                </aside>
+
+            <h3>Changing it</h3>
+                <div class="code-block">
+                    <div class="code-title">modify_cinema.py</div>
+                    <pre><code>cinema[2][2] = 1                  # one seat in row 2
+
+for i in range(1, 4):             # seats 1-3 in row 3
+    cinema[3][i] = 1
+
+for i in range(len(cinema[0])):   # the whole of row 4
+    cinema[4][i] = 1</code></pre>
+                </div>
+
+            <h3>Printing it like a grid</h3>
+                <div class="code-block">
+                    <div class="code-title">print_cinema.py</div>
+                    <pre><code>for i in range(len(cinema)):
+    for j in range(len(cinema[0])):
+        print(cinema[i][j], end=" ")
+    print("
+")
+
+# 0 0 0 0 0
+# 0 0 0 0 0
+# 0 0 1 0 0
+# 0 1 1 1 0
+# 1 1 1 1 1</code></pre>
+                </div>
+
+    </section>
+
+    <section class="note-section" id="sec-treasure">
+
+        <h2>Treasure Hunt Challenge</h2>
+            <p>treasureHunt.py - read a 5 x 5 treasure map into a matrix. Each cell holds a clue between 11 and 55: the <b>first digit is the row</b> and the <b>second digit is the column</b> of the next clue (counting from 1)</p>
+            <p>Start at the top left (row 1, column 1) and follow the clues. The treasure is the cell whose value <b>matches its own coordinates</b>. Print every cell visited and where the treasure was found</p>
             <div class="code-block">
-                <div class="code-title">nested_loops.py</div>
-                <pre><code>for row in range(len(matrix)):
-    for col in range(len(matrix[row])):
-        print(matrix[row][col], end=" ")
-    print()   # new line after each row
-
-# Row totals
-for row in matrix:
-    print(sum(row))</code></pre>
+                <div class="code-title">treasure_map.txt</div>
+                <pre><code>34 21 32 41 25
+14 42 43 14 31
+54 45 52 42 23
+33 15 51 31 35
+21 52 33 13 23</code></pre>
             </div>
-
-            <h3>Making an empty matrix</h3>
-            <div class="code-block">
-                <div class="code-title">make_matrix.py</div>
-                <pre><code>rows, cols = 3, 4
-grid = [[0] * cols for _ in range(rows)]   # 3 separate rows of 4 zeros</code></pre>
-            </div>
-            <aside class="callout">
-                <span class="callout-title">Watch out</span>
-                <p><code>[[0] * 4] * 3</code> looks the same, but it makes 3 references to the <b>same</b> row, so changing <code>grid[0][0]</code> changes the first element of every row. Use the list comprehension above instead.</p>
-            </aside>
+            <p>The first three clues are 11 &rarr; 34 &rarr; 42. Remember to take 1 off each digit to get the Python index</p>
 
     </section>
 
