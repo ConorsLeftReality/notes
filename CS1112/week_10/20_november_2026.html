@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#c0c0c0">
-<title>Lecture 15 and 16 - Logical Arguments and Bad Arguments</title>
+<title>Lecture 15 - Logical Arguments</title>
 <link rel="stylesheet" href="../../win95.css">
 <link rel="stylesheet" href="../../notes.css">
 </head>
@@ -14,20 +14,21 @@
 <div class="window notepad">
 
     <div class="title-bar">
-    <div class="title-bar-text">Lecture 15 and 16 - Logical Arguments and Bad Arguments - Notepad</div>
+    <div class="title-bar-text">Lecture 15 - Logical Arguments - Notepad</div>
     </div>
 
     <div class="notepad-body">
 
-    <h1>Lecture 15 and 16 - Logical Arguments and Bad Arguments</h1>
-    <p class="note-meta">20 November 2026 &middot; CS1112 &middot; Barry O'Sullivan &middot; Slides: <a href="https://ucc.instructure.com/courses/95057/files/10842320">Lecture 15</a>, <a href="https://ucc.instructure.com/courses/95057/files/10842327">Lecture 16</a></p>
+    <h1>Lecture 15 - Logical Arguments</h1>
+    <p class="note-meta">20 November 2026 &middot; CS1112 &middot; Barry O'Sullivan &middot; Slides: <a href="https://ucc.instructure.com/courses/95057/files/10842320">Here</a></p>
 
 
     <fieldset>
         <legend>Contents</legend>
         <ul class="list-arrow">
-        <li><a href="#sec-0">Logical Arguments - Lecture 15</a></li>
-        <li><a href="#sec-1">Bad Arguments and Translation - Lecture 16</a></li>
+        <li><a href="#sec-0">Logical Arguments</a></li>
+        <li><a href="#sec-1">Rules of Inference</a></li>
+        <li><a href="#sec-2">Building an Argument</a></li>
 
         <!--
         <li><a href="#sec-id">SECTION_NAME</a></li>
@@ -39,32 +40,76 @@
 
     <section class="note-section" id="sec-0">
 
-        <h2>Logical Arguments - Lecture 15</h2>
-            <aside class="callout">
-                <span class="callout-title">NOTE</span>
-                <p>The Lecture 15 slides wouldn't load when this was written, so this section is the standard material - check it against the slides</p>
-            </aside>
-            <p>An argument is some <b>premises</b> and a <b>conclusion</b>. It's <b>valid</b> if whenever all the premises are true, the conclusion is true too</p>
-            <p>Check it with a truth table: look at every row where all the premises are T - the conclusion must be T in all of them</p>
+        <h2>Logical Arguments</h2>
+            <p>How do we check an implementation meets its specification? Truth tables get huge very quickly, and logical equivalences are too limited. So we <b>argue</b> it, formally, sticking to the rules of logic</p>
             <ul>
-                <li><b>Modus ponens</b>: p &rArr; q, p, therefore q</li>
-                <li><b>Modus tollens</b>: p &rArr; q, &not;q, therefore &not;p</li>
+                <li>An <b>argument</b> is a sequence of statements leading from some initial facts (<b>premises</b>) to a <b>conclusion</b></li>
+                <li>It's <b>valid</b> if whenever the premises are true, the conclusion has to be true too</li>
+                <li>The rules only depend on the <b>form</b> of the statements, so this is called <b>formal reasoning</b></li>
             </ul>
+
+            <p>E.G. 1) if your swipe card is accepted, you can enter E4, 2) your swipe card is accepted, so 3) you can enter E4</p>
+            <p>With p = "swipe card accepted" and q = "can enter E4": p &rarr; q, p, therefore q. The truth table shows the only row where p and p &rarr; q are both T also has q = T, so it's valid</p>
+            <p>Written as: <b>p &rarr; q, p &#8866; q</b></p>
+
+            <aside class="callout">
+                <span class="callout-title">Valid does NOT mean true</span>
+                <p>"If Enda Kenny is from Mars, he has two heads. He's from Mars. So he has two heads." The form is correct (valid), but the facts are false, so the conclusion isn't true</p>
+            </aside>
 
     </section>
 
     <section class="note-section" id="sec-1">
 
-        <h2>Bad Arguments and Translation - Lecture 16</h2>
-            <p>Logic is how we write <b>specifications</b> precisely. English is messy, so be careful translating</p>
-            <p>These all mean p &rArr; q: "if p then q", "p implies q", "p only if q", "p is sufficient for q", "q is necessary for p", "q whenever p", "q follows from p"</p>
-            <h3>Related statements for p &rArr; q</h3>
+        <h2>Rules of Inference</h2>
+            <p>A <b>rule of inference</b> lets us add a new statement to our collection. If a statement matches the pattern exactly (e.g. &rarr; at the top of the syntax tree for modus ponens), we can use it. X and Y can be whole complex statements</p>
+            <p>Any logical equivalence also gives a rule, but that's too restrictive</p>
             <ul>
-                <li><b>Contrapositive</b> &not;q &rArr; &not;p - <b>equivalent</b> to the original</li>
-                <li><b>Converse</b> q &rArr; p - NOT equivalent</li>
-                <li><b>Inverse</b> &not;p &rArr; &not;q - NOT equivalent</li>
+                <li><b>Modus Ponens</b>: x &rarr; y, x &there4; y</li>
+                <li><b>Modus Tollens</b>: x &rarr; y, &not;y &there4; &not;x</li>
+                <li><b>Unit Resolution</b>: x &or; y, &not;x &there4; y</li>
+                <li><b>Simplification</b>: x &and; y &there4; x</li>
+                <li><b>Addition</b>: x &there4; x &or; y</li>
+                <li><b>Conjunction</b>: x, y &there4; x &and; y</li>
+                <li><b>Chaining</b>: x &rarr; y, y &rarr; w &there4; x &rarr; w</li>
+                <li><b>Elimination</b>: x &harr; y, x &there4; y</li>
+                <li><b>Resolution</b>: x &or; y, &not;y &or; w &there4; x &or; w</li>
             </ul>
-            <p>Classic fallacies: assuming the converse (affirming the consequent) or the inverse (denying the antecedent). E.g. "if you don't eat your dinner you can't have pudding" doesn't actually promise pudding if you do</p>
+
+    </section>
+
+    <section class="note-section" id="sec-2">
+
+        <h2>Building an Argument</h2>
+            <p>If one rule isn't enough, chain them. Each rule adds a new fact you can use for the next one. As long as you only use valid rules and equivalences, the argument is valid</p>
+            <p>Number every new line, and say which lines it came from, which rule, and what you substituted for x and y</p>
+
+            <h3>Example</h3>
+                <p>Premises: 1. p &rarr; q, 2. &not;q &and; r, 3. &not;p &rarr; s, 4. s &rarr; t. Show t</p>
+                <ol start="5">
+                    <li>&not;q - from 2, Simplification [x=&not;q, y=r]</li>
+                    <li>&not;p - from 1 and 5, Modus Tollens [x=p, y=q]</li>
+                    <li>s - from 3 and 6, Modus Ponens [x=&not;p, y=s]</li>
+                    <li>t - from 4 and 7, Modus Ponens [x=s, y=t]</li>
+                </ol>
+
+            <h3>Password Example</h3>
+                <p>p = correct password, o = open area access, r = restricted area access, s = can read sensitive data</p>
+                <p>Premises: 1. &not;p &rarr; o, 2. s &rarr; r, 3. &not;(o &and; r), 4. &not;p. Show &not;s</p>
+                <p>The slides leave this for us. One way to do it:</p>
+                <ol start="5">
+                    <li>o - from 1 and 4, Modus Ponens</li>
+                    <li>&not;o &or; &not;r - from 3, De Morgan</li>
+                    <li>&not;r - from 6 and 5, Unit Resolution [x=&not;o, y=&not;r]</li>
+                    <li>&not;s - from 2 and 7, Modus Tollens</li>
+                </ol>
+
+            <h3>Soundness and Completeness</h3>
+                <ul>
+                    <li><b>Sound</b> - anything you can derive with the rules really is true whenever the premises are</li>
+                    <li><b>Complete</b> - anything that's true whenever the premises are can be derived with the rules</li>
+                </ul>
+                <p>We don't prove this in CS1112</p>
 
     </section>
 
@@ -116,7 +161,7 @@
     </div>
 
     <div class="status-bar">
-    <p class="status-bar-field">Lecture 15 and 16 - Logical Arguments and Bad Arguments</p>
+    <p class="status-bar-field">Lecture 15 - Logical Arguments</p>
     <p class="status-bar-field">20 November 2026</p>
     </div>
 </div>

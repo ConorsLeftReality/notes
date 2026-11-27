@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#c0c0c0">
+<title>Lecture 16 - Bad Logical Arguments</title>
+<link rel="stylesheet" href="../../win95.css">
+<link rel="stylesheet" href="../../notes.css">
+</head>
+
+<body class="win95-desktop">
+
+<div class="window notepad">
+
+    <div class="title-bar">
+    <div class="title-bar-text">Lecture 16 - Bad Logical Arguments - Notepad</div>
+    </div>
+
+    <div class="notepad-body">
+
+    <h1>Lecture 16 - Bad Logical Arguments</h1>
+    <p class="note-meta">27 November 2026 &middot; CS1112 &middot; Barry O'Sullivan &middot; Slides: <a href="https://ucc.instructure.com/courses/95057/files/10842327">Here</a></p>
+
+
+    <fieldset>
+        <legend>Contents</legend>
+        <ul class="list-arrow">
+        <li><a href="#sec-intro">Translating into Logic</a></li>
+        <li><a href="#sec-related">Contrapositive, Converse and Inverse</a></li>
+        <li><a href="#sec-fallacies">Logical Fallacies</a></li>
+
+        <!--
+        <li><a href="#sec-id">SECTION_NAME</a></li>
+        -->
+
+        </ul>
+    </fieldset>
+
+
+    <section class="note-section" id="sec-intro">
+
+        <h2>Translating into Logic</h2>
+            <p>Specifying how complex systems behave (who can access what, what a module should do, how two programs talk) is a key skill. If we get the spec into <b>logic</b>, we can analyse it and check an implementation meets it</p>
+            <p>E.G. specs: "You can read this page if you are a CS student", "If the email is from a blacklisted address or contains the word viagra and the sender is not in the address book, it goes to Spam"</p>
+
+            <h3>English to p &rarr; q</h3>
+                <p>All of these mean <b>p &rarr; q</b>:</p>
+                <ul>
+                    <li>if p then q</li>
+                    <li>p implies q</li>
+                    <li>p only if q</li>
+                    <li>p is sufficient for q</li>
+                    <li>q follows from p</li>
+                    <li>q whenever p</li>
+                    <li>q when p</li>
+                    <li>q is necessary for p</li>
+                </ul>
+                <p>Watch out: in the last few, <b>p and q have switched places</b> in the sentence</p>
+
+                <aside class="callout">
+                    <span class="callout-title">BUT BEWARE</span>
+                    <p>Still check that it's what was actually meant. And don't translate back from logic into English using words like "implies" or "is sufficient for", it's easy to get wrong</p>
+                </aside>
+
+            <h3>Problems with English</h3>
+                <ul>
+                    <li>Unclear precedence and grouping (which "and"/"or" goes with what)</li>
+                    <li><b>Inclusive vs exclusive OR</b> - in logic, OR means "one or both"</li>
+                    <li>Conditional sentences - "if you don't eat your main course, you can't have any pudding". Does the logic match what the speaker meant, or what the child expected?</li>
+                </ul>
+                <p>E.G. "You can read this page if you are a CS student" is q &rarr; p (q = CS student, p = can read). By the truth table, a non-CS student reading the page is still allowed (F &rarr; T is T). Is that what we meant?</p>
+
+    </section>
+
+    <section class="note-section" id="sec-related">
+
+        <h2>Contrapositive, Converse and Inverse</h2>
+            <p>For <b>p &rarr; q</b>:</p>
+            <ul>
+                <li><b>Contrapositive</b>: &not;q &rarr; &not;p - <b>EQUIVALENT</b></li>
+                <li><b>Converse</b>: q &rarr; p - NOT equivalent</li>
+                <li><b>Inverse</b>: &not;p &rarr; &not;q - NOT equivalent</li>
+            </ul>
+            <p>p &rarr; q is also equivalent to <b>&not;p &or; q</b></p>
+            <p>(Check them with truth tables, the contrapositive column matches p &rarr; q, the other two don't)</p>
+
+            <p>E.G. "If I am in Cork, then I am in Ireland":</p>
+            <ul>
+                <li>"If I am in Ireland, then I am in Cork" - converse, different</li>
+                <li>"Either I am not in Cork or I am in Ireland" - equivalent</li>
+                <li>"If I am not in Cork, then I am not in Ireland" - inverse, different</li>
+                <li>"If I am not in Ireland, then I am not in Cork" - contrapositive, equivalent</li>
+            </ul>
+
+    </section>
+
+    <section class="note-section" id="sec-fallacies">
+
+        <h2>Logical Fallacies</h2>
+            <p>A <b>logical fallacy</b> is a bad argument: the conclusion isn't guaranteed to be true when the premises are. They're everywhere (politicians, newspapers, conversations), so learn to spot them</p>
+            <ul>
+                <li><b>Affirming the consequent</b>: p &rarr; q, q, therefore p - <b>NOT VALID</b>. "If I'm at work, I'm wearing a tie. I'm wearing a tie. So I'm at work"</li>
+                <li><b>Denying the hypothesis</b>: p &rarr; q, &not;p, therefore &not;q - <b>NOT VALID</b>. "If I click dodgy links, I'll get a virus. I don't click dodgy links. So I won't get a virus"</li>
+                <li><b>Affirming the disjunct</b>: p &or; q, p, therefore &not;q - <b>NOT VALID</b>. "It'll rain or the sun will shine. It rained. So the sun didn't shine". Only works if the OR is exclusive, and in logic OR is inclusive</li>
+            </ul>
+
+            <h3>Another way to check an argument</h3>
+                <p>Make one statement: (premises joined with &and;) &rarr; conclusion. If it's a <b>tautology</b>, the argument is valid</p>
+                <p>E.G. modus ponens: (p &and; (p &rarr; q)) &rarr; q is T in every row, so it's valid</p>
+
+            <aside class="callout">
+                <span class="callout-title">THE END</span>
+                <p>That's the end of the CS1112 content: algorithms, sets, functions, relations and propositional logic, all about clear and precise specification and reasoning. Next lecture is examples and exercises</p>
+            </aside>
+
+    </section>
+
+    <!-- SECTION TEMPLATE -->
+    <!--
+    
+    <section class="note-section" id="sec-id">
+            
+        <h2>INTRODUCTION_SECTION</h2>
+            <p>ENTER_TEXT_HERE</p>
+            
+    </section>
+    
+    -->
+    
+    <!-- INFO BUBBLE TEMPLATE -->
+    <!--
+    
+    <aside class="callout">
+        <span class="callout-title">BUBBLE_TITLE</span>
+        <p></p>
+    </aside>
+        
+    -->
+    
+    <!-- CODE BLOCK TEMPLATE -->
+    <!--
+    
+    <div class="code-block">
+        <div class="code-title">example_arithmetic_operation.sql</div>
+        <pre><code> WRITE_CODE_HERE
+        
+        </code></pre>
+    </div>
+    
+    -->
+    
+    <!-- IMAGE BLOCK TEMPLATE -->
+    <!--
+    
+    <figure class="note-image">
+        <img alt="ALTERNATIVE_TEXT_HERE" width="320"
+            src="FILEPATH_HERE">
+        <figcaption>CAPTION_HERE</figcaption>
+    </figure>
+    
+    -->
+    
+    </div>
+
+    <div class="status-bar">
+    <p class="status-bar-field">Lecture 16 - Bad Logical Arguments</p>
+    <p class="status-bar-field">27 November 2026</p>
+    </div>
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a class="start-button" href="../../index.html">Start</a>
+    <div class="taskbar-divider"></div>
+
+    <ul class="taskbar-nav">
+    <li><a class="taskbar-item" href="../cs1112_index.html">Back to CS1112 Home</a></li>
+    </ul>
+</div>
+
+</body>
+</html>

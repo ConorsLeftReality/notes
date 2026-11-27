@@ -46,16 +46,22 @@ import soundfile as sf
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RECORDINGS = os.path.join(ROOT, "recordings")
 
-# Whisper model: "small.en" is a good balance on a laptop CPU.
-# "base.en" is faster but makes more mistakes, "medium.en" is better but much slower.
+# Whisper models. Option 4 asks which one to use.
+# "small.en" is a good balance on a laptop CPU (about 10-20 minutes per hour of lecture).
+# "medium.en" gets more words right, but is 2-3 times slower (and downloads about 1.5GB the first time).
 MODEL = "small.en"
+ACCURATE_MODEL = "medium.en"
 
 # Words Whisper wouldn't guess on its own, per module. Helps it spell them right.
 VOCAB = {
     "CS1106": "SQL, SELECT, FROM, WHERE, JOIN, GROUP BY, HAVING, subquery, primary key, foreign key, ER diagram, normalisation, Kieran Herley",
     "CS1111": "Samphire, assembly, register, AL, BL, CL, DL, opcode, mnemonic, endian, cache, DRAM, SRAM, virtual memory, page frame, MMU, hypervisor, J.P. Morrison",
     "CS1112": "set, subset, union, intersection, cardinality, power set, relation, reflexive, symmetric, transitive, bijective, tautology, implication, Barry O'Sullivan",
-    "CS1115": "HTML, CSS, selector, flexbox, grid, margin, padding, div, span, viewport, rem, em, float, shape-outside, Derek Bridge",
+    "CS1115": "Derek Bridge. HTML, CSS, selector, pseudo-class, pseudo-element, links, :hover, :link, :visited, :active, nav, anchor, "
+              "page jumps, scroll-behavior, scroll-margin-top, @media, @font-face, @ rules, user agent stylesheet, rows, tr, td, th, "
+              "border-collapse, nth-child, zebra striping, flexbox, grid, margin, padding, div, span, viewport, rem, em, float, "
+              "shape-outside, position: relative, absolute, fixed, sticky, transform, scale, rotate, transition, ease-in, ease-out, "
+              "linear, cubic-bezier, animation, @keyframes, caniuse.com, screen reader",
     "CS1117": "Python, list, tuple, dictionary, set, function, loop, match, return, parameter",
     "MA1001": "calculus, derivative, integral, limit, chain rule, product rule, quotient rule, tangent, logarithm, critical point, differential equation",
 }
@@ -369,28 +375,42 @@ def read_transcript_lines(path):
     return lines
 
 
-_model = None
+_models = {}
 
 
-def get_model():
-    global _model
-    if _model is None:
+def get_model(name=MODEL):
+    if name not in _models:
         from faster_whisper import WhisperModel
-        print(f"Loading Whisper ({MODEL})... the first time, this downloads the model.")
-        _model = WhisperModel(MODEL, device="cpu", compute_type="int8")
-    return _model
+        print(f"Loading Whisper ({name})... the first time, this downloads the model.")
+        _models[name] = WhisperModel(name, device="cpu", compute_type="int8")
+    return _models[name]
 
 
-def transcribe(path):
+def remove_repeats(lines):
+    # Whisper sometimes gets stuck saying the same thing over and over (e.g. "This..." 20 times).
+    # Keep the first one of any run of identical lines.
+    kept = []
+    for seconds, text in lines:
+        same = text.strip(" .").lower()
+        if kept and same == kept[-1][1].strip(" .").lower():
+            continue
+        kept.append((seconds, text))
+    return kept
+
+
+def transcribe(path, model_name=MODEL):
     module = os.path.basename(path).split("_")[0].upper()
-    model = get_model()
+    model = get_model(model_name)
 
-    print(f"Transcribing {os.path.basename(path)} (roughly 10-20 minutes for an hour of lecture)...")
+    speed = "10-20" if model_name == MODEL else "30-50"
+    print(f"Transcribing {os.path.basename(path)} with {model_name} (roughly {speed} minutes for an hour of lecture)...")
     segments, info = model.transcribe(
         load_audio(path),
         language="en",
         vad_filter=True,  # skip silence
         initial_prompt=VOCAB.get(module),
+        # Don't feed each line into the next one. Stops one mistake turning into a loop.
+        condition_on_previous_text=False,
     )
 
     lines = []
@@ -403,12 +423,12 @@ def transcribe(path):
     finally:
         keep_awake(False)
 
-    write_transcript(path, lines)
+    write_transcript(path, remove_repeats(lines))
     print(f"\r  Transcript saved to {os.path.relpath(transcript_path(path), ROOT)}")
     return transcript_path(path)
 
 
-def transcribe_many(paths, label):
+def transcribe_many(paths, label, model_name=MODEL):
     if not paths:
         print(f"No recordings found for {label}.")
         return
@@ -428,7 +448,7 @@ def transcribe_many(paths, label):
     print()
     for i, p in enumerate(paths, 1):
         print(f"({i}/{len(paths)}) ", end="")
-        transcribe(p)
+        transcribe(p, model_name)
     print("\nAll done.")
 
 
@@ -447,29 +467,34 @@ def run_transcripts():
     print("  3. A week")
     print("  4. Everything not transcribed yet")
     choice = input("Number: ").strip()
+    if choice not in ("1", "2", "3", "4"):
+        print("Not an option.")
+        return
+
+    print("\nWhich quality?")
+    print(f"  1. Normal   ({MODEL}, about 10-20 minutes per hour of lecture)")
+    print(f"  2. Accurate ({ACCURATE_MODEL}, gets more words right, about 30-50 minutes per hour)")
+    model_name = ACCURATE_MODEL if input("Number (ENTER for normal): ").strip() == "2" else MODEL
 
     if choice == "1":
         path = pick_recording("Which recording? ")
         if path:
-            transcribe(path)
+            transcribe(path, model_name)
 
     elif choice == "2":
         day = ask_date("Which day? (e.g. 26/11, or ENTER for today): ")
         paths = [p for d, _, p in recordings if d == day]
-        transcribe_many(paths, day.strftime("%A %d %B"))
+        transcribe_many(paths, day.strftime("%A %d %B"), model_name)
 
     elif choice == "3":
         day = ask_date("Any day in the week (e.g. 26/11, or ENTER for this week): ")
         monday = day - datetime.timedelta(days=day.weekday())
         sunday = monday + datetime.timedelta(days=6)
         paths = [p for d, _, p in recordings if monday <= d <= sunday]
-        transcribe_many(paths, f"the week of {monday.strftime('%d %B')} - {sunday.strftime('%d %B')}")
+        transcribe_many(paths, f"the week of {monday.strftime('%d %B')} - {sunday.strftime('%d %B')}", model_name)
 
     elif choice == "4":
-        transcribe_many(waiting, "everything not transcribed yet")
-
-    else:
-        print("Not an option.")
+        transcribe_many(waiting, "everything not transcribed yet", model_name)
 
 
 ## ============================== (5) NOTES ==============================
